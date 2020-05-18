@@ -1,23 +1,25 @@
 {
   "files": {
-    "main.css": "/static/react/css/main.5f361e03.chunk.css",
-    "main.js": "/static/react/js/main.ca94592d.chunk.js",
-    "main.js.map": "/static/react/js/main.ca94592d.chunk.js.map",
-    "runtime-main.js": "/static/react/js/runtime-main.b9f37f5d.js",
-    "runtime-main.js.map": "/static/react/js/runtime-main.b9f37f5d.js.map",
-    "js/2.916cb700.chunk.js": "/static/react/js/2.916cb700.chunk.js",
-    "js/2.916cb700.chunk.js.map": "/static/react/js/2.916cb700.chunk.js.map",
+    "main.css": "/static/react/css/main.9a559022.chunk.css",
+    "main.js": "/static/react/js/main.9b9ad4b4.chunk.js",
+    "main.js.map": "/static/react/js/main.9b9ad4b4.chunk.js.map",
+    "runtime-main.js": "/static/react/js/runtime-main.e7cedbf6.js",
+    "runtime-main.js.map": "/static/react/js/runtime-main.e7cedbf6.js.map",
+    "js/2.d2bcd983.chunk.js": "/static/react/js/2.d2bcd983.chunk.js",
+    "js/2.d2bcd983.chunk.js.map": "/static/react/js/2.d2bcd983.chunk.js.map",
     "../../templates/index.html": "/static/react/../../templates/index.html",
-    "css/main.5f361e03.chunk.css.map": "/static/react/css/main.5f361e03.chunk.css.map",
-    "js/2.916cb700.chunk.js.LICENSE.txt": "/static/react/js/2.916cb700.chunk.js.LICENSE.txt",
-    "media/logo.svg": "/static/react/media/logo.5d5d9eef.svg",
-    "precache-manifest.8dabd41d5ed90fea099fb40a21adc4a4.js": "/static/react/precache-manifest.8dabd41d5ed90fea099fb40a21adc4a4.js",
+    "css/main.9a559022.chunk.css.map": "/static/react/css/main.9a559022.chunk.css.map",
+    "js/2.d2bcd983.chunk.js.LICENSE.txt": "/static/react/js/2.d2bcd983.chunk.js.LICENSE.txt",
+    "media/Student_picture.png": "/static/react/media/Student_picture.a3ab7090.png",
+    "media/logo.svg": "/static/react/media/logo.ee7cd8ed.svg",
+    "media/stephen_the_goat.jpg": "/static/react/media/stephen_the_goat.e0323fc4.jpg",
+    "precache-manifest.dcaa49c46e41bc9d452facde8a91e40a.js": "/static/react/precache-manifest.dcaa49c46e41bc9d452facde8a91e40a.js",
     "service-worker.js": "/static/react/service-worker.js"
   },
   "entrypoints": [
-    "js/runtime-main.b9f37f5d.js",
-    "js/2.916cb700.chunk.js",
-    "css/main.5f361e03.chunk.css",
-    "js/main.ca94592d.chunk.js"
+    "js/runtime-main.e7cedbf6.js",
+    "js/2.d2bcd983.chunk.js",
+    "css/main.9a559022.chunk.css",
+    "js/main.9b9ad4b4.chunk.js"
   ]
 }

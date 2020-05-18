@@ -1,0 +1,113 @@
+/*@import url('https://fonts.googleapis.com/css?family=Font+Name');*/
+
+.Background-home-page {
+  background-color: rgb(70, 70, 70);
+  /*original 75 72 72*/
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100vmin);
+}
+
+.logo-header {
+  color: white;
+  margin-bottom: calc(2vmin);
+  font-size: calc(5vmin);
+  cursor: default;
+}
+
+.searchbar {
+  width: 100%;
+  text-align: center;
+}
+
+.search-bar {
+  height: calc(6vmin);
+  justify-content: center;
+  align-items: center;
+  display: flex; 
+}
+
+.bar{
+  width: calc(60vmin);
+  font-size: calc(1.8vmin);
+  font-weight: 400;
+  text-indent: calc(3vmin);
+  text-align: left;
+  cursor: text;
+  padding: calc(1.3vmin);
+  border: none;
+  float: left;
+  background: rgb(94, 92, 92);
+  color: white;
+}
+
+.search-button {
+  float: left;
+  width: calc(5%);
+  padding: calc(1.3vmin);
+  background: rgb(94, 92, 92);
+  color: white;
+  font-size: calc(1.8vmin);
+  border: none;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background: rgb(40, 160, 66);
+}
+
+.advanced-box {
+  width: calc(100%);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.advanced{
+  text-align: center;
+  margin-left: calc(65vmin);
+  font-size: calc(1.5vmin);
+  padding-top: calc(0vmin);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.slogan-image {
+  width: calc(100%);
+  display: flex;
+}
+
+.description-slogan {
+  width: calc(30%);
+  padding-left: calc(23vmin);
+}
+
+.slogan, .description-website {
+  padding-left: calc(4vmin);
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding-right: calc(1vmin);
+  padding-left: calc(1vmin);
+}
+
+.slogan-text {
+  text-align: left;
+  font-size: calc(4.7vmin);
+  cursor: default;  
+  margin-bottom: calc(0vmin);
+}
+
+.description {
+  font-size: calc(2.3vmin);
+  cursor: default;  
+  text-align: left;
+}
+
+.vector-image {
+  padding-left: calc(35vmin);
+}

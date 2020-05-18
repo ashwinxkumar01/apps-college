@@ -1,0 +1,80 @@
+/*@import url('https://fonts.googleapis.com/css?family=Font+Name');*/
+
+nav {
+  display: flex;
+  height: calc(8.5vh);
+  background-color: black;
+}
+
+.navbar {
+  width: calc(100%);
+  max-width: calc(100%);
+  padding-left: calc(0%);
+  padding-right: calc(1%);
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  list-style: none;  
+  font-family: 'Lato';
+  cursor: default;
+}
+
+li {
+  color: white;
+  font-size: calc(2.5vmin);
+}
+
+.features-link {
+  margin-left: calc(2vmin);
+}
+
+.dashboard-link {
+  margin-left: calc(5vmin);
+}
+
+.profile-link {
+  margin-left: calc(35vw);
+}
+
+.space-between-tabs {
+  margin-left: calc(35vw);
+  /*previously 70vw*/
+}
+
+.login-link {
+  padding-left: calc(1vmin);
+}
+
+.signup-link {
+  margin-left: calc(1.5vw);
+  width: calc(100%);
+  text-align: center;
+}
+
+.App-logo-background {
+  width: calc(4%);
+  justify-content: start;
+  align-items: center;
+}
+
+.App-logo {
+  padding-top: calc(0.5vmin);
+  padding-left: calc(0vmin);
+  height: calc(6.5vmin);
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

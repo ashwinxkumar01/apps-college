@@ -1,0 +1,11 @@
+/*@import url('https://fonts.googleapis.com/css?family=Font+Name');*/
+
+.Features {
+    text-align: left;
+    font-family: 'Montserrat', cursive;
+}
+
+.background-feature {
+    background-color: rgb(227, 231, 233);
+    height: calc(100vmin);
+}
