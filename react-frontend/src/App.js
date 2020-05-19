@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -9,21 +9,23 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Home from './pages/Home';
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/feature" component={Features} />
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-        </Switch>
-      </div>
-    </Router>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route path="/feature" component={Features} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/" component={Home} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;

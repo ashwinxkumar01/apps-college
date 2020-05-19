@@ -7,7 +7,7 @@ function Nav() {
     return (
         <nav>
             <ul className="navbar">
-                <Link style={{ textDecoration: 'none' }} to="">
+                <Link style={{ textDecoration: 'none' }} to="/">
                     <li>
                         <img src={logo} className="App-logo" alt="logo" />
                     </li>
