@@ -19,6 +19,7 @@ venv
 .env.development.local
 .env.test.local
 .env.production.local
+/flask-backend/.bash-source
 __pycache__
 
 npm-debug.log*
