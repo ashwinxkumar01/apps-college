@@ -19,6 +19,7 @@ venv
 .env.development.local
 .env.test.local
 .env.production.local
+.idea
 /flask-backend/.bash-source
 __pycache__
 

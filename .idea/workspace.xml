@@ -2,9 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fef9ffa2-7a1e-4440-80d8-5a469ed09bcc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/apps-college.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/apps-college.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask-backend/firebase.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask-backend/firebase.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask-backend/static/react/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/flask-backend/static/react/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask-backend/static/react/css/main.9a559022.chunk.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask-backend/static/react/css/main.9a559022.chunk.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask-backend/static/react/js/2.d2bcd983.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask-backend/static/react/js/2.d2bcd983.chunk.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask-backend/static/react/js/2.d2bcd983.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask-backend/static/react/js/main.9b9ad4b4.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask-backend/static/react/js/main.9b9ad4b4.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask-backend/static/react/media/logo.ee7cd8ed.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask-backend/static/react/precache-manifest.dcaa49c46e41bc9d452facde8a91e40a.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask-backend/static/react/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/flask-backend/static/react/service-worker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask-backend/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/flask-backend/templates/index.html" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,20 +28,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1c1ny3HxTc6rf92Ey1JCwqNi8MI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -47,10 +55,18 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2119" y="231" key="SettingsEditor" timestamp="1590009144277">
+      <screen x="1680" y="91" width="1920" height="1002" />
+    </state>
+    <state x="2119" y="231" key="SettingsEditor/1680.91.1920.1002/0.23.1680.1027@1680.91.1920.1002" timestamp="1590009144277" />
   </component>
 </project>
