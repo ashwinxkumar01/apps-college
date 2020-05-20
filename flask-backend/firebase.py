@@ -63,4 +63,6 @@ def isLoggedIn():
     return isLoggedIn
 
 if __name__ == '__main__':
-    createUserWithEmailPassword("aksportsmaniac@gmail.com", "yoloswag120")
+    #createUserWithEmailPassword("aksportsmaniac@gmail.com", "yoloswag120")
+    db.child("users").push({"name": "jim"})
+    db.child("users").child("jim").push({"college": "UCSD"})
