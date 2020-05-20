@@ -1,6 +1,8 @@
 import pyrebase
 import os
 from flask import session
+import pyodbc
+
 
 config = {
     "apiKey": os.environ.get("API_KEY"),
