@@ -1,6 +1,7 @@
 import React from 'react';
-import '../css/Loginsignup.css';
+import '../css/Login.css';
 import GoogleButton from 'react-google-button';
+import Nav from '../components/Nav';
 
 class Login extends React.Component {
     constructor(props) {
@@ -39,8 +40,10 @@ class Login extends React.Component {
     
     render() {
         return (
-            <div className = "Login" >
+            <div className = "Login" >    
+                <Nav />
                 <div className="credentials">
+                <h1 className="header">Welcome Back</h1>
                     <div className="email-password">
                         <input className="email" type="text" placeholder="Email" 
                         value={this.state.user} onChange={this.handleChangeUser} />
@@ -51,13 +54,6 @@ class Login extends React.Component {
                     <div className="login-button-div">
                         <button className="login-button" onClick={this.login}>Log in</button>
                     </div>
-    
-                    <div className="google-login-divide">
-                        <hr className="lineone" />
-                        <h2>Or</h2>
-                        <hr className="linetwo" />
-                    </div>
-                    <GoogleButton className="google-button" onClick={this.googleLogin} />
                 </div>
             </div>
         );
