@@ -3,7 +3,7 @@
 nav {
   display: flex;
   height: calc(8.5vh);
-  background-color: black;
+  background-image: linear-gradient(rgba(2,0,36,1) 0%, transparent);
 }
 
 .navbar {

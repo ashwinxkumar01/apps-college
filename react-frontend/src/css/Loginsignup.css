@@ -1,16 +1,15 @@
 /*@import url('https://fonts.googleapis.com/css?family=Font+Name');*/
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
 
 .Login, .Signup {
-  text-align: left;
   height: calc(100vmin);
   width: calc(100%);
   font-family: 'Montserrat', sans-serif;
-  color: white;
-  background-color: rgb(48, 45, 45);
+  background-color: rgb(15, 15, 75);
 }
 
 .credentials {
-    height: calc(50vmin);
+    height: calc(30vmin);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -19,7 +18,18 @@
     padding-top: calc(20vmin);
 }
 
+.header {
+    position: relative;
+    font-size: calc(7vmin);
+    color: white;
+    text-align: center;
+    top: calc(10vh);
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: calc(10vh);
+}
+
 h1 {
+    margin: 0;
     text-align: center;
     width: 100%;
     font-size: calc(6vmin);
@@ -33,17 +43,20 @@ h1 {
 }
 
 .email, .password {
-    border-radius: 20px;
-    width: calc(80vmin);
-    height: calc(5vmin);
-    font-size: calc(2vmin);
-    font-weight: 400;
+    position: relative;
+    margin-bottom: calc(2vh);
+    width: calc(55vmin);
+    height: calc(7vmin);
+    font-size: calc(2.5vmin);
     text-indent: calc(3vmin);
     text-align: left;
     cursor: text;
-    border-color: white;
+    border-color: transparent;
+    border-bottom-color: rgb(210, 210, 210);
+    border-width: calc(.3vmin);
+    background-color: transparent;
     margin-top: calc(5%);
-    border: none;
+    border-bottom-style: solid;
 }
 
 .password {
@@ -51,7 +64,7 @@ h1 {
 }
 
 .login-button-div {
-    margin-top: calc(4%);
+    margin-top: calc(3vh);
     padding-bottom: calc(6vmin);
 }
 
@@ -82,29 +95,30 @@ h1 {
 }
 
 h2 {
-    width: calc(7vmin);
-    margin-top: 0px;
+    width: calc(5vmin);
     text-align: center;
-    font-size: calc(4vmin);
+    font-size: calc(3vmin);
+    color: rgb(210, 210, 210);
 }
 
 hr {
     border: 0;
-    width: calc(42vmin);
+    width: calc(30vmin);
     color: blue;
-    background-color: white;
-    height: calc(3px);
-    margin-bottom: calc(4vmin);
+    background-color: rgb(210, 210, 210);
+    height: calc(.3vh);
+    margin-bottom: calc(3vmin);
   }
 
   .lineone {
-      margin-right: calc(7vmin);
+      margin-right: calc(6vmin);
+
   }
 
   .linetwo { 
-      margin-left: calc(7vmin);
+      margin-left: calc(6vmin);
   }
 
   .google-button {
-      margin-top: calc(2%);
+      margin-top: calc(1%);
   }
