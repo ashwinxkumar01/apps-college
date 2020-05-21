@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/Signup.css';
+import Nav from '../components/Nav';
 
 class Signup extends React.Component {
     constructor(props) {
@@ -34,21 +35,17 @@ class Signup extends React.Component {
     
     render() {
         return (
-            <div className="Signup">
-                <div className="Box">
-                    <div className="Log-in">
-                        <h1 className="header"> Get Started</h1>
-                        <form className="signup-form">
+            <div className = "Login" >    
+                <Nav />
+                <div className="credentials">
+                    <h1 className="header">Sign Up and Join</h1>
+                    <div className="email-password">
                             <input className="email" type="text" placeholder="Email" 
                             value={this.state.user} onChange={this.handleChangeUser} />
-                            <input className="password" type="text" placeholder="Password" 
-                            value={this.state.password} onChange={this.handleChangePass} />
-                            <button className="signup-button" onClick={this.signup}>SIGNUP</button>
-                        </form>
+                        <input className="password" type="text" placeholder="Password" 
+                        value={this.state.password} onChange={this.handleChangePass} />
                     </div>
-                    <div className="Sign-up"> 
-                    </div>
-                </div>   
+                </div>       
             </div>
         );
     }
