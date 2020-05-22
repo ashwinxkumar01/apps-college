@@ -32,7 +32,7 @@ class SideBar extends React.Component {
           <p className="ml-3">MY COLLEGES</p>
 
           <Nav.Item className="active">
-            <Nav.Link href="/">
+            <Nav.Link href="/loginhome/dashboard">
               <FontAwesomeIcon icon={faHome} className="mr-2" />
               Dashboard
             </Nav.Link>
@@ -46,28 +46,28 @@ class SideBar extends React.Component {
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link href="/profile">
+            <Nav.Link href="/loginhome/profile">
               <FontAwesomeIcon icon={faQuestion} className="mr-2" />
               FAQ
             </Nav.Link>
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link href="/feature">
+            <Nav.Link href="/loginhome/feature">
               <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
               Contact
             </Nav.Link>
           </Nav.Item>
           
           <Nav.Item>
-            <Nav.Link href="/login">
+            <Nav.Link href="/loginhome/login">
               <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
                 Log In
             </Nav.Link>
           </Nav.Item>
           
           <Nav.Item>
-            <Nav.Link href="/signup">
+            <Nav.Link href="/loginhome/signup">
               <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
               Sign Up
             </Nav.Link>
