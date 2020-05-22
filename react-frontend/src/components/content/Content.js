@@ -8,6 +8,8 @@ import Features from '../../pages/Features';
 import Dashboard from '../../pages/Dashboard';
 import Profile from '../../pages/Profile';
 import Home from '../../pages/Home';
+import Login from '../../pages/Login';
+import Signup from '../../pages/Signup';
 
 class Content extends React.Component {
   render() {
@@ -24,6 +26,8 @@ class Content extends React.Component {
               <Route path="/feature" component={Features} />
               <Route path="/home" component={Home} />
               <Route path="/profile" component={Profile} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
             </Switch>
           </div>
         </Router>

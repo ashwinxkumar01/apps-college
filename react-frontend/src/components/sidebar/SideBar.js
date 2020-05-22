@@ -58,6 +58,20 @@ class SideBar extends React.Component {
               Contact
             </Nav.Link>
           </Nav.Item>
+          
+          <Nav.Item>
+            <Nav.Link href="/login">
+              <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
+                Log In
+            </Nav.Link>
+          </Nav.Item>
+          
+          <Nav.Item>
+            <Nav.Link href="/signup">
+              <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
+              Sign Up
+            </Nav.Link>
+          </Nav.Item>
         </Nav>
       </div>
     );
