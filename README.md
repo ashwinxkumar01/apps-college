@@ -9,6 +9,8 @@ Ensure that:
 2. npm install react-router-dom
 3. yarn add @material-ui/core
 4. yarn add @material-ui/icons
+5. npm install react-bootstrap
+6. npm install @fortawesome/react-fontawesome
 
 are executed in the react-frontend folder beforehand. 
 
