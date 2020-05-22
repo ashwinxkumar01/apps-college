@@ -20,7 +20,7 @@ class App extends Component {
             <Route path="/profile" component={Profile} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/" component={Home} />
+            <Route path="/" component={Home}/>
           </Switch>
         </div>
       </Router>
