@@ -1,12 +1,10 @@
 import React from 'react';
 import '../css/Profile.css';
-import Nav from '../components/Nav';
 import Image from './stephen_the_goat.jpg';
 
 function Profile() {
     return (
         <div className="background1">
-            <Nav />
             <div>
                 <div className="image-box fill">
                     <img src={Image} height="200"/>
