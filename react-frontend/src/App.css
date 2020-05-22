@@ -136,10 +136,4 @@ li a.dropdown-toggle::after {
     display: block;
   }
   
-  li a.dropdown-toggle::after {
-    display: inline-block;
-    position: relative;
-    left: 68%;
-  }
-  
 }
