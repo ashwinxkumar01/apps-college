@@ -1,14 +1,12 @@
 import React from 'react';
 import '../css/Home.css';
 
-import Nav from '../components/Nav';
 import Image from './Student_picture.png';
 
 function Home() {
   
     return (
         <div className="Background-home-page">
-            <Nav />
             <span>
                 <h1 className="logo-header">All your needs, organized. One Place.</h1>
             </span>

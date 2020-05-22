@@ -1,6 +1,5 @@
 import React from 'react';
 import '../css/Signup.css';
-import Nav from '../components/Nav';
 
 class Signup extends React.Component {
     constructor(props) {
@@ -36,7 +35,6 @@ class Signup extends React.Component {
     render() {
         return (
             <div className = "Login" >    
-                <Nav />
                 <div className="credentials">
                     <h1 className="header">Sign Up and Join</h1>
                     <div className="email-password">
