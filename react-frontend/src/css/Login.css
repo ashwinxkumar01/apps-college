@@ -1,8 +1,8 @@
 .Login {
-    height: calc(100vmin);
-    width: calc(100%);
+    height: calc(90vmin);
+    width: calc(90%);
     font-family: 'Montserrat', sans-serif;
-    background-color: rgb(15, 15, 75);
+    background-color: '#white';
   }
   
   .credentials {
@@ -41,7 +41,7 @@
   
   .email, .password {
       position: relative;
-      margin-bottom: calc(2vh);
+      margin-bottom: calc(0vh);
       width: calc(55vmin);
       height: calc(7vmin);
       font-size: calc(2.5vmin);
