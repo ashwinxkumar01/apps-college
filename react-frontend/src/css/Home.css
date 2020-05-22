@@ -540,59 +540,59 @@ pre code {
 }
 
 .container {
-  width: 100%;
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
+  max-width: 100%;
+  padding-right: 4rem;
+  padding-left: 4rem;
   margin-right: auto;
   margin-left: auto;
 }
 @media (min-width: 576px) {
   .container {
-    max-width: 540px;
+    max-width: 100%;
   }
 }
 @media (min-width: 768px) {
   .container {
-    max-width: 720px;
+    max-width: 100%;
   }
 }
 @media (min-width: 992px) {
   .container {
-    max-width: 960px;
+    max-width: 100%;
   }
 }
 @media (min-width: 1200px) {
   .container {
-    max-width: 1140px;
+    max-width: 100%;
   }
 }
 
 .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {
-  width: 100%;
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
+  max-width: 100%;
+  padding-right: 0rem;
+  padding-left: 0rem;
   margin-right: auto;
   margin-left: auto;
 }
 
 @media (min-width: 576px) {
   .container-sm, .container {
-    max-width: 540px;
+    max-width: 100%;
   }
 }
 @media (min-width: 768px) {
   .container-md, .container-sm, .container {
-    max-width: 720px;
+    max-width: 100%;
   }
 }
 @media (min-width: 992px) {
   .container-lg, .container-md, .container-sm, .container {
-    max-width: 960px;
+    max-width: 100%;
   }
 }
 @media (min-width: 1200px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1140px;
+    max-width: 100%;
   }
 }
 .row {
