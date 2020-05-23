@@ -1,25 +1,28 @@
 {
   "files": {
-    "main.css": "/static/react/css/main.a282ab7b.chunk.css",
-    "main.js": "/static/react/js/main.fd20364b.chunk.js",
-    "main.js.map": "/static/react/js/main.fd20364b.chunk.js.map",
-    "runtime-main.js": "/static/react/js/runtime-main.e7cedbf6.js",
-    "runtime-main.js.map": "/static/react/js/runtime-main.e7cedbf6.js.map",
-    "js/2.7b632407.chunk.js": "/static/react/js/2.7b632407.chunk.js",
-    "js/2.7b632407.chunk.js.map": "/static/react/js/2.7b632407.chunk.js.map",
+    "main.css": "/static/react/css/main.21c359d1.chunk.css",
+    "main.js": "/static/react/js/main.8bc94dd3.chunk.js",
+    "main.js.map": "/static/react/js/main.8bc94dd3.chunk.js.map",
+    "runtime-main.js": "/static/react/js/runtime-main.725b2ec0.js",
+    "runtime-main.js.map": "/static/react/js/runtime-main.725b2ec0.js.map",
+    "css/2.af3c1da9.chunk.css": "/static/react/css/2.af3c1da9.chunk.css",
+    "js/2.52e6aac9.chunk.js": "/static/react/js/2.52e6aac9.chunk.js",
+    "js/2.52e6aac9.chunk.js.map": "/static/react/js/2.52e6aac9.chunk.js.map",
     "../../templates/index.html": "/static/react/../../templates/index.html",
-    "css/main.a282ab7b.chunk.css.map": "/static/react/css/main.a282ab7b.chunk.css.map",
-    "js/2.7b632407.chunk.js.LICENSE.txt": "/static/react/js/2.7b632407.chunk.js.LICENSE.txt",
+    "css/2.af3c1da9.chunk.css.map": "/static/react/css/2.af3c1da9.chunk.css.map",
+    "css/main.21c359d1.chunk.css.map": "/static/react/css/main.21c359d1.chunk.css.map",
+    "js/2.52e6aac9.chunk.js.LICENSE.txt": "/static/react/js/2.52e6aac9.chunk.js.LICENSE.txt",
     "media/Student_picture.png": "/static/react/media/Student_picture.a3ab7090.png",
-    "media/logo.svg": "/static/react/media/logo.5d5d9eef.svg",
+    "media/Home.css": "/static/react/media/rooftopping-san-francisco-bay-area.cb0d32d0.jpg",
     "media/stephen_the_goat.jpg": "/static/react/media/stephen_the_goat.e0323fc4.jpg",
-    "precache-manifest.568deb67237942aaa95d51c262a8aed6.js": "/static/react/precache-manifest.568deb67237942aaa95d51c262a8aed6.js",
+    "precache-manifest.1b911dabc1696ddf72dc62d2ebdeadbb.js": "/static/react/precache-manifest.1b911dabc1696ddf72dc62d2ebdeadbb.js",
     "service-worker.js": "/static/react/service-worker.js"
   },
   "entrypoints": [
-    "js/runtime-main.e7cedbf6.js",
-    "js/2.7b632407.chunk.js",
-    "css/main.a282ab7b.chunk.css",
-    "js/main.fd20364b.chunk.js"
+    "js/runtime-main.725b2ec0.js",
+    "css/2.af3c1da9.chunk.css",
+    "js/2.52e6aac9.chunk.js",
+    "css/main.21c359d1.chunk.css",
+    "js/main.8bc94dd3.chunk.js"
   ]
 }
