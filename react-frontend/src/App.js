@@ -3,15 +3,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import SideBar from "./components/sidebar/SideBar";
 import Content from "./components/content/Content";
-
-class App extends React.Component {
+import { createBrowserHistory } from 'history';
+ 
+class App extends React.PureComponent {
   constructor(props) {
     super(props);
-
     // Moblie first
+    const history = createBrowserHistory();
+    var handleUpdate = this.handleUpdate.bind(this);
     this.state = {
       isOpen: false,
-      isMobile: true
+      isMobile: true,
     };
 
     this.previousWidth = -1;
@@ -30,6 +32,10 @@ class App extends React.Component {
     }
 
     this.previousWidth = width;
+  }
+
+  handleUpdate(Arg){
+    this.setState({active:Arg});
   }
 
   /**
@@ -54,7 +60,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App wrapper">
-        <SideBar toggle={this.toggle} isOpen={this.state.isOpen} />
+        <SideBar toggle={this.toggle} isOpen={this.state.isOpen}/>
         <Content toggle={this.toggle} isOpen={this.state.isOpen} />  
       </div>
     );
