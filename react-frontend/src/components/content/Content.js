@@ -22,12 +22,11 @@ class Content extends React.Component {
         <Router>
           <div className="App">
             <Switch>
-              <Route path="/" exact component={Dashboard} />
-              <Route path="/feature" component={Features} />
-              <Route path="/home" component={Home} />
-              <Route path="/profile" component={Profile} />
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={Signup} />
+              <Route path="/loginhome/dashboard" exact component={Dashboard} />
+              <Route path="/loginhome/feature" component={Features} />
+              <Route path="/loginhome/profile" component={Profile} />
+              <Route path="/loginhome/login" component={Login} />
+              <Route path="/loginhome/signup" component={Signup} />
             </Switch>
           </div>
         </Router>

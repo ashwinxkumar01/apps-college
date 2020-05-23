@@ -135,11 +135,5 @@ li a.dropdown-toggle::after {
   .sidebar.is-open > .sidebar-header button {
     display: block;
   }
-  
-  li a.dropdown-toggle::after {
-    display: inline-block;
-    position: relative;
-    left: 68%;
-  }
-  
+ 
 }
