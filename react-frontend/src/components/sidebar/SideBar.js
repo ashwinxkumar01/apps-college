@@ -28,10 +28,10 @@ class SideBar extends React.PureComponent {
       active: 'Home',
       allTabs: [new tabInfo('Home', faHome, '/', 'mr-2', 'Dashboard'),
       new tabInfo('Search', faBriefcase, '/home', 'mr-2', 'Search'),
-      new tabInfo('Profile', faQuestion, '/profile', 'mr-2', 'Profile'),
-      new tabInfo('Feature', faPaperPlane, '/feature', 'mr-2', 'Feature'),
-      new tabInfo('Log In', faPaperPlane, '/login', 'mr-2', 'Log In'),
-      new tabInfo('Sign Up', faPaperPlane, '/signup', 'mr-2', 'Sign Up')]
+      new tabInfo('Profile', faQuestion, '/loginhome/profile', 'mr-2', 'Profile'),
+      new tabInfo('Feature', faPaperPlane, '/loginhome/feature', 'mr-2', 'Feature'),
+      new tabInfo('Log In', faPaperPlane, '/loginhome/login', 'mr-2', 'Log In'),
+      new tabInfo('Sign Up', faPaperPlane, '/loginhome/signup', 'mr-2', 'Sign Up')]
     };
   }
 
@@ -55,48 +55,7 @@ class SideBar extends React.PureComponent {
         tabs={this.state.allTabs}/>
         <div>{this.state.active}</div>
         </Nav>
-          {/* <Nav.Item>
-            <Nav.Link href="/">
-              <FontAwesomeIcon icon={faHome} className="mr-2" />
-              Dashboard
-            </Nav.Link>
-          </Nav.Item>
-
-          <Nav.Item className="active">
-            <Nav.Link href="/home">
-              <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
-              Search
-            </Nav.Link>
-          </Nav.Item>
-
-          <Nav.Item>
-            <Nav.Link href="/loginhome/profile">
-              <FontAwesomeIcon icon={faQuestion} className="mr-2" />
-              FAQ
-            </Nav.Link>
-          </Nav.Item>
-
-          <Nav.Item>
-            <Nav.Link href="/loginhome/feature">
-              <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
-              Contact
-            </Nav.Link>
-          </Nav.Item>
-
-          <Nav.Item>
-            <Nav.Link href="/loginhome/login">
-              <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
-                Log In
-            </Nav.Link>
-          </Nav.Item>
-
-          <Nav.Item>
-            <Nav.Link href="/loginhome/signup">
-              <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
-              Sign Up
-            </Nav.Link>
-          </Nav.Item> */}
-      </div>
+          </div>
     );
   }
 }
