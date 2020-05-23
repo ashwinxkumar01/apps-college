@@ -104,8 +104,30 @@ def get_order(json_lst, param, is_descending):
     return json_out
 
 
+# function for kai to get names of all colleges
+# returns a list of lists with name, abbreviation, alias of each college
+def get_college_names():
+    query_str = "SELECT college_name, alias, abbreviation FROM " + os.environ.get("TABLE_NAME") + ";"
+    res = get_query(query_str)
+
+    ret_list = []
+
+    for i in res:
+        curr_lst = []
+        curr_lst.append(i[0])
+        curr_lst.append(i[1])
+        curr_lst.append(i[2])
+        ret_list.append(curr_lst)
+
+    print(ret_list)
+
+    return ret_list
+
+
 # #QUERY TESTING
 # lst = get_colleges(["national_ranking", "+15", "national_ranking", "-30"])
+# names = get_college_names()
+# print(names)
 
 
 

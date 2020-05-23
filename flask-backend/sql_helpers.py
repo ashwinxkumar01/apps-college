@@ -2,14 +2,16 @@ import json
 import time
 
 # GLOBAL LISTS
-numbers = ['acceptance_rate', 'national_ranking', 'population', 'tuition_normal', "tuition_oos",'app_fee', 
-        'ed_date', 'early_action', 'early_decision', 'regular_decision', 'scholarship_date']
+numbers = ['acceptance_rate', 'national_ranking', 'population', 'tuition_normal', "tuition_oos", 'app_fee',
+           'ed_date', 'early_action', 'early_decision', 'regular_decision', 'scholarship_date']
 
 dates = ['early_action', 'early_decision', 'regular_decision', 'scholarship_date']
 
-headers = ["college_name","alias","abbreviation","transcripts","mid_year","letters_of_rec",
-    "people_for_letters","sat","sat_essay","act_essay","self_report","subject_tests","essays","supplemental_essays","acceptance_rate","national_ranking",
-    "population","tuition_normal","tuition_oos","early_decision","early_action","regular_decision","scholarship_date","interview","app_fee","app_site"]
+headers = ["college_name", "alias", "abbreviation", "transcripts", "mid_year", "letters_of_rec",
+           "people_for_letters", "sat", "sat_essay", "act_essay", "self_report", "subject_tests", "essays",
+           "supplemental_essays", "acceptance_rate", "national_ranking",
+           "population", "tuition_normal", "tuition_oos", "early_decision", "early_action", "regular_decision",
+           "scholarship_date", "interview", "app_fee", "app_site"]
 
 
 class College:
@@ -25,10 +27,6 @@ class College:
     def order(self, college_obj, param):
         index = headers.index(param)
         return self.info[index] < college_obj.info[index]
-
-
-
-
 
 
 def sortBy(jsonArr, param):
@@ -53,39 +51,34 @@ def get_json(query_result):
     return json.dumps(json_obj)
 
 
-def mergeSort(arr, param="national_ranking"): 
-    if len(arr) >1: 
-        mid = len(arr)//2 #Finding the mid of the array 
-        L = arr[:mid] # Dividing the array elements  
-        R = arr[mid:] # into 2 halves 
-  
-        mergeSort(L,param) # Sorting the first half 
-        mergeSort(R, param) # Sorting the second half 
-  
+def mergeSort(arr, param="national_ranking"):
+    if len(arr) > 1:
+        mid = len(arr) // 2  # Finding the mid of the array
+        L = arr[:mid]  # Dividing the array elements
+        R = arr[mid:]  # into 2 halves
+
+        mergeSort(L, param)  # Sorting the first half
+        mergeSort(R, param)  # Sorting the second half
+
         i = j = k = 0
-          
+
         # Copy data to temp arrays L[] and R[] 
-        while i < len(L) and j < len(R): 
-            if L[i].order(R[j], param): 
-                arr[k] = L[i] 
-                i+=1
-            else: 
-                arr[k] = R[j] 
-                j+=1
-            k+=1
-          
+        while i < len(L) and j < len(R):
+            if L[i].order(R[j], param):
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+
         # Checking if any element was left 
-        while i < len(L): 
-            arr[k] = L[i] 
-            i+=1
-            k+=1
-          
-        while j < len(R): 
-            arr[k] = R[j] 
-            j+=1
-            k+=1
-  
+        while i < len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
 
-    
-
-
+        while j < len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1
