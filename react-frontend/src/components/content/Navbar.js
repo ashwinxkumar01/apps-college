@@ -3,13 +3,35 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
 import { Navbar, Button, Nav, Form, FormControl } from "react-bootstrap";
 import '../../App.css';
+import SearchBar from './SearchBar';
 
 class NavBar extends React.Component {
-  render() {
-    
-    const divStyle = {
-      width: '200px;'
+  constructor(props) {
+    super(props);
+    this.state = {
+      collegelist: ["tacos", "locos tacos", "chargers bhaj", "burritos", "chargers", "warriors",
+        "ashwin", "www ashv", "kai", "amitesh", "imtoolazytotypemore",
+        "beerus"]
     }
+
+  }
+
+  // addColleges(){
+  //   fetch('/addressToBackEndList').then(res => res.json()).then(data => {
+  //     this.state.collegelist.push(data.college_name);
+  //     let college = data[0];
+  //     const x = JSON.parse(college);
+  //     console.log("college_name");
+  //   });
+  // }
+
+  // componentDidMount(){
+  //   this.setState({
+  //     collegelist: this.addColleges()
+  //   })
+  // }
+
+  render() {
     return (
       <Navbar
         bg="light"
@@ -20,11 +42,7 @@ class NavBar extends React.Component {
           <FontAwesomeIcon icon={faAlignLeft} />
         </Button>
 
-        <Form inline className="ml-5 w-100">
-          <Form.Control type="text" placeholder="Search" className="mr-0 w-75" style={divStyle} />
-          <Button variant="outline-success" className="mr-0 w-0">Search</Button>
-        </Form>
-
+        <SearchBar list={this.state.collegelist} />
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto" navbar>
