@@ -15,13 +15,7 @@ class SearchBar extends React.Component {
 
     componentDidMount() {
         this.setState({
-            searchResults: this.props.list
-        });
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            searchResults: nextProps.list
+            searchResults: []
         });
     }
 
