@@ -1,0 +1,27 @@
+.Explore {
+    color: black;
+    width: 100%;
+    flex-direction: column;
+}
+
+.ListColleges {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ListColleges li {
+    width: 100%;
+    text-align: center;
+}
+
+.filter-form {
+    width: 100%;
+}
+
+.filter-form input {
+    width: 5%;
+    margin-left: calc(3vmin);
+}

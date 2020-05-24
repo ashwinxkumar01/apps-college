@@ -7,9 +7,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Features from '../../pages/Features';
 import Dashboard from '../../pages/Dashboard';
 import Profile from '../../pages/Profile';
-import Home from '../../pages/Home';
 import Login from '../../pages/Login';
 import Signup from '../../pages/Signup';
+import Explore from '../../pages/Explore';
 
 class Content extends React.Component {
   render() {
@@ -22,7 +22,8 @@ class Content extends React.Component {
         <Router>
           <div className="App">
             <Switch>
-              <Route path="/loginhome/dashboard" exact component={Dashboard} />
+              <Route path="/loginhome/dashboard/" component={Dashboard} />
+              <Route path="/loginhome/explore" component={Explore} />
               <Route path="/loginhome/feature" component={Features} />
               <Route path="/loginhome/profile" component={Profile} />
               <Route path="/loginhome/login" component={Login} />
