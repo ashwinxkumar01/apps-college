@@ -27,7 +27,7 @@ class SideBar extends React.PureComponent {
     this.state = {
       active: 'Home',
       allTabs: [new tabInfo('Home', faHome, '/loginhome/dashboard', 'mr-2', 'Dashboard'),
-      new tabInfo('Search', faBriefcase, '/home', 'mr-2', 'Search'),
+      new tabInfo('Explore', faBriefcase, '/loginhome/explore', 'mr-2', 'Explore'),
       new tabInfo('Profile', faQuestion, '/loginhome/profile', 'mr-2', 'Profile'),
       new tabInfo('Feature', faPaperPlane, '/loginhome/feature', 'mr-2', 'Feature'),
       new tabInfo('Log In', faPaperPlane, '/loginhome/login', 'mr-2', 'Log In'),
@@ -49,8 +49,8 @@ class SideBar extends React.PureComponent {
           </Button>
           <h3>College Search</h3>
         </div>
-        <Nav defaultActiveKey={this.state.active}>
-        <Tabs active={this.state.active} onChange={active => {this.setState({active})}}
+        <Nav>
+        <Tabs onChange={active => {this.setState({active})}}
         setActiveTab={this.props.setActive}
         tabs={this.state.allTabs}/>
         </Nav>
