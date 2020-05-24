@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchResults: this.props.list,
+            searchResults: [],
         };
         this.allResults = new Stack(this.props.list);
         this.handleChange = this.handleChange.bind(this);
@@ -32,62 +32,76 @@ class SearchBar extends React.Component {
         let semiMatches = [];
         if (e.target.value !== "") {
             currentResults = this.props.list;
-            currentResults.map(college => {
-                const collegeName = college.toLowerCase();
-                const typedIn = e.target.value.toLowerCase();
-                var matchPerfect = true;
-                var i;
-                var j;
-                for (let i = 0; i < typedIn.length; i++) {
-                    if (typedIn.substring(i, i + 1) != collegeName.substring(i, i + 1)) {
-                        matchPerfect = false;
-                        break;
-                    }
-                }
-                if (matchPerfect) {
-                    perfectMatches.push(collegeName);
-                    return;
-                }
-                const collegeNameSplit = collegeName.split(' ');
-                const typedInSplit = typedIn.split(' ');
-                for (i = 0; i < typedInSplit.length - 1; i++) {
-                    var partMatch = false;
-                    for (j = 0; j < collegeNameSplit.length; j++) {
-                        if (collegeNameSplit[j] === typedInSplit[i]) {
-                            partMatch = true;
-                            collegeNameSplit.splice(j, 1);
-                        }
-                    }
-                    if (!partMatch) {
+            currentResults.map(collegeNames => {
+                var alreadyExists = false;
+                collegeNames.map(college => {
+                    if(alreadyExists){
                         return;
                     }
-                }
-                for (i = 0; i < collegeNameSplit.length; i++) {
-                    var partMatch = true;
-                    for (j = 0; j < typedInSplit[typedInSplit.length - 1].length; j++) {
-                        if (typedIn.substring(j, j + 1) != collegeNameSplit[i].substring(j, j + 1)) {
-                            partMatch = false;
+                    const collegeName = college.toLowerCase();
+                    const typedIn = e.target.value.toLowerCase();
+                    var matchPerfect = true;
+                    var i;
+                    var j;
+                    for (let i = 0; i < typedIn.length; i++) {
+                        if (typedIn.substring(i, i + 1) != collegeName.substring(i, i + 1)) {
+                            matchPerfect = false;
                             break;
                         }
                     }
-                    if (partMatch) {
-                        semiMatches.push(collegeName);
+                    if (matchPerfect) {
+                        alreadyExists = true;
+                        perfectMatches.push(collegeNames[0]);
                         return;
                     }
-                }
-            })
-            perfectMatches.map(college => {
-                filteredResults.push(college);
-            })
-            semiMatches.map(college => {
-                filteredResults.push(college);
+                    const collegeNameSplit = collegeName.split(' ');
+                    const typedInSplit = typedIn.split(' ');
+                    for (i = 0; i < typedInSplit.length - 1; i++) {
+                        var partMatch = false;
+                        for (j = 0; j < collegeNameSplit.length; j++) {
+                            if (collegeNameSplit[j] === typedInSplit[i]) {
+                                partMatch = true;
+                                collegeNameSplit.splice(j, 1);
+                            }
+                        }
+                        if (!partMatch) {
+                            return;
+                        }
+                    }
+                    for (i = 0; i < collegeNameSplit.length; i++) {
+                        var partMatch = true;
+                        for (j = 0; j < typedInSplit[typedInSplit.length - 1].length; j++) {
+                            if (typedIn.substring(j, j + 1) != collegeNameSplit[i].substring(j, j + 1)) {
+                                partMatch = false;
+                                break;
+                            }
+                        }
+                        if (partMatch) {
+                            semiMatches.push(collegeNames[0]);
+                            alreadyExists = true;
+                            return;
+                        }
+                    }
+                })
             })
         } else {
             let blankResults = [];
             filteredResults = blankResults;
         }
-        // console.log("being run");
-        // console.log(perfectMatches);
+
+        perfectMatches.map((college, i) => {
+            if (filteredResults.length >= 10) {
+                return;
+            }
+            filteredResults.push(college);
+        })
+        semiMatches.map(college => {
+            if (filteredResults.length >= 10) {
+                return;
+            }
+            filteredResults.push(college);
+        })
+        console.log(perfectMatches);
         // console.log(semiMatches);
         console.log(filteredResults);
         this.setState({
