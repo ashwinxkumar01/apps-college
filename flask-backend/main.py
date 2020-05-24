@@ -104,11 +104,22 @@ def get_order(json_lst, param, is_descending):
     return json_out
 
 
+# helper function for ordering of get_college_names()
+def get_ranking_order(college_lst):
+    # -1 will screw up the sorting algorithm so just return a ridiculously high number
+    if int(college_lst[3]) == -1:
+        return 1000
+    return int(college_lst[3])
+
+
 # function for kai to get names of all colleges
 # returns a list of lists with name, abbreviation, alias of each college
+# puts highest ranked colleges at the top of the list
 def get_college_names():
-    query_str = "SELECT college_name, alias, abbreviation FROM " + os.environ.get("TABLE_NAME") + ";"
+    query_str = "SELECT college_name, alias, abbreviation, national_ranking FROM " + os.environ.get("TABLE_NAME") + ";"
     res = get_query(query_str)
+
+    res.sort(key=get_ranking_order)
 
     ret_list = []
 
@@ -117,20 +128,21 @@ def get_college_names():
         curr_lst.append(i[0])
         curr_lst.append(i[1])
         curr_lst.append(i[2])
+        # this will add national ranking to the names list for debugging purposes
+        # curr_lst.append(i[3])
         ret_list.append(curr_lst)
-
-    print(ret_list)
 
     return ret_list
 
 
 # #QUERY TESTING
 # lst = get_colleges(["national_ranking", "+15", "national_ranking", "-30"])
+# for i in lst:
+#     print(i)
+
+# GET NAMES TESTING
 # names = get_college_names()
 # print(names)
-
-
-
 
 
 @app.route("/")
