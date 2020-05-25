@@ -1,10 +1,14 @@
 import React from 'react';
 import '../css/Profile.css';
 import Image from './stephen_the_goat.jpg';
+import Navigationbar from '../components/content/Navigationbar';
+import NavBar from '../components/content/Navbar';
 
 function Profile() {
     return (
         <div className="background1">
+            <Navigationbar active="6"/>
+            <NavBar /> 
             <div>
                 <div className="image-box fill">
                     <img src={Image} height="200"/>

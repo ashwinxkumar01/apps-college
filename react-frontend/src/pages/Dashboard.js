@@ -2,15 +2,17 @@ import React from 'react';
 import '../css/Dashboard.css';
 
 import Table from '../components/Table';
+import Navigationbar from '../components/content/Navigationbar';
+import NavBar from '../components/content/Navbar';
 
 function Dashboard() {
     return (
         <div className="dashboard">
-
-            <span>
-                <h1>My Dashboard</h1>
-                <Table />
-            </span>  
+            <Navigationbar active="1"/>
+            <NavBar />
+            <div>
+                <Table/>
+            </div>
         </div>
     );
 }

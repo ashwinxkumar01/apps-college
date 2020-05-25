@@ -1,6 +1,8 @@
 import React from "react";
 import '../css/Explore.css';
 import { Navbar, Button, Nav, Form, FormControl } from "react-bootstrap";
+import Navigationbar from '../components/content/Navigationbar';
+import NavBar from '../components/content/Navbar';
 
 class Explore extends React.Component {
     constructor(props) {
@@ -71,6 +73,8 @@ class Explore extends React.Component {
         console.log(filter);
         return (
             <div className="Explore">
+            <Navigationbar active="2" />
+            <NavBar />
                <form className="filter-form">
                    <input type="text" onChange={ this.handleChangeTuition } size="100"></input>
                    <input type="text" onChange={ this.handleChangeRanking } size="100"></input>

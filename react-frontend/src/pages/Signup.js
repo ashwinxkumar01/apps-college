@@ -1,5 +1,7 @@
 import React from 'react';
 import '../css/Signup.css';
+import Navigationbar from '../components/content/Navigationbar';
+import NavBar from '../components/content/Navbar';
 
 class Signup extends React.Component {
     constructor(props) {
@@ -35,6 +37,8 @@ class Signup extends React.Component {
     render() {
         return (
             <div className = "Login" >    
+                <Navigationbar active="4"/>
+                <NavBar /> 
                 <div className="credentials">
                     <h1 className="header">Sign Up and Join</h1>
                     <div className="email-password">

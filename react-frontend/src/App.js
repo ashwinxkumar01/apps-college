@@ -1,11 +1,13 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import SideBar from "./components/sidebar/SideBar";
-import Content from "./components/content/Content";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Loginhome from './pages/Loginhome';
+import Explore from './pages/Explore';
+import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Features from './pages/Features';
+import Profile from './pages/Profile';
 
 class App extends React.Component {
   render() {
@@ -13,7 +15,12 @@ class App extends React.Component {
       <Router>
         <div className="App">
         <Switch>
-          <Route path="/loginhome" component={Loginhome} />
+          <Route path="/loginhome/explore" component={Explore} />
+          <Route path="/loginhome/dashboard" component={Dashboard} />
+          <Route path="/loginhome/login" component={Login} />
+          <Route path="/loginhome/signup" component={Signup} />
+          <Route path="/loginhome/features" component={Features} />
+          <Route path="/loginhome/profile" component={Profile} />
           <Route path="/" component={Home} />
         </Switch>
       </div>
