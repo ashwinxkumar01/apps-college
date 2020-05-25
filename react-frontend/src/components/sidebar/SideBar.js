@@ -25,7 +25,7 @@ class SideBar extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      active: 'Home',
+      active: this.props.active,
       allTabs: [new tabInfo('Home', faHome, '/loginhome/dashboard', 'mr-2', 'Dashboard'),
       new tabInfo('Explore', faBriefcase, '/loginhome/explore', 'mr-2', 'Explore'),
       new tabInfo('Profile', faQuestion, '/loginhome/profile', 'mr-2', 'Profile'),
@@ -34,6 +34,7 @@ class SideBar extends React.PureComponent {
       new tabInfo('Sign Up', faPaperPlane, '/loginhome/signup', 'mr-2', 'Sign Up')]
     };
   }
+
 
   render() {
     return (
