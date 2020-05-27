@@ -3,3 +3,33 @@
     width: 100%;
     flex-direction: column;
   }
+
+  .screenContent{
+    position: relative;
+  }
+
+  .imageBox{
+    position: absolute;
+    left: calc(5vw);
+    height: calc(80%);
+    margin-right: calc(5vw);
+  }
+
+  .searchResult{
+    position: relative;
+    border-color: rgb(180, 180, 180);
+    border-bottom-width: calc(.2vh);
+    border-bottom-style: solid;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    text-align: center;
+    width: calc(85%);
+    height: calc(10vh);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: calc(0);
+    padding-bottom: calc(0);
+  }

@@ -37,7 +37,7 @@ class NavBar extends React.Component {
         expand
       >
 
-        <SearchBar list={this.state.collegelist} />
+        <SearchBar list={this.state.collegelist} searchBarInUse={this.props.searchBarInUse} setSearch={this.props.setSearch}/>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto" navbar>

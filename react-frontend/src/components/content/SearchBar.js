@@ -25,6 +25,7 @@ class SearchBar extends React.Component {
         let perfectMatches = [];
         let semiMatches = [];
         if (e.target.value !== "") {
+            this.props.searchBarInUse(true);
             currentResults = this.props.list;
             currentResults.map(collegeNames => {
                 var alreadyExists = false;
@@ -56,16 +57,23 @@ class SearchBar extends React.Component {
                             if (collegeNameSplit[j] === typedInSplit[i]) {
                                 partMatch = true;
                                 collegeNameSplit.splice(j, 1);
+                                typedInSplit.splice(i, 1);
+                                continue;
                             }
                         }
                         if (!partMatch) {
                             return;
                         }
                     }
+                    if(typedInSplit.length == 0){
+                        semiMatches.push(collegeNames[0]);
+                        alreadyExists = true;
+                        return;
+                    }
                     for (i = 0; i < collegeNameSplit.length; i++) {
                         var partMatch = true;
-                        for (j = 0; j < typedInSplit[typedInSplit.length - 1].length; j++) {
-                            if (typedIn.substring(j, j + 1) != collegeNameSplit[i].substring(j, j + 1)) {
+                        for (j = 0; j < typedInSplit[typedInSplit.length -1].length; j++) {
+                            if (typedInSplit[typedInSplit.length -1].substring(j, j + 1) !== collegeNameSplit[i].substring(j, j + 1)) {
                                 partMatch = false;
                                 break;
                             }
@@ -81,6 +89,7 @@ class SearchBar extends React.Component {
         } else {
             let blankResults = [];
             filteredResults = blankResults;
+            this.props.searchBarInUse(false);
         }
 
         perfectMatches.map((college, i) => {
@@ -98,6 +107,7 @@ class SearchBar extends React.Component {
         console.log(perfectMatches);
         // console.log(semiMatches);
         console.log(filteredResults);
+        this.props.setSearch(filteredResults);
         this.setState({
             searchResults: filteredResults,
             allResults: this.allResults.push(filteredResults)
@@ -111,11 +121,11 @@ class SearchBar extends React.Component {
         return (
             <Form inline className="ml-5 w-100">
                 <Form.Control type="text" onInput={this.handleChange} placeholder="Search" className="mr-0 w-75" style={divStyle} />
-                {this.state.searchResults.map((college => (
+                {/* {this.state.searchResults.map((college => (
                     <li>{college}</li>
                 )
                 ))
-                }
+                } */}
                 <Button variant="outline-success" className="mr-0 w-0">Search</Button>
             </Form>
         )

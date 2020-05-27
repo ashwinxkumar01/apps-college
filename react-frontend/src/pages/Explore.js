@@ -8,6 +8,7 @@ class Explore extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            searchBar: false,
             Colleges: [{
                 Name: 'UCSD',
                 Tuition: 20000,
@@ -29,12 +30,38 @@ class Explore extends React.Component {
             Tuition: '',
             Rank: ''
         };
-
+        this.setSearch = this.setSearch.bind(this);
+        this.searchBarInUse = this.searchBarInUse.bind(this);
         this.handleChangeTuition = this.handleChangeTuition.bind(this);
         this.handleChangeRanking = this.handleChangeRanking.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
     
+    
+    searchBarInUse = (inUse) => {
+        if (inUse != this.state.searchBar) {
+            console.log(inUse);
+            this.setState({ searchBar: inUse });
+        }
+    }
+
+    renderExplore = (filter) => {
+        console.log("here");
+        if (this.state.searchBar == false) {
+            return (
+                <div>
+            <form className="filter-form">
+                <input type="text" onChange={ this.handleChangeTuition } size="100"></input>
+                <input type="text" onChange={ this.handleChangeRanking } size="100"></input>
+            </form>
+            <ul className="ListColleges">
+             {filter}
+            </ul>
+            </div>
+            )
+        }
+    }
+
     getInitialState() {
         return {inputNode: ''};
     }
@@ -50,6 +77,15 @@ class Explore extends React.Component {
     handleClick() {
         this.state.newCollegeList = [];
         console.log(this.state.newCollegeList);
+    }
+
+    
+    setSearch = (results) => {
+        if(results !== this.state.resultsFromSearch){
+            this.setState({
+                resultsFromSearch: results
+            })
+        }
     }
     
     render() {
@@ -74,15 +110,8 @@ class Explore extends React.Component {
         return (
             <div className="Explore">
             <Navigationbar active="2" />
-            <NavBar />
-               <form className="filter-form">
-                   <input type="text" onChange={ this.handleChangeTuition } size="100"></input>
-                   <input type="text" onChange={ this.handleChangeRanking } size="100"></input>
-               </form>
-               
-               <ul className="ListColleges">
-                {filter}
-               </ul> 
+            <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch}/>
+                {this.renderExplore(filter)}
             </div>
         );
     }

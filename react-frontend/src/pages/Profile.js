@@ -4,13 +4,29 @@ import Image from './stephen_the_goat.jpg';
 import Navigationbar from '../components/content/Navigationbar';
 import NavBar from '../components/content/Navbar';
 
-function Profile() {
-    return (
-        <div className="background1">
-            <Navigationbar active="6"/>
-            <NavBar /> 
-            <div>
-                <div className="image-box fill">
+class Profile extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchBar: false
+        };
+        this.searchBarInUse = this.searchBarInUse.bind(this);
+    }
+
+    searchBarInUse = (inUse) => {
+        if (inUse != this.state.searchBar) {
+            console.log(inUse);
+            this.setState({ searchBar: inUse });
+        }
+    }
+
+    renderProfile = () => {
+        console.log("here");
+        if (this.state.searchBar == false) {
+            return (
+                <div>
+                <div>
+                    <div className="image-box fill">
                     <img src={Image} height="200"/>
                 </div>
                 <div className="basic-info-box">
@@ -64,8 +80,24 @@ LeBron James fans—myself included—should step aside for the Chef ("Cheph" pa
             <span>
                 <h1 className="name">University of Red Pandas</h1>
             </span>
+            </div>
+            )
+        }
+    }
+
+    render() {
+    return (
+        <div className="background1">
+            <Navigationbar active="6"/>
+            <NavBar searchBarInUse={this.searchBarInUse}/> 
+            <div>
+            {
+                    this.renderProfile()
+                    }
+            </div>
         </div>
     );
+}
 }
 
 export default Profile;
