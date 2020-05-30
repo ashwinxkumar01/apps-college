@@ -16,28 +16,31 @@ class Explore extends React.Component {
             }, {
                 Name: 'Berkeley',
                 Tuition: 25000,
-                Rank: 2    
+                Rank: 2
             }, {
                 Name: 'Miramar',
                 Tuition: 10000,
-                Rank: 3   
+                Rank: 3
             }, {
                 Name: 'UCR',
                 Tuition: 5000,
-                Rank: 10    
+                Rank: 10
             }],
             newCollegeList: [],
-            Tuition: '',
+            TuitionLower: '',
+            TuitionUpper: '',
             Rank: ''
         };
         this.setSearch = this.setSearch.bind(this);
         this.searchBarInUse = this.searchBarInUse.bind(this);
-        this.handleChangeTuition = this.handleChangeTuition.bind(this);
+        this.handleChangeTuitionUpper = this.handleChangeTuitionUpper.bind(this);
+        this.handleChangeTuitionLower = this.handleChangeTuitionLower.bind(this);
         this.handleChangeRanking = this.handleChangeRanking.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.renderExplore = this.renderExplore.bind(this);
     }
-    
-    
+
+
     searchBarInUse = (inUse) => {
         if (inUse != this.state.searchBar) {
             console.log(inUse);
@@ -50,24 +53,38 @@ class Explore extends React.Component {
         if (this.state.searchBar == false) {
             return (
                 <div>
-            <form className="filter-form">
-                <input type="text" onChange={ this.handleChangeTuition } size="100"></input>
-                <input type="text" onChange={ this.handleChangeRanking } size="100"></input>
-            </form>
-            <ul className="ListColleges">
-             {filter}
-            </ul>
-            </div>
+                    <form className="filter-form">
+                        <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
+                        <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
+                        <input type="text" placeholder="Ranking" onChange={this.handleChangeRanking} size="100"></input>
+                    </form>
+                    <ul className="ListColleges">
+                        {filter}
+                    </ul>
+                </div>
             )
         }
     }
 
     getInitialState() {
-        return {inputNode: ''};
+        return { 
+            TuitionLower: '', 
+            TuitionUpper: '',
+            Rank: '' 
+        };
     }
 
-    handleChangeTuition(e) {
-        this.setState({ Tuition: e.target.value });
+    handleTuitionRange() {
+        console.log(this.state.TuitionLower);
+        console.log(this.state.TuitionUpper);
+    }
+
+    handleChangeTuitionLower(e) {
+        this.setState({ TuitionLower: e.target.value });
+    }
+
+    handleChangeTuitionUpper(e) {
+        this.setState({ TuitionUpper: e.target.value });
     }
 
     handleChangeRanking(e) {
@@ -79,19 +96,19 @@ class Explore extends React.Component {
         console.log(this.state.newCollegeList);
     }
 
-    
+
     setSearch = (results) => {
-        if(results !== this.state.resultsFromSearch){
+        if (results !== this.state.resultsFromSearch) {
             this.setState({
                 resultsFromSearch: results
             })
         }
     }
-    
+
     render() {
-        const renderListTuition = this.state.Colleges.filter(college => college.Tuition < this.state.Tuition);
+        const renderListTuition = this.state.Colleges.filter(college => college.Tuition <= this.state.TuitionUpper && college.Tuition >= this.state.TuitionLower);
         const renderTuition = renderListTuition.map(college => (
-            <li>{college.Name}</li>
+            <li key={college.Name}>{college.Name}</li>
         ))
 
         const renderListRank = this.state.Colleges.filter(college => college.Rank <= this.state.Rank);
@@ -100,7 +117,7 @@ class Explore extends React.Component {
         ))
 
         let filter;
-        if(this.state.Tuition === '') {
+        if (this.state.TuitionLower === '' && this.state.TuitionUpper === '') {
             filter = renderRank;
         } else {
             filter = renderTuition;
@@ -109,8 +126,8 @@ class Explore extends React.Component {
         console.log(filter);
         return (
             <div className="Explore">
-            <Navigationbar active="2" />
-            <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch}/>
+                <Navigationbar active="2" />
+                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} />
                 {this.renderExplore(filter)}
             </div>
         );
