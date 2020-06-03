@@ -11,6 +11,8 @@ Ensure that:
 4. yarn add @material-ui/icons
 5. npm install react-bootstrap
 6. npm install @fortawesome/react-fontawesome
+7. yarn add @material-ui/styles
+8. npm install react-perfect-scrollbar
 
 are executed in the react-frontend folder beforehand. 
 
