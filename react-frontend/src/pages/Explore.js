@@ -38,6 +38,7 @@ class Explore extends React.Component {
         this.handleChangeRanking = this.handleChangeRanking.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.renderExplore = this.renderExplore.bind(this);
+        this.union = this.union.bind(this);
     }
 
 
@@ -49,7 +50,7 @@ class Explore extends React.Component {
     }
 
     renderExplore = (filter) => {
-        console.log("here");
+        //console.log("here");
         if (this.state.searchBar == false) {
             return (
                 <div>
@@ -64,6 +65,31 @@ class Explore extends React.Component {
                 </div>
             )
         }
+    }
+
+    union(renderListRank, renderListTuition) {
+        let renderList = [];
+
+        if(this.state.Rank === '') {
+            console.log(renderListTuition);
+            return renderListTuition;
+        }
+        
+        if(this.state.TuitionLower === '' && this.state.TuitionUpper === '') {
+            console.log(renderListRank);
+            return renderListRank;
+        }
+
+        for(let i = 0; i < renderListTuition.length; i++) {
+            for(let j = 0; j < renderListRank.length; j++) {
+                if(renderListTuition[i] === renderListRank[j]) {
+                    renderList.push(renderListTuition[i]);
+                }
+            }
+        }
+
+        console.log(renderList);
+        return renderList;
     }
 
     getInitialState() {
@@ -106,29 +132,31 @@ class Explore extends React.Component {
     }
 
     render() {
-        const renderListTuition = this.state.Colleges.filter(college => college.Tuition <= this.state.TuitionUpper && college.Tuition >= this.state.TuitionLower);
-        const renderTuition = renderListTuition.map(college => (
-            <li key={college.Name}>{college.Name}</li>
-        ))
+        let renderList = [];
+        
+        let renderListTuition = [];
+        if(this.state.TuitionLower !== '' && this.state.TuitionUpper !== '') {
+            renderListTuition = this.state.Colleges.filter(college => college.Tuition <= this.state.TuitionUpper && college.Tuition >= this.state.TuitionLower);
+        }
 
-        const renderListRank = this.state.Colleges.filter(college => college.Rank <= this.state.Rank);
-        const renderRank = renderListRank.map(college => (
+        let renderListRank = [];
+        if(this.state.Rank !== '') {
+            renderListRank = this.state.Colleges.filter(college => college.Rank <= this.state.Rank);
+        }
+
+        console.log(renderListRank.length);
+        renderList = this.union(renderListRank, renderListTuition);
+        
+        const renderRank = renderList.map(college => (
             <li>{college.Name}</li>
         ))
 
-        let filter;
-        if (this.state.TuitionLower === '' && this.state.TuitionUpper === '') {
-            filter = renderRank;
-        } else {
-            filter = renderTuition;
-        }
-
-        console.log(filter);
+        //console.log(filter);
         return (
             <div className="Explore">
                 <Navigationbar active="2" />
                 <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} />
-                {this.renderExplore(filter)}
+                {this.renderExplore(renderRank)}
             </div>
         );
     }
