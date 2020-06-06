@@ -67,23 +67,22 @@ class Explore extends React.Component {
         }
     }
 
-    union(renderListRank, renderListTuition) {
+    union(renderListOne, renderListTwo) {
         let renderList = [];
-
-        if(this.state.Rank === '') {
-            console.log(renderListTuition);
-            return renderListTuition;
+        
+        if(renderListOne === undefined || renderListOne.length == 0) {
+            console.log(renderListTwo);
+            return renderListTwo;
         }
         
-        if(this.state.TuitionLower === '' && this.state.TuitionUpper === '') {
-            console.log(renderListRank);
-            return renderListRank;
+        if(renderListTwo === undefined || renderListTwo.length == 0) {
+            return renderList;
         }
 
-        for(let i = 0; i < renderListTuition.length; i++) {
-            for(let j = 0; j < renderListRank.length; j++) {
-                if(renderListTuition[i] === renderListRank[j]) {
-                    renderList.push(renderListTuition[i]);
+        for(let i = 0; i < renderListOne.length; i++) {
+            for(let j = 0; j < renderListTwo.length; j++) {
+                if(renderListOne[i] === renderListTwo[j]) {
+                    renderList.push(renderListOne[i]);
                 }
             }
         }
@@ -100,11 +99,6 @@ class Explore extends React.Component {
         };
     }
 
-    handleTuitionRange() {
-        console.log(this.state.TuitionLower);
-        console.log(this.state.TuitionUpper);
-    }
-
     handleChangeTuitionLower(e) {
         this.setState({ TuitionLower: e.target.value });
     }
@@ -119,7 +113,6 @@ class Explore extends React.Component {
 
     handleClick() {
         this.state.newCollegeList = [];
-        console.log(this.state.newCollegeList);
     }
 
 
@@ -144,8 +137,8 @@ class Explore extends React.Component {
             renderListRank = this.state.Colleges.filter(college => college.Rank <= this.state.Rank);
         }
 
-        console.log(renderListRank.length);
-        renderList = this.union(renderListRank, renderListTuition);
+        let value = this.union(renderList, renderListTuition);
+        renderList = this.union(renderListRank, value);
         
         const renderRank = renderList.map(college => (
             <li>{college.Name}</li>
