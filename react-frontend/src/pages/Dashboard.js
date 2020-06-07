@@ -52,9 +52,9 @@ class Dashboard extends React.Component {
   renderDashboard = () => {
     if (this.state.searchBar === false) {
       return (
-          <div /*className={this.classes.root}*/>
+          <div className={useStyles.root}>
             <UsersToolbar />
-            <div /*className={this.classes.content}*/>
+            <div className={useStyles.theme}>
               <UsersTable users={this.state.users} />
             </div>
           </div>
@@ -78,7 +78,7 @@ class Dashboard extends React.Component {
       <div className="dashboard">
         <Navigationbar active="1" />
         <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} />
-        <div className="screenContent">
+        <div>
           {
             this.renderDashboard()
           }

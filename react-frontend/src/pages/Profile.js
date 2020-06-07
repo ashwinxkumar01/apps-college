@@ -3,6 +3,7 @@ import '../css/Profile.css';
 import Image from './stephen_the_goat.jpg';
 import Navigationbar from '../components/content/Navigationbar';
 import NavBar from '../components/content/Navbar';
+import Image3 from './UCSD_3.jpg';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -82,7 +83,18 @@ LeBron James fans—myself included—should step aside for the Chef ("Cheph" pa
             </span>
             </div>
             )
-        }
+        }else {
+            return (
+              this.state.resultsFromSearch.map(college => (
+                <div className="searchResult">
+                  <img src={Image3} className="imageBox" />
+                  {college}
+                </div>
+              )
+              )
+            )
+      
+          }
     }
 
     render() {

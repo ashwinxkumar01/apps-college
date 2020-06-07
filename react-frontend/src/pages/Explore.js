@@ -3,6 +3,7 @@ import '../css/Explore.css';
 import { Navbar, Button, Nav, Form, FormControl } from "react-bootstrap";
 import Navigationbar from '../components/content/Navigationbar';
 import NavBar from '../components/content/Navbar';
+import Image3 from './UCSD_3.jpg';
 
 class Explore extends React.Component {
     constructor(props) {
@@ -103,7 +104,18 @@ class Explore extends React.Component {
                     </ul>
                 </div>
             )
-        }
+        } else {
+            return (
+              this.state.resultsFromSearch.map(college => (
+                <div className="searchResult">
+                  <img src={Image3} className="imageBox" />
+                  {college}
+                </div>
+              )
+              )
+            )
+      
+          }
     }
 
     union(renderListOne, renderListTwo) {
