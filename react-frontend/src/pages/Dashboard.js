@@ -23,83 +23,87 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-// class Dashboard extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             searchBar: false,
-//             resultsFromSearch: []
-//         };
-//         this.setSearch = this.setSearch.bind(this);
-//         this.searchBarInUse = this.searchBarInUse.bind(this);
-//     }
+class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchBar: false,
+      resultsFromSearch: [],
+      users: mockData
+    };
+    this.setSearch = this.setSearch.bind(this);
+    this.searchBarInUse = this.searchBarInUse.bind(this);
+  }
 
-//     setSearch = (results) => {
-//         if(results !== this.state.resultsFromSearch){
-//             this.setState({
-//                 resultsFromSearch: results
-//             })
-//         }
-//     }
+  setSearch = (results) => {
+    if (results !== this.state.resultsFromSearch) {
+      this.setState({
+        resultsFromSearch: results
+      })
+    }
+  }
 
-//     searchBarInUse = (inUse) => {
-//         if (inUse !== this.state.searchBar) {
-//             this.setState({ searchBar: inUse });
-//         }
-//     }
+  searchBarInUse = (inUse) => {
+    if (inUse !== this.state.searchBar) {
+      this.setState({ searchBar: inUse });
+    }
+  }
 
-//     renderDashboard = () => {
-//         if (this.state.searchBar === false) {
-//             return (
-//                 <div>
-//                     <Table />
-//                 </div>
-//             )
-//         }else{
-//             return(
-//                 this.state.resultsFromSearch.map(college => (
-//                 <div className="searchResult">
-//                     <img src={Image3} className="imageBox"/>
-//                     {college}
-//                 </div>
-//                 )
-//             )
-//             )
-            
-//         }
-//     }
+  renderDashboard = () => {
+    if (this.state.searchBar === false) {
+      return (
+          <div /*className={this.classes.root}*/>
+            <UsersToolbar />
+            <div /*className={this.classes.content}*/>
+              <UsersTable users={this.state.users} />
+            </div>
+          </div>
+      )
+    } else {
+      return (
+        this.state.resultsFromSearch.map(college => (
+          <div className="searchResult">
+            <img src={Image3} className="imageBox" />
+            {college}
+          </div>
+        )
+        )
+      )
 
-//     render() {
-//         return (
-//             <div className="dashboard">
-//                 <Navigationbar active="1" />
-//                 <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch}/>
-//                 <div className="screenContent">
-//                     {
-//                     this.renderDashboard()
-//                     }
-//                 </div>
-                
-//             </div>
-//         )
-//     }
+    }
+  }
 
-    
-// }
-
-const Dashboard = () => {
-    const classes = useStyles();
-  
-    const [users] = useState(mockData);
-  
+  render() {
     return (
-      <div className={classes.root}>
-        <UsersToolbar />
-        <div className={classes.content}>
-          <UsersTable users={users} />
+      <div className="dashboard">
+        <Navigationbar active="1" />
+        <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} />
+        <div className="screenContent">
+          {
+            this.renderDashboard()
+          }
         </div>
+
       </div>
-    );
-  };
+    )
+  }
+
+
+}
+
+// const Dashboard = () => {
+//     const classes = useStyles();
+
+//     const [users] = useState(mockData);
+
+//     return (
+//       <div className={classes.root}>
+//         <UsersToolbar />
+//         <div className={classes.content}>
+//           <UsersTable users={users} />
+//         </div>
+//       </div>
+//     );
+//   };
 
 export default Dashboard;
