@@ -20,10 +20,74 @@
 }
 
 .filter-form {
-    width: 100%;
+    width: 15%;
+    margin-left: 390px;    
+    border: 1px solid black;
+    border-bottom: none; 
+}
+
+.filter-form-middle {
+    width: 15%; 
+    margin-left: 390px;   
+    border: 1px solid black;
+    border-top: none; 
+    border-bottom: none;
+}
+
+.filter-form-bottom {
+    width: 15%; 
+    margin-left: 390px;   
+    border: 1px solid black;
+    border-top: none; 
 }
 
 .filter-form input {
-    width: 5%;
-    margin-left: calc(3vmin);
+    margin-left: calc(25px);
+    margin-right: calc(25px);
+    margin-top: calc(25px);
+    width: 15%;
+}
+
+.filter-form-middle input {
+    margin-left: calc(25px);
+    margin-right: calc(25px);
+    margin-top: calc(25px);
+    width: 15%;
+}
+
+.filter-form-bottom input {
+    margin-left: calc(25px);
+    margin-right: calc(25px);
+    margin-top: calc(25px);
+    margin-bottom: calc(25px);
+    width: 15%;
+}
+
+.custom-select-2 { 
+    margin-left:390px;
+    border: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+    width: 15%;
+}
+
+.custom-select-2 select{
+    margin-left: calc(25px);
+    margin-right: calc(25px);
+    margin-top: calc(25px);
+    width:100px;
+}
+
+.custom { 
+    margin-left:390px;
+    border: 1px solid black;
+    border-top: none;
+    width: 15%;
+}
+
+.custom select{
+    margin-left: calc(25px);
+    margin-right: calc(25px);
+    margin-top: calc(25px);
+    width:100px;
 }
