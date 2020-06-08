@@ -55,49 +55,51 @@ class Explore extends React.Component {
         if (this.state.searchBar == false) {
             return (
                 <div>
-                    <form className="filter-form">
-                        Tuition
-                        <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
-                        -
-                        <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
-                        {/* <input type="text" placeholder="Ranking" onChange={this.handleChangeRanking} size="100"></input> */}
-                    </form>
-                    <form className="filter-form-middle">
-                        Undergrad Population
-                        <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
-                        -
-                        <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
-                        {/* <input type="text" placeholder="Ranking" onChange={this.handleChangeRanking} size="100"></input> */}
-                    </form>
-                    <form className="filter-form-middle">
-                        GPA Average
-                        <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
-                        -
-                        <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
-                        {/* <input type="text" placeholder="Ranking" onChange={this.handleChangeRanking} size="100"></input> */}
-                    </form>
-                    <form className="filter-form-middle">
-                        Application Fee
-                        <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
-                        -
-                        <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
-                        {/* <input type="text" placeholder="Ranking" onChange={this.handleChangeRanking} size="100"></input> */}
-                    </form>
-                    <div className="custom-select-2">
-                        App type
-                        <select>
-                            <option selected value="Any">Any</option>
-                            <option value="Common">Common App</option>
-                            <option value="Coalition">Coalition App</option>
-                        </select>
-                    </div>
-                    <div className="custom">
-                        School Type
-                        <select>
-                            <option selected value="Any">Any</option>
-                            <option value="Public">Public</option>
-                            <option value="Private">Private</option>
-                        </select>
+                    <div className="filter-option">
+                        <form className="filter-form">
+                            <span>Tuition</span>
+                            <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
+                            -
+                            <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
+                            {/* <input type="text" placeholder="Ranking" onChange={this.handleChangeRanking} size="100"></input> */}
+                        </form>
+                        <form className="filter-form-middle">
+                            <span>Undergrad Population</span>
+                            <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
+                            -
+                            <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
+                            {/* <input type="text" placeholder="Ranking" onChange={this.handleChangeRanking} size="100"></input> */}
+                        </form>
+                        <form className="filter-form-middle">
+                            <span>GPA Average</span>
+                            <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
+                            -
+                            <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
+                            {/* <input type="text" placeholder="Ranking" onChange={this.handleChangeRanking} size="100"></input> */}
+                        </form>
+                        <form className="filter-form-middle">
+                            <span>Application Fee</span>
+                            <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
+                            -
+                            <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
+                            {/* <input type="text" placeholder="Ranking" onChange={this.handleChangeRanking} size="100"></input> */}
+                        </form>
+                        <div className="app-type">
+                            <span>App type</span>
+                            <select>
+                                <option selected value="Any">Any</option>
+                                <option value="Common">Common App</option>
+                                <option value="Coalition">Coalition App</option>
+                            </select>
+                        </div>
+                        <div className="school-type">
+                            <span>School Type</span>
+                            <select>
+                                <option selected value="Any">Any</option>
+                                <option value="Public">Public</option>
+                                <option value="Private">Private</option>
+                            </select>
+                        </div>
                     </div>
                     <ul className="ListColleges">
                         {filter}

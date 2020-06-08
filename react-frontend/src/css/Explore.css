@@ -7,6 +7,13 @@
     overflow: hidden;
 }
 
+.filter-option {
+    border: 1px solid black;
+    width: calc(25%);
+    margin-left: calc(20rem);
+    height: calc(70vh);
+}
+
 .ListColleges {
     list-style: none;
     justify-content: left;
@@ -20,74 +27,36 @@
 }
 
 .filter-form {
-    width: 15%;
-    margin-left: 390px;    
-    border: 1px solid black;
-    border-bottom: none; 
+    width: 100%; 
 }
 
 .filter-form-middle {
-    width: 15%; 
-    margin-left: 390px;   
-    border: 1px solid black;
-    border-top: none; 
-    border-bottom: none;
+    width: 100%;   
 }
 
 .filter-form-bottom {
-    width: 15%; 
-    margin-left: 390px;   
+    width: 100%;  
+}
+
+span {
     border: 1px solid black;
-    border-top: none; 
 }
 
-.filter-form input {
-    margin-left: calc(25px);
-    margin-right: calc(25px);
-    margin-top: calc(25px);
-    width: 15%;
+.filter-form input, .filter-form-middle input {
+    margin-left: calc(2rem);
+    margin-right: calc(2rem);
+    margin-top: calc(1.5rem);
+    width: 20%;
 }
 
-.filter-form-middle input {
-    margin-left: calc(25px);
-    margin-right: calc(25px);
-    margin-top: calc(25px);
-    width: 15%;
+.app-type, .school-type { 
+    width: 20%;
 }
 
-.filter-form-bottom input {
-    margin-left: calc(25px);
-    margin-right: calc(25px);
-    margin-top: calc(25px);
-    margin-bottom: calc(25px);
-    width: 15%;
+.app-type select, .school-type select{
+    margin-left: calc(2rem);
+    margin-right: calc(2rem);
+    margin-top: calc(1.5rem);
+    width: calc(7rem);
 }
 
-.custom-select-2 { 
-    margin-left:390px;
-    border: 1px solid black;
-    border-top: none;
-    border-bottom: none;
-    width: 15%;
-}
-
-.custom-select-2 select{
-    margin-left: calc(25px);
-    margin-right: calc(25px);
-    margin-top: calc(25px);
-    width:100px;
-}
-
-.custom { 
-    margin-left:390px;
-    border: 1px solid black;
-    border-top: none;
-    width: 15%;
-}
-
-.custom select{
-    margin-left: calc(25px);
-    margin-right: calc(25px);
-    margin-top: calc(25px);
-    width:100px;
-}
