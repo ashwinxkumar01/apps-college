@@ -1,6 +1,5 @@
 import React from "react";
 import '../css/Explore.css';
-import { Navbar, Button, Nav, Form, FormControl } from "react-bootstrap";
 import Navigationbar from '../components/content/Navigationbar';
 import NavBar from '../components/content/Navbar';
 import Image3 from './UCSD_3.jpg';
@@ -37,7 +36,6 @@ class Explore extends React.Component {
         this.handleChangeTuitionUpper = this.handleChangeTuitionUpper.bind(this);
         this.handleChangeTuitionLower = this.handleChangeTuitionLower.bind(this);
         this.handleChangeRanking = this.handleChangeRanking.bind(this);
-        this.handleClick = this.handleClick.bind(this);
         this.renderExplore = this.renderExplore.bind(this);
         this.union = this.union.bind(this);
     }
@@ -54,8 +52,9 @@ class Explore extends React.Component {
         //console.log("here");
         if (this.state.searchBar == false) {
             return (
-                <div>
+                <div className="container">
                     <div className="filter">
+                    <h1>Filters</h1>
                         <div className="tuition">
                             <div className="header">Tuition</div>
                             <form className="filter-form">
