@@ -52,7 +52,7 @@ class Explore extends React.Component {
         //console.log("here");
         if (this.state.searchBar == false) {
             return (
-                <div className="container">
+                <div className="container-div">
                     <div className="filter">
                     <h1>Filters</h1>
                         <div className="tuition">

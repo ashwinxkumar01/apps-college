@@ -116,7 +116,7 @@ class SearchBar extends React.Component {
 
     render() {
         const divStyle = {
-            width: '200px;'
+            width: '200px'
         }
         return (
             <Form inline className="ml-5 w-100">
