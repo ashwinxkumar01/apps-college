@@ -54,40 +54,41 @@ class Explore extends React.Component {
         //console.log("here");
         if (this.state.searchBar == false) {
             return (
+                <div>
                     <div className="filter">
                         <div className="tuition">
                             <div className="header">Tuition</div>
                             <form className="filter-form">
-                                    <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
-                                    <span>-</span>
-                                    <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
+                                <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
+                                <span>-</span>
+                                <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
                             </form>
                         </div>
 
                         <div className="tuition">
                             <div className="header">Population</div>
                             <form className="filter-form">
-                                    <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
-                                    <span>-</span>
-                                    <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
+                                <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
+                                <span>-</span>
+                                <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
                             </form>
                         </div>
 
                         <div className="tuition">
                             <div className="header">GPA Average</div>
                             <form className="filter-form">
-                                    <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
-                                    <span>-</span>
-                                    <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
+                                <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
+                                <span>-</span>
+                                <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
                             </form>
                         </div>
 
                         <div className="tuition">
                             <div className="header">App fee</div>
                             <form className="filter-form">
-                                    <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
-                                    <span>-</span>
-                                    <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
+                                <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
+                                <span>-</span>
+                                <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
                             </form>
                         </div>
 
@@ -109,6 +110,10 @@ class Explore extends React.Component {
                             </select>
                         </div>
                     </div>
+                    <ul className="ListColleges">
+                        {filter}
+                    </ul>
+                </div>
             )
         } else {
             return (

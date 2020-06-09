@@ -36,7 +36,7 @@
 }
 
 input {
-    width: calc(40%);
+    width: calc(30%);
     font-size: inherit;
 }
 
@@ -66,5 +66,21 @@ select {
 
 .app-type select{
     margin-left: calc(1.25rem);
+}
+
+.ListColleges {
+    list-style: none;
+    justify-content: left;
+    flex-direction: column;
+    position: absolute;
+    top: calc(9rem);
+    left: calc(40rem);
+    width: 65%;
+}
+
+.ListColleges li {
+    width: 100%;
+    text-align: center;
+    border: 1px solid black;
 }
 
