@@ -54,46 +54,54 @@ class Explore extends React.Component {
         //console.log("here");
         if (this.state.searchBar == false) {
             return (
-                <div>
-                    <div className="filter-option">
-                        <form className="filter-form">
-                            <span>Tuition</span>
-                            <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
-                            -
-                            <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
-                            {/* <input type="text" placeholder="Ranking" onChange={this.handleChangeRanking} size="100"></input> */}
-                        </form>
-                        <form className="filter-form-middle">
-                            <span>Undergrad Population</span>
-                            <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
-                            -
-                            <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
-                            {/* <input type="text" placeholder="Ranking" onChange={this.handleChangeRanking} size="100"></input> */}
-                        </form>
-                        <form className="filter-form-middle">
-                            <span>GPA Average</span>
-                            <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
-                            -
-                            <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
-                            {/* <input type="text" placeholder="Ranking" onChange={this.handleChangeRanking} size="100"></input> */}
-                        </form>
-                        <form className="filter-form-middle">
-                            <span>Application Fee</span>
-                            <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
-                            -
-                            <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
-                            {/* <input type="text" placeholder="Ranking" onChange={this.handleChangeRanking} size="100"></input> */}
-                        </form>
+                    <div className="filter">
+                        <div className="tuition">
+                            <div className="header">Tuition</div>
+                            <form className="filter-form">
+                                    <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
+                                    <span>-</span>
+                                    <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
+                            </form>
+                        </div>
+
+                        <div className="tuition">
+                            <div className="header">Population</div>
+                            <form className="filter-form">
+                                    <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
+                                    <span>-</span>
+                                    <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
+                            </form>
+                        </div>
+
+                        <div className="tuition">
+                            <div className="header">GPA Average</div>
+                            <form className="filter-form">
+                                    <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
+                                    <span>-</span>
+                                    <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
+                            </form>
+                        </div>
+
+                        <div className="tuition">
+                            <div className="header">App fee</div>
+                            <form className="filter-form">
+                                    <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
+                                    <span>-</span>
+                                    <input type="text" onChange={this.handleChangeTuitionUpper} size="100"></input>
+                            </form>
+                        </div>
+
                         <div className="app-type">
-                            <span>App type</span>
+                            <span className="dropdown-name">App type</span>
                             <select>
                                 <option selected value="Any">Any</option>
                                 <option value="Common">Common App</option>
                                 <option value="Coalition">Coalition App</option>
                             </select>
                         </div>
+
                         <div className="school-type">
-                            <span>School Type</span>
+                            <span className="dropdown-name">School Type</span>
                             <select>
                                 <option selected value="Any">Any</option>
                                 <option value="Public">Public</option>
@@ -101,10 +109,6 @@ class Explore extends React.Component {
                             </select>
                         </div>
                     </div>
-                    <ul className="ListColleges">
-                        {filter}
-                    </ul>
-                </div>
             )
         } else {
             return (

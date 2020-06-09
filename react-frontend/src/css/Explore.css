@@ -2,61 +2,69 @@
     color: black;
     width: 100%;
     height: 100%;
-    flex-direction: column;
-    white-space: nowrap;
-    overflow: hidden;
 }
 
-.filter-option {
+.filter {
+    width: calc(18%);
+    height: 70vh;
     border: 1px solid black;
-    width: calc(25%);
     margin-left: calc(20rem);
-    height: calc(70vh);
 }
 
-.ListColleges {
-    list-style: none;
-    justify-content: left;
-    flex-direction: column;
+.tuition {
     width: 100%;
+    margin-top: calc(1rem);
+    display: flex;
+    flex-direction: row;
 }
 
-.ListColleges li {
-    width: 100%;
-    text-align: center;
+.header {
+    padding-right: calc(5.5rem);
+    justify-content: center;
+    padding-left: calc(0.3rem);
+    font-size: calc(1rem);
+    white-space: nowrap;
+    position: relative;
+    top: calc(0.2rem);
 }
 
 .filter-form {
-    width: 100%; 
+    width: 100%;
+    float: right;
+    position: relative;
+    bottom: calc(0.3rem);
 }
 
-.filter-form-middle {
-    width: 100%;   
+input {
+    width: calc(40%);
+    font-size: inherit;
 }
 
-.filter-form-bottom {
-    width: 100%;  
+input[type="text"]
+{
+    font-size:calc(1rem);
 }
 
 span {
-    border: 1px solid black;
+    margin-left: calc(0.6rem);
+    margin-right: calc(0.6rem);
 }
 
-.filter-form input, .filter-form-middle input {
-    margin-left: calc(2rem);
-    margin-right: calc(2rem);
-    margin-top: calc(1.5rem);
-    width: 20%;
+.app-type, .school-type {
+    margin-top: calc(0.8rem);
 }
 
-.app-type, .school-type { 
-    width: 20%;
+.dropdown-name {
+    margin-left: calc(0.3rem);
+    padding-right: calc(2rem);
+    width: 100%;
 }
 
-.app-type select, .school-type select{
-    margin-left: calc(2rem);
-    margin-right: calc(2rem);
-    margin-top: calc(1.5rem);
-    width: calc(7rem);
+select {
+    width: 40%;
+}
+
+.app-type select{
+    margin-left: calc(1.25rem);
 }
 
