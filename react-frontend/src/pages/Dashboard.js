@@ -2,7 +2,6 @@ import '../css/Dashboard.css';
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Table from '../components/Table';
 import Navigationbar from '../components/content/Navigationbar';
 import { Nav } from 'react-bootstrap';
 import NavBar from '../components/content/Navbar';

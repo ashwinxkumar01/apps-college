@@ -1,0 +1,46 @@
+.tile-layout {
+    display: flex;
+    flex-direction: column;
+    width: calc(97%);
+    height: calc(17rem);
+    border-radius: calc(1vmin);
+    margin-bottom: calc(1vmin);
+    color: black;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+}
+
+.tile-layout:hover {
+    transition: 0.3s;
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+.element-display {
+    display: flex;
+    columns: 2;
+}
+
+.college-name {
+    text-align: center;
+    width: 100%;
+    font-family: 'Bebas Neue', cursive;
+}
+
+.specifications {
+    text-align: left;
+    width: 50%;
+    margin-left: calc(0.5rem);
+    margin-top: calc(1.5rem)
+}
+
+.specifications h3 {
+    font-size: calc(1rem);
+}
+
+.college-icon {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}

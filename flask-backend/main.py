@@ -156,9 +156,9 @@ def get_college_names():
 #     return jsonify(names)
 
 
-# @app.route("/")
-# def my_index():
-#     return flask.render_template("index.html", token="Hello Flask and React")
+@app.route("/")
+def my_index():
+    return flask.render_template("index.html", token="Hello Flask and React")
 
 # @app.route("/filter", methods = ['POST'])
 # def test_filter():
