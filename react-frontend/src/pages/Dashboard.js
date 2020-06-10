@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Table from '../components/Table';
 import Navigationbar from '../components/content/Navigationbar';
+import { Nav } from 'react-bootstrap';
 import NavBar from '../components/content/Navbar';
 import Image1 from './UCSD_1.jpg';
 import Image2 from './UCSD_2.jpg';
@@ -52,20 +53,23 @@ class Dashboard extends React.Component {
   renderDashboard = () => {
     if (this.state.searchBar === false) {
       return (
-          <div className={useStyles.root}>
-            <UsersToolbar />
-            <div className={useStyles.theme}>
-              <UsersTable users={this.state.users} />
-            </div>
+        <div className={useStyles.root}>
+          <UsersToolbar />
+          <div className={useStyles.theme}>
+            <UsersTable users={this.state.users} />
           </div>
+        </div>
       )
     } else {
       return (
         this.state.resultsFromSearch.map(college => (
-          <div className="searchResult">
-            <img src={Image3} className="imageBox" />
-            {college}
-          </div>
+          <Nav.Link href={`/loginhome/features/${college}`} className="fixedHeight">
+            <div className="searchResult">
+              <img src={Image3} className="imageBox" />
+              {college}
+              <div className="heart"></div>
+            </div>
+          </Nav.Link>
         )
         )
       )

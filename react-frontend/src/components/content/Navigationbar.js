@@ -42,7 +42,7 @@ class Navigationbar extends React.Component {
                     </Nav.Item>
 
                     <Nav.Item className="features">
-                        <Nav.Link eventKey="5" href="/loginhome/features">
+                        <Nav.Link eventKey="5" href={`/loginhome/features/${'L'}`}>
                         <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>  Features</Nav.Link>
                     </Nav.Item>
 

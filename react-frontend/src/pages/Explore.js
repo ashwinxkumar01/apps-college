@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import '../css/Explore.css';
 import Navigationbar from '../components/content/Navigationbar';
+import { Nav } from 'react-bootstrap';
 import NavBar from '../components/content/Navbar';
 import Image3 from './UCSD_3.jpg';
 
@@ -54,7 +55,7 @@ class Explore extends React.Component {
             return (
                 <div className="container-div">
                     <div className="filter">
-                    <h1>Filters</h1>
+                        <h1>Filters</h1>
                         <div className="tuition">
                             <div className="header">Tuition</div>
                             <form className="filter-form">
@@ -116,33 +117,36 @@ class Explore extends React.Component {
             )
         } else {
             return (
-              this.state.resultsFromSearch.map(college => (
-                <div className="searchResult">
-                  <img src={Image3} className="imageBox" />
-                  {college}
-                </div>
-              )
-              )
+                this.state.resultsFromSearch.map(college => (
+                    <Nav.Link href={`/loginhome/features/${college}`} className="fixedHeight">
+                        <div className="searchResult">
+                            <img src={Image3} className="imageBox" />
+                            {college}
+                            <div className="heart"></div>
+                        </div>
+                    </Nav.Link>
+                )
+                )
             )
-      
-          }
+
+        }
     }
 
     union(renderListOne, renderListTwo) {
         let renderList = [];
-        
-        if(renderListOne === undefined || renderListOne.length == 0) {
+
+        if (renderListOne === undefined || renderListOne.length == 0) {
             console.log(renderListTwo);
             return renderListTwo;
         }
-        
-        if(renderListTwo === undefined || renderListTwo.length == 0) {
+
+        if (renderListTwo === undefined || renderListTwo.length == 0) {
             return renderList;
         }
 
-        for(let i = 0; i < renderListOne.length; i++) {
-            for(let j = 0; j < renderListTwo.length; j++) {
-                if(renderListOne[i] === renderListTwo[j]) {
+        for (let i = 0; i < renderListOne.length; i++) {
+            for (let j = 0; j < renderListTwo.length; j++) {
+                if (renderListOne[i] === renderListTwo[j]) {
                     renderList.push(renderListOne[i]);
                 }
             }
@@ -153,10 +157,10 @@ class Explore extends React.Component {
     }
 
     getInitialState() {
-        return { 
-            TuitionLower: '', 
+        return {
+            TuitionLower: '',
             TuitionUpper: '',
-            Rank: '' 
+            Rank: ''
         };
     }
 
@@ -187,24 +191,24 @@ class Explore extends React.Component {
 
     render() {
         let renderList = [];
-        
+
         let renderListTuition = [];
-        if(this.state.TuitionLower !== '' && this.state.TuitionUpper !== '') {
+        if (this.state.TuitionLower !== '' && this.state.TuitionUpper !== '') {
             renderListTuition = this.state.Colleges.filter(college => college.Tuition <= this.state.TuitionUpper && college.Tuition >= this.state.TuitionLower);
         }
 
         let renderListRank = [];
-        if(this.state.Rank !== '') {
+        if (this.state.Rank !== '') {
             renderListRank = this.state.Colleges.filter(college => college.Rank <= this.state.Rank);
         }
 
         let value = this.union(renderList, renderListTuition);
         renderList = this.union(renderListRank, value);
-        
+
         const renderRank = renderList.map(college => (
             <li>{college.Name}</li>
         ))
-        
+
         console.log("hello");
 
         //console.log(filter);
@@ -220,7 +224,7 @@ class Explore extends React.Component {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
-              },
+            },
             body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
         }).then(response => {
             console.log(response);
