@@ -18,7 +18,7 @@
   .searchResult{
     position: relative;
     border-color: rgb(180, 180, 180);
-    border-bottom-width: calc(.2vh);
+    /* border-bottom-width: calc(.2vh); */
     border-bottom-style: solid;
     border-top-color: transparent;
     border-right-color: transparent;
@@ -30,6 +30,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding-top: calc(0);
-    padding-bottom: calc(0);
+    padding-top: calc(0px);
+    padding-bottom: calc(0px);
   }

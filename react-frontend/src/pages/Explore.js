@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../css/Explore.css';
 import Navigationbar from '../components/content/Navigationbar';
 import NavBar from '../components/content/Navbar';
@@ -74,7 +74,7 @@ class Explore extends React.Component {
                         </div>
 
                         <div className="tuition">
-                            <div className="header">GPA Average</div>
+                            <div className="header">Acceptance Rate</div>
                             <form className="filter-form">
                                 <input type="text" onChange={this.handleChangeTuitionLower} size="100"></input>
                                 <span>-</span>
@@ -204,8 +204,31 @@ class Explore extends React.Component {
         const renderRank = renderList.map(college => (
             <li>{college.Name}</li>
         ))
+        
+        console.log("hello");
 
         //console.log(filter);
+        //Testing the fetch from database call
+        // fetch("/test").then(response => {
+        //     console.log(response);
+        //     response.text().then(data => {
+        //         console.log(data);
+        //     })
+        // })
+
+        fetch("/filter", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
+        }).then(response => {
+            console.log(response);
+            return response.text();
+        }).then(data => {
+            console.log(data);
+        })
+
         return (
             <div className="Explore">
                 <Navigationbar active="2" />

@@ -77,7 +77,7 @@ LeBron James fans—myself included—should step aside for the Chef ("Cheph" pa
                         </span>
                     </div> 
                 </div> 
-            </ div>
+            </div>
             <span>
                 <h1 className="name">University of Red Pandas</h1>
             </span>

@@ -2,11 +2,15 @@ import flask
 import pyrebase
 import os
 from flask import session
+from flask import request
 from sql_helpers import *
+from flask import jsonify
 import pyodbc
-from firebase import *
+# from firebase import * #Causing errors when testing, Ashwin fix it
+from flask_cors import CORS, cross_origin
 
 app = flask.Flask(__name__)
+CORS(app)
 
 app.secret_key = os.urandom(24)  # do we need this? read it somewhere, could possibly be helpful
 
@@ -144,10 +148,24 @@ def get_college_names():
 # names = get_college_names()
 # print(names)
 
+#Routes testing for connectivity
 
-@app.route("/")
-def my_index():
-    return flask.render_template("index.html", token="Hello Flask and React")
+# @app.route("/test", methods = ['GET'])
+# def test_func():
+#     names = get_college_names()
+#     return jsonify(names)
+
+
+# @app.route("/")
+# def my_index():
+#     return flask.render_template("index.html", token="Hello Flask and React")
+
+# @app.route("/filter", methods = ['POST'])
+# def test_filter():
+#     p = request.json
+#     print(p)
+#     print(get_colleges(p))
+#     return jsonify(get_colleges(p))
 
 
 app.run(debug=True)
