@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import '../css/Explore.css';
 import Navigationbar from '../components/content/Navigationbar';
 import { Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import NavBar from '../components/content/Navbar';
 import Image3 from './UCSD_3.jpg';
 import Tile from '../components/Tile';
@@ -152,8 +153,16 @@ class Explore extends React.Component {
                     <ul className="ListColleges" >
                         { this.state.College.map(college => {
                             let val = JSON.parse(college);
-                            return <li><Tile Alias={val["alias"]} Tuition={val["tuition_normal"]} 
-                            Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} /> </li>}) 
+                            let collegeName = val["college_name"];
+                            return (
+                                <Link to={`/loginhome/features/${collegeName}`}>
+                                    <li>
+                                        <Tile Alias={val["alias"]} Tuition={val["tuition_normal"]} 
+                                        Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}/> 
+                                    </li>
+                                </Link>
+                            )
+                            }) 
                         }
                         {/* <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"23000"}/></li> */}
                     </ul>
