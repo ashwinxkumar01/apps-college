@@ -1,6 +1,8 @@
 import pyrebase
 import os
 from flask import session
+from flask import request
+from flask import jsonify
 import pyodbc
 from main import *
 
@@ -23,6 +25,7 @@ dictio = {}
 
 # parameters are Strings for email and password
 # return boolean - true if successful creation, false if not
+
 def createUserWithEmailPassword(email, password):
     successfulCreation = True
     try:
@@ -44,6 +47,7 @@ def createUserWithEmailPassword(email, password):
 
 # parameters are Strings for email and password
 # return boolean - true if successful login, false if not
+@app.route("/login", methods = ['POST'])
 def loginWithEmailPassword(email, password):
     successfulLogin = False
     try:
