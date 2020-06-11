@@ -53,7 +53,7 @@ class Explore extends React.Component {
                         </div>
 
                         <div className="tuition">
-                            <div className="header">Acceptance Rate</div>
+                            <div className="header">Acceptance</div>
                             <form className="filter-form">
                                 <input type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>

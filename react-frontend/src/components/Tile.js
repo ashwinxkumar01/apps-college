@@ -19,7 +19,7 @@ class Node extends Component {
                     </div>
 
                     <div className="college-icon">
-                        <img src="https://seeklogo.com/images/U/university-of-california-berkeley-athletic-logo-815CB73082-seeklogo.com.png" alt="Logo" height="200" width="230" />
+                        <img src="https://seeklogo.com/images/U/university-of-california-berkeley-athletic-logo-815CB73082-seeklogo.com.png" alt="Logo" height="150" width="100%" />
                     </div>
                 </div>             
             </div>

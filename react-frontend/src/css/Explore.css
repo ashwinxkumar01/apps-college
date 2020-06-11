@@ -17,7 +17,7 @@
 .filter {
     width: calc(22%);
     height: calc(60vh);
-    border: 1px solid black;
+    border: 2px solid black;
     margin-left: calc(0.5rem);
     border-radius: calc(0.5rem);
 }

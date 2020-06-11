@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 .tile-layout {
     display: flex;
     flex-direction: column;
@@ -7,7 +9,7 @@
     margin-bottom: calc(1vmin);
     color: black;
     background-color: rgb(255, 255, 255);
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 .tile-layout:hover {
@@ -40,7 +42,9 @@
 }
 
 .college-icon {
+    margin-top: calc(2rem);
     width: 50%;
     display: flex;
     justify-content: center;
+    overflow: hidden;
 }
