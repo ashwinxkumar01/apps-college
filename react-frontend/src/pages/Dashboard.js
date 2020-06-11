@@ -12,6 +12,7 @@ import Image4 from './UCSD_4.jpg';
 
 import { UsersToolbar, UsersTable } from './dashboardComponents';
 import mockData from './data';
+import Heart from '../components/content/Heart';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -62,13 +63,15 @@ class Dashboard extends React.Component {
     } else {
       return (
         this.state.resultsFromSearch.map(college => (
-          <Nav.Link href={`/loginhome/features/${college}`} className="fixedHeight">
-            <div className="searchResult">
-              <img src={Image3} className="imageBox" />
-              {college}
-              <div className="heart"></div>
-            </div>
-          </Nav.Link>
+          <div>
+            <Nav.Link href={`/loginhome/features/${college}`} className="fixedHeight">
+              <div className="searchResult">
+                <img src={Image3} className="imageBox" />
+                {college}
+              </div>
+            </Nav.Link>
+            <Heart collegeName={college} />
+          </div>
         )
         )
       )

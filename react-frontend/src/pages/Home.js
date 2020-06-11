@@ -30,7 +30,9 @@ function Home() {
                 <div class="container">
                     <div class="masthead-subheading">5300 Colleges. 20+ Applications.</div>
                     <div class="masthead-heading text-uppercase">One Site.</div>
-                    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Sign Up Here</a>
+                    <Link to="/loginhome/login">
+                            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger">Sign Up Here</a>
+                    </Link>
                 </div>
             </header>
             
