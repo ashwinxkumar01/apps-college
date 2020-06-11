@@ -11,7 +11,7 @@ class Explore extends React.Component {
         super(props);
         this.state = {
             searchBar: false,
-            College: '',
+            College: [],
             School: 'Any',
             App: 'Any',
             AppFeeLower: '',
@@ -21,7 +21,9 @@ class Explore extends React.Component {
             PopulationLower: '',
             PopulationUpper: '',
             TuitionLower: '',
-            TuitionUpper: ''
+            TuitionUpper: '',
+            RankingLower: '',
+            RankingUpper: ''
         };
 
         this.setSearch = this.setSearch.bind(this);
@@ -47,6 +49,9 @@ class Explore extends React.Component {
         //Handle the tuition textboxes
         this.tuitionLower = this.tuitionLower.bind(this);
         this.tuitionUpper = this.tuitionUpper.bind(this);
+        //Handle the ranking textboxes
+        this.rankingLower = this.rankingLower.bind(this);
+        this.rankingUpper = this.rankingUpper.bind(this);
     }
 
     searchBarInUse = (inUse) => {
@@ -70,13 +75,13 @@ class Explore extends React.Component {
         });       
     }
 
-    renderExplore = (filter) => {
-        //console.log("here");
+    renderExplore = (College) => {
         if (this.state.searchBar == false) {
             return (
                 <div className="container-div">
                     <div className="filter">
                         <h1 className="filter-name">Filters</h1>
+                        
                         <div className="tuition">
                             <div className="header">Tuition</div>
                             <form className="filter-form">
@@ -113,12 +118,21 @@ class Explore extends React.Component {
                             </form>
                         </div>
 
+                        <div className="tuition">
+                            <div className="header">Ranking</div>
+                            <form className="filter-form">
+                                <input onChange={this.rankingLower} type="text" placeholder="Lower" size="100"></input>
+                                <span>-</span>
+                                <input onChange={this.rankingUpper} type="text" placeholder="Upper" size="100"></input>
+                            </form>
+                        </div>
+
                         <div className="app-type">
                             <span className="dropdown-name">App type</span>
                             <select onChange={this.handleAppSelect} value={this.state.App}>
                                 <option value="Any">Any</option>
-                                <option value="Common">Common App</option>
-                                <option value="Coalition">Coalition App</option>
+                                <option value="commonapp">Common App</option>
+                                <option value="coalitionapp">Coalition App</option>
                             </select>
                         </div>
 
@@ -131,18 +145,17 @@ class Explore extends React.Component {
                             </select>
                         </div>
 
-                        <form className="filter-button-div">
-                            <button onClick={this.handleClick} className="filter-button">Search</button>
-                        </form>
+                        <div className="filter-button-div">
+                            <button onClick={this.handleClick} className="filter-button">Apply</button>
+                        </div>
                     </div>
-                    <ul className="ListColleges">
-                        {/* <li><Tile /></li>
-                        <li><Tile /></li>
-                        <li><Tile /></li>
-                        <li><Tile /></li>
-                        <li><Tile /></li>
-                        <li><Tile /></li> */}
-                        {this.createTile}
+                    <ul className="ListColleges" >
+                        { this.state.College.map(college => {
+                            let val = JSON.parse(college);
+                            return <li><Tile Alias={val["alias"]} Tuition={val["tuition_normal"]} 
+                            Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} /> </li>}) 
+                        }
+                        {/* <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"23000"}/></li> */}
                     </ul>
                 </div>
             )
@@ -205,6 +218,13 @@ class Explore extends React.Component {
             array.push("-" + this.state.TuitionUpper);
         }
 
+        if(this.state.RankingLower !== '' && this.state.RankingUpper !== '') {
+            array.push("national_ranking");
+            array.push("+" + this.state.RankingLower);
+            array.push("national_ranking");
+            array.push("-" + this.state.RankingUpper);
+        }
+
         console.log(array);
         let college = '';
         fetch("/filter", {
@@ -215,14 +235,8 @@ class Explore extends React.Component {
             // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
             body: JSON.stringify(array)
         }).then(response => {
-            console.log(response);
             return response.json();
         }).then(data => {
-            console.log(data);
-            // let value = data[0];
-            // console.log(value);
-            // let name = JSON.parse(value);
-            // console.log(name["college_name"]);
             this.setState({
                 College: data
             })
@@ -260,6 +274,15 @@ class Explore extends React.Component {
     tuitionUpper(e) {
         this.setState({TuitionUpper: e.target.value});
     }
+    
+    rankingLower(e) {
+        this.setState({RankingLower: e.target.value});
+    }
+
+    rankingUpper(e) {
+        this.setState({RankingUpper: e.target.value});
+    }
+
 
     handleSchoolSelect(e) {
         this.setState({School: e.target.value});
@@ -301,7 +324,6 @@ class Explore extends React.Component {
         // });
 
         // console.log(this.state.College);
-
         return (
             <div className="Explore">
                 <Navigationbar active="2" />

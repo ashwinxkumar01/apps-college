@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Cuprum&family=Roboto&family=Lato:wght@700&display=swap');
+
+
 .Explore {
     color: black;
     width: 100%;
@@ -6,7 +9,10 @@
 
 .filter-name {
     text-align: center;
-    padding-bottom: calc(1rem);
+    padding-bottom: calc(0.2rem);
+    padding-top: calc(0.5rem);
+    font-family: 'Roboto', sans-serif;
+    border-bottom: 2px solid black;
 }
 
 .container-div {
@@ -46,7 +52,8 @@
     bottom: calc(0.3rem);
 }
 
-input {
+.filter-form input {
+    font-family: 'Lato', sans-serif;
     width: calc(39%);
     font-size: inherit;
 }
@@ -88,8 +95,17 @@ select {
 .filter-button {
     border: none;
     border-left: none;
-    height: calc(2rem);
-    width: calc(5rem);
+    height: calc(2.5rem);
+    width: calc(5.5rem);
+    font-size: calc(1.5rem);
+    font-family: 'Cuprum', sans-serif;
+    background-color: rgb(209, 202, 202);
+    transition: 0.3s;
+}
+
+.filter-button:hover {
+    background-color: rgb(41, 228, 41);
+    transition: 0.3s;
 }
 
 .ListColleges {
@@ -101,7 +117,6 @@ select {
 }
 
 .ListColleges li {
-    margin-top: calc(1rem);
     width: 98%;
     text-align: center;
     display: inline-block;
