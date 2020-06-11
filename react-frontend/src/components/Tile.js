@@ -7,15 +7,15 @@ class Node extends Component {
         return (
             <div className="tile-layout">
                 <div className="college-name">
-                    <h1>Ashwin is a loser</h1>
+                    <h1>{this.props.Alias}</h1>
                 </div>
 
                 <div className="element-display">
                     <div className="specifications">
-                        <h3>Tuition: $30,542</h3>
-                        <h3>Acceptance Rate: 20%</h3>
+                        <h3>Tuition: ${this.props.Tuiton}</h3>
+                        <h3>Acceptance Rate: {this.props.Acceptance} %</h3>
                         <h3>School Type: Private</h3>
-                        <h3>App Fee: $3000</h3>
+                        <h3>App Fee: ${this.props.Fee}</h3>
                     </div>
 
                     <div className="college-icon">

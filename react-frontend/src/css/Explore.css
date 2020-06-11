@@ -79,6 +79,19 @@ select {
     margin-left: calc(1.25rem);
 }
 
+.filter-button-div {
+    width: 100%;
+    text-align: center;
+    margin-top: calc(4rem);
+}
+
+.filter-button {
+    border: none;
+    border-left: none;
+    height: calc(2rem);
+    width: calc(5rem);
+}
+
 .ListColleges {
     width: 80%;
     margin-left: 0;
