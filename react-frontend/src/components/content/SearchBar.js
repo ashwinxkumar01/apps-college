@@ -121,11 +121,6 @@ class SearchBar extends React.Component {
         return (
             <Form inline className="ml-5 w-100">
                 <Form.Control type="text" onInput={this.handleChange} placeholder="Search" className="mr-0 w-75" style={divStyle} />
-                {/* {this.state.searchResults.map((college => (
-                    <li>{college}</li>
-                )
-                ))
-                } */}
                 <Button variant="outline-success" className="mr-0 w-0">Search</Button>
             </Form>
         )
