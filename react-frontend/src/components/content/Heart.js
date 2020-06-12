@@ -10,22 +10,32 @@ class Heart extends React.Component {
         }
         this.handleClick = this.handleClick.bind(this);
     }
-    
-    handleClick (e) {
-        if(this.state.status){
+
+    handleClick(e) {
+        if (this.state.status == true) {
             console.log(this.state.currentCollege);
         }
-        if(this.state.status){
-            this.setState({status: false});
-        }else{    
-            this.setState({status: true});    
+        if (this.state.status == true) {
+            this.setState({ status: false });
+        } else {
+            this.setState({ status: true });
         }
     }
 
     render() {
-        return(
-            <div className="heart" onClick={this.handleClick}/>
-        )
+        if (this.state.status == true) {
+            return (
+                <div className="height">
+                    <div className="redheart" onClick={this.handleClick} />
+                </div>
+            )
+        } else {
+            return (
+                <div className="height">
+                    <div className="heart" onClick={this.handleClick} />
+                </div>
+            )
+        }
     }
 }
 
