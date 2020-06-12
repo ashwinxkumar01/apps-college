@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Features from './pages/Features';
 import Profile from './pages/Profile';
+import Individual from './pages/Individual';
 
 class App extends React.Component {
   render() {
@@ -21,6 +22,7 @@ class App extends React.Component {
           <Route path="/loginhome/signup" component={Signup} />
           <Route path="/loginhome/features/:collegeName" component={Features} />
           <Route path="/loginhome/profile" component={Profile} />
+          <Route path="/loginhome/page" component={Individual} />
           <Route path="/" component={Home} />
         </Switch>
       </div>

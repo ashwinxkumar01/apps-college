@@ -50,6 +50,11 @@ class Navigationbar extends React.Component {
                         <Nav.Link eventKey="6" href="/loginhome/profile">
                         <FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon>  FAQ</Nav.Link>
                     </Nav.Item>
+
+                    <Nav.Item className="faq">
+                        <Nav.Link eventKey="7" href="/loginhome/page">
+                        <FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon>  College Page</Nav.Link>
+                    </Nav.Item>
                 </Nav>
             </div>
         );
