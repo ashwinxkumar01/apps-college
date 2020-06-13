@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/react/css/main.0dd38bb7.chunk.css",
-    "main.js": "/static/react/js/main.255e050b.chunk.js",
-    "main.js.map": "/static/react/js/main.255e050b.chunk.js.map",
+    "main.css": "/static/react/css/main.daebb5ed.chunk.css",
+    "main.js": "/static/react/js/main.85b7836a.chunk.js",
+    "main.js.map": "/static/react/js/main.85b7836a.chunk.js.map",
     "runtime-main.js": "/static/react/js/runtime-main.725b2ec0.js",
     "runtime-main.js.map": "/static/react/js/runtime-main.725b2ec0.js.map",
     "js/2.c96953ff.chunk.js": "/static/react/js/2.c96953ff.chunk.js",
     "js/2.c96953ff.chunk.js.map": "/static/react/js/2.c96953ff.chunk.js.map",
     "../../templates/index.html": "/static/react/../../templates/index.html",
-    "css/main.0dd38bb7.chunk.css.map": "/static/react/css/main.0dd38bb7.chunk.css.map",
+    "css/main.daebb5ed.chunk.css.map": "/static/react/css/main.daebb5ed.chunk.css.map",
     "js/2.c96953ff.chunk.js.LICENSE.txt": "/static/react/js/2.c96953ff.chunk.js.LICENSE.txt",
     "media/Student_picture.png": "/static/react/media/Student_picture.a3ab7090.png",
     "media/UCSD_1.jpg": "/static/react/media/UCSD_1.20be0ba1.jpg",
@@ -17,13 +17,13 @@
     "media/UCSD_4.jpg": "/static/react/media/UCSD_4.bf8f0809.jpg",
     "media/Home.css": "/static/react/media/rooftopping-san-francisco-bay-area.cb0d32d0.jpg",
     "media/stephen_the_goat.jpg": "/static/react/media/stephen_the_goat.e0323fc4.jpg",
-    "precache-manifest.85b7036d5445f2a461fb51c1133d6347.js": "/static/react/precache-manifest.85b7036d5445f2a461fb51c1133d6347.js",
+    "precache-manifest.1f2fd3db6ce72f127e532708fa8b1c2c.js": "/static/react/precache-manifest.1f2fd3db6ce72f127e532708fa8b1c2c.js",
     "service-worker.js": "/static/react/service-worker.js"
   },
   "entrypoints": [
     "js/runtime-main.725b2ec0.js",
     "js/2.c96953ff.chunk.js",
-    "css/main.0dd38bb7.chunk.css",
-    "js/main.255e050b.chunk.js"
+    "css/main.daebb5ed.chunk.css",
+    "js/main.85b7836a.chunk.js"
   ]
 }

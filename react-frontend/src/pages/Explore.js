@@ -183,6 +183,7 @@ class Explore extends React.Component {
 
                         <ul className="ListColleges" >
                             { this.state.College.map(college => {
+                                console.log(college)
                                 let val = JSON.parse(college);
                                 let collegeName = val["college_name"];
                                 return (
