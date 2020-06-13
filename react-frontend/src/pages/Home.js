@@ -17,9 +17,7 @@ function Home() {
                             <Link to="/loginhome/explore">
                                 <li class="nav-item"><a class="nav-link js-scroll-trigger">Services</a></li>
                             </Link>
-                            <Link to="/loginhome/login" >
-                                <li class="nav-item"><a class="nav-link js-scroll-trigger">Portfolio</a></li>
-                            </Link>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>

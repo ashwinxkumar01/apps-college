@@ -14,15 +14,10 @@ CORS(app)
 
 app.secret_key = os.urandom(24)  # do we need this? read it somewhere, could possibly be helpful
 
-# server = os.environ.get("SERVER_ADDRESS")
-# database = os.environ.get("DATABASE_NAME")
-# username = os.environ.get("DB_USERNAME")
-# password = os.environ.get("DB_PASSWD")
-# driver = '{ODBC Driver 17 for SQL Server}'
-server = "collegeapp.database.windows.net"
-database = "collegeapp"
-username = "adminUser"
-password = "ashwinSucks!"
+server = os.environ.get("SERVER_ADDRESS")
+database = os.environ.get("DATABASE_NAME")
+username = os.environ.get("DB_USERNAME")
+password = os.environ.get("DB_PASSWD")
 driver = '{ODBC Driver 17 for SQL Server}'
 
 db_info = 'DRIVER=' + driver + ';SERVER=' + server + ';PORT=1433;DATABASE=' + database + ';UID=' + username + ';PWD=' + password
@@ -47,7 +42,7 @@ def get_query(query):
 # date format needs to be DD.MM.YYYY
 # returns list of JSON objects with college information
 def get_colleges(query_lst):
-    query = "SELECT * FROM " + "collegelist"
+    query = "SELECT * FROM " + os.environ.get("TABLE_NAME")
 
     if len(query_lst) > 0:
         query += " WHERE"
@@ -125,7 +120,7 @@ def get_ranking_order(college_lst):
 # returns a list of lists with name, abbreviation, alias of each college
 # puts highest ranked colleges at the top of the list
 def get_college_names():
-    query_str = "SELECT college_name, alias, abbreviation, national_ranking FROM " + "collegelist" + ";"
+    query_str = "SELECT college_name, alias, abbreviation, national_ranking FROM " + os.environ.get("TABLE_NAME") + ";"
     res = get_query(query_str)
 
     res.sort(key=get_ranking_order)
