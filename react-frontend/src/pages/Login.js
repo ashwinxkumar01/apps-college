@@ -85,6 +85,7 @@ export default function SignInSide() {
               onChange={e => {
                 const newUsername = {username: e.target.value};
                 setUsername(newUsername);
+                console.log(newUsername.username);
               }}
               autoComplete="email"
               autoFocus
@@ -102,6 +103,7 @@ export default function SignInSide() {
               onChange={e => {
                 const newPassword = {password: e.target.value};
                 setPassword(newPassword);
+                console.log(newPassword.password);
               }}
             />
             {/* <FormControlLabel
@@ -118,6 +120,21 @@ export default function SignInSide() {
               onClick={e => {
                 console.log(username + password); 
                 console.log("testing");
+                fetch("/login", {
+                  method: "POST",
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
+                  body: JSON.stringify({
+                      Username: username.username,
+                      Password: password.password,
+                  })
+              }).then(response => {
+                  return response.text();
+              }).then(data => {
+                  console.log(data);
+              });
               }}
             >
               Sign In

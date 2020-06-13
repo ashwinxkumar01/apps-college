@@ -228,8 +228,15 @@ def createUserWithEmailPassword(email, password):
 
 # parameters are Strings for email and password
 # return boolean - true if successful login, false if not
+# takes in an email and password from the request
 @app.route("/login", methods = ['POST'])
-def loginWithEmailPassword(email, password):
+def loginWithEmailPassword():
+    post_request = request.get_json(force=True)
+
+    # Assign value from the request
+    email = post_request['Username']
+    password = post_request['Password']
+    
     successfulLogin = False
     try:
         # print(session['usr']) #if this doesn't error out, that means the user is logged in already
