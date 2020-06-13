@@ -68,7 +68,7 @@ span {
     margin-right: calc(0.6rem);
 }
 
-.app-type, .school-type {
+.app-type, .school-type, .filter-type {
     margin-top: calc(1rem);
 }
 
@@ -109,11 +109,10 @@ select {
 }
 
 .ListColleges {
-    width: 80%;
+    width: 100%;
     margin-left: 0;
-    -webkit-column-count: 3;
-    -moz-column-count: 3;
-    column-count: 3;
+    display: grid;
+    grid-template-columns: calc(33%) calc(33%) calc(33%);
 }
 
 .ListColleges li {

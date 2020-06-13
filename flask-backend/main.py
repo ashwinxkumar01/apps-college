@@ -162,10 +162,17 @@ def my_index():
 
 # @app.route("/filter", methods = ['POST'])
 # def test_filter():
-#     p = request.json
-#     print(p)
-#     print(get_colleges(p))
-#     return jsonify(get_colleges(p))
+#     #Get the incoming request
+#     post_request = request.get_json(force=True)
+
+#     #Assign value from the request
+#     array = post_request['Array']
+#     filter_by = post_request['Filter']
+#     is_descending = post_request['IsDescending']
+
+#     colleges_array = get_colleges(array)
+
+#     return jsonify(get_order(colleges_array, filter_by, is_descending))
 
 
 

@@ -15,6 +15,8 @@ class Explore extends React.Component {
             College: [],
             School: 'Any',
             App: 'Any',
+            Filter: 'national_ranking',
+            Checkbox: false,
             AppFeeLower: '',
             AppFeeUpper: '',
             AcceptanceLower: '',
@@ -38,6 +40,10 @@ class Explore extends React.Component {
         this.handleAppSelect = this.handleAppSelect.bind(this);
         //Handle the dropdown value in the School type
         this.handleSchoolSelect = this.handleSchoolSelect.bind(this);
+        //Handle the filter by dropdown 
+        this.handleFilter = this.handleFilter.bind(this);
+        //Handle the checkbox
+        this.handleCheckbox = this.handleCheckbox.bind(this);
         //Handle the App Fee textboxes
         this.appFeeLower = this.appFeeLower.bind(this);
         this.appFeeUpper = this.appFeeUpper.bind(this);
@@ -146,6 +152,17 @@ class Explore extends React.Component {
                             </select>
                         </div>
 
+                        <div className="filter-type">
+                            <span className="dropdown-name">Sort by</span>
+                            <select onChange={this.handleFilter} value={this.state.Filter}>
+                                <option value="tuition_normal">Tuition</option>
+                                <option value="acceptance_rate">Acceptance Rate</option>
+                                <option value="app_fee">App Fee</option>
+                                <option value="population">Population</option>
+                                <option value="national_ranking">Ranking</option>
+                            </select>
+                        </div>
+
                         <div className="filter-button-div">
                             <button onClick={this.handleClick} className="filter-button">Apply</button>
                         </div>
@@ -164,7 +181,10 @@ class Explore extends React.Component {
                             )
                             }) 
                         }
-                        {/* <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"23000"}/></li> */}
+                        {/* <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"20000"}/></li>
+                        <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"23000"}/></li>
+                        <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"26000"}/></li>
+                        <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"29000"}/></li> */}
                     </ul>
                 </div>
             )
@@ -242,7 +262,11 @@ class Explore extends React.Component {
                 'Content-Type': 'application/json'
             },
             // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
-            body: JSON.stringify(array)
+            body: JSON.stringify({
+                Array: array,
+                Filter: this.state.Filter,
+                IsDescending: this.state.Checkbox
+            })
         }).then(response => {
             return response.json();
         }).then(data => {
@@ -292,13 +316,25 @@ class Explore extends React.Component {
         this.setState({RankingUpper: e.target.value});
     }
 
-
     handleSchoolSelect(e) {
         this.setState({School: e.target.value});
     }
 
     handleAppSelect(e) {
         this.setState({App: e.target.value});
+    }
+
+    handleFilter(e) {
+        this.setState({Filter: e.target.value}, () => {
+            console.log(this.state.Filter);
+        });
+    }
+
+    handleCheckbox(e) {
+        let value = !this.state.Checkbox
+        this.setState({Checkbox: value}, () => {
+            console.log(this.state.Checkbox);
+        })
     }
 
     render() {
