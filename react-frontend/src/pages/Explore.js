@@ -26,7 +26,8 @@ class Explore extends React.Component {
             TuitionLower: '',
             TuitionUpper: '',
             RankingLower: '',
-            RankingUpper: ''
+            RankingUpper: '',
+            Ordering: "Descending"
         };
 
         this.setSearch = this.setSearch.bind(this);
@@ -59,6 +60,7 @@ class Explore extends React.Component {
         //Handle the ranking textboxes
         this.rankingLower = this.rankingLower.bind(this);
         this.rankingUpper = this.rankingUpper.bind(this);
+        this.changeAscent = this.changeAscent.bind(this);
     }
 
     searchBarInUse = (inUse) => {
@@ -152,40 +154,52 @@ class Explore extends React.Component {
                             </select>
                         </div>
 
-                        <div className="filter-type">
-                            <span className="dropdown-name">Sort by</span>
-                            <select onChange={this.handleFilter} value={this.state.Filter}>
-                                <option value="tuition_normal">Tuition</option>
-                                <option value="acceptance_rate">Acceptance Rate</option>
-                                <option value="app_fee">App Fee</option>
-                                <option value="population">Population</option>
-                                <option value="national_ranking">Ranking</option>
-                            </select>
-                        </div>
-
                         <div className="filter-button-div">
                             <button onClick={this.handleClick} className="filter-button">Apply</button>
                         </div>
                     </div>
-                    <ul className="ListColleges" >
-                        { this.state.College.map(college => {
-                            let val = JSON.parse(college);
-                            let collegeName = val["college_name"];
-                            return (
-                                <Link to={`/loginhome/features/${collegeName}`}>
-                                    <li>
-                                        <Tile Alias={val["alias"]} Tuition={val["tuition_normal"]} 
-                                        Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}/> 
-                                    </li>
-                                </Link>
-                            )
-                            }) 
-                        }
-                        {/* <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"20000"}/></li>
-                        <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"23000"}/></li>
-                        <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"26000"}/></li>
-                        <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"29000"}/></li> */}
-                    </ul>
+
+                    <div className="content-display">
+                        <div className="float-display">
+                            <div className="filter-type">
+                                    <h3 className="filter-span">Sort by</h3>
+                                    <select onChange={this.handleFilter} value={this.state.Filter}>
+                                        <option value="tuition_normal">Tuition</option>
+                                        <option value="acceptance_rate">Acceptance Rate</option>
+                                        <option value="app_fee">App Fee</option>
+                                        <option value="population">Population</option>
+                                        <option value="national_ranking">Ranking</option>
+                                    </select>
+
+                                    <h3 className="filter-ordering">{this.state.Ordering}</h3>
+                                    <input
+                                        className="checkbox"
+                                        type="checkbox"
+                                        onChange={this.handleCheckbox}
+                                        onClick={this.changeAscent} />
+                            </div>
+                        </div>
+
+                        <ul className="ListColleges" >
+                            { this.state.College.map(college => {
+                                let val = JSON.parse(college);
+                                let collegeName = val["college_name"];
+                                return (
+                                    <Link to={`/loginhome/features/${collegeName}`}>
+                                        <li>
+                                            <Tile Alias={val["alias"]} Tuition={val["tuition_normal"]} 
+                                            Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}/> 
+                                        </li>
+                                    </Link>
+                                )
+                                }) 
+                            }
+                            <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"20000"}/></li>
+                            <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"23000"}/></li>
+                            <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"26000"}/></li>
+                            <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"29000"}/></li>
+                        </ul>
+                    </div>
                 </div>
             )
         } else {
@@ -335,6 +349,11 @@ class Explore extends React.Component {
         this.setState({Checkbox: value}, () => {
             console.log(this.state.Checkbox);
         })
+    }
+
+    changeAscent(e) {
+        let value = this.state.Ordering === "Ascending" ? "Descending" : "Ascending";
+        this.setState({Ordering: value});
     }
 
     render() {

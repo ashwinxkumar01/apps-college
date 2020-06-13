@@ -68,18 +68,19 @@ span {
     margin-right: calc(0.6rem);
 }
 
-.app-type, .school-type, .filter-type {
+.app-type, .school-type {
     margin-top: calc(1rem);
+}
+
+.filter-type {
+    width: 100%;
+    margin-bottom: calc(0.6rem);
 }
 
 .dropdown-name {
     margin-left: calc(0.3rem);
     padding-right: calc(2rem);
-    width: 100%;
-}
-
-select {
-    width: calc(40%);
+    width: calc(100%);
 }
 
 .app-type select{
@@ -106,6 +107,45 @@ select {
 .filter-button:hover {
     background-color: rgb(41, 228, 41);
     transition: 0.3s;
+}
+
+.float-display {
+    float: right;
+    width: calc(30rem);
+}
+
+.filter-type {
+    display: flex;
+    flex-direction: row;
+    height: calc(2rem);
+}
+
+.filter-span, .filter-ordering {
+    font-size: calc(1.3rem);
+    margin-right: calc(0.5rem);
+}
+
+.filter-ordering {
+    margin-left: calc(1rem);    
+}
+
+.filter-type select{
+    width: calc(35%);
+    height: calc(1.8rem);
+}
+
+.checkbox {
+    margin-left: calc(1rem);
+    margin-top: calc(0.4rem);
+    transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    justify-content: center;
+    display: flex;
+}
+
+select {
+    width: calc(40%);
 }
 
 .ListColleges {
