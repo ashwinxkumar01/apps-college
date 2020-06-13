@@ -16,7 +16,7 @@ class Explore extends React.Component {
             School: 'Any',
             App: 'Any',
             Filter: 'national_ranking',
-            Checkbox: false,
+            Checkbox: true,
             AppFeeLower: '',
             AppFeeUpper: '',
             AcceptanceLower: '',
@@ -27,12 +27,13 @@ class Explore extends React.Component {
             TuitionUpper: '',
             RankingLower: '',
             RankingUpper: '',
-            Ordering: "Descending"
+            Ordering: "Ascending"
         };
 
         this.setSearch = this.setSearch.bind(this);
         this.searchBarInUse = this.searchBarInUse.bind(this);
         this.renderExplore = this.renderExplore.bind(this);
+
         this.createTile = this.createTile.bind(this);
 
         //Handle the click for the submit button
@@ -194,10 +195,10 @@ class Explore extends React.Component {
                                 )
                                 }) 
                             }
-                            <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"20000"}/></li>
+                            {/* <li> <Tile Tuition={"1000000"} Alias={"Ashwin sucks"} Acceptance={"0"} Fee={"20000"}/></li>
                             <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"23000"}/></li>
                             <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"26000"}/></li>
-                            <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"29000"}/></li>
+                            <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"29000"}/></li> */}
                         </ul>
                     </div>
                 </div>
@@ -340,6 +341,7 @@ class Explore extends React.Component {
 
     handleFilter(e) {
         this.setState({Filter: e.target.value}, () => {
+            this.handleClick();
             console.log(this.state.Filter);
         });
     }
@@ -353,7 +355,9 @@ class Explore extends React.Component {
 
     changeAscent(e) {
         let value = this.state.Ordering === "Ascending" ? "Descending" : "Ascending";
-        this.setState({Ordering: value});
+        this.setState({Ordering: value}, () => {
+            this.handleClick();
+        });
     }
 
     render() {

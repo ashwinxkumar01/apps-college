@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cuprum&family=Roboto&family=Lato:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Muli:wght@500&display=swap');
 
 
 .Explore {
@@ -12,7 +13,6 @@
     padding-bottom: calc(0.2rem);
     padding-top: calc(0.5rem);
     font-family: 'Roboto', sans-serif;
-    border-bottom: 2px solid black;
 }
 
 .container-div {
@@ -21,11 +21,11 @@
 }
 
 .filter {
-    width: calc(22%);
+    width: 25rem;
     height: calc(60vh);
-    border: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
     margin-left: calc(0.5rem);
-    border-radius: calc(0.5rem);
 }
 
 .tuition {
@@ -43,6 +43,7 @@
     white-space: nowrap;
     position: relative;
     top: calc(0rem);
+    font-family: 'Muli', sans-serif;
 }
 
 .filter-form {
@@ -81,6 +82,7 @@ span {
     margin-left: calc(0.3rem);
     padding-right: calc(2rem);
     width: calc(100%);
+    font-family: 'Muli', sans-serif;
 }
 
 .app-type select{
@@ -109,9 +111,13 @@ span {
     transition: 0.3s;
 }
 
+.content-display {
+    width: calc(100%);
+}
+
 .float-display {
     float: right;
-    width: calc(30rem);
+    width: calc(25rem);
 }
 
 .filter-type {
@@ -156,7 +162,7 @@ select {
 }
 
 .ListColleges li {
-    width: 98%;
+    width: 100%;
     text-align: center;
     display: inline-block;
 }
