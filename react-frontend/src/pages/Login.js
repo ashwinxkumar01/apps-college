@@ -127,11 +127,12 @@ export default function SignInSide() {
                   // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
                   body: JSON.stringify({
                       Username: username.username,
-                      Password: password.password,
+                      Password: password.password
                   })
               }).then(response => {
-                  return response.text();
+                  return response.json();
               }).then(data => {
+
                   console.log(data);
               });
               }}

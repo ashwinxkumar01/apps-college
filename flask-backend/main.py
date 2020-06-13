@@ -236,7 +236,7 @@ def loginWithEmailPassword():
     # Assign value from the request
     email = post_request['Username']
     password = post_request['Password']
-    
+
     successfulLogin = False
     try:
         # print(session['usr']) #if this doesn't error out, that means the user is logged in already
@@ -251,8 +251,8 @@ def loginWithEmailPassword():
             dictio['currentUser'] = email
             successfulLogin = True  # the user isn't logged in, and everything else works
         except:
-            return successfulLogin
-    return successfulLogin
+            return jsonify(successfulLogin)
+    return jsonify(successfulLogin)
 
 
 # deletes the current session - should take them to home page?
