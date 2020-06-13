@@ -110,15 +110,14 @@ export default function SignInSide() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
-            <Button
+            <div
               type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
               // href="/loginhome/features"
-              onClick={e => {
-                console.log(username + password); 
+              onClick={e => { 
                 console.log("testing");
                 fetch("/login", {
                   method: "POST",
@@ -138,7 +137,7 @@ export default function SignInSide() {
               }}
             >
               Sign In
-            </Button>
+            </div>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
