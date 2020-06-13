@@ -44,25 +44,25 @@ def get_query(query):
 def get_colleges(query_lst):
     query = "SELECT * FROM " + os.environ.get("TABLE_NAME")
 
-    if len(query_lst) == 0:
-        return query
+    if len(query_lst) > 0:
+        query += " WHERE"
 
-    query += " WHERE"
-
-    for i in range(0, len(query_lst), 2):
-        if query_lst[i] in dates:
-            epoch = get_epoch(query_lst[i + 1][1:])
-            query_lst[i + 1] = query_lst[i + 1][0] + str(epoch)
-        if query_lst[i] in numbers:
-            if query_lst[i + 1][0] == "+":
-                query += " " + query_lst[i] + " >= " + query_lst[i + 1][1:]
+        for i in range(0, len(query_lst), 2):
+            if query_lst[i] in dates:
+                epoch = get_epoch(query_lst[i + 1][1:])
+                query_lst[i + 1] = query_lst[i + 1][0] + str(epoch)
+            if query_lst[i] in numbers:
+                if query_lst[i + 1][0] == "+":
+                    query += " " + query_lst[i] + " >= " + query_lst[i + 1][1:]
+                else:
+                    query += " " + query_lst[i] + " <= " + query_lst[i + 1][1:]
             else:
-                query += " " + query_lst[i] + " <= " + query_lst[i + 1][1:]
-        else:
-            query += " " + query_lst[i] + "=\'" + query_lst[i + 1] + "\'"
+                query += " " + query_lst[i] + "=\'" + query_lst[i + 1] + "\'"
 
-        if i != len(query_lst) - 2:
-            query += " AND"
+            if i != len(query_lst) - 2:
+                query += " AND"
+    elif len(query_lst) < 0:
+        return "Incorrect Usage"
 
     query += ";"
     print(query)

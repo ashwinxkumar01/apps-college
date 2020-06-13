@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import '../css/Explore.css';
 import Navigationbar from '../components/content/Navigationbar';
 import { Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import NavBar from '../components/content/Navbar';
 import Image3 from './UCSD_3.jpg';
 import Tile from '../components/Tile';
@@ -11,14 +12,48 @@ class Explore extends React.Component {
         super(props);
         this.state = {
             searchBar: false,
-            College: ''
+            College: [],
+            School: 'Any',
+            App: 'Any',
+            AppFeeLower: '',
+            AppFeeUpper: '',
+            AcceptanceLower: '',
+            AcceptanceUpper: '',
+            PopulationLower: '',
+            PopulationUpper: '',
+            TuitionLower: '',
+            TuitionUpper: '',
+            RankingLower: '',
+            RankingUpper: ''
         };
 
         this.setSearch = this.setSearch.bind(this);
         this.searchBarInUse = this.searchBarInUse.bind(this);
         this.renderExplore = this.renderExplore.bind(this);
-    }
+        this.createTile = this.createTile.bind(this);
 
+        //Handle the click for the submit button
+        this.handleClick = this.handleClick.bind(this);
+        //Handle the dropdown value in the App type
+        this.handleAppSelect = this.handleAppSelect.bind(this);
+        //Handle the dropdown value in the School type
+        this.handleSchoolSelect = this.handleSchoolSelect.bind(this);
+        //Handle the App Fee textboxes
+        this.appFeeLower = this.appFeeLower.bind(this);
+        this.appFeeUpper = this.appFeeUpper.bind(this);
+        //Handle the acceptance rate textboxes
+        this.acceptanceLower = this.acceptanceLower.bind(this);
+        this.acceptanceUpper = this.acceptanceUpper.bind(this);
+        //Handle the population textboxes
+        this.populationLower = this.populationLower.bind(this);
+        this.populationUpper = this.populationUpper.bind(this);
+        //Handle the tuition textboxes
+        this.tuitionLower = this.tuitionLower.bind(this);
+        this.tuitionUpper = this.tuitionUpper.bind(this);
+        //Handle the ranking textboxes
+        this.rankingLower = this.rankingLower.bind(this);
+        this.rankingUpper = this.rankingUpper.bind(this);
+    }
 
     searchBarInUse = (inUse) => {
         if (inUse != this.state.searchBar) {
@@ -27,74 +62,109 @@ class Explore extends React.Component {
         }
     }
 
-    renderExplore = (filter) => {
-        //console.log("here");
+    createTile() {
+        console.log("here");
+        this.state.College.forEach(college => {
+            let parseCollege = JSON.parse(college);
+            let alias = parseCollege["alias"];
+            let tuition = parseCollege["tution_normal"];
+            let acceptance = parseCollege["acceptance_rate"];
+            let fee = parseCollege["app_fee"];
+            
+            console.log("hello");
+            return <li><Tile Alias={alias} Tuition={tuition} Acceptance={acceptance} Fee={fee} /></li>
+        });       
+    }
+
+    renderExplore = (College) => {
         if (this.state.searchBar == false) {
             return (
                 <div className="container-div">
                     <div className="filter">
                         <h1 className="filter-name">Filters</h1>
+                        
                         <div className="tuition">
                             <div className="header">Tuition</div>
                             <form className="filter-form">
-                                <input type="text" placeholder="Lower" size="100"></input>
+                                <input onChange={this.tuitionLower} type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>
-                                <input type="text" placeholder="Upper" size="100"></input>
+                                <input onChange={this.tuitionUpper} type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
 
                         <div className="tuition">
                             <div className="header">Population</div>
                             <form className="filter-form">
-                                <input type="text" placeholder="Lower" size="100"></input>
+                                <input onChange={this.populationLower} type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>
-                                <input type="text" placeholder="Upper" size="100"></input>
+                                <input onChange={this.populationUpper} type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
 
                         <div className="tuition">
                             <div className="header">Acceptance</div>
                             <form className="filter-form">
-                                <input type="text" placeholder="Lower" size="100"></input>
+                                <input onChange={this.acceptanceLower} type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>
-                                <input type="text" placeholder="Upper" size="100"></input>
+                                <input onChange={this.acceptanceUpper} type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
 
                         <div className="tuition">
                             <div className="header">App fee</div>
                             <form className="filter-form">
-                                <input type="text" placeholder="Lower" size="100"></input>
+                                <input onChange={this.appFeeLower} type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>
-                                <input type="text" placeholder="Upper" size="100"></input>
+                                <input onChange={this.appFeeUpper} type="text" placeholder="Upper" size="100"></input>
+                            </form>
+                        </div>
+
+                        <div className="tuition">
+                            <div className="header">Ranking</div>
+                            <form className="filter-form">
+                                <input onChange={this.rankingLower} type="text" placeholder="Lower" size="100"></input>
+                                <span>-</span>
+                                <input onChange={this.rankingUpper} type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
 
                         <div className="app-type">
                             <span className="dropdown-name">App type</span>
-                            <select>
-                                <option selected value="Any">Any</option>
-                                <option value="Common">Common App</option>
-                                <option value="Coalition">Coalition App</option>
+                            <select onChange={this.handleAppSelect} value={this.state.App}>
+                                <option value="Any">Any</option>
+                                <option value="commonapp">Common App</option>
+                                <option value="coalitionapp">Coalition App</option>
                             </select>
                         </div>
 
                         <div className="school-type">
                             <span className="dropdown-name">School Type</span>
-                            <select>
-                                <option selected value="Any">Any</option>
+                            <select onChange={this.handleSchoolSelect} value={this.state.School}>
+                                <option value="Any">Any</option>
                                 <option value="Public">Public</option>
                                 <option value="Private">Private</option>
                             </select>
                         </div>
+
+                        <div className="filter-button-div">
+                            <button onClick={this.handleClick} className="filter-button">Apply</button>
+                        </div>
                     </div>
-                    <ul className="ListColleges">
-                        <li><Tile /></li>
-                        <li><Tile /></li>
-                        <li><Tile /></li>
-                        <li><Tile /></li>
-                        <li><Tile /></li>
-                        <li><Tile /></li>
+                    <ul className="ListColleges" >
+                        { this.state.College.map(college => {
+                            let val = JSON.parse(college);
+                            let collegeName = val["college_name"];
+                            return (
+                                <Link to={`/loginhome/features/${collegeName}`}>
+                                    <li>
+                                        <Tile Alias={val["alias"]} Tuition={val["tuition_normal"]} 
+                                        Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}/> 
+                                    </li>
+                                </Link>
+                            )
+                            }) 
+                        }
+                        {/* <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"23000"}/></li> */}
                     </ul>
                 </div>
             )
@@ -120,6 +190,115 @@ class Explore extends React.Component {
                 resultsFromSearch: results
             })
         }
+    }
+
+    handleClick() {
+        let array = [];
+        if(this.state.App !== 'Any') {
+            array.push("app_site");
+            array.push(this.state.App);
+        }
+
+        if(this.state.AppFeeLower !== '' && this.state.AppFeeUpper !== '') {
+            array.push("app_fee");
+            array.push("+" + this.state.AppFeeLower);
+            array.push("app_fee");
+            array.push("-" + this.state.AppFeeUpper);
+        }
+
+        if(this.state.AcceptanceLower !== '' && this.state.AcceptanceUpper !== '') {
+            array.push("acceptance_rate");
+            array.push("+" + this.state.AcceptanceLower);
+            array.push("acceptance_rate");
+            array.push("-" + this.state.AcceptanceUpper);
+        }
+
+        if(this.state.PopulationLower !== '' && this.state.PopulationUpper !== '') {
+            array.push("population");
+            array.push("+" + this.state.PopulationLower);
+            array.push("population");
+            array.push("-" + this.state.PopulationUpper);
+        }
+
+        if(this.state.TuitionLower !== '' && this.state.TuitionLower !== '') {
+            array.push("tuition_normal");
+            array.push("+" + this.state.TuitionLower);
+            array.push("tuition_normal");
+            array.push("-" + this.state.TuitionUpper);
+        }
+
+        if(this.state.RankingLower !== '' && this.state.RankingUpper !== '') {
+            array.push("national_ranking");
+            array.push("+" + this.state.RankingLower);
+            array.push("national_ranking");
+            array.push("-" + this.state.RankingUpper);
+        }
+
+        console.log(array);
+        let college = '';
+        fetch("/filter", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
+            body: JSON.stringify(array)
+        }).then(response => {
+            return response.json();
+        }).then(data => {
+            this.setState({
+                College: data
+            })
+        });
+    }
+
+    appFeeLower(e) {
+        this.setState({AppFeeLower: e.target.value});
+    }
+
+    appFeeUpper(e) {
+        this.setState({AppFeeUpper: e.target.value});
+    }
+
+    acceptanceLower(e) {
+        this.setState({AcceptanceLower: e.target.value});
+    }
+
+    acceptanceUpper(e) {
+        this.setState({AcceptanceUpper: e.target.value});
+    }
+
+    populationLower(e) {
+        this.setState({PopulationLower: e.target.value});
+    }
+
+    populationUpper(e) {
+        this.setState({PopulationUpper: e.target.value});
+    }
+
+    tuitionLower(e) {
+        this.setState({TuitionLower: e.target.value});
+    }
+
+    tuitionUpper(e) {
+        this.setState({TuitionUpper: e.target.value});
+    }
+    
+    rankingLower(e) {
+        this.setState({RankingLower: e.target.value});
+    }
+
+    rankingUpper(e) {
+        this.setState({RankingUpper: e.target.value});
+    }
+
+
+    handleSchoolSelect(e) {
+        this.setState({School: e.target.value});
+    }
+
+    handleAppSelect(e) {
+        this.setState({App: e.target.value});
     }
 
     render() {
@@ -154,7 +333,6 @@ class Explore extends React.Component {
         // });
 
         // console.log(this.state.College);
-
         return (
             <div className="Explore">
                 <Navigationbar active="2" />

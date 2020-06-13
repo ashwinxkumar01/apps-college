@@ -6,14 +6,16 @@
     cursor: pointer;
   }
 
-  .heart {
-    margin-top: calc(2.25vh);
-    right: calc(5vw);
-    background-color: rgb(177, 179, 250);
-    display: inline-block;
-    height: calc(3.5vh);
+  .height {
+    left: calc(92vw);
     position: absolute;
-    top: 0;
+  }
+
+  .heart {
+    top: calc(-4vh);
+    position: relative;
+    background-color: rgb(177, 179, 250);
+    height: calc(3.5vh);
     transform: rotate(-45deg);
     width: calc(3.5vh);
   }
@@ -34,6 +36,42 @@
   }
   
   .heart:after {
+    left: calc(1.75vh);
+    top: 0;
+  }
+  .redheart:hover,
+  .redheart:hover:before,
+  .redheart:hover:after {
+    background-color: rgb(217, 29, 15);
+    transition-duration: .3s;
+    cursor: pointer;
+  }
+
+  .redheart {
+    top: calc(-4vh);
+    position: relative;
+    background-color: rgb(217, 29, 15);
+    height: calc(3.5vh);
+    transform: rotate(-45deg);
+    width: calc(3.5vh);
+  }
+  
+  .redheart:before,
+  .redheart:after {
+    content: "";
+    background-color: rgb(217, 29, 15);
+    border-radius: 50%;
+    height: calc(3.5vh);
+    position: absolute;
+    width: calc(3.5vh);
+  }
+  
+  .redheart:before {
+    top: calc(-1.75vh);
+    left: 0;
+  }
+  
+  .redheart:after {
     left: calc(1.75vh);
     top: 0;
   }

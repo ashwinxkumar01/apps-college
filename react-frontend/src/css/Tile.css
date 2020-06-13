@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@500&family=Lato:ital@1&family=Roboto&display=swap');
 
 .tile-layout {
     display: flex;
@@ -26,19 +26,23 @@
 
 .college-name {
     text-align: center;
-    width: 100%;
-    font-family: 'Bebas Neue', cursive;
+    width: 100%;  
+}
+
+.college-name h1{
+    font-family: 'Alegreya Sans', sans-serif;
 }
 
 .specifications {
     text-align: left;
     width: 50%;
     margin-left: calc(0.5rem);
-    margin-top: calc(1.5rem)
+    margin-top: calc(1.5rem);
 }
 
 .specifications h3 {
     font-size: calc(1rem);
+    font-family: 'Lato', sans-serif;
 }
 
 .college-icon {

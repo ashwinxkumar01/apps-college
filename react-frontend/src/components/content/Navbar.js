@@ -33,7 +33,7 @@ class NavBar extends React.Component {
     return (
       <Navbar
         bg="dark"
-        className="navbar shadow-sm p-3 mb-5 bg-white rounded"
+        className="navbar shadow-sm p-3 mb-4 bg-white rounded"
         expand
       >
 
