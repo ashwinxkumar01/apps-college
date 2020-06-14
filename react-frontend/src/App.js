@@ -20,7 +20,7 @@ class App extends React.Component {
           <Route path="/loginhome/dashboard" component={Dashboard} />
           <Route path="/loginhome/login" component={Login} />
           <Route path="/loginhome/signup" component={Signup} />
-          <Route path="/loginhome/features" component={Features} />
+          <Route path="/loginhome/features/:collegeName" component={Features} />
           <Route path="/loginhome/profile" component={Profile} />
           <Route path="/loginhome/page" component={Individual} />
           <Route path="/" component={Home} />

@@ -27,41 +27,22 @@ class Explore extends React.Component {
             TuitionUpper: '',
             RankingLower: '',
             RankingUpper: '',
-            Ordering: "Ascending"
+            Ordering: "Ascending",
+            TuitionState: "tuition_normal",
         };
 
         this.setSearch = this.setSearch.bind(this);
         this.searchBarInUse = this.searchBarInUse.bind(this);
         this.renderExplore = this.renderExplore.bind(this);
 
-        this.createTile = this.createTile.bind(this);
-
         //Handle the click for the submit button
         this.handleClick = this.handleClick.bind(this);
-        //Handle the dropdown value in the App type
-        this.handleAppSelect = this.handleAppSelect.bind(this);
-        //Handle the dropdown value in the School type
-        this.handleSchoolSelect = this.handleSchoolSelect.bind(this);
         //Handle the filter by dropdown 
         this.handleFilter = this.handleFilter.bind(this);
-        //Handle the checkbox
-        this.handleCheckbox = this.handleCheckbox.bind(this);
-        //Handle the App Fee textboxes
-        this.appFeeLower = this.appFeeLower.bind(this);
-        this.appFeeUpper = this.appFeeUpper.bind(this);
-        //Handle the acceptance rate textboxes
-        this.acceptanceLower = this.acceptanceLower.bind(this);
-        this.acceptanceUpper = this.acceptanceUpper.bind(this);
-        //Handle the population textboxes
-        this.populationLower = this.populationLower.bind(this);
-        this.populationUpper = this.populationUpper.bind(this);
-        //Handle the tuition textboxes
-        this.tuitionLower = this.tuitionLower.bind(this);
-        this.tuitionUpper = this.tuitionUpper.bind(this);
-        //Handle the ranking textboxes
-        this.rankingLower = this.rankingLower.bind(this);
-        this.rankingUpper = this.rankingUpper.bind(this);
+        //Handles the text inside the button
         this.changeAscent = this.changeAscent.bind(this);
+        //Handles the tuition normal vs tuition oos 
+        this.changeTuitionState = this.changeTuitionState.bind(this);
     }
 
     searchBarInUse = (inUse) => {
@@ -71,75 +52,70 @@ class Explore extends React.Component {
         }
     }
 
-    createTile() {
-        console.log("here");
-        this.state.College.forEach(college => {
-            let parseCollege = JSON.parse(college);
-            let alias = parseCollege["alias"];
-            let tuition = parseCollege["tution_normal"];
-            let acceptance = parseCollege["acceptance_rate"];
-            let fee = parseCollege["app_fee"];
-            
-            console.log("hello");
-            return <li><Tile Alias={alias} Tuition={tuition} Acceptance={acceptance} Fee={fee} /></li>
-        });       
-    }
-
     renderExplore = (College) => {
         if (this.state.searchBar == false) {
             return (
                 <div className="container-div">
                     <div className="filter">
                         <h1 className="filter-name">Filters</h1>
-                        
-                        <div className="tuition">
-                            <div className="header">Tuition</div>
-                            <form className="filter-form">
-                                <input onChange={this.tuitionLower} type="text" placeholder="Lower" size="100"></input>
-                                <span>-</span>
-                                <input onChange={this.tuitionUpper} type="text" placeholder="Upper" size="100"></input>
-                            </form>
-                        </div>
 
                         <div className="tuition">
                             <div className="header">Population</div>
                             <form className="filter-form">
-                                <input onChange={this.populationLower} type="text" placeholder="Lower" size="100"></input>
+                                <input onChange={(e) => this.setState({PopulationLower: e.target.value})} type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>
-                                <input onChange={this.populationUpper} type="text" placeholder="Upper" size="100"></input>
+                                <input onChange={(e) => this.setState({PopulationUpper: e.target.value})} type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
 
                         <div className="tuition">
                             <div className="header">Acceptance</div>
                             <form className="filter-form">
-                                <input onChange={this.acceptanceLower} type="text" placeholder="Lower" size="100"></input>
+                                <input onChange={(e) => this.setState({AcceptanceLower: e.target.value})} type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>
-                                <input onChange={this.acceptanceUpper} type="text" placeholder="Upper" size="100"></input>
+                                <input onChange={(e) => this.setState({AcceptanceUpper: e.target.value})}  type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
 
                         <div className="tuition">
                             <div className="header">App fee</div>
                             <form className="filter-form">
-                                <input onChange={this.appFeeLower} type="text" placeholder="Lower" size="100"></input>
+                                <input onChange={(e) => this.setState({AppFeeLower: e.target.value})} type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>
-                                <input onChange={this.appFeeUpper} type="text" placeholder="Upper" size="100"></input>
+                                <input onChange={(e) => this.setState({AppFeeUpper: e.target.value})} type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
 
                         <div className="tuition">
                             <div className="header">Ranking</div>
                             <form className="filter-form">
-                                <input onChange={this.rankingLower} type="text" placeholder="Lower" size="100"></input>
+                                <input onChange={(e) => this.setState({RankingLower: e.target.value})} type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>
-                                <input onChange={this.rankingUpper} type="text" placeholder="Upper" size="100"></input>
+                                <input onChange={(e) => this.setState({RankingUpper: e.target.value})} type="text" placeholder="Upper" size="100"></input>
                             </form>
+                        </div>
+
+                        <div className="tuition">
+                            <div className="header">Tuition</div>
+                            <form className="filter-form">
+                                <input onChange={(e) => this.setState({TuitionLower: e.target.value})} type="text" placeholder="Lower" size="100"></input>
+                                <span>-</span>
+                                <input onChange={(e) => this.setState({TuitionUpper: e.target.value})} type="text" placeholder="Upper" size="100"></input>
+                            </form>
+                        </div>
+
+                        <div className="oos-tuition">
+                            <input
+                                className="checkbox"
+                                type="checkbox"
+                                onClick={this.changeTuitionState}
+                                />
+                            <h4>Out of State</h4>
                         </div>
 
                         <div className="app-type">
                             <span className="dropdown-name">App type</span>
-                            <select onChange={this.handleAppSelect} value={this.state.App}>
+                            <select onChange={(e) => this.setState({App: e.target.value})} value={this.state.App}>
                                 <option value="Any">Any</option>
                                 <option value="commonapp">Common App</option>
                                 <option value="coalitionapp">Coalition App</option>
@@ -148,7 +124,7 @@ class Explore extends React.Component {
 
                         <div className="school-type">
                             <span className="dropdown-name">School Type</span>
-                            <select onChange={this.handleSchoolSelect} value={this.state.School}>
+                            <select onChange={(e) => this.setState({School: e.target.value})} value={this.state.School}>
                                 <option value="Any">Any</option>
                                 <option value="Public">Public</option>
                                 <option value="Private">Private</option>
@@ -165,19 +141,20 @@ class Explore extends React.Component {
                             <div className="filter-type">
                                     <h3 className="filter-span">Sort by</h3>
                                     <select onChange={this.handleFilter} value={this.state.Filter}>
-                                        <option value="tuition_normal">Tuition</option>
+                                        <option value="national_ranking">Ranking</option>
+                                        <option value="tuition_normal">Tuition: In-state</option>
+                                        <option value="tuition_oos">Tuition: Out of State </option>
                                         <option value="acceptance_rate">Acceptance Rate</option>
                                         <option value="app_fee">App Fee</option>
                                         <option value="population">Population</option>
-                                        <option value="national_ranking">Ranking</option>
                                     </select>
 
-                                    <h3 className="filter-ordering">{this.state.Ordering}</h3>
                                     <input
-                                        className="checkbox"
-                                        type="checkbox"
-                                        onChange={this.handleCheckbox}
-                                        onClick={this.changeAscent} />
+                                        className="button"
+                                        type="submit"
+                                        onClick={this.changeAscent} 
+                                        value={this.state.Ordering}
+                                        />
                             </div>
                         </div>
 
@@ -189,7 +166,7 @@ class Explore extends React.Component {
                                 return (
                                     <Link to={`/loginhome/features/${collegeName}`}>
                                         <li>
-                                            <Tile Alias={val["alias"]} Tuition={val["tuition_normal"]} 
+                                            <Tile Alias={val["alias"]} Tuition={val["tuition_normal"]} TuitionOOS={val["tuition_oos"]} 
                                             Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
                                             Logo={val["college_logo"]} Type={val["school_type"]}
                                             /> 
@@ -237,6 +214,11 @@ class Explore extends React.Component {
             array.push(this.state.App);
         }
 
+        if(this.state.School !== 'Any') {
+            array.push("school_type");
+            array.push(this.state.School);
+        }
+
         if(this.state.AppFeeLower !== '' && this.state.AppFeeUpper !== '') {
             array.push("app_fee");
             array.push("+" + this.state.AppFeeLower);
@@ -259,10 +241,17 @@ class Explore extends React.Component {
         }
 
         if(this.state.TuitionLower !== '' && this.state.TuitionLower !== '') {
-            array.push("tuition_normal");
-            array.push("+" + this.state.TuitionLower);
-            array.push("tuition_normal");
-            array.push("-" + this.state.TuitionUpper);
+            if(this.state.TuitionState === "tuition_normal"){ 
+                array.push("tuition_normal");
+                array.push("+" + this.state.TuitionLower);
+                array.push("tuition_normal");
+                array.push("-" + this.state.TuitionUpper);
+            } else {
+                array.push("tuition_oos");
+                array.push("+" + this.state.TuitionLower);
+                array.push("tuition_oos");
+                array.push("-" + this.state.TuitionUpper);
+            }
         }
 
         if(this.state.RankingLower !== '' && this.state.RankingUpper !== '') {
@@ -294,54 +283,6 @@ class Explore extends React.Component {
         });
     }
 
-    appFeeLower(e) {
-        this.setState({AppFeeLower: e.target.value});
-    }
-
-    appFeeUpper(e) {
-        this.setState({AppFeeUpper: e.target.value});
-    }
-
-    acceptanceLower(e) {
-        this.setState({AcceptanceLower: e.target.value});
-    }
-
-    acceptanceUpper(e) {
-        this.setState({AcceptanceUpper: e.target.value});
-    }
-
-    populationLower(e) {
-        this.setState({PopulationLower: e.target.value});
-    }
-
-    populationUpper(e) {
-        this.setState({PopulationUpper: e.target.value});
-    }
-
-    tuitionLower(e) {
-        this.setState({TuitionLower: e.target.value});
-    }
-
-    tuitionUpper(e) {
-        this.setState({TuitionUpper: e.target.value});
-    }
-    
-    rankingLower(e) {
-        this.setState({RankingLower: e.target.value});
-    }
-
-    rankingUpper(e) {
-        this.setState({RankingUpper: e.target.value});
-    }
-
-    handleSchoolSelect(e) {
-        this.setState({School: e.target.value});
-    }
-
-    handleAppSelect(e) {
-        this.setState({App: e.target.value});
-    }
-
     handleFilter(e) {
         this.setState({Filter: e.target.value}, () => {
             this.handleClick();
@@ -349,17 +290,22 @@ class Explore extends React.Component {
         });
     }
 
-    handleCheckbox(e) {
-        let value = !this.state.Checkbox
-        this.setState({Checkbox: value}, () => {
+    changeAscent(e) {
+        let value = this.state.Ordering === "Ascending" ? "Descending" : "Ascending";
+        this.setState({Ordering: value}, () => {
+            console.log(this.state.Ordering);
+            this.handleClick();
+        });
+        let style = !this.state.Checkbox
+        this.setState({Checkbox: style}, () => {
             console.log(this.state.Checkbox);
         })
     }
 
-    changeAscent(e) {
-        let value = this.state.Ordering === "Ascending" ? "Descending" : "Ascending";
-        this.setState({Ordering: value}, () => {
-            this.handleClick();
+    changeTuitionState(e) {
+        let value = this.state.TuitionState === "tuition_normal" ? "tuition_oos" : "tuition_normal";
+        this.setState({TuitionState: value}, () => {
+            console.log(this.state.TuitionState);
         });
     }
 

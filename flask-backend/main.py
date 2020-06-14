@@ -161,7 +161,7 @@ for i in lst:
 @app.route("/loginhome/explore")
 @app.route("/loginhome/login")
 @app.route("/loginhome/signup")
-@app.route("/loginhome/features")
+@app.route("/loginhome/features/:collegeName")
 @app.route("/loginhome/profile")
 @app.route("/loginhome/page")
 def my_index():

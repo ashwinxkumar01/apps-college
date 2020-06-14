@@ -44,6 +44,7 @@
     position: relative;
     top: calc(0rem);
     font-family: 'Muli', sans-serif;
+    outline: none;
 }
 
 .filter-form {
@@ -51,12 +52,14 @@
     float: right;
     position: relative;
     bottom: calc(0.3rem);
+    outline: none;
 }
 
 .filter-form input {
     font-family: 'Lato', sans-serif;
     width: calc(39%);
     font-size: inherit;
+    outline: none;
 }
 
 input[type="text"]
@@ -64,18 +67,41 @@ input[type="text"]
     font-size:calc(1rem);
 }
 
+.oos-tuition {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: calc(0.4rem);
+    margin-bottom: 0;
+}
+
+.oos-tuition h4 {
+    font-size: calc(1.3vh);
+}
+
+.checkbox {
+    margin-top: 0;
+    margin-right: calc(0.4rem);
+}
+
 span {
     margin-left: calc(0.6rem);
     margin-right: calc(0.6rem);
 }
 
-.app-type, .school-type {
+.app-type {
+    margin-top: calc(0.75rem);
+}
+
+.school-type {
     margin-top: calc(1rem);
 }
 
 .filter-type {
     width: 100%;
     margin-bottom: calc(0.6rem);
+    outline: none;
 }
 
 .dropdown-name {
@@ -85,8 +111,13 @@ span {
     font-family: 'Muli', sans-serif;
 }
 
-.app-type select{
+.app-type select {
     margin-left: calc(1.25rem);
+    outline: none;
+}
+
+.school-type select {
+    outline: none;
 }
 
 .filter-button-div {
@@ -104,6 +135,7 @@ span {
     font-family: 'Cuprum', sans-serif;
     background-color: rgb(209, 202, 202);
     transition: 0.3s;
+    outline: none;
 }
 
 .filter-button:hover {
@@ -123,31 +155,43 @@ span {
 .filter-type {
     display: flex;
     flex-direction: row;
-    height: calc(2rem);
+    height: calc(1.8rem);
 }
 
-.filter-span, .filter-ordering {
+.filter-span {
     font-size: calc(1.3rem);
     margin-right: calc(0.5rem);
-}
-
-.filter-ordering {
-    margin-left: calc(1rem);    
+    outline: none;
+    font-family: 'Muli', sans-serif;
 }
 
 .filter-type select{
     width: calc(35%);
     height: calc(1.8rem);
+    outline: none;
 }
 
-.checkbox {
+.button {
     margin-left: calc(1rem);
-    margin-top: calc(0.4rem);
-    transform: scale(1.5);
+    width: calc(8rem);
+    font-size: calc(1.5rem);
+    /* transform: scale(1.5);
     -ms-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
+    -webkit-transform: scale(1.5); */
     justify-content: center;
+    font-family: 'Cuprum', sans-serif;
     display: flex;
+    border: none;
+    border-left: none;
+    background-color: rgb(255, 255, 255);
+    transition: 0.3s;
+    outline: none;
+    border-radius: calc(0.5vh);
+}
+
+.button:hover {
+    transition: 0.3s;
+    background-color: rgb(186, 187, 186);
 }
 
 select {
