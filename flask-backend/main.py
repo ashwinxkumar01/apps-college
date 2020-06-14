@@ -157,6 +157,13 @@ for i in lst:
 
 
 @app.route("/")
+@app.route("/loginhome/dashboard")
+@app.route("/loginhome/explore")
+@app.route("/loginhome/login")
+@app.route("/loginhome/signup")
+@app.route("/loginhome/features")
+@app.route("/loginhome/profile")
+@app.route("/loginhome/page")
 def my_index():
     return flask.render_template("index.html", token="Hello Flask and React")
 

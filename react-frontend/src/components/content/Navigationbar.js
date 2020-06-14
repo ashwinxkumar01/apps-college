@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faHome,
@@ -42,7 +42,7 @@ class Navigationbar extends React.Component {
                     </Nav.Item>
 
                     <Nav.Item className="features">
-                        <Nav.Link eventKey="5" href={`/loginhome/features/${'L'}`}>
+                        <Nav.Link eventKey="5" href="/loginhome/features">
                         <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>  Features</Nav.Link>
                     </Nav.Item>
 

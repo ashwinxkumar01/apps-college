@@ -14,7 +14,7 @@ class Node extends Component {
                     <div className="specifications">
                         <h3>Tuition: ${this.props.Tuition}</h3>
                         <h3>Acceptance Rate: {this.props.Acceptance}%</h3>
-                        <h3>School Type: Private</h3>
+                        <h3>School Type: {this.props.Type}</h3>
                         <h3>App Fee: ${this.props.Fee}</h3>
                     </div>
 

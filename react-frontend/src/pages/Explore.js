@@ -191,7 +191,7 @@ class Explore extends React.Component {
                                         <li>
                                             <Tile Alias={val["alias"]} Tuition={val["tuition_normal"]} 
                                             Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
-                                            Logo={val["college_logo"]}
+                                            Logo={val["college_logo"]} Type={val["school_type"]}
                                             /> 
                                         </li>
                                     </Link>
