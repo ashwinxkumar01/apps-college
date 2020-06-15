@@ -44,6 +44,7 @@ class Explore extends React.Component {
         //Handles the tuition normal vs tuition oos 
         this.changeTuitionState = this.changeTuitionState.bind(this);
         this.numFormat = this.numFormat.bind(this);
+        this.dateFormat = this.dateFormat.bind(this);
     }
 
     searchBarInUse = (inUse) => {
@@ -210,6 +211,11 @@ class Explore extends React.Component {
 
     numFormat(num) {
         return num.toLocaleString();
+    }
+
+    dateFormat(input) {
+        var myDate = new Date(input*1000);
+        return((myDate.getUTCMonth()+1) + "/" + myDate.getUTCDate() + "/" + myDate.getUTCFullYear());
     }
 
     handleClick() {

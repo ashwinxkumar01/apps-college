@@ -1,29 +1,24 @@
 {
   "files": {
-    "main.css": "/static/react/css/main.94d20587.chunk.css",
-    "main.js": "/static/react/js/main.75bb072c.chunk.js",
-    "main.js.map": "/static/react/js/main.75bb072c.chunk.js.map",
+    "main.css": "/static/react/css/main.78b60c57.chunk.css",
+    "main.js": "/static/react/js/main.d7f5b885.chunk.js",
+    "main.js.map": "/static/react/js/main.d7f5b885.chunk.js.map",
     "runtime-main.js": "/static/react/js/runtime-main.725b2ec0.js",
     "runtime-main.js.map": "/static/react/js/runtime-main.725b2ec0.js.map",
-    "js/2.865f6d72.chunk.js": "/static/react/js/2.865f6d72.chunk.js",
-    "js/2.865f6d72.chunk.js.map": "/static/react/js/2.865f6d72.chunk.js.map",
+    "js/2.cb3305cb.chunk.js": "/static/react/js/2.cb3305cb.chunk.js",
+    "js/2.cb3305cb.chunk.js.map": "/static/react/js/2.cb3305cb.chunk.js.map",
     "../../templates/index.html": "/static/react/../../templates/index.html",
-    "css/main.94d20587.chunk.css.map": "/static/react/css/main.94d20587.chunk.css.map",
-    "js/2.865f6d72.chunk.js.LICENSE.txt": "/static/react/js/2.865f6d72.chunk.js.LICENSE.txt",
-    "media/Student_picture.png": "/static/react/media/Student_picture.a3ab7090.png",
-    "media/UCSD_1.jpg": "/static/react/media/UCSD_1.20be0ba1.jpg",
-    "media/UCSD_2.jpg": "/static/react/media/UCSD_2.7f829e75.jpg",
+    "css/main.78b60c57.chunk.css.map": "/static/react/css/main.78b60c57.chunk.css.map",
+    "js/2.cb3305cb.chunk.js.LICENSE.txt": "/static/react/js/2.cb3305cb.chunk.js.LICENSE.txt",
     "media/UCSD_3.jpg": "/static/react/media/UCSD_3.914f5b55.jpg",
-    "media/UCSD_4.jpg": "/static/react/media/UCSD_4.bf8f0809.jpg",
-    "media/Home.css": "/static/react/media/rooftopping-san-francisco-bay-area.cb0d32d0.jpg",
-    "media/stephen_the_goat.jpg": "/static/react/media/stephen_the_goat.e0323fc4.jpg",
-    "precache-manifest.f236c5d337bd82922a1c8d8ace84d0d3.js": "/static/react/precache-manifest.f236c5d337bd82922a1c8d8ace84d0d3.js",
+    "media/Home.css": "/static/react/media/wp2017235.e4ac0c4f.jpg",
+    "precache-manifest.db0e253543aebc2cecbfd8d02ad398f0.js": "/static/react/precache-manifest.db0e253543aebc2cecbfd8d02ad398f0.js",
     "service-worker.js": "/static/react/service-worker.js"
   },
   "entrypoints": [
     "js/runtime-main.725b2ec0.js",
-    "js/2.865f6d72.chunk.js",
-    "css/main.94d20587.chunk.css",
-    "js/main.75bb072c.chunk.js"
+    "js/2.cb3305cb.chunk.js",
+    "css/main.78b60c57.chunk.css",
+    "js/main.d7f5b885.chunk.js"
   ]
 }
