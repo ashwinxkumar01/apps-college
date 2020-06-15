@@ -43,6 +43,7 @@ class Explore extends React.Component {
         this.changeAscent = this.changeAscent.bind(this);
         //Handles the tuition normal vs tuition oos 
         this.changeTuitionState = this.changeTuitionState.bind(this);
+        this.numFormat = this.numFormat.bind(this);
     }
 
     searchBarInUse = (inUse) => {
@@ -166,7 +167,7 @@ class Explore extends React.Component {
                                 return (
                                     <Link to={`/loginhome/features/${collegeName}`}>
                                         <li>
-                                            <Tile Alias={val["alias"]} Tuition={val["tuition_normal"]} TuitionOOS={val["tuition_oos"]} 
+                                            <Tile Alias={val["alias"]} Tuition={this.numFormat(val["tuition_normal"])} TuitionOOS={this.numFormat(val["tuition_oos"])} 
                                             Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
                                             Logo={val["college_logo"]} Type={val["school_type"]}
                                             /> 
@@ -205,6 +206,10 @@ class Explore extends React.Component {
                 resultsFromSearch: results
             })
         }
+    }
+
+    numFormat(num) {
+        return num.toLocaleString();
     }
 
     handleClick() {
