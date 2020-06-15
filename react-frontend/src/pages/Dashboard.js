@@ -63,6 +63,8 @@ class Dashboard extends React.Component {
           <div>
             <Nav.Link href={`/loginhome/features/${college}`} className="fixedHeight">
               <div className="searchResult">
+                <div className="backgroundSolid" />
+                <div className="backgroundBlend" />
                 <img src={Image3} alt="Hello" className="imageBox" />
                 {college}
               </div>
