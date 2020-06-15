@@ -69,7 +69,7 @@ export default function SignInSide() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign In
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -108,7 +108,7 @@ export default function SignInSide() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
-            <div
+            <Button
               type="submit"
               fullWidth
               variant="contained"
@@ -135,12 +135,12 @@ export default function SignInSide() {
               }}
             >
               Sign In
-            </div>
+            </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                {/* <Link href="#" variant="body2">
                   Forgot password?
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
@@ -149,7 +149,7 @@ export default function SignInSide() {
               </Grid>
             </Grid>
             <Box mt={5}>
-              <Copyright />
+              {/* <Copyright /> */}
             </Box>
           </form>
         </div>
