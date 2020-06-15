@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/content/Navbar';
 import Image3 from './UCSD_3.jpg';
 import Tile from '../components/Tile';
+import Heart from '../components/content/Heart';
 
 class Explore extends React.Component {
     constructor(props) {
@@ -202,13 +203,17 @@ class Explore extends React.Component {
         } else {
             return (
                 this.state.resultsFromSearch.map(college => (
+                    <div>
                     <Nav.Link href={`/loginhome/features/${college}`} className="fixedHeight">
-                        <div className="searchResult">
-                            <img src={Image3} alt="ImageAgain" className="imageBox" />
-                            {college}
-                            <div className="heart"></div>
-                        </div>
+                      <div className="searchResult">
+                        <div className="backgroundSolid" />
+                        <div className="backgroundBlend" />
+                        <img src={Image3} alt="Hello" className="imageBox" />
+                        {college}
+                      </div>
                     </Nav.Link>
+                    <Heart collegeName={college} />
+                  </div>
                 )
                 )
             )
