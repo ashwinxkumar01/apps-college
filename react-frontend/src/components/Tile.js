@@ -12,7 +12,7 @@ class Node extends Component {
                     </div>
                     
                     <div className="favorite-icon">
-                        <Heart />
+                        <Heart collegeName={this.props.collegeName} />
                     </div>
                 </div>
 
