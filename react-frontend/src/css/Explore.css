@@ -188,12 +188,11 @@ span {
 .button {
     margin-left: calc(1rem);
     width: calc(8rem);
-    font-size: calc(1.5rem);
+    font-size: calc(1.3rem);
     justify-content: center;
     font-family: 'Cuprum', sans-serif;
     display: flex;
     border: none;
-    border-left: none;
     background-color: rgb(255, 255, 255);
     transition: 0.3s;
     outline: none;
@@ -202,7 +201,7 @@ span {
 
 .button:hover {
     transition: 0.3s;
-    background-color: rgb(186, 187, 186);
+    background-color: #d5d6d8;
 }
 
 select {
@@ -221,6 +220,7 @@ select {
     text-align: center;
     display: inline-block;
 }
+
 .backgroundSolid{
     background-color: white;
     position: absolute;
@@ -228,6 +228,7 @@ select {
     height: calc(100%);
     width: calc(25vw);
   }
+
   .backgroundBlend {
     height: calc(100%);
     position: absolute;
@@ -236,6 +237,7 @@ select {
     background-image: linear-gradient(to right, white, #313b4c);
     opacity: 0;
   }
+
   .searchResult:hover > .backgroundBlend{
     height: calc(100%);
     opacity: 1;

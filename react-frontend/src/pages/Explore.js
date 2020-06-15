@@ -7,6 +7,7 @@ import NavBar from '../components/content/Navbar';
 import Image3 from './UCSD_3.jpg';
 import Tile from '../components/Tile';
 import Heart from '../components/content/Heart';
+import State from '../components/State';
 
 class Explore extends React.Component {
     constructor(props) {
@@ -30,6 +31,7 @@ class Explore extends React.Component {
             RankingUpper: '',
             Ordering: "Low to High",
             TuitionState: "tuition_normal",
+            State: ''
         };
 
         this.setSearch = this.setSearch.bind(this);
@@ -44,6 +46,7 @@ class Explore extends React.Component {
         this.changeAscent = this.changeAscent.bind(this);
         //Handles the tuition normal vs tuition oos 
         this.changeTuitionState = this.changeTuitionState.bind(this);
+        
         this.numFormat = this.numFormat.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
     }
@@ -144,6 +147,13 @@ class Explore extends React.Component {
                                 <option value="Public">Public</option>
                                 <option value="Private">Private</option>
                             </select>
+                        </div>
+
+                        <hr></hr>
+
+                        <div className="school-type">
+                            <div className="app-div"><span className="dropdown-name">State</span></div>
+                            <State Change={(e) => this.setState({State: e.target.value}, () => console.log(this.state.State))}/>
                         </div>
 
                         <hr></hr>
@@ -339,7 +349,6 @@ class Explore extends React.Component {
             console.log(this.state.TuitionState);
         });
     }
-
     render() {
         //console.log(filter);
         //Testing the fetch from database call

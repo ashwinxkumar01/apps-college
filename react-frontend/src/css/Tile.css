@@ -19,6 +19,12 @@
     transform: scale(1.05);
 }
 
+.header-tile {
+    width: 100%;
+    display: flex;
+    flex-direction: row;    
+}
+
 .college-name {
     text-align: center;
     width: 100%;  
@@ -64,5 +70,12 @@
 }
 
 .favorite-icon{
-    left: calc(70vw);
+    width: calc(12%);
+    padding-top: calc(2.9rem);
+    justify-content: right;
+    height: 0;
+    -webkit-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
 }
+

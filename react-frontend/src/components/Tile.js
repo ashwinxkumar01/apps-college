@@ -6,12 +6,16 @@ class Node extends Component {
     render() {
         return (
             <div className="tile-layout">
-                <div className="college-name">
-                    <h1>{this.props.Alias}</h1>
+                <div className="header-tile">
+                    <div className="college-name">
+                        <h1>{this.props.Alias}</h1>
+                    </div>
+                    
+                    <div className="favorite-icon">
+                        <Heart />
+                    </div>
                 </div>
-                <div className="favorite-icon">
-                    <Heart />
-                </div>
+
                 <div className="college-icon">
                         <img src={this.props.Logo} alt="Logo" height="150" width="70%" />
                 </div>
