@@ -7,6 +7,10 @@ import NavBar from '../components/content/Navbar';
 import Image3 from './UCSD_3.jpg';
 import Tile from '../components/Tile';
 
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Slider from "@material-ui/core/Slider";
+
 class Explore extends React.Component {
     constructor(props) {
         super(props);
@@ -15,7 +19,7 @@ class Explore extends React.Component {
             College: [],
             School: 'Any',
             App: 'Any',
-            Filter: 'national_ranking',
+            Filter: 'Sort by',
             Checkbox: true,
             AppFeeLower: '',
             AppFeeUpper: '',
@@ -27,7 +31,7 @@ class Explore extends React.Component {
             TuitionUpper: '',
             RankingLower: '',
             RankingUpper: '',
-            Ordering: "Ascending",
+            Ordering: "Low to High",
             TuitionState: "tuition_normal",
         };
 
@@ -70,6 +74,8 @@ class Explore extends React.Component {
                             </form>
                         </div>
 
+                        <hr></hr>
+
                         <div className="tuition">
                             <div className="header">Acceptance</div>
                             <form className="filter-form">
@@ -78,6 +84,8 @@ class Explore extends React.Component {
                                 <input onChange={(e) => this.setState({AcceptanceUpper: e.target.value})}  type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
+
+                        <hr></hr>
 
                         <div className="tuition">
                             <div className="header">App fee</div>
@@ -88,6 +96,8 @@ class Explore extends React.Component {
                             </form>
                         </div>
 
+                        <hr></hr>
+
                         <div className="tuition">
                             <div className="header">Ranking</div>
                             <form className="filter-form">
@@ -96,6 +106,8 @@ class Explore extends React.Component {
                                 <input onChange={(e) => this.setState({RankingUpper: e.target.value})} type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
+
+                        <hr></hr>
 
                         <div className="tuition">
                             <div className="header">Tuition</div>
@@ -115,8 +127,10 @@ class Explore extends React.Component {
                             <h4>Out of State</h4>
                         </div>
 
+                        <hr></hr>
+
                         <div className="app-type">
-                            <span className="dropdown-name">App type</span>
+                            <div className="app-div"><span className="dropdown-name">App type</span></div>
                             <select onChange={(e) => this.setState({App: e.target.value})} value={this.state.App}>
                                 <option value="Any">Any</option>
                                 <option value="commonapp">Common App</option>
@@ -124,14 +138,18 @@ class Explore extends React.Component {
                             </select>
                         </div>
 
+                        <hr></hr>
+
                         <div className="school-type">
-                            <span className="dropdown-name">School Type</span>
+                            <div className="app-div"><span className="dropdown-name">School Type</span></div>
                             <select onChange={(e) => this.setState({School: e.target.value})} value={this.state.School}>
                                 <option value="Any">Any</option>
                                 <option value="Public">Public</option>
                                 <option value="Private">Private</option>
                             </select>
                         </div>
+
+                        <hr></hr>
 
                         <div className="filter-button-div">
                             <button onClick={this.handleClick} className="filter-button">Apply</button>
@@ -141,8 +159,8 @@ class Explore extends React.Component {
                     <div className="content-display">
                         <div className="float-display">
                             <div className="filter-type">
-                                    <h3 className="filter-span">Sort by</h3>
                                     <select onChange={this.handleFilter} value={this.state.Filter}>
+                                        <option selected disabled>Sort by</option>
                                         <option value="national_ranking">Ranking</option>
                                         <option value="tuition_normal">Tuition: In-state</option>
                                         <option value="tuition_oos">Tuition: Out of State </option>
@@ -177,10 +195,10 @@ class Explore extends React.Component {
                                 )
                                 }) 
                             }
-                            {/* <li> <Tile Tuition={"1000000"} Alias={"Ashwin sucks"} Acceptance={"0"} Fee={"20000"}/></li>
-                            <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"23000"}/></li>
-                            <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"26000"}/></li>
-                            <li> <Tile Tuition={"Hello"} Alias={"Ashwin sucks"} Acceptance={"Never"} Fee={"29000"}/></li> */}
+                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3}/></li>
+                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"23000"} Type={"Private"} Logo={Image3}/></li>
+                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"20"} Fee={"26000"} Type={"Private"} Logo={Image3}/></li>
+                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3}/></li>
                         </ul>
                     </div>
                 </div>
@@ -272,6 +290,12 @@ class Explore extends React.Component {
             array.push("-" + this.state.RankingUpper);
         }
 
+        if(this.state.Filter === 'Sort by') {
+            this.setState({Filter: "national_ranking"}, () => {
+                console.log(this.state.Filter);
+            });
+        }
+
         console.log(array);
         fetch("/filter", {
             method: "POST",
@@ -301,7 +325,7 @@ class Explore extends React.Component {
     }
 
     changeAscent(e) {
-        let value = this.state.Ordering === "Ascending" ? "Descending" : "Ascending";
+        let value = this.state.Ordering === "Low to High" ? "High to Low" : "Low to High";
         this.setState({Ordering: value}, () => {
             console.log(this.state.Ordering);
             this.handleClick();

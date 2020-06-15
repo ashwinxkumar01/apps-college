@@ -3,13 +3,13 @@
 .tile-layout {
     display: flex;
     flex-direction: column;
-    width: calc(97%);
-    height: calc(17rem);
+    width: calc(96%);
+    height: calc(23rem);
     border-radius: calc(1vmin);
     margin-bottom: calc(1vmin);
     color: black;
-    background-color: rgb(255, 255, 255);
-    border: 2px solid black;
+    background-color: rgb(243, 243, 243);
+    box-shadow: calc(3px) calc(3px) calc(10px) grey; 
 }
 
 .tile-layout:hover {
@@ -17,11 +17,6 @@
     -webkit-transform: scale(1.05);
     -ms-transform: scale(1.05);
     transform: scale(1.05);
-}
-
-.element-display {
-    display: flex;
-    columns: 2;
 }
 
 .college-name {
@@ -33,9 +28,16 @@
     font-family: 'Alegreya Sans', sans-serif;
 }
 
+.college-icon {
+    margin-top: calc(2rem);
+    width: 100%;
+    justify-content: center;
+    overflow: hidden;
+}
+
 .specifications {
     text-align: left;
-    width: 50%;
+    width: 100%;
     margin-left: calc(0.5rem);
     margin-top: calc(1.5rem);
 }
@@ -45,10 +47,18 @@
     font-family: 'Lato', sans-serif;
 }
 
-.college-icon {
-    margin-top: calc(2rem);
-    width: 50%;
+.tuition-display {
     display: flex;
-    justify-content: center;
-    overflow: hidden;
+    flex-direction: row;
+    margin-left: calc(1rem);
+}
+
+.tuition-display span{
+    width: 15%;
+}
+
+.information-div{
+    width: 100%;
+    text-align: center;
+
 }
