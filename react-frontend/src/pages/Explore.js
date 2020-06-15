@@ -7,7 +7,8 @@ import NavBar from '../components/content/Navbar';
 import Image3 from './UCSD_3.jpg';
 import Tile from '../components/Tile';
 import Heart from '../components/content/Heart';
-import State from '../components/State';
+import { States, Type, App, Sortby } from '../components/State';
+import Select from 'react-select';
 
 class Explore extends React.Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class Explore extends React.Component {
             RankingUpper: '',
             Ordering: "Low to High",
             TuitionState: "tuition_normal",
-            State: ''
+            StateFilter: []
         };
 
         this.setSearch = this.setSearch.bind(this);
@@ -46,6 +47,8 @@ class Explore extends React.Component {
         this.changeAscent = this.changeAscent.bind(this);
         //Handles the tuition normal vs tuition oos 
         this.changeTuitionState = this.changeTuitionState.bind(this);
+        //Handles the State array
+        this.handleState = this.handleState.bind(this);
         
         this.numFormat = this.numFormat.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
@@ -130,30 +133,29 @@ class Explore extends React.Component {
                         <hr></hr>
 
                         <div className="app-type">
-                            <div className="app-div"><span className="dropdown-name">App type</span></div>
-                            <select onChange={(e) => this.setState({ App: e.target.value })} value={this.state.App}>
-                                <option value="Any">Any</option>
-                                <option value="commonapp">Common App</option>
-                                <option value="coalitionapp">Coalition App</option>
-                            </select>
+                            <Select onChange={(e) => this.setState({ App: e.value })} options={App} placeholder={"Application type"}/>
                         </div>
 
                         <hr></hr>
 
                         <div className="school-type">
-                            <div className="app-div"><span className="dropdown-name">School Type</span></div>
-                            <select onChange={(e) => this.setState({ School: e.target.value })} value={this.state.School}>
-                                <option value="Any">Any</option>
-                                <option value="Public">Public</option>
-                                <option value="Private">Private</option>
-                            </select>
+                            <Select onChange={(e) => this.setState({ School: e.value })} options={Type} placeholder={"School Type"}/>
                         </div>
 
                         <hr></hr>
 
                         <div className="school-type">
-                            <div className="app-div"><span className="dropdown-name">State</span></div>
-                            <State Change={(e) => this.setState({State: e.target.value}, () => console.log(this.state.State))}/>
+                            <div className="dropdown-div">
+                            <Select
+                                placeholder={"State"}
+                                onChange={this.handleState} 
+                                isMulti
+                                name="colors"
+                                options={States}
+                                className="basic-multi-select"
+                                classNamePrefix="select"
+                            />   
+                            </div>
                         </div>
 
                         <hr></hr>
@@ -165,25 +167,16 @@ class Explore extends React.Component {
 
                     <div className="content-display">
                         <div className="float-display">
-                            <div className="filter-type">
-                                <select onChange={this.handleFilter} value={this.state.Filter}>
-                                    <option selected disabled>Sort by</option>
-                                    <option value="national_ranking">Ranking</option>
-                                    <option value="tuition_normal">Tuition: In-state</option>
-                                    <option value="tuition_oos">Tuition: Out of State </option>
-                                    <option value="acceptance_rate">Acceptance Rate</option>
-                                    <option value="app_fee">App Fee</option>
-                                    <option value="population">Population</option>
-                                </select>
-
+                            <div className="sort-by">
+                                <Select onChange={this.handleFilter} options={Sortby} placeholder={"National Ranking"}/>
+                            </div>
                                 <input
                                     className="button"
                                     type="submit"
                                     onClick={this.changeAscent}
                                     value={this.state.Ordering}
-                                />
+                                />                        
                             </div>
-                        </div>
 
                         <ul className="ListColleges" >
                             {this.state.College.map(college => {
@@ -202,10 +195,10 @@ class Explore extends React.Component {
                                 )
                             })
                             }
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3} /></li>
+                            {/* <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3} /></li>
                             <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"23000"} Type={"Private"} Logo={Image3} /></li>
                             <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"20"} Fee={"26000"} Type={"Private"} Logo={Image3} /></li>
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3} /></li>
+                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3} /></li> */}
                         </ul>
                     </div>
                 </div>
@@ -259,6 +252,14 @@ class Explore extends React.Component {
         if (this.state.School !== 'Any') {
             array.push("school_type");
             array.push(this.state.School);
+        }
+
+        if (this.state.StateFilter.length !== 0) {
+            console.log(this.state.StateFilter);
+            this.state.StateFilter.forEach(state => {
+            array.push("state")
+            array.push(state);
+            })
         }
 
         if (this.state.AppFeeLower !== '' && this.state.AppFeeUpper !== '') {
@@ -325,7 +326,7 @@ class Explore extends React.Component {
     }
 
     handleFilter(e) {
-        this.setState({ Filter: e.target.value }, () => {
+        this.setState({ Filter: e.value }, () => {
             this.handleClick();
             console.log(this.state.Filter);
         });
@@ -349,6 +350,16 @@ class Explore extends React.Component {
             console.log(this.state.TuitionState);
         });
     }
+
+    handleState(e) {
+        const state = this.state;
+        state.StateFilter = [];
+        e.forEach((option) => {
+          state.StateFilter.push(option.label);
+        });
+        this.setState({StateFilter: state.StateFilter}, console.log(this.state.StateFilter));
+    };
+
     render() {
         //console.log(filter);
         //Testing the fetch from database call

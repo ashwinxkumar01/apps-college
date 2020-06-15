@@ -13,6 +13,7 @@ Ensure that:
 6. npm install @fortawesome/react-fontawesome
 7. yarn add @material-ui/styles
 8. npm install react-perfect-scrollbar
+9. npm install react-select
 
 are executed in the react-frontend folder beforehand. 
 

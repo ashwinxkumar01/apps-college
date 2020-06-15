@@ -100,13 +100,13 @@ span {
 .app-type {
     margin-top: calc(0.75rem);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .school-type {
     margin-top: calc(1rem);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .filter-type {
@@ -118,6 +118,11 @@ span {
 .app-div {
     width: 40%;
     margin-left: calc(1rem);
+    margin-bottom: calc(0.6rem);
+}
+
+.dropdown-div {
+    width: calc(100%);
 }
 
 .dropdown-name {
@@ -163,13 +168,21 @@ span {
 
 .float-display {
     float: right;
-    width: calc(17rem);
+    width: calc(25rem);
+    display: flex;
+    flex-direction: row;
+    margin-right: calc(1rem);
+}
+
+.sort-by {
+    width: calc(100%);
 }
 
 .filter-type {
     display: flex;
     flex-direction: row;
     height: calc(1.8rem);
+    border: 1px solid black;
 }
 
 .filter-span {
@@ -179,15 +192,9 @@ span {
     font-family: 'Muli', sans-serif;
 }
 
-.filter-type select{
-    width: calc(35%);
-    height: calc(1.8rem);
-    outline: none;
-}
-
 .button {
     margin-left: calc(1rem);
-    width: calc(8rem);
+    width: calc(9rem);
     font-size: calc(1.3rem);
     justify-content: center;
     font-family: 'Cuprum', sans-serif;
@@ -296,4 +303,28 @@ select {
   .height {
     left: calc(92vw);
     position: absolute;
+  }
+
+  .filter-applied {
+      margin-left: calc(0.9rem);
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+  }
+
+  .node-filter {
+      margin-top : calc(0.8rem);
+      width: calc(2.6rem);
+      display: flex;
+      flex-direction: row;
+      background-color: rgb(207, 206, 206);
+      margin-left: calc(0.4rem);
+  }
+
+  .icon-delete {
+      margin-left: calc(0.2rem);
+  }
+
+  .state-name {
+      margin-left: calc(0.3rem)
   }

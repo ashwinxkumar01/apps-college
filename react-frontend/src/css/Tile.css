@@ -54,14 +54,13 @@
 }
 
 .tuition-display {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    margin-left: calc(1rem);
+    justify-content: center;
+    margin-left: calc(0rem);
 }
 
-.tuition-display span{
-    width: 15%;
-}
 
 .information-div{
     width: 100%;
