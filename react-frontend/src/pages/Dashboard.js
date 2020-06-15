@@ -69,7 +69,9 @@ class Dashboard extends React.Component {
                 {college}
               </div>
             </Nav.Link>
-            <Heart collegeName={college} />
+            <div className="height">
+                <Heart collegeName={college} />
+            </div>
           </div>
         )
         )

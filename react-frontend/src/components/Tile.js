@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/Tile.css';
+import Heart from './content/Heart';
 
 class Node extends Component {    
     render() {
@@ -8,7 +9,9 @@ class Node extends Component {
                 <div className="college-name">
                     <h1>{this.props.Alias}</h1>
                 </div>
-
+                <div className="favorite-icon">
+                    <Heart />
+                </div>
                 <div className="college-icon">
                         <img src={this.props.Logo} alt="Logo" height="150" width="100%" />
                 </div>

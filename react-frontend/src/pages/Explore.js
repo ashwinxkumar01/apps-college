@@ -69,9 +69,9 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">Population</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({PopulationLower: e.target.value})} type="text" placeholder="Lower" size="100"></input>
+                                <input onChange={(e) => this.setState({ PopulationLower: e.target.value })} type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({PopulationUpper: e.target.value})} type="text" placeholder="Upper" size="100"></input>
+                                <input onChange={(e) => this.setState({ PopulationUpper: e.target.value })} type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
 
@@ -80,9 +80,9 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">Acceptance</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({AcceptanceLower: e.target.value})} type="text" placeholder="Lower" size="100"></input>
+                                <input onChange={(e) => this.setState({ AcceptanceLower: e.target.value })} type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({AcceptanceUpper: e.target.value})}  type="text" placeholder="Upper" size="100"></input>
+                                <input onChange={(e) => this.setState({ AcceptanceUpper: e.target.value })} type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
 
@@ -91,9 +91,9 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">App fee</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({AppFeeLower: e.target.value})} type="text" placeholder="Lower" size="100"></input>
+                                <input onChange={(e) => this.setState({ AppFeeLower: e.target.value })} type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({AppFeeUpper: e.target.value})} type="text" placeholder="Upper" size="100"></input>
+                                <input onChange={(e) => this.setState({ AppFeeUpper: e.target.value })} type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
 
@@ -102,9 +102,9 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">Ranking</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({RankingLower: e.target.value})} type="text" placeholder="Lower" size="100"></input>
+                                <input onChange={(e) => this.setState({ RankingLower: e.target.value })} type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({RankingUpper: e.target.value})} type="text" placeholder="Upper" size="100"></input>
+                                <input onChange={(e) => this.setState({ RankingUpper: e.target.value })} type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
 
@@ -113,9 +113,9 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">Tuition</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({TuitionLower: e.target.value})} type="text" placeholder="Lower" size="100"></input>
+                                <input onChange={(e) => this.setState({ TuitionLower: e.target.value })} type="text" placeholder="Lower" size="100"></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({TuitionUpper: e.target.value})} type="text" placeholder="Upper" size="100"></input>
+                                <input onChange={(e) => this.setState({ TuitionUpper: e.target.value })} type="text" placeholder="Upper" size="100"></input>
                             </form>
                         </div>
 
@@ -124,7 +124,7 @@ class Explore extends React.Component {
                                 className="checkbox"
                                 type="checkbox"
                                 onClick={this.changeTuitionState}
-                                />
+                            />
                             <h4>Out of State</h4>
                         </div>
 
@@ -132,7 +132,7 @@ class Explore extends React.Component {
 
                         <div className="app-type">
                             <div className="app-div"><span className="dropdown-name">App type</span></div>
-                            <select onChange={(e) => this.setState({App: e.target.value})} value={this.state.App}>
+                            <select onChange={(e) => this.setState({ App: e.target.value })} value={this.state.App}>
                                 <option value="Any">Any</option>
                                 <option value="commonapp">Common App</option>
                                 <option value="coalitionapp">Coalition App</option>
@@ -143,7 +143,7 @@ class Explore extends React.Component {
 
                         <div className="school-type">
                             <div className="app-div"><span className="dropdown-name">School Type</span></div>
-                            <select onChange={(e) => this.setState({School: e.target.value})} value={this.state.School}>
+                            <select onChange={(e) => this.setState({ School: e.target.value })} value={this.state.School}>
                                 <option value="Any">Any</option>
                                 <option value="Public">Public</option>
                                 <option value="Private">Private</option>
@@ -160,46 +160,46 @@ class Explore extends React.Component {
                     <div className="content-display">
                         <div className="float-display">
                             <div className="filter-type">
-                                    <select onChange={this.handleFilter} value={this.state.Filter}>
-                                        <option selected disabled>Sort by</option>
-                                        <option value="national_ranking">Ranking</option>
-                                        <option value="tuition_normal">Tuition: In-state</option>
-                                        <option value="tuition_oos">Tuition: Out of State </option>
-                                        <option value="acceptance_rate">Acceptance Rate</option>
-                                        <option value="app_fee">App Fee</option>
-                                        <option value="population">Population</option>
-                                    </select>
+                                <select onChange={this.handleFilter} value={this.state.Filter}>
+                                    <option selected disabled>Sort by</option>
+                                    <option value="national_ranking">Ranking</option>
+                                    <option value="tuition_normal">Tuition: In-state</option>
+                                    <option value="tuition_oos">Tuition: Out of State </option>
+                                    <option value="acceptance_rate">Acceptance Rate</option>
+                                    <option value="app_fee">App Fee</option>
+                                    <option value="population">Population</option>
+                                </select>
 
-                                    <input
-                                        className="button"
-                                        type="submit"
-                                        onClick={this.changeAscent} 
-                                        value={this.state.Ordering}
-                                        />
+                                <input
+                                    className="button"
+                                    type="submit"
+                                    onClick={this.changeAscent}
+                                    value={this.state.Ordering}
+                                />
                             </div>
                         </div>
 
                         <ul className="ListColleges" >
-                            { this.state.College.map(college => {
+                            {this.state.College.map(college => {
                                 console.log(college)
                                 let val = JSON.parse(college);
                                 let collegeName = val["college_name"];
                                 return (
                                     <Link to={`/loginhome/features/${collegeName}`}>
                                         <li>
-                                            <Tile Alias={val["alias"]} Tuition={this.numFormat(val["tuition_normal"])} TuitionOOS={this.numFormat(val["tuition_oos"])} 
-                                            Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
-                                            Logo={val["college_logo"]} Type={val["school_type"]}
-                                            /> 
+                                            <Tile Alias={val["alias"]} Tuition={this.numFormat(val["tuition_normal"])} TuitionOOS={this.numFormat(val["tuition_oos"])}
+                                                Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
+                                                Logo={val["college_logo"]} Type={val["school_type"]}
+                                            />
                                         </li>
                                     </Link>
                                 )
-                                }) 
+                            })
                             }
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3}/></li>
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"23000"} Type={"Private"} Logo={Image3}/></li>
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"20"} Fee={"26000"} Type={"Private"} Logo={Image3}/></li>
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3}/></li>
+                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3} /></li>
+                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"23000"} Type={"Private"} Logo={Image3} /></li>
+                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"20"} Fee={"26000"} Type={"Private"} Logo={Image3} /></li>
+                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3} /></li>
                         </ul>
                     </div>
                 </div>
@@ -208,16 +208,18 @@ class Explore extends React.Component {
             return (
                 this.state.resultsFromSearch.map(college => (
                     <div>
-                    <Nav.Link href={`/loginhome/features/${college}`} className="fixedHeight">
-                      <div className="searchResult">
-                        <div className="backgroundSolid" />
-                        <div className="backgroundBlend" />
-                        <img src={Image3} alt="Hello" className="imageBox" />
-                        {college}
-                      </div>
-                    </Nav.Link>
-                    <Heart collegeName={college} />
-                  </div>
+                        <Nav.Link href={`/loginhome/features/${college}`} className="fixedHeight">
+                            <div className="searchResult">
+                                <div className="backgroundSolid" />
+                                <div className="backgroundBlend" />
+                                <img src={Image3} alt="Hello" className="imageBox" />
+                                {college}
+                            </div>
+                        </Nav.Link>
+                        <div className="height">
+                            <Heart collegeName={college} />
+                        </div>
+                    </div>
                 )
                 )
             )
@@ -237,45 +239,45 @@ class Explore extends React.Component {
     }
 
     dateFormat(input) {
-        var myDate = new Date(input*1000);
-        return((myDate.getUTCMonth()+1) + "/" + myDate.getUTCDate() + "/" + myDate.getUTCFullYear());
+        var myDate = new Date(input * 1000);
+        return ((myDate.getUTCMonth() + 1) + "/" + myDate.getUTCDate() + "/" + myDate.getUTCFullYear());
     }
 
     handleClick() {
         let array = [];
-        if(this.state.App !== 'Any') {
+        if (this.state.App !== 'Any') {
             array.push("app_site");
             array.push(this.state.App);
         }
 
-        if(this.state.School !== 'Any') {
+        if (this.state.School !== 'Any') {
             array.push("school_type");
             array.push(this.state.School);
         }
 
-        if(this.state.AppFeeLower !== '' && this.state.AppFeeUpper !== '') {
+        if (this.state.AppFeeLower !== '' && this.state.AppFeeUpper !== '') {
             array.push("app_fee");
             array.push("+" + this.state.AppFeeLower);
             array.push("app_fee");
             array.push("-" + this.state.AppFeeUpper);
         }
 
-        if(this.state.AcceptanceLower !== '' && this.state.AcceptanceUpper !== '') {
+        if (this.state.AcceptanceLower !== '' && this.state.AcceptanceUpper !== '') {
             array.push("acceptance_rate");
             array.push("+" + this.state.AcceptanceLower);
             array.push("acceptance_rate");
             array.push("-" + this.state.AcceptanceUpper);
         }
 
-        if(this.state.PopulationLower !== '' && this.state.PopulationUpper !== '') {
+        if (this.state.PopulationLower !== '' && this.state.PopulationUpper !== '') {
             array.push("population");
             array.push("+" + this.state.PopulationLower);
             array.push("population");
             array.push("-" + this.state.PopulationUpper);
         }
 
-        if(this.state.TuitionLower !== '' && this.state.TuitionLower !== '') {
-            if(this.state.TuitionState === "tuition_normal"){ 
+        if (this.state.TuitionLower !== '' && this.state.TuitionLower !== '') {
+            if (this.state.TuitionState === "tuition_normal") {
                 array.push("tuition_normal");
                 array.push("+" + this.state.TuitionLower);
                 array.push("tuition_normal");
@@ -288,15 +290,15 @@ class Explore extends React.Component {
             }
         }
 
-        if(this.state.RankingLower !== '' && this.state.RankingUpper !== '') {
+        if (this.state.RankingLower !== '' && this.state.RankingUpper !== '') {
             array.push("national_ranking");
             array.push("+" + this.state.RankingLower);
             array.push("national_ranking");
             array.push("-" + this.state.RankingUpper);
         }
 
-        if(this.state.Filter === 'Sort by') {
-            this.setState({Filter: "national_ranking"}, () => {
+        if (this.state.Filter === 'Sort by') {
+            this.setState({ Filter: "national_ranking" }, () => {
                 console.log(this.state.Filter);
             });
         }
@@ -323,7 +325,7 @@ class Explore extends React.Component {
     }
 
     handleFilter(e) {
-        this.setState({Filter: e.target.value}, () => {
+        this.setState({ Filter: e.target.value }, () => {
             this.handleClick();
             console.log(this.state.Filter);
         });
@@ -331,19 +333,19 @@ class Explore extends React.Component {
 
     changeAscent(e) {
         let value = this.state.Ordering === "Low to High" ? "High to Low" : "Low to High";
-        this.setState({Ordering: value}, () => {
+        this.setState({ Ordering: value }, () => {
             console.log(this.state.Ordering);
             this.handleClick();
         });
         let style = !this.state.Checkbox
-        this.setState({Checkbox: style}, () => {
+        this.setState({ Checkbox: style }, () => {
             console.log(this.state.Checkbox);
         })
     }
 
     changeTuitionState(e) {
         let value = this.state.TuitionState === "tuition_normal" ? "tuition_oos" : "tuition_normal";
-        this.setState({TuitionState: value}, () => {
+        this.setState({ TuitionState: value }, () => {
             console.log(this.state.TuitionState);
         });
     }

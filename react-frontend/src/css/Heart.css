@@ -6,11 +6,6 @@
     cursor: pointer;
   }
 
-  .height {
-    left: calc(92vw);
-    position: absolute;
-  }
-
   .heart {
     top: calc(-4vh);
     position: relative;

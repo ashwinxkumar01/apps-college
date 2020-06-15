@@ -75,3 +75,8 @@
     padding-top: calc(0px);
     padding-bottom: calc(0px);
   }
+
+  .height {
+    left: calc(92vw);
+    position: absolute;
+  }

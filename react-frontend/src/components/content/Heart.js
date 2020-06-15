@@ -25,15 +25,11 @@ class Heart extends React.Component {
     render() {
         if (this.state.status === true) {
             return (
-                <div className="height">
-                    <div className="redheart" onClick={this.handleClick} />
-                </div>
+                <div className="redheart" onClick={this.handleClick} />
             )
         } else {
             return (
-                <div className="height">
-                    <div className="heart" onClick={this.handleClick} />
-                </div>
+                <div className="heart" onClick={this.handleClick} />
             )
         }
     }

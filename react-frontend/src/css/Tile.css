@@ -62,3 +62,7 @@
     text-align: center;
 
 }
+
+.favorite-icon{
+    left: calc(70vw);
+}
