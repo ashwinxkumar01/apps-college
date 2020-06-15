@@ -118,22 +118,22 @@ export default function SignInSide() {
               className={classes.submit}
               // href="/loginhome/features"
               onClick={e => { 
-                console.log("testing");
-                fetch("/login", {
-                  method: "POST",
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
-                  body: JSON.stringify({
-                      Username: username.username,
-                      Password: password.password
-                  })
-              }).then(response => {
-                  return response.json();
-              }).then(data => {
-                  console.log(data);
-              });
+                  console.log("testing");
+                  fetch("/login", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
+                    body: JSON.stringify({
+                        Username: username.username,
+                        Password: password.password
+                    })
+                }).then(response => {
+                    return response.json();
+                }).then(data => {
+                    console.log(data);
+                });
               }}
             >
               Sign In
