@@ -1,16 +1,13 @@
 import '../css/Dashboard.css';
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Navigationbar from '../components/content/Navigationbar';
 import { Nav } from 'react-bootstrap';
 import NavBar from '../components/content/Navbar';
-import Image1 from './UCSD_1.jpg';
-import Image2 from './UCSD_2.jpg';
 import Image3 from './UCSD_3.jpg';
-import Image4 from './UCSD_4.jpg';
 
-import { UsersToolbar, UsersTable } from './dashboardComponents';
+import { UsersToolbar, UsersTable } from '../components/dashboardComponents';
 import mockData from './data';
 import Heart from '../components/content/Heart';
 
@@ -66,7 +63,7 @@ class Dashboard extends React.Component {
           <div>
             <Nav.Link href={`/loginhome/features/${college}`} className="fixedHeight">
               <div className="searchResult">
-                <img src={Image3} className="imageBox" />
+                <img src={Image3} alt="Hello" className="imageBox" />
                 {college}
               </div>
             </Nav.Link>

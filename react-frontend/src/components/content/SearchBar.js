@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import '../../App.css';
 import Stack from './Stack';
 
@@ -39,7 +39,7 @@ class SearchBar extends React.Component {
                     var i;
                     var j;
                     for (let i = 0; i < typedIn.length; i++) {
-                        if (typedIn.substring(i, i + 1) != collegeName.substring(i, i + 1)) {
+                        if (typedIn.substring(i, i + 1) !== collegeName.substring(i, i + 1)) {
                             matchPerfect = false;
                             break;
                         }
@@ -65,7 +65,7 @@ class SearchBar extends React.Component {
                             return;
                         }
                     }
-                    if(typedInSplit.length == 0){
+                    if(typedInSplit.length === 0){
                         semiMatches.push(collegeNames[0]);
                         alreadyExists = true;
                         return;

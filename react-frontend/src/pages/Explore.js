@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import '../css/Explore.css';
 import Navigationbar from '../components/content/Navigationbar';
 import { Nav } from 'react-bootstrap';
@@ -44,17 +44,18 @@ class Explore extends React.Component {
         //Handles the tuition normal vs tuition oos 
         this.changeTuitionState = this.changeTuitionState.bind(this);
         this.numFormat = this.numFormat.bind(this);
+        this.dateFormat = this.dateFormat.bind(this);
     }
 
     searchBarInUse = (inUse) => {
-        if (inUse != this.state.searchBar) {
+        if (inUse !== this.state.searchBar) {
             console.log(inUse);
             this.setState({ searchBar: inUse });
         }
     }
 
     renderExplore = (College) => {
-        if (this.state.searchBar == false) {
+        if (this.state.searchBar === false) {
             return (
                 <div className="container-div">
                     <div className="filter">
@@ -189,7 +190,7 @@ class Explore extends React.Component {
                 this.state.resultsFromSearch.map(college => (
                     <Nav.Link href={`/loginhome/features/${college}`} className="fixedHeight">
                         <div className="searchResult">
-                            <img src={Image3} className="imageBox" />
+                            <img src={Image3} alt="ImageAgain" className="imageBox" />
                             {college}
                             <div className="heart"></div>
                         </div>
@@ -210,6 +211,11 @@ class Explore extends React.Component {
 
     numFormat(num) {
         return num.toLocaleString();
+    }
+
+    dateFormat(input) {
+        var myDate = new Date(input*1000);
+        return((myDate.getUTCMonth()+1) + "/" + myDate.getUTCDate() + "/" + myDate.getUTCFullYear());
     }
 
     handleClick() {
@@ -267,7 +273,6 @@ class Explore extends React.Component {
         }
 
         console.log(array);
-        let college = '';
         fetch("/filter", {
             method: "POST",
             headers: {

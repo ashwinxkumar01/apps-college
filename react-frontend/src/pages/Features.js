@@ -18,7 +18,7 @@ class Features extends React.Component {
         this.searchBarInUse = this.searchBarInUse.bind(this);
     }
     searchBarInUse = (inUse) => {
-        if (inUse != this.state.searchBar) {
+        if (inUse !== this.state.searchBar) {
             console.log(inUse);
             this.setState({ searchBar: inUse });
         }
@@ -33,7 +33,7 @@ class Features extends React.Component {
     }
 
     renderFeatures = () => {
-        if (this.state.searchBar == false) {
+        if (this.state.searchBar === false) {
             return (
                 <div>
                     {this.state.collegeName}
@@ -44,7 +44,7 @@ class Features extends React.Component {
                 this.state.resultsFromSearch.map(college => (
                     <Nav.Link href={`/loginhome/features/${college}`} className="fixedHeight">
                         <div className="searchResult">
-                            <img src={Image3} className="imageBox" />
+                            <img src={Image3} alt="Hello" className="imageBox" />
                             {college}
                             <div className="heart"></div>
                         </div>

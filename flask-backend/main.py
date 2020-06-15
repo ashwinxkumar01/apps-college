@@ -18,8 +18,7 @@ server = os.environ.get("SERVER_ADDRESS")
 database = os.environ.get("DATABASE_NAME")
 username = os.environ.get("DB_USERNAME")
 password = os.environ.get("DB_PASSWD")
-#driver = '{ODBC Driver 17 for SQL Server}'
-print(password)
+driver = '{ODBC Driver 17 for SQL Server}'
 
 db_info = 'DRIVER=' + driver + ';SERVER=' + server + ';PORT=1433;DATABASE=' + database + ';UID=' + username + ';PWD=' + password
 #print(db_info)
@@ -164,7 +163,6 @@ def get_college_names():
 @app.route("/loginhome/login")
 @app.route("/loginhome/signup")
 @app.route("/loginhome/features/:collegeName")
-@app.route("/loginhome/profile")
 @app.route("/loginhome/page")
 def my_index():
     return flask.render_template("index.html", token="Hello Flask and React")
