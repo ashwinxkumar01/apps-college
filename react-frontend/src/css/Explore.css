@@ -23,8 +23,6 @@
 .filter {
     width: 25rem;
     height: calc(60vh);
-    border-right: 2px solid black;
-    border-bottom: 2px solid black;
     margin-left: calc(0.5rem);
 }
 
@@ -60,6 +58,8 @@
     width: calc(39%);
     font-size: inherit;
     outline: none;
+    border: none;
+    border-bottom: 1px solid black;
 }
 
 input[type="text"]
@@ -92,10 +92,14 @@ span {
 
 .app-type {
     margin-top: calc(0.75rem);
+    display: flex;
+    flex-direction: row;
 }
 
 .school-type {
     margin-top: calc(1rem);
+    display: flex;
+    flex-direction: row;
 }
 
 .filter-type {
@@ -104,16 +108,18 @@ span {
     outline: none;
 }
 
+.app-div {
+    width: 40%;
+}
+
 .dropdown-name {
     margin-left: calc(0.3rem);
-    padding-right: calc(2rem);
-    width: calc(100%);
     font-family: 'Muli', sans-serif;
 }
 
 .app-type select {
-    margin-left: calc(1.25rem);
     outline: none;
+    width: 40%;
 }
 
 .school-type select {
@@ -123,7 +129,7 @@ span {
 .filter-button-div {
     width: 100%;
     text-align: center;
-    margin-top: calc(4rem);
+    margin-top: calc(2rem);
 }
 
 .filter-button {
@@ -149,7 +155,7 @@ span {
 
 .float-display {
     float: right;
-    width: calc(25rem);
+    width: calc(17rem);
 }
 
 .filter-type {
@@ -175,9 +181,6 @@ span {
     margin-left: calc(1rem);
     width: calc(8rem);
     font-size: calc(1.5rem);
-    /* transform: scale(1.5);
-    -ms-transform: scale(1.5);
-    -webkit-transform: scale(1.5); */
     justify-content: center;
     font-family: 'Cuprum', sans-serif;
     display: flex;
@@ -210,4 +213,3 @@ select {
     text-align: center;
     display: inline-block;
 }
-
