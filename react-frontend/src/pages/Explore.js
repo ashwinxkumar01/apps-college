@@ -8,10 +8,6 @@ import Image3 from './UCSD_3.jpg';
 import Tile from '../components/Tile';
 import Heart from '../components/content/Heart';
 
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
-
 class Explore extends React.Component {
     constructor(props) {
         super(props);
@@ -20,7 +16,7 @@ class Explore extends React.Component {
             College: [],
             School: 'Any',
             App: 'Any',
-            Filter: 'Sort by',
+            Filter: 'national_ranking',
             Checkbox: true,
             AppFeeLower: '',
             AppFeeUpper: '',
@@ -295,12 +291,6 @@ class Explore extends React.Component {
             array.push("+" + this.state.RankingLower);
             array.push("national_ranking");
             array.push("-" + this.state.RankingUpper);
-        }
-
-        if (this.state.Filter === 'Sort by') {
-            this.setState({ Filter: "national_ranking" }, () => {
-                console.log(this.state.Filter);
-            });
         }
 
         console.log(array);
