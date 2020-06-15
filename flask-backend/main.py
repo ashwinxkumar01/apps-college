@@ -147,9 +147,9 @@ def get_college_names():
 
 
 #QUERY TESTING
-lst = get_colleges(["national_ranking", "+15", "national_ranking", "-30"])
-for i in lst:
-    print(i)
+# lst = get_colleges(["national_ranking", "+15", "national_ranking", "-30"])
+# for i in lst:
+#     print(i)
 
 # GET NAMES TESTING
 # names = get_college_names()
@@ -326,28 +326,28 @@ def listColleges():
 
 
 # testing method
-if __name__ == '__main__':
-    print("im here")
-    # createUserWithEmailPassword("aksportsmaniac@gmail.com", "123456")
-    loginWithEmailPassword("aksportsmaniac@gmail.com", "123456")
-    print(dictio['currentUser'])
-    # db.child("users").child(short)
-    # print(db.child("users").child(dictio['currentUser'][:-6]).get().val())
-    # db.child("users").child(dictio['currentUser'][:-6]).update({"college": "ucsd"})
-    # colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
-    # colleges['ucsb'] = 'ucsb'
-    # addCollege('USC')
-    # addCollege('University of Southern California')
-    # addCollege('University of California, San Diego')
-    removeCollege('college')
-    listColleges()
+# if __name__ == '__main__':
+#     print("im here")
+#     # createUserWithEmailPassword("aksportsmaniac@gmail.com", "123456")
+#     loginWithEmailPassword("aksportsmaniac@gmail.com", "123456")
+#     print(dictio['currentUser'])
+#     # db.child("users").child(short)
+#     # print(db.child("users").child(dictio['currentUser'][:-6]).get().val())
+#     # db.child("users").child(dictio['currentUser'][:-6]).update({"college": "ucsd"})
+#     # colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
+#     # colleges['ucsb'] = 'ucsb'
+#     # addCollege('USC')
+#     # addCollege('University of Southern California')
+#     # addCollege('University of California, San Diego')
+#     removeCollege('college')
+#     listColleges()
 
-    # print(colleges)
-    logout()
-    if ('usr' in dictio):
-        print("something went wrong here")
-    else:
-        print("good job!")
-    print(dictio['currentUser'])
+#     # print(colleges)
+#     logout()
+#     if ('usr' in dictio):
+#         print("something went wrong here")
+#     else:
+#         print("good job!")
+#     print(dictio['currentUser'])
 
 app.run(debug=True)
