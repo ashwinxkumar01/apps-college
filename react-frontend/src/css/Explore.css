@@ -21,7 +21,7 @@
 }
 
 .filter {
-    width: 25rem;
+    width: calc(25rem);
     height: calc(60vh);
     margin-left: calc(0.5rem);
 }
@@ -213,3 +213,72 @@ select {
     text-align: center;
     display: inline-block;
 }
+.backgroundSolid{
+    background-color: white;
+    position: absolute;
+    left: calc(0vw);
+    height: calc(100%);
+    width: calc(25vw);
+  }
+  .backgroundBlend {
+    height: calc(100%);
+    position: absolute;
+    left: calc(20vw);
+    width: calc(8vw);
+    background-image: linear-gradient(to right, white, #313b4c);
+    opacity: 0;
+  }
+  .searchResult:hover > .backgroundBlend{
+    height: calc(100%);
+    opacity: 1;
+    transition: opacity .3s ease-in;   
+    -moz-transition: opacity .3s ease-in;
+    -webkit-transition: opacity .3s ease-in;
+    position: absolute;
+    left: calc(20vw);
+    width: calc(9vw);
+    background-image: linear-gradient(to right, white, #313b4c);
+    transition-duration: 0s;
+    cursor: pointer;
+  }
+
+  .imageBox{
+    background-color: white;
+    position: absolute;
+    left: calc(5vw);
+    height: calc(80%);
+    margin-right: calc(5vw);
+  }
+
+  .searchResult:hover {
+    background-color: #313b4c;
+    background: linear-gradient(to right, white calc(28vw), white calc(28vw), #313b4c calc(28vw), #313b4c calc(72vw));
+    cursor: pointer;
+    color: rgb(228, 209, 255);
+    transition-duration: .3s;
+  }
+  
+  .fixedHeight {
+    height: calc(8vh);
+  }
+
+  .searchResult{
+    position: relative;
+    border-color: rgb(180, 180, 180);
+    color: black;
+    font-family: 'Oswald', sans-serif;
+    font-size: calc(4.5vh);
+    border-bottom-style: solid;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    text-align: center;
+    width: calc(87%);
+    height: calc(8vh);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: calc(0px);
+    padding-bottom: calc(0px);
+  }
