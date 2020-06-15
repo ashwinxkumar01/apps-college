@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/react/css/main.94d20587.chunk.css",
-    "main.js": "/static/react/js/main.440861a7.chunk.js",
-    "main.js.map": "/static/react/js/main.440861a7.chunk.js.map",
+    "main.js": "/static/react/js/main.2ae66f3a.chunk.js",
+    "main.js.map": "/static/react/js/main.2ae66f3a.chunk.js.map",
     "runtime-main.js": "/static/react/js/runtime-main.725b2ec0.js",
     "runtime-main.js.map": "/static/react/js/runtime-main.725b2ec0.js.map",
     "js/2.865f6d72.chunk.js": "/static/react/js/2.865f6d72.chunk.js",
@@ -17,13 +17,13 @@
     "media/UCSD_4.jpg": "/static/react/media/UCSD_4.bf8f0809.jpg",
     "media/Home.css": "/static/react/media/rooftopping-san-francisco-bay-area.cb0d32d0.jpg",
     "media/stephen_the_goat.jpg": "/static/react/media/stephen_the_goat.e0323fc4.jpg",
-    "precache-manifest.134224da7902f6d6b1fae0cd51df90ea.js": "/static/react/precache-manifest.134224da7902f6d6b1fae0cd51df90ea.js",
+    "precache-manifest.316946296df0040045d78381e182a347.js": "/static/react/precache-manifest.316946296df0040045d78381e182a347.js",
     "service-worker.js": "/static/react/service-worker.js"
   },
   "entrypoints": [
     "js/runtime-main.725b2ec0.js",
     "js/2.865f6d72.chunk.js",
     "css/main.94d20587.chunk.css",
-    "js/main.440861a7.chunk.js"
+    "js/main.2ae66f3a.chunk.js"
   ]
 }

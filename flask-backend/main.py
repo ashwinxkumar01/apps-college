@@ -140,9 +140,9 @@ def get_college_names():
 
 
 #QUERY TESTING
-lst = get_colleges(["national_ranking", "+15", "national_ranking", "-30"])
-for i in lst:
-    print(i)
+# lst = get_colleges(["national_ranking", "+15", "national_ranking", "-30"])
+# for i in lst:
+#     print(i)
 
 # GET NAMES TESTING
 # names = get_college_names()
