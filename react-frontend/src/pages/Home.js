@@ -26,7 +26,7 @@ function Home() {
                     <div class="masthead-subheading">5300 Colleges. 20+ Applications.</div>
                     <div class="masthead-heading text-uppercase">One Site.</div>
                     <Link to="/loginhome/login">
-                            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger">Login</a>
+                            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger">Sign In</a>
                     </Link>
                 </div>
             </header>
