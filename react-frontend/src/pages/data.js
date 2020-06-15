@@ -12,7 +12,7 @@ export default [
     },
     email: 'ekaterina.tankova@devias.io',
     phone: '304-428-3097',
-    avatarUrl: '/images/avatars/avatar_3.png',
+    avatarUrl: './book1.jpeg',
     createdAt: 1555016400000
   },
   {

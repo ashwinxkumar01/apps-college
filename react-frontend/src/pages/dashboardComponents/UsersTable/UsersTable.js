@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { makeStyles } from '@material-ui/core/styles';
+import ucsd from "../../UCSD_4.jpg";
 import {
   Card,
   CardActions,
@@ -139,12 +140,11 @@ const UsersTable = props => {
                     </TableCell>
                     <TableCell>
                       <div className={classes.nameContainer}>
-                        <Avatar
+                        {/* <Avatar src={ucsd}
                           className={classes.avatar}
-                          src={user.avatarUrl}
+                          // src={user.avatarUrl}
                         >
-                          {/* {getInitials(user.name)} */}
-                        </Avatar>
+                        </Avatar> */}
                         <Typography variant="body1">{user.name}</Typography>
                       </div>
                     </TableCell>

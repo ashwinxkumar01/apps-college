@@ -54,7 +54,7 @@ class Dashboard extends React.Component {
     if (this.state.searchBar === false) {
       return (
         <div className={useStyles.root}>
-          <UsersToolbar />
+          {/* <UsersToolbar /> */}
           <div className={useStyles.theme}>
             <UsersTable users={this.state.users} />
           </div>
