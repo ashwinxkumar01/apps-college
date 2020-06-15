@@ -15,15 +15,21 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.slider {
+    width: calc(90%);
+}
+
 .container-div {
     display: flex;
     flex-direction: row;
+    margin-top: calc(1.5rem);
 }
 
 .filter {
-    width: 25rem;
+    width: calc(25rem);
     height: calc(60vh);
     margin-left: calc(0.5rem);
+    margin-top: calc(1.5rem);
 }
 
 .tuition {
@@ -43,6 +49,7 @@
     top: calc(0rem);
     font-family: 'Muli', sans-serif;
     outline: none;
+    margin-left: calc(1rem);
 }
 
 .filter-form {
@@ -55,7 +62,7 @@
 
 .filter-form input {
     font-family: 'Lato', sans-serif;
-    width: calc(39%);
+    width: calc(40%);
     font-size: inherit;
     outline: none;
     border: none;
@@ -110,6 +117,7 @@ span {
 
 .app-div {
     width: 40%;
+    margin-left: calc(1rem);
 }
 
 .dropdown-name {

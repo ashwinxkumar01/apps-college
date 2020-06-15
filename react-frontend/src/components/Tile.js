@@ -10,7 +10,7 @@ class Node extends Component {
                 </div>
 
                 <div className="college-icon">
-                        <img src={this.props.Logo} alt="Logo" height="150" width="100%" />
+                        <img src={this.props.Logo} alt="Logo" height="150" width="70%" />
                 </div>
 
                 <div className="specifications">
