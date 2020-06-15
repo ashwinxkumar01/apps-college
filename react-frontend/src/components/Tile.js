@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../css/Tile.css';
-import Image from '../pages/UCSD_2.jpg';
 
 class Node extends Component {    
     render() {

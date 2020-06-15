@@ -1,7 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
-import { Navbar, Button, Nav, Form, FormControl } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import '../../App.css';
 import SearchBar from './SearchBar';
 

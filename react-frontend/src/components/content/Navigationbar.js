@@ -3,14 +3,8 @@ import { Nav } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faHome,
-    faBriefcase,
-    faPaperPlane,
-    faQuestion,
-    faImage,
-    faCopy,
-    faTimes
+    faQuestion
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from 'react-router-dom';
 import '../../css/Navigationbar.css';
 
 class Navigationbar extends React.Component {

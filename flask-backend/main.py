@@ -164,7 +164,6 @@ def get_college_names():
 @app.route("/loginhome/login")
 @app.route("/loginhome/signup")
 @app.route("/loginhome/features/:collegeName")
-@app.route("/loginhome/profile")
 @app.route("/loginhome/page")
 def my_index():
     return flask.render_template("index.html", token="Hello Flask and React")
