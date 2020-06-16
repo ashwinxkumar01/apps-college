@@ -132,6 +132,7 @@ export default function SignInSide() {
               className={classes.submit}
               // href="/loginhome/features"
               onClick={e => { 
+                  e.preventDefault();
                   console.log("testing");
                   fetch("/login", {
                     method: "POST",
