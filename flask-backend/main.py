@@ -4,7 +4,7 @@ import os
 from flask import session
 from flask import request
 from sql_helpers import *
-from flask import jsonify
+from flask import jsonify, redirect, url_for
 import pyodbc
 #from firebase import * #Causing errors when testing, Ashwin fix it
 from flask_cors import CORS, cross_origin
@@ -171,9 +171,7 @@ def test_func():
 
 
 @app.route("/")
-@app.route("/loginhome/dashboard")
 @app.route("/loginhome/explore")
-@app.route("/loginhome/login")
 @app.route("/loginhome/signup")
 @app.route("/loginhome/features/:collegeName")
 @app.route("/loginhome/page")
@@ -196,16 +194,21 @@ def test_filter():
 
     return jsonify(get_order(colleges_array, filter_by, is_descending))
 
+@app.route("/individual", methods = ['POST'])
+def individual():
+    #gets incoming request
+    post_request = request.get_json(force=True)
+
+    name = post_request['name']
+
+    #formats incoming request to proper format for calling function
+    lst_to_call = ['college_name',name]
+    college_json = get_colleges(lst_to_call)
+    return jsonify(college_json)
+
 
 
 #FIREBASE BEGINS HERE
-
-
-
-
-
-
-
 
 
 
@@ -248,8 +251,20 @@ def createUserWithEmailPassword(email, password):
 # https://stackoverflow.com/questions/55261682/how-to-know-whether-user-is-logged-in-or-not-in-pyrebase-and-flask
 
 
+# The route to redirect to the dashboard
+@app.route("/loginhome/dashboard")
+def login_success():
+    return flask.render_template("index.html")
+
+# The route to redirect back to login page
+@app.route("/loginhome/login")
+def login_fail():
+    return flask.render_template("index.html")
+
+
 # parameters are Strings for email and password
-# return boolean - true if successful login, false if not
+# return url- Returns /loginhome/login if login
+# unsucessful, /loginhome/dashboard otherwise
 # takes in an email and password from the request
 @app.route("/login", methods = ['POST'])
 def loginWithEmailPassword():
@@ -259,7 +274,7 @@ def loginWithEmailPassword():
     email = post_request['Username']
     password = post_request['Password']
 
-    successfulLogin = False
+    # successfulLogin = False
     try:
         # print(session['usr']) #if this doesn't error out, that means the user is logged in already
         print(dictio['usr'])
@@ -271,10 +286,10 @@ def loginWithEmailPassword():
             # session['usr'] = user_id
             dictio['usr'] = user_id
             dictio['currentUser'] = email
-            successfulLogin = True  # the user isn't logged in, and everything else works
+            # successfulLogin = True  # the user isn't logged in, and everything else works
         except:
-            return jsonify(successfulLogin)
-    return jsonify(successfulLogin)
+            return redirect(url_for('login_fail'))
+    return redirect(url_for('login_success'))
 
 
 # deletes the current session - should take them to home page?
