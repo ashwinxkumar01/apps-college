@@ -196,6 +196,18 @@ def test_filter():
 
     return jsonify(get_order(colleges_array, filter_by, is_descending))
 
+@app.route("/individual", methods = ['POST'])
+def individual():
+    #gets incoming request
+    post_request = request.get_json(force=True)
+
+    name = post_request['name']
+
+    #formats incoming request to proper format for calling function
+    lst_to_call = ['college_name',name]
+    college_json = get_colleges(lst_to_call)
+    return jsonify(college_json)
+
 
 
 #FIREBASE BEGINS HERE
