@@ -58,10 +58,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
-  const[page, setPage] = useState({page: "/loginhome/login"});
   const [username, setUsername] = useState({username: ''});
   const [password, setPassword] = useState({password: ''});
-  const [url, setUrl] = useState({url: ''});
+  const [display, setDisplay] = useState({display: ''});
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -118,8 +117,6 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}
               onClick={e => { 
-                  //e.preventDefault();
-                  setUrl({ url: ''});
                   console.log("testing");
                   fetch("/login", {
                     method: "POST",
@@ -132,9 +129,14 @@ export default function SignInSide() {
                         Password: password.password
                     })
                 }).then(response => {
-                    console.log(response.url);
-                    window.location.href = response.url;
-                }).catch(err => console.log(err));
+                    return response.json();
+                }).then(data => {
+                  if(data["True"] === 1) {
+                    setDisplay({ display: data["True"]});
+                  } else {
+                    window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
+                  }
+                })
               }}
             >
               Sign In
@@ -152,7 +154,7 @@ export default function SignInSide() {
               </Grid>
             </Grid>
             <Box mt={5}>
-              {/* <Copyright /> */}
+              {display.display === 1 && <p>lOGIN FAILED</p>}
             </Box>
           </form>
         </div>

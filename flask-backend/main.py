@@ -172,7 +172,9 @@ def test_func():
 
 @app.route("/")
 @app.route("/loginhome/explore")
+@app.route("/loginhome/login")
 @app.route("/loginhome/signup")
+@app.route("/loginhome/dashboard")
 @app.route("/loginhome/features/:collegeName")
 @app.route("/loginhome/page")
 def my_index():
@@ -250,21 +252,8 @@ def createUserWithEmailPassword(email, password):
 # FIXME: during logout, make sure that the user actually logs out and delete the session
 # https://stackoverflow.com/questions/55261682/how-to-know-whether-user-is-logged-in-or-not-in-pyrebase-and-flask
 
-
-# The route to redirect to the dashboard
-@app.route("/loginhome/dashboard")
-def login_success():
-    return flask.render_template("index.html")
-
-# The route to redirect back to login page
-@app.route("/loginhome/login")
-def login_fail():
-    return flask.render_template("index.html")
-
-
 # parameters are Strings for email and password
-# return url- Returns /loginhome/login if login
-# unsucessful, /loginhome/dashboard otherwise
+# return 1 if unsuccessful, 2 otherwise
 # takes in an email and password from the request
 @app.route("/login", methods = ['POST'])
 def loginWithEmailPassword():
@@ -286,10 +275,9 @@ def loginWithEmailPassword():
             # session['usr'] = user_id
             dictio['usr'] = user_id
             dictio['currentUser'] = email
-            # successfulLogin = True  # the user isn't logged in, and everything else works
         except:
-            return redirect(url_for('login_fail'))
-    return redirect(url_for('login_success'))
+            return json.dumps({"True": 1})
+    return json.dumps({"True": 2})
 
 
 # deletes the current session - should take them to home page?
