@@ -135,7 +135,7 @@ export default function SignInSide() {
                     console.log(data);
                     if (data) {
                         console.log("yay - you're logged in but if you try this again without running the entire project it should return false");
-                        //return <Redirect to="/Explore.js/" /> - we need to figure out how to redirect with this line right here 
+                        return <Redirect to="/Explore.js/" />
                         //FIXME
                     }
                 });
