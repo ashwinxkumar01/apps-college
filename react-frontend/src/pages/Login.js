@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
-  let success = "/loginhome/login";
+  const[page, setPage] = useState({page: "/loginhome/login"});
   const [username, setUsername] = useState({username: ''});
   const [password, setPassword] = useState({password: ''});
   return (
@@ -117,7 +117,6 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}
               onClick={e => { 
-                  e.preventDefault();
                   console.log("testing");
                   fetch("/login", {
                     method: "POST",
@@ -135,11 +134,12 @@ export default function SignInSide() {
                     console.log(data);
                     if (data) {
                         console.log("yay - you're logged in but if you try this again without running the entire project it should return false");
-                        success = "/loginhome/features";
-                    }
-                });
+                        const newPage = {page: "/loginhome/features"};
+                setPage(newPage);
+                console.log(newPage);
+                }});
               }}
-              href={success}
+              href={page.page}
             >
               Sign In
             </Button>
