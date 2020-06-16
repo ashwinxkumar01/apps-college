@@ -11,6 +11,23 @@ class Individual extends Component {
         this.imageRef = React.createRef();
     }
     render() {
+        const college_name = "Stanford University";
+
+        fetch("/individual", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: college_name,
+            })
+        }).then(response => {
+            console.log(response)
+            return response.json()
+        }).then(data => {
+            console.log(data)
+        });
+      
         return (
             <div>
                 <img className="Geisel" src={Geisel} />
@@ -69,6 +86,7 @@ class Individual extends Component {
             </div>
         );
     }
+ 
 }
 
 export default Individual;
