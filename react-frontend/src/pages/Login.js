@@ -117,7 +117,7 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}
               onClick={e => { 
-                  e.preventDefault();
+                  //e.preventDefault();
                   console.log("testing");
                   fetch("/login", {
                     method: "POST",
@@ -136,6 +136,7 @@ export default function SignInSide() {
                     if (data) {
                         console.log("yay - you're logged in but if you try this again without running the entire project it should return false");
                         success = "/loginhome/features";
+                        console.log(success)
                     }
                 });
               }}
