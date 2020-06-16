@@ -1,27 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d409de5534b223b99de42df0debc81d4",
+    "revision": "678ca45baff2a8de0b95c32194148213",
     "url": "/static/react/../../templates/index.html"
   },
   {
-    "revision": "affc579501907ec76c84",
-    "url": "/static/react/css/main.3aff52be.chunk.css"
+    "revision": "4dfb275fec22fe54fc59",
+    "url": "/static/react/css/main.b363a9dc.chunk.css"
   },
   {
-    "revision": "80aa904f664c7fd0f028",
-    "url": "/static/react/js/2.0598f6b1.chunk.js"
+    "revision": "f06ea48b80156a536dbc",
+    "url": "/static/react/js/2.66a457ca.chunk.js"
   },
   {
     "revision": "fb568d669b612c10e09415b640dbeacb",
-    "url": "/static/react/js/2.0598f6b1.chunk.js.LICENSE.txt"
+    "url": "/static/react/js/2.66a457ca.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "affc579501907ec76c84",
-    "url": "/static/react/js/main.d872c842.chunk.js"
+    "revision": "4dfb275fec22fe54fc59",
+    "url": "/static/react/js/main.d56fef3d.chunk.js"
   },
   {
     "revision": "12419bf4deb9ecb0b4b0",
     "url": "/static/react/js/runtime-main.725b2ec0.js"
+  },
+  {
+    "revision": "cf68b2ddb5f582493f368b2f3b972f39",
+    "url": "/static/react/media/UCSDCampus.cf68b2dd.jpg"
+  },
+  {
+    "revision": "b619b9512233854a80fd5041cad58aa0",
+    "url": "/static/react/media/UCSDLogo.b619b951.png"
   },
   {
     "revision": "914f5b55ea697489d45b031bec3ecaa5",

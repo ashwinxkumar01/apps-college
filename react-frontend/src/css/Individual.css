@@ -1,0 +1,125 @@
+.UCSDImage {
+    width: calc(25vmin);
+    height: calc(25vmin);
+    /**margin-top: calc(2.5vh);*/
+    margin-left: calc(2.5vw);
+    /**margin-bottom: calc(2.5vh);*/
+}
+
+
+.background {
+    background-color: #e6e6e6;
+    overflow: scroll;
+}
+
+.UCSD {
+    text-align: center;
+    position: absolute;
+    top: calc(5vh);
+    left: calc(40vw);
+    color: white;
+}
+
+.UCSDBox {
+    background-color: white;
+    width: calc(80vw);
+    height: calc(15vh);
+    align-content: center;
+    position: absolute;
+    left: calc(20vw);
+    opacity: 0.6;
+}
+
+.tint {
+    background-color: black;
+    width: calc(87.5vw);
+    position: absolute; 
+    left: calc(12.5vw);
+    height: calc(72.5vh);
+    opacity: 0.2;
+}
+
+.Geisel {
+    width: calc(87.5vw);
+    position: absolute;
+    left: calc(12.5vw);
+    height: calc(72.5vh);
+}
+
+.crest-layout {
+    background-color: white;
+    width: calc(40vmin);
+    border-bottom-right-radius: 10px;
+    box-shadow: 5px 0 5px -2px #888;
+    border-bottom-style: solid;
+    border-bottom-color:  #003366;
+    border-bottom-width: 7.5px;
+}
+
+.return {
+    font-size: calc(3vh);
+    text-align: center;
+    text-decoration: underline;
+}
+
+.grid-layout {
+    background-color: white;
+    position: absolute;
+}
+
+.general-layout {
+    background-color: white;
+    width: calc(40vmin);
+    border-top-right-radius: 10px;
+    box-shadow: 5px 0 5px -2px #888;
+    height: calc(75vmin);
+    border-bottom-right-radius: 10px;
+    padding-top: calc(5vmin);
+    border-top-style: solid;
+    border-top-color: #FFD700;
+    border-top-width: 5px;
+}
+
+.general-text {
+    margin-top: calc(2.5vh);
+    text-align: center;
+    font-size: calc(3vmin);
+}
+
+.description-text {
+    width: calc(70vw);
+    height: calc(10vh);
+    position: absolute;
+    text-align: center;
+    left: calc(25vw);
+    font-size: calc(1.15vw);
+    color: white;
+    top: calc(52.5vh);
+}
+
+.description-box {
+    background-color: black;
+    width: calc(87.5vw);
+    position: absolute; 
+    left: calc(12.5vw);
+    height: calc(22.5vh);
+    opacity: 0.6;
+    top: calc(50vh);
+}
+
+.essay-text {
+    position: absolute;
+    text-align: left;
+    left: calc(25vw);
+    top: calc(80vh);
+    font-size: calc(1.25vw);
+    width: calc(57.5vw);
+}
+
+.essay-header {
+    position: absolute;
+    text-align: left;
+    font-size: calc(3vmin);   
+    top: calc(-5vh);
+}
+
