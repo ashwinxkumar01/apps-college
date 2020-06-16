@@ -109,7 +109,7 @@ export default function SignInSide() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
-            <Button
+            <div
               type="submit"
               fullWidth
               variant="contained"
@@ -132,15 +132,16 @@ export default function SignInSide() {
                     return response.json();
                 }).then(data => {
                     console.log(data);
-                    // if (data) {
-                    //     console.log("yay");
-                    //     return <Redirect  to="/Explore.js/" />
-                    // }
+                    if (data) {
+                        console.log("yay - you're logged in but if you try this again without running the entire project it should return false");
+                        //return <Redirect to="/Explore.js/" /> - we need to figure out how to redirect with this line right here 
+                        //FIXME
+                    }
                 });
               }}
             >
               Sign In
-            </Button>
+            </div>
             <Grid container>
               <Grid item xs>
                 {/* <Link href="#" variant="body2">
