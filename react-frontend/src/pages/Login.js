@@ -61,6 +61,7 @@ export default function SignInSide() {
   const[page, setPage] = useState({page: "/loginhome/login"});
   const [username, setUsername] = useState({username: ''});
   const [password, setPassword] = useState({password: ''});
+  const [url, setUrl] = useState({url: ''});
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -111,13 +112,14 @@ export default function SignInSide() {
               label="Remember me"
             /> */}
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
               onClick={e => { 
                   //e.preventDefault();
+                  setUrl({ url: ''});
                   console.log("testing");
                   fetch("/login", {
                     method: "POST",
@@ -130,17 +132,10 @@ export default function SignInSide() {
                         Password: password.password
                     })
                 }).then(response => {
-                    return response.json();
-                }).then(data => {
-                    console.log(data);
-                    if (data) {
-                        console.log("yay - you're logged in but if you try this again without running the entire project it should return false");
-                        const newPage = {page: "/loginhome/features"};
-                setPage(newPage);
-                console.log(newPage);
-                }});
+                    console.log(response.url);
+                    window.location.href = response.url;
+                }).catch(err => console.log(err));
               }}
-              href={page.page}
             >
               Sign In
             </Button>

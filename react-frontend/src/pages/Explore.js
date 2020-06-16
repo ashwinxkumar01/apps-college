@@ -195,10 +195,10 @@ class Explore extends React.Component {
                                 )
                             })
                             }
-                            {/* <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3} /></li>
+                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3} /></li>
                             <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"23000"} Type={"Private"} Logo={Image3} /></li>
                             <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"20"} Fee={"26000"} Type={"Private"} Logo={Image3} /></li>
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3} /></li> */}
+                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3} /></li>
                         </ul>
                     </div>
                 </div>
@@ -245,8 +245,13 @@ class Explore extends React.Component {
     handleClick() {
         let array = [];
         if (this.state.App !== 'Any') {
-            array.push("app_site");
-            array.push(this.state.App);
+            if(this.state.App === 'commonapp') {
+                array.push("common_app");
+                array.push("y");
+            } else {
+                array.push("coalition_app");
+                array.push("y");    
+            }
         }
 
         if (this.state.School !== 'Any') {
@@ -262,44 +267,66 @@ class Explore extends React.Component {
             })
         }
 
-        if (this.state.AppFeeLower !== '' && this.state.AppFeeUpper !== '') {
+        if (this.state.AppFeeLower !== '') {
             array.push("app_fee");
             array.push("+" + this.state.AppFeeLower);
+        }
+
+        if(this.state.AppFeeUpper !== '') {
             array.push("app_fee");
             array.push("-" + this.state.AppFeeUpper);
         }
 
-        if (this.state.AcceptanceLower !== '' && this.state.AcceptanceUpper !== '') {
+        if (this.state.AcceptanceLower !== '') {
             array.push("acceptance_rate");
             array.push("+" + this.state.AcceptanceLower);
+        }
+
+        if(this.state.AcceptanceUpper !== '') {
             array.push("acceptance_rate");
             array.push("-" + this.state.AcceptanceUpper);
         }
 
-        if (this.state.PopulationLower !== '' && this.state.PopulationUpper !== '') {
+        if (this.state.PopulationLower !== '') {
             array.push("population");
             array.push("+" + this.state.PopulationLower);
+        }
+
+        if(this.state.PopulationUpper !== '') {
             array.push("population");
             array.push("-" + this.state.PopulationUpper);
         }
 
         if (this.state.TuitionLower !== '' && this.state.TuitionLower !== '') {
             if (this.state.TuitionState === "tuition_normal") {
-                array.push("tuition_normal");
-                array.push("+" + this.state.TuitionLower);
-                array.push("tuition_normal");
-                array.push("-" + this.state.TuitionUpper);
+                if (this.state.TuitionLower !== '') {
+                    array.push("tuition_normal");
+                    array.push("+" + this.state.TuitionLower);
+                }
+        
+                if(this.state.TuitionUpper !== '') {
+                    array.push("tuition_normal");
+                    array.push("-" + this.state.TuitionUpper);
+                }
             } else {
-                array.push("tuition_oos");
-                array.push("+" + this.state.TuitionLower);
-                array.push("tuition_oos");
-                array.push("-" + this.state.TuitionUpper);
+                if (this.state.TuitionLower !== '') {
+                    array.push("tuition_oss");
+                    array.push("+" + this.state.TuitionLower);
+                }
+        
+                if(this.state.TuitionUpper !== '') {
+                    array.push("tuition_oos");
+                    array.push("-" + this.state.TuitionUpper);
+                }
             }
         }
 
-        if (this.state.RankingLower !== '' && this.state.RankingUpper !== '') {
+        if (this.state.RankingLower !== '') {
             array.push("national_ranking");
             array.push("+" + this.state.RankingLower);
+        }
+
+        if(this.state.RankingUpper !== '') {
             array.push("national_ranking");
             array.push("-" + this.state.RankingUpper);
         }
