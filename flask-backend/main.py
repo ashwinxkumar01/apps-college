@@ -60,7 +60,7 @@ def get_colleges(query_lst):
             else:
                 if query_lst[i] == "state":
                     if first_state == True:
-                        query += "(" 
+                        query += " (" 
                         first_state = False
                     query += query_lst[i] + "=\'" + query_lst[i+1] + "\'" 
                     if i < len(query_lst)-2 and query_lst[i+2] == "state":
