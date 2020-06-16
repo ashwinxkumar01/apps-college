@@ -117,6 +117,7 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}
               onClick={e => { 
+                  e.preventDefault();
                   console.log("testing");
                   fetch("/login", {
                     method: "POST",
