@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  let success = "/loginhome/login";
   const [username, setUsername] = useState({username: ''});
   const [password, setPassword] = useState({password: ''});
   return (
@@ -109,13 +110,12 @@ export default function SignInSide() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
-            <div
+            <Button
               type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
-              // href="/loginhome/features"
               onClick={e => { 
                   console.log("testing");
                   fetch("/login", {
@@ -134,14 +134,14 @@ export default function SignInSide() {
                     console.log(data);
                     if (data) {
                         console.log("yay - you're logged in but if you try this again without running the entire project it should return false");
-                        //return <Redirect to="/Explore.js/" /> - we need to figure out how to redirect with this line right here 
-                        //FIXME
+                        success = "/loginhome/features";
                     }
                 });
               }}
+              href={success}
             >
               Sign In
-            </div>
+            </Button>
             <Grid container>
               <Grid item xs>
                 {/* <Link href="#" variant="body2">
