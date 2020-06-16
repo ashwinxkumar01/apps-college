@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  let success = "/loginhome/login";
   const [username, setUsername] = useState({username: ''});
   const [password, setPassword] = useState({password: ''});
   return (
@@ -115,7 +116,6 @@ export default function SignInSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              // href="/loginhome/features"
               onClick={e => { 
                   e.preventDefault();
                   console.log("testing");
@@ -135,11 +135,11 @@ export default function SignInSide() {
                     console.log(data);
                     if (data) {
                         console.log("yay - you're logged in but if you try this again without running the entire project it should return false");
-                        return <Redirect to="/Explore.js/" />
-                        //FIXME
+                        success = "/loginhome/features";
                     }
                 });
               }}
+              href={success}
             >
               Sign In
             </Button>
