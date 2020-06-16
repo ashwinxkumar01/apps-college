@@ -6,7 +6,7 @@ from flask import request
 from sql_helpers import *
 from flask import jsonify
 import pyodbc
-# from firebase import * #Causing errors when testing, Ashwin fix it
+#from firebase import * #Causing errors when testing, Ashwin fix it
 from flask_cors import CORS, cross_origin
 
 app = flask.Flask(__name__)
@@ -44,7 +44,7 @@ def get_query(query):
 # returns list of JSON objects with college information
 def get_colleges(query_lst):
     query = "SELECT * FROM " + os.environ.get("TABLE_NAME")
-
+    first_state = True
     if len(query_lst) > 0:
         query += " WHERE"
 
@@ -58,10 +58,23 @@ def get_colleges(query_lst):
                 else:
                     query += " " + query_lst[i] + " <= " + query_lst[i + 1][1:]
             else:
-                query += " " + query_lst[i] + "=\'" + query_lst[i + 1] + "\'"
+                if query_lst[i] == "state":
+                    if first_state == True:
+                        query += "(" 
+                        first_state = False
+                    query += query_lst[i] + "=\'" + query_lst[i+1] + "\'" 
+                    if i < len(query_lst)-2 and query_lst[i+2] == "state":
+                        query += " OR "
+                        i += 2
+                        continue
+                    else:
+                        query += ")"
+                else:
+                    query += " " + query_lst[i] + "=\'" + query_lst[i + 1] + "\'"
 
             if i != len(query_lst) - 2:
-                query += " AND"
+                    query += " AND"
+
     elif len(query_lst) < 0:
         return "Incorrect Usage"
 
@@ -151,10 +164,10 @@ def get_college_names():
 
 #Routes testing for connectivity
 
-# @app.route("/test", methods = ['GET'])
-# def test_func():
-#     names = get_college_names()
-#     return jsonify(names)
+@app.route("/test", methods = ['GET'])
+def test_func():
+    names = get_college_names()
+    return jsonify(names)
 
 
 @app.route("/")
@@ -179,18 +192,18 @@ def test_filter():
     is_descending = post_request['IsDescending']
 
     colleges_array = get_colleges(array)
-    print(colleges_array)
+    # print(colleges_array)
 
     return jsonify(get_order(colleges_array, filter_by, is_descending))
 
 
 
-# FIREBASE BEGINS HERE
-#
-#
-#
-#
-#
+#FIREBASE BEGINS HERE
+
+
+
+
+
 
 
 
