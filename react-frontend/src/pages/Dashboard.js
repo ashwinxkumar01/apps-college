@@ -47,7 +47,7 @@ class Dashboard extends React.Component {
     }
   }
 
-  renderDashboard = () => {
+  componentWillMount(){
     fetch("/dashboard", {
       method: "POST",
       headers: {
@@ -58,10 +58,15 @@ class Dashboard extends React.Component {
       return response.json()
       }).then(data => {
       console.log(data)
-      this.setState({ users: data });
-      console.log("here")
-    });
+      if(this.state.users === data){
 
+      }else{
+        this.setState({users : data});
+      }
+    });
+  }
+
+  renderDashboard = () => {
     if (this.state.searchBar === false) {
       return (
         <div className={useStyles.root}>
