@@ -358,18 +358,30 @@ def isLoggedIn():
         isLoggedIn = False
     return isLoggedIn
 
+@app.route("/addcollege", methods = ['POST'])
+def addCollege():
+    print("add function call")
+    post_request = request.get_json(force=True)
 
-def addCollege(collegeName):
+    # Assign value from the request
+    collegeName = post_request['CollegeName']
+    
     colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
     colleges[collegeName] = collegeName
     db.child("users").child(dictio['currentUser'][:-6]).update(colleges)
 
 
-def removeCollege(collegeName):
+@app.route("/removecollege", methods = ['POST'])
+def removeCollege():
+    print("remove function call")
+    post_request = request.get_json(force=True)
+
+    # Assign value from the request
+    collegeName = post_request['CollegeName']
+    
     colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
     colleges[collegeName] = "none"
     db.child("users").child(dictio['currentUser'][:-6]).update(colleges)
-
 
 def listColleges():
     colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
