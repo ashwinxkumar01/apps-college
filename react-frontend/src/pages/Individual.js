@@ -13,7 +13,19 @@ class Individual extends Component {
             college_name: "San Diego State University",
             college_json: []
         }
+        this.numFormat = this.numFormat.bind(this);
+        this.dateFormat = this.dateFormat.bind(this);
     }
+
+    numFormat(num) {
+        return num.toLocaleString();
+    }
+
+    dateFormat(input) {
+        var myDate = new Date(input * 1000);
+        return ((myDate.getUTCMonth() + 1) + "/" + myDate.getUTCDate() + "/" + myDate.getUTCFullYear());
+    }
+
 
     componentDidMount(){
         fetch("/individual", {
@@ -88,6 +100,25 @@ class Individual extends Component {
                             <h1 className="general-text">
                                 General Info
                             </h1>
+                            <p>
+                                Transcripts: {this.state.college_json["transcripts"]}
+                            </p>
+                            <p>
+                                Mid-Year Report: {this.state.college_json["mid_year"]}
+                            </p>
+                            <p>
+                                Letters of Recommendation Required: {this.state.college_json["letter_of_rec_required"]}
+                            </p>
+                            <p>
+                                SAT: {this.state.college_json["sat"]}
+                            </p>
+                            <p>
+                                Regular Decision Deadline: {this.dateFormat(this.state.college_json["regular_decision"])}
+                            </p>
+                            <p>
+                                Apply Via: {this.state.college_json["app_site"]}
+                            </p>
+
                         </Grid>                    
                     </Grid>
                 </div>

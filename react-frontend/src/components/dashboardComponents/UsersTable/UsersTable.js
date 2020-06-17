@@ -148,7 +148,7 @@ const UsersTable = props => {
                       </div>
                     </TableCell>
                     <TableCell>{user.state}</TableCell>
-                    <TableCell>{user.reg}</TableCell>
+                    <TableCell>{user.regular_decison}</TableCell>
                     <TableCell>{user.tuition_normal}</TableCell>
                     <TableCell>{user.tuition_oos} </TableCell>
                   </TableRow>

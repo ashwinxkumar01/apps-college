@@ -411,31 +411,6 @@ def listColleges():
 
 
 # testing method
-<<<<<<< HEAD
-if __name__ == '__main__':
-    print("im here")
-    # createUserWithEmailPassword("aksportsmaniac@gmail.com", "123456")
-    loginWithEmailPassword()
-    print(dictio['currentUser'])
-    # db.child("users").child(short)
-    # print(db.child("users").child(dictio['currentUser'][:-6]).get().val())
-    # db.child("users").child(dictio['currentUser'][:-6]).update({"college": "ucsd"})
-    # colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
-    # colleges['ucsb'] = 'ucsb'
-    # addCollege('USC')
-    # addCollege('University of Southern California')
-    # addCollege('University of California, San Diego')
-    # removeCollege('college')
-    listColleges()
-
-    # print(colleges)
-    logout()
-    if ('usr' in dictio):
-        print("something went wrong here")
-    else:
-        print("good job!")
-    print(dictio['currentUser'])
-=======
 # if __name__ == '__main__':
 #     print("im here")
 #     # createUserWithEmailPassword("aksportsmaniac@gmail.com", "123456")
@@ -459,7 +434,6 @@ if __name__ == '__main__':
 #     else:
 #         print("good job!")
 #     print(dictio['currentUser'])
->>>>>>> 56dad1f9ba5d4b0f58a5400437c6cfaa70fbdfea
 
 @app.route("/dashboard", methods = ['POST'])
 def dashboard():
