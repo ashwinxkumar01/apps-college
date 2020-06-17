@@ -257,12 +257,14 @@ def createUserWithEmailPassword(email, password):
 # takes in an email and password from the request
 @app.route("/login", methods = ['POST'])
 def loginWithEmailPassword():
-    post_request = request.get_json(force=True)
+    #post_request = request.get_json(force=True)
 
     # Assign value from the request
-    email = post_request['Username']
-    password = post_request['Password']
+    #email = post_request['Username']
+    #password = post_request['Password']
 
+    email = "aksportsmaniac@gmail.com"
+    password = "123456"
     # successfulLogin = False
     try:
         # print(session['usr']) #if this doesn't error out, that means the user is logged in already
@@ -276,8 +278,10 @@ def loginWithEmailPassword():
             dictio['usr'] = user_id
             dictio['currentUser'] = email
         except:
-            return json.dumps({"True": 1})
-    return json.dumps({"True": 2})
+            #return json.dumps({"True": 1}) #unsuccessful login
+            return False
+    #return json.dumps({"True": 2}) #successful login
+    return True
 
 
 # deletes the current session - should take them to home page?
@@ -325,7 +329,7 @@ def listColleges():
         # so take the first json in the list and add it to our return list
         curr_college = get_colleges(["college_name", element])
         # make sure we actually found that school
-        if len(curr_college) != 0:
+        if len(curr_college) != 0:  
             print("found " + element)
             json_lst.append(curr_college[0])
         else:
@@ -335,28 +339,28 @@ def listColleges():
 
 
 # testing method
-# if __name__ == '__main__':
-#     print("im here")
-#     # createUserWithEmailPassword("aksportsmaniac@gmail.com", "123456")
-#     loginWithEmailPassword("aksportsmaniac@gmail.com", "123456")
-#     print(dictio['currentUser'])
-#     # db.child("users").child(short)
-#     # print(db.child("users").child(dictio['currentUser'][:-6]).get().val())
-#     # db.child("users").child(dictio['currentUser'][:-6]).update({"college": "ucsd"})
-#     # colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
-#     # colleges['ucsb'] = 'ucsb'
-#     # addCollege('USC')
-#     # addCollege('University of Southern California')
-#     # addCollege('University of California, San Diego')
-#     removeCollege('college')
-#     listColleges()
+if __name__ == '__main__':
+    print("im here")
+    # createUserWithEmailPassword("aksportsmaniac@gmail.com", "123456")
+    loginWithEmailPassword()
+    print(dictio['currentUser'])
+    # db.child("users").child(short)
+    # print(db.child("users").child(dictio['currentUser'][:-6]).get().val())
+    # db.child("users").child(dictio['currentUser'][:-6]).update({"college": "ucsd"})
+    # colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
+    # colleges['ucsb'] = 'ucsb'
+    # addCollege('USC')
+    # addCollege('University of Southern California')
+    # addCollege('University of California, San Diego')
+    # removeCollege('college')
+    listColleges()
 
-#     # print(colleges)
-#     logout()
-#     if ('usr' in dictio):
-#         print("something went wrong here")
-#     else:
-#         print("good job!")
-#     print(dictio['currentUser'])
+    # print(colleges)
+    logout()
+    if ('usr' in dictio):
+        print("something went wrong here")
+    else:
+        print("good job!")
+    print(dictio['currentUser'])
 
 app.run(debug=True)
