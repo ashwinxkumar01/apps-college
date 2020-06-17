@@ -114,11 +114,11 @@ const UsersTable = props => {
                       onChange={handleSelectAll}
                     />
                   </TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell>Location</TableCell>
-                  <TableCell>Phone</TableCell>
-                  <TableCell>Registration date</TableCell>
+                  <TableCell>College Name</TableCell>
+                  <TableCell>State</TableCell>
+                  <TableCell>RD Deadline</TableCell>
+                  <TableCell>In-state Tuition</TableCell>
+                  <TableCell>Out-of-State Tuition</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -144,18 +144,13 @@ const UsersTable = props => {
                           // src={user.avatarUrl}
                         >
                         </Avatar> */}
-                        <Typography variant="body1">{user.name}</Typography>
+                        <Typography variant="body1">{user.college_name}</Typography>
                       </div>
                     </TableCell>
-                    <TableCell>{user.email}</TableCell>
-                    <TableCell>
-                      {user.address.city}, {user.address.state},{' '}
-                      {user.address.country}
-                    </TableCell>
-                    <TableCell>{user.phone}</TableCell>
-                    <TableCell>
-                      {moment(user.createdAt).format('DD/MM/YYYY')}
-                    </TableCell>
+                    <TableCell>{user.state}</TableCell>
+                    <TableCell>{user.reg}</TableCell>
+                    <TableCell>{user.tuition_normal}</TableCell>
+                    <TableCell>{user.tuition_oos} </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

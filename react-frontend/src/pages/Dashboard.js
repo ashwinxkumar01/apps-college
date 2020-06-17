@@ -48,6 +48,20 @@ class Dashboard extends React.Component {
   }
 
   renderDashboard = () => {
+    fetch("/dashboard", {
+      method: "POST",
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      }).then(response => {
+      console.log(response)
+      return response.json()
+      }).then(data => {
+      console.log(data)
+      this.setState({ users: data });
+      console.log("here")
+    });
+
     if (this.state.searchBar === false) {
       return (
         <div className={useStyles.root}>
