@@ -130,7 +130,7 @@ def get_ranking_order(college_lst):
     return int(college_lst[3])
 
 def get_colleges_for_dashboard(query_lst):
-    query = "SELECT * FROM " + "listcolleges"
+    query = "SELECT * FROM " + os.environ.get("TABLE_NAME")
 
     if len(query_lst) > 0:
         query += " WHERE"

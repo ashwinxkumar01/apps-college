@@ -13,29 +13,9 @@ class Individual extends Component {
             college_name: "San Diego State University",
             college_json: []
         }
-        // this.onStart = this.onStart.bind(this);
-
     }
 
-    // onStart() {
-    //     fetch("/individual", {
-    //         method: "POST",
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             name: this.state.college_name
-    //         })
-    //     }).then(response => {
-    //         console.log(response)
-    //         return response.json()
-    //     }).then(data => {
-    //         this.setState({college_json: data})
-    //         console.log(data)
-    //     });
-    // }
-
-    componentWillMount(){
+    componentDidMount(){
         fetch("/individual", {
             method: "POST",
             headers: {
@@ -48,16 +28,14 @@ class Individual extends Component {
             console.log(response)
             return response.json()
         }).then(data => {
-            this.setState({college_json: data})
+            let value = JSON.parse(data);
+            this.setState({college_json: value})
             console.log(this.state.college_json)
         });
       }
-
     
-    renderIndividual = (college_json) => {
-        
-        //this.onStart();
-        //let val = JSON.parse(this.state.college_json)
+    renderIndividual = () => {
+    
         return (
             <div>
                 <img className="Geisel" src={Geisel} />
@@ -68,18 +46,9 @@ class Individual extends Component {
                 <p className="description-text" >
                 The University of California, San Diego (UC San Diego or, colloquially, UCSD) is a public research university in San Diego, California. Established in 1960 near the pre-existing Scripps Institution of Oceanography, UC San Diego is the seventh-oldest of the 10 University of California campuses and offers over 200 undergraduate and graduate degree programs, enrolling approximately 30,800 undergraduate and 8,000 graduate students. The university occupies 2,141 acres (866 ha) near the coast of the Pacific Ocean, with the main campus resting on approximately 1,152 acres (466 ha).
                 </p>
-                {console.log(this.state.college_json["college_name"])}
-                {this.state.college_json.map(college => {
-                            console.log(college)
-                            let val = JSON.parse(college);
-                            let collegeName = val["college_name"];
-                            console.log(collegeName)
-                            return( 
-                                <h1 className="UCSD">
-                                    {collegeName}
-                                </h1>
-                            );
-                        })}
+                <h1 className="UCSD">
+                    {this.state.college_json["college_name"]}  
+                </h1>
                 <div className="essay-text" >
                     <h1 className="essay-header">
                         Essay Questions (4)
@@ -129,12 +98,10 @@ class Individual extends Component {
     render() {
         return (
             <div>
-             {this.renderIndividual(this.state.college_json)}
+             {this.renderIndividual()}
             </div>
         );
-
     }
- 
 }
 
 export default Individual;
