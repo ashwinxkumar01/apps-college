@@ -13,11 +13,30 @@ class Heart extends React.Component {
 
     handleClick(e) {
         if (this.state.status === true) {
-            console.log(this.state.currentCollege);
-        }
-        if (this.state.status === true) {
+            fetch("/removecollege", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    CollegeName: this.state.currentCollege
+                })
+                }).then(response => {
+                    return response.json();
+                }).then(data => {})
             this.setState({ status: false });
         } else {
+            fetch("/addcollege", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    CollegeName: this.state.currentCollege
+                })
+                }).then(response => {
+                    return response.json();
+                }).then(data => {})
             this.setState({ status: true });
         }
     }

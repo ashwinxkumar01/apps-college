@@ -4,7 +4,7 @@ import '../css/Home.css';
 import { Link } from 'react-router-dom';
 
 function Home() {
-  
+    console.log(sessionStorage.getItem("userData"));
     return (
         <div className="Background-home-page">
             

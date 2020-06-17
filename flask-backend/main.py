@@ -129,6 +129,39 @@ def get_ranking_order(college_lst):
         return 1000
     return int(college_lst[3])
 
+def get_colleges_for_dashboard(query_lst):
+    query = "SELECT * FROM " + "listcolleges"
+
+    if len(query_lst) > 0:
+        query += " WHERE"
+        for i in range(0, len(query_lst), 2):
+            if query_lst[i] == "college_name":
+                query += " " + query_lst[i] + "=\'" + query_lst[i + 1] + "\'"
+            else:
+                return "Incorrect Usage -- Not all parameters are college names"
+            if i != len(query_lst) - 2:
+                    query += " OR"
+    elif len(query_lst) <= 0:
+            return "Incorrect Usage"
+
+    query += ";"
+    print(query)
+    results = get_query(query)
+    toBeSorted = []
+
+    # convert to college object
+    for element in results:
+        c = College(element)
+        toBeSorted.append(c)
+
+    mergeSort(toBeSorted)
+    json = []
+
+    for college in toBeSorted:
+        json.append(college.get_json())
+
+    return json
+
 
 # function for kai to get names of all colleges
 # returns a list of lists with name, abbreviation, alias of each college
@@ -277,12 +310,39 @@ def loginWithEmailPassword():
             # session['usr'] = user_id
             dictio['usr'] = user_id
             dictio['currentUser'] = email
+            print(dictio['currentUser'])
+            print(dictio['currentUser'][:-6])
         except:
-            #return json.dumps({"True": 1}) #unsuccessful login
-            return False
-    #return json.dumps({"True": 2}) #successful login
-    return True
+            return json.dumps({"True": 1})
+    
+    return json.dumps({"True": 2})
 
+def loginWithEmailPasswordTest():
+    # post_request = request.get_json(force=True)
+
+    # # Assign value from the request
+    # email = post_request['Username']
+    # password = post_request['Password']
+    email = "aksportsmaniac@gmail.com"
+    password = "123456"
+    # successfulLogin = False
+    try:
+        # print(session['usr']) #if this doesn't error out, that means the user is logged in already
+        print(dictio['usr'])
+    except KeyError:
+        try:
+            user = auth.sign_in_with_email_and_password(email, password)
+            user = auth.refresh(user['refreshToken'])
+            user_id = user['idToken']
+            # session['usr'] = user_id
+            dictio['usr'] = user_id
+            dictio['currentUser'] = email
+            print(dictio['currentUser'])
+            print(dictio['currentUser'][:-6])
+        except:
+            return False
+    
+    return True
 
 # deletes the current session - should take them to home page?
 def logout():
@@ -300,18 +360,30 @@ def isLoggedIn():
         isLoggedIn = False
     return isLoggedIn
 
+@app.route("/addcollege", methods = ['POST'])
+def addCollege():
+    print("add function call")
+    post_request = request.get_json(force=True)
 
-def addCollege(collegeName):
+    # Assign value from the request
+    collegeName = post_request['CollegeName']
+    
     colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
     colleges[collegeName] = collegeName
     db.child("users").child(dictio['currentUser'][:-6]).update(colleges)
 
 
-def removeCollege(collegeName):
+@app.route("/removecollege", methods = ['POST'])
+def removeCollege():
+    print("remove function call")
+    post_request = request.get_json(force=True)
+
+    # Assign value from the request
+    collegeName = post_request['CollegeName']
+    
     colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
     colleges[collegeName] = "none"
     db.child("users").child(dictio['currentUser'][:-6]).update(colleges)
-
 
 def listColleges():
     colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
@@ -339,6 +411,7 @@ def listColleges():
 
 
 # testing method
+<<<<<<< HEAD
 if __name__ == '__main__':
     print("im here")
     # createUserWithEmailPassword("aksportsmaniac@gmail.com", "123456")
@@ -362,5 +435,51 @@ if __name__ == '__main__':
     else:
         print("good job!")
     print(dictio['currentUser'])
+=======
+# if __name__ == '__main__':
+#     print("im here")
+#     # createUserWithEmailPassword("aksportsmaniac@gmail.com", "123456")
+#     loginWithEmailPasswordTest()
+#     print(dictio['currentUser'])
+#     # db.child("users").child(short)
+#     # print(db.child("users").child(dictio['currentUser'][:-6]).get().val())
+#     # db.child("users").child(dictio['currentUser'][:-6]).update({"college": "ucsd"})
+#     # colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
+#     # colleges['ucsb'] = 'ucsb'
+#     # addCollege('USC')
+#     # addCollege('University of Southern California')
+#     # addCollege('University of California, San Diego')
+#     removeCollege('college')
+#     listColleges()
+
+#     # print(colleges)
+#     logout()
+#     if ('usr' in dictio):
+#         print("something went wrong here")
+#     else:
+#         print("good job!")
+#     print(dictio['currentUser'])
+>>>>>>> 56dad1f9ba5d4b0f58a5400437c6cfaa70fbdfea
+
+@app.route("/dashboard", methods = ['POST'])
+def dashboard():
+    db.child("users").get().val()
+    #print(db.get().val())
+    #listColleges()
+    colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
+    #print(colleges)
+    name_list = []
+    for name in colleges.values():
+        if name != "none":
+            name_list.append(name)
+    query_lst = []
+    for i in name_list:
+        query_lst.append("college_name")
+        query_lst.append(i)
+    #print(query_lst)
+    json_return = get_colleges_for_dashboard(query_lst)
+    print(json_return)
+    return json.dumps(json_return)
+
 
 app.run(debug=True)

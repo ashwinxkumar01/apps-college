@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
     this.state = {
       searchBar: false,
       resultsFromSearch: [],
-      users: mockData
+      users: mockData,
     };
     this.setSearch = this.setSearch.bind(this);
     this.searchBarInUse = this.searchBarInUse.bind(this);
@@ -47,7 +47,38 @@ class Dashboard extends React.Component {
     }
   }
 
+  componentWillMount(){
+
+    fetch("/dashboard", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(response => {
+      console.log(response)
+      return response.json()
+    }).then(data => {
+      let collegeList = [];
+      data.map(college => {
+        var collegeName = JSON.parse(college);
+        collegeList.push(collegeName);
+      })
+      console.log(collegeList);
+      console.log(this.state.users);
+      console.log(this.state.users === collegeList);
+      if (this.state.users === collegeList) {
+        console.log("here");
+        console.log(this.state.users);
+      } else {
+        console.log("else loop");
+        this.setState({ users: collegeList });
+      }
+    });
+
+  }
+
   renderDashboard = () => {
+
     if (this.state.searchBar === false) {
       return (
         <div className={useStyles.root}>
@@ -70,7 +101,7 @@ class Dashboard extends React.Component {
               </div>
             </Nav.Link>
             <div className="height">
-                <Heart collegeName={college} />
+              <Heart collegeName={college} />
             </div>
           </div>
         )
@@ -80,6 +111,10 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    if (sessionStorage.getItem("userData")) {
+      console.log(sessionStorage.getItem("userData"));
+    }
+
     return (
       <div className="dashboard">
         <Navigationbar active="1" />

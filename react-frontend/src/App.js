@@ -9,21 +9,38 @@ import Signup from './pages/Signup';
 import Features from './pages/Features';
 import Individual from './pages/Individual';
 
+const RequireAuth = (Component) => {
+  return class Application extends Component {
+    componentWillMount() {
+      if (sessionStorage.getItem("userData")) {
+
+      } else {
+        this.props.history.replace({ pathname: '/loginhome/login' });
+      }
+    }
+
+    render() {
+      return <Component Component />
+    }
+
+  }
+}
+
 class App extends React.Component {
   render() {
     return (
       <Router>
         <div className="App">
-        <Switch>
-          <Route path="/loginhome/explore" component={Explore} />
-          <Route path="/loginhome/dashboard" component={Dashboard} />
-          <Route path="/loginhome/login" component={Login} />
-          <Route path="/loginhome/signup" component={Signup} />
-          <Route path="/loginhome/features/:collegeName" component={Features} />
-          <Route path="/loginhome/page" component={Individual} />
-          <Route path="/" component={Home} />
-        </Switch>
-      </div>
+          <Switch>
+            <Route path="/loginhome/explore" component={RequireAuth(Explore)} />
+            <Route path="/loginhome/dashboard" component={RequireAuth(Dashboard)} />
+            <Route path="/loginhome/login" component={Login} />
+            <Route path="/loginhome/signup" component={Signup} />
+            <Route path="/loginhome/features/:collegeName" component={Features} />
+            <Route path="/loginhome/page" component={Individual} />
+            <Route path="/" component={Home} />
+          </Switch>
+        </div>
       </Router>
     );
   }
