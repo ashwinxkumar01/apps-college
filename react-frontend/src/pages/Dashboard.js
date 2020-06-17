@@ -80,6 +80,10 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    if(sessionStorage.getItem("userData")){
+      console.log(sessionStorage.getItem("userData"));
+    }
+    console.log()
     return (
       <div className="dashboard">
         <Navigationbar active="1" />

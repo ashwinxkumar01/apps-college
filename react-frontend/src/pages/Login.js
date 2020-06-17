@@ -134,6 +134,7 @@ export default function SignInSide() {
                   if(data["True"] === 1) {
                     setDisplay({ display: data["True"]});
                   } else {
+                    sessionStorage.setItem("userData", "aksportsmaniac");
                     window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
                   }
                 })

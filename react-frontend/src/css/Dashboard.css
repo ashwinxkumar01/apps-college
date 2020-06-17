@@ -45,7 +45,7 @@
 
   .searchResult:hover {
     background-color: #313b4c;
-    background: linear-gradient(to right, white calc(28vw), white calc(28vw), #313b4c calc(28vw), #313b4c calc(72vw));
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) calc(28vw), rgba(255, 255, 255, 0) calc(28vw), rgba(49, 59, 76, 0) calc(28vw), rgba(49, 59, 76, 0) calc(72vw));
     cursor: pointer;
     color: rgb(228, 209, 255);
     transition-duration: .3s;
