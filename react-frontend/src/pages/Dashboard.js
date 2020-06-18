@@ -10,6 +10,7 @@ import Image3 from './UCSD_3.jpg';
 import { UsersToolbar, UsersTable } from '../components/dashboardComponents';
 import mockData from './data';
 import Heart from '../components/content/Heart';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -92,14 +93,14 @@ class Dashboard extends React.Component {
       return (
         this.state.resultsFromSearch.map(college => (
           <div>
-            <Nav.Link href={`/loginhome/features/${college}`} className="fixedHeight">
+            <Link to={`/loginhome/page/${college}`} className="fixedHeight">
               <div className="searchResult">
                 <div className="backgroundSolid" />
                 <div className="backgroundBlend" />
                 <img src={Image3} alt="Hello" className="imageBox" />
                 {college}
               </div>
-            </Nav.Link>
+            </Link>
             <div className="height">
               <Heart collegeName={college} />
             </div>

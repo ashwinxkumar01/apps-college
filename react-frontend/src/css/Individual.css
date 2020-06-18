@@ -123,3 +123,8 @@
     top: calc(-5vh);
 }
 
+.info-pane{
+    text-align: left;
+    font-size: calc(1.25vw);
+}
+
