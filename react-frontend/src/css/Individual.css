@@ -225,13 +225,3 @@
     width: calc(15vmin);
     height: calc(15vmin);
 }
-
-.heart {
-    justify-content: right;
-    position: absolute;
-    top: calc(1.5vh);
-    right: calc(1.5vw);
-    -webkit-transform: scale(0.7);
-    -ms-transform: scale(0.7);
-    transform: scale(0.7);
-}
