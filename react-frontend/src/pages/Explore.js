@@ -184,7 +184,7 @@ class Explore extends React.Component {
                                 let val = JSON.parse(college);
                                 let collegeName = val["college_name"];
                                 return (
-                                    <Link to={`/loginhome/features/${collegeName}`}>
+                                    <Link to={`/loginhome/page/${collegeName}`}>
                                         <li>
                                             <Tile Alias={val["alias"]} Tuition={this.numFormat(val["tuition_normal"])} TuitionOOS={this.numFormat(val["tuition_oos"])}
                                                 Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
@@ -207,14 +207,14 @@ class Explore extends React.Component {
             return (
                 this.state.resultsFromSearch.map(college => (
                     <div>
-                        <Nav.Link href={`/loginhome/features/${college}`} className="fixedHeight">
+                        <Link to={`/loginhome/page/${college}`} className="fixedHeight">
                             <div className="searchResult">
                                 <div className="backgroundSolid" />
                                 <div className="backgroundBlend" />
                                 <img src={Image3} alt="Hello" className="imageBox" />
                                 {college}
                             </div>
-                        </Nav.Link>
+                        </Link>
                         <div className="height">
                             <Heart collegeName={college} />
                         </div>

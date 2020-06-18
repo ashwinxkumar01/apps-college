@@ -34,7 +34,7 @@ class Individual extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: this.state.college_name
+                name: this.props.match.params.collegeName
             })
         }).then(response => {
             console.log(response)
@@ -44,6 +44,7 @@ class Individual extends Component {
             this.setState({college_json: value})
             console.log(this.state.college_json)
         });
+        
       }
     
     renderIndividual = () => {
@@ -100,25 +101,26 @@ class Individual extends Component {
                             <h1 className="general-text">
                                 General Info
                             </h1>
-                            <p>
-                                Transcripts: {this.state.college_json["transcripts"]}
-                            </p>
-                            <p>
-                                Mid-Year Report: {this.state.college_json["mid_year"]}
-                            </p>
-                            <p>
-                                Letters of Recommendation Required: {this.state.college_json["letter_of_rec_required"]}
-                            </p>
-                            <p>
-                                SAT: {this.state.college_json["sat"]}
-                            </p>
-                            <p>
-                                Regular Decision Deadline: {this.dateFormat(this.state.college_json["regular_decision"])}
-                            </p>
-                            <p>
-                                Apply Via: {this.state.college_json["app_site"]}
-                            </p>
-
+                            <div className = "info-pane">
+                                <p>
+                                    Transcripts: {this.state.college_json["transcripts"]}
+                                </p>
+                                <p>
+                                    Mid-Year Report: {this.state.college_json["mid_year"]}
+                                </p>
+                                <p>
+                                    Letters of Recommendation Required: {this.state.college_json["letter_of_rec_required"]}
+                                </p>
+                                <p>
+                                    SAT: {this.state.college_json["sat"]}
+                                </p>
+                                <p>
+                                    Regular Decision Deadline: {this.dateFormat(this.state.college_json["regular_decision"])}
+                                </p>
+                                <p>
+                                    Apply Via: {this.state.college_json["app_site"]}
+                                </p>
+                            </div>
                         </Grid>                    
                     </Grid>
                 </div>

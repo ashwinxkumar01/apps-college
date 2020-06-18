@@ -208,8 +208,7 @@ def test_func():
 @app.route("/loginhome/login")
 @app.route("/loginhome/signup")
 @app.route("/loginhome/dashboard")
-@app.route("/loginhome/features/:collegeName")
-@app.route("/loginhome/page")
+@app.route("/loginhome/page/:collegeName")
 def my_index():
     return flask.render_template("index.html", token="Hello Flask and React")
 

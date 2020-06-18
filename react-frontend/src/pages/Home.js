@@ -1,129 +1,123 @@
 import React from 'react';
-import '../css/Home.css';
-
+import { Container, Nav, Button, Row, Col, Form} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import '../css/Home.css';
+import * as bs from 'bootstrap/dist/css/bootstrap.css';
+import { faSearch, faGlobeAmericas, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Home() {
     console.log(sessionStorage.getItem("userData"));
     return (
         <div className="Background-home-page">
-            
-            <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-                <div class="container">
-                    <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="" /></a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fa fa-bars ml-1"></i></button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav text-uppercase ml-auto">
-                            <Link to="/loginhome/explore">
-                                <li class="nav-item"><a class="nav-link js-scroll-trigger">Services</a></li>
-                            </Link>
-                        </ul>
+
+            <div className="image-background">
+                <Nav className="justify-content-end" activeKey="/home">
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/loginhome/login">Login</Nav.Link>
+                    </Nav.Item>
+                
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/loginhome/signup">Sign up</Nav.Link>
+                    </Nav.Item>
+                </Nav>
+
+                <Container>
+                    <Row className="justify-content-md-center">
+                        <Col md="auto" style={{fontSize: "calc(5.5rem"}}>5400 APPS. ONE PLACE</Col>
+                    </Row>
+
+                    <Row className="justify-content-md-center">
+                        <Col md="auto" style={{fontSize: "calc(2rem", marginTop: 'calc(0.7rem)'}}>ALL YOUR NEEDS SATISFIED BY BOSSMAN</Col>
+                    </Row>
+
+                    <Row className="justify-content-md-center">
+                        <Link to="/loginhome/signup">
+                            <Button variant="primary" size="lg">
+                                Sign up
+                            </Button>{' '}
+                        </Link>
+                    </Row>
+                </Container>
+
+            </div>
+
+            <div className="features-container">
+                <div className="features">
+                    <h1 className="header-h1">FEATURES OF THIS NONSENSE</h1>
+                    
+                    <div className="header-div">
+                        <h1 className="header-feature">SEARCH</h1>
+                        <h1 className="header-feature">EXPLORE</h1>
+                        <h1 className="header-feature">ORGANIZE</h1>
                     </div>
-                </div>
-            </nav>
-            
-            <header class="masthead">
-                <div class="container">
-                    <div class="masthead-subheading">5300 Colleges. 20+ Applications.</div>
-                    <div class="masthead-heading text-uppercase">One Site.</div>
-                    <Link to="/loginhome/login">
-                            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger">Sign In</a>
-                    </Link>
-                </div>
-            </header>
-            
-            <section class="page-section bg-light" id="team">
-                <div class="container">
-                    <div class="text-center">
-                        <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-                        <h3 class="section-subheading text-muted">The great founders of Red Pandas</h3>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="team-member">
-                                <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="" />
-                                <h4>Ashwin Kumar</h4>
-                                <p class="text-muted">Berkeley student</p>
-                                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fa fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fa fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fa fa-linkedin-square"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="team-member">
-                                <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="" />
-                                <h4>Mihir Gupta</h4>
-                                <p class="text-muted">UCSD Student</p>
-                                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fa fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fa fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fa fa-linkedin-square"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="team-member">
-                                <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="" />
-                                <h4>Andrew Kim</h4>
-                                <p class="text-muted">Pro Gamer</p>
-                                <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fa fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fa fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fa fa-linkedin-square"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
-                    </div>
-                </div>
-            </section>
-            
-            <div class="py-5">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6 my-3">
-                            <a href="#!"><img class="img-fluid d-block mx-auto" src="assets/img/logos/envato.jpg" alt="" /></a>
-                        </div>
-                        <div class="col-md-3 col-sm-6 my-3">
-                            <a href="#!"><img class="img-fluid d-block mx-auto" src="assets/img/logos/designmodo.jpg" alt="" /></a>
-                        </div>
-                        <div class="col-md-3 col-sm-6 my-3">
-                            <a href="#!"><img class="img-fluid d-block mx-auto" src="assets/img/logos/themeforest.jpg" alt="" /></a>
-                        </div>
-                        <div class="col-md-3 col-sm-6 my-3">
-                            <a href="#!"><img class="img-fluid d-block mx-auto" src="assets/img/logos/creative-market.jpg" alt="" /></a>
-                        </div>
-                    </div>
+
+                    <Container fluid>
+                        <Row>
+                            <Col xs={6} md={4}>
+                                <div className='description-hover'>
+                                    <div className="icon-border">
+                                        <div><FontAwesomeIcon icon={faSearch} /></div>
+                                    </div>
+                                    <p>Bossman said he is going to give us all raises if we finish this project in the next two weeks, 
+                                    please work hard so we can finish this project!</p>
+                                </div>
+                            </Col>
+                            <Col xs={6} md={4}>
+                                <div className='description-hover'>
+                                    <div className="icon-border">
+                                        <div><FontAwesomeIcon icon={faGlobeAmericas} /></div>
+                                    </div>
+                                    <p> Don't know where to start? Explore colleges with filters customizable by you. Explore and
+                                    find hundreds of colleges that fit your needs </p>
+                                </div>
+                            </Col>
+                            <Col xs={6} md={4}> 
+                                <div className='description-hover'>
+                                    <div className="icon-border">
+                                        <div><FontAwesomeIcon icon={faLayerGroup} /></div>
+                                    </div>
+                                    <p> Bossman said he is going to give us all raises if we finish this project in the next two weeks, 
+                                    please work hard so we can finish this project!</p>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
                 </div>
             </div>
-            
-            <section class="page-section" id="contact">
-                <div class="container">
-                    <div class="text-center">
-                        <h2 class="section-heading text-uppercase">Contact Us</h2>
-                        <h3 class="section-subheading text-muted">We will be happy to hear your feedback!</h3>
-                    </div>
-                    <form id="contactForm" name="sentMessage" novalidate="novalidate">
-                        <div class="row align-items-stretch mb-5">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input class="form-control" id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name." />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address." />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group mb-md-0">
-                                    <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number." />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group form-group-textarea mb-md-0">
-                                    <textarea class="form-control" id="message" placeholder="Your Message *" required="required" data-validation-required-message="Please enter a message."></textarea>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <div id="success"></div>
-                            <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Send Message</button>
-                        </div>
-                    </form>
-                </div>
-            </section>
+
+            <div className="contact-div">
+                <section className="contact">
+                <h1>Feel free to Contact us!</h1>
+                    <Form>
+                        <Form.Row>
+                            <Col style={{marginTop: 'calc(4rem)'}}>
+                                <Form.Group controlId="exampleForm.ControlInput1" style={{display: 'flex', justifyContent: 'flex-end'}}>
+                                    <Form.Control type="text" placeholder="John Doe" style={{width: 'calc(55%)'}}/>
+                                </Form.Group>
+                                <Form.Group controlId="exampleForm.ControlInput1" style={{display: 'flex', justifyContent: 'flex-end'}}>
+                                    <Form.Control type="email" placeholder="name@example.com" style={{width: 'calc(55%)'}}/>
+                                </Form.Group>
+                            </Col>
+                            <Col style={{marginTop: 'calc(4rem)'}}>
+                                <Form.Group controlId="exampleForm.ControlTextarea1" style={{display: 'flex', justifyContent: 'left'}}>
+                                    <Form.Control as="textarea" rows="3" style={{height: 'calc(10rem)', width: 'calc(55%)'}} placeholder="Enter message here..."/>
+                                </Form.Group>
+                            </Col>
+                        </Form.Row>
+                        <Row>
+                            <Col md={{ span: 4, offset: 4 }}>
+                                <Button variant="primary" size="lg">
+                                    Send Message
+                                </Button>{' '}
+                            </Col>
+                        </Row>
+                    </Form>
+                </section>
+            </div>
+
+            <span></span>
+
         </div>
     );
 }
