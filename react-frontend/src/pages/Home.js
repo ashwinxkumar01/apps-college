@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Nav, Button, Row, Col, Form} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import '../css/Home.css';
 import * as bs from 'bootstrap/dist/css/bootstrap.css';
 import { faSearch, faGlobeAmericas, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
@@ -13,11 +14,11 @@ function Home() {
             <div className="image-background">
                 <Nav className="justify-content-end" activeKey="/home">
                     <Nav.Item>
-                        <Nav.Link eventKey="link-1">Login</Nav.Link>
+                        <Nav.Link as={Link} to="/loginhome/login">Login</Nav.Link>
                     </Nav.Item>
                 
                     <Nav.Item>
-                        <Nav.Link eventKey="link-2">Sign up</Nav.Link>
+                        <Nav.Link as={Link} to="/loginhome/signup">Sign up</Nav.Link>
                     </Nav.Item>
                 </Nav>
 
@@ -31,9 +32,11 @@ function Home() {
                     </Row>
 
                     <Row className="justify-content-md-center">
-                        <Button variant="primary" size="lg">
-                            Sign up
-                        </Button>{' '}
+                        <Link to="/loginhome/signup">
+                            <Button variant="primary" size="lg">
+                                Sign up
+                            </Button>{' '}
+                        </Link>
                     </Row>
                 </Container>
 
