@@ -42,15 +42,17 @@ class Heart extends React.Component {
     }
 
     render() {
-        JSON.parse(sessionStorage.getItem("collegeNames")).map(college => {
-            console.log(college.college_name);
-            console.log(this.state.currentCollege);
-            if (college.college_name === this.state.currentCollege) {
-                if(this.state.status !== true){
-                    this.setState({status: true})
+        if (sessionStorage.getItem("collegeNames") !==  null){
+            JSON.parse(sessionStorage.getItem("collegeNames")).map(college => {
+                console.log(college.college_name);
+                console.log(this.state.currentCollege);
+                if (college.college_name === this.state.currentCollege) {
+                    if(this.state.status !== true){
+                        this.setState({status: true})
+                    }
                 }
-            }
-        });
+            });
+        }
 
         if (this.state.status === true) {
             return (

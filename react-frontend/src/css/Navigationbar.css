@@ -16,15 +16,19 @@
     padding: 1em;
 }
 
-.nav-link {
+.navigation-div .nav-item {
+    background-color: #313b4c;
+}
+
+.navigation-div .nav .nav-link {
     color: rgb(31, 172, 197) !important;
 }
 
-.nav-item:hover {
+.navigation-div .nav .nav-item:hover {
     background-color: rgb(255, 255, 255) !important;
 }
 
-.nav-link.active {
+.navigation-div .nav .nav-link.active {
     background-color: rgb(255, 255, 255) !important;
     color: black !important;
 }

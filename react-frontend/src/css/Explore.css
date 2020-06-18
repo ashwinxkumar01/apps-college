@@ -226,6 +226,7 @@ select {
     width: 100%;
     text-align: center;
     display: inline-block;
+    margin-top: calc(0.7rem);
 }
 
 .backgroundSolid{
