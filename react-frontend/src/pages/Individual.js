@@ -71,7 +71,7 @@ class Individual extends Component {
                 <div className="description-box">
                 </div>
                 <p className="description-text" >
-                The University of California, San Diego (UC San Diego or, colloquially, UCSD) is a public research university in San Diego, California. Established in 1960 near the pre-existing Scripps Institution of Oceanography, UC San Diego is the seventh-oldest of the 10 University of California campuses and offers over 200 undergraduate and graduate degree programs, enrolling approximately 30,800 undergraduate and 8,000 graduate students. The university occupies 2,141 acres (866 ha) near the coast of the Pacific Ocean, with the main campus resting on approximately 1,152 acres (466 ha).
+                    {this.state.college_json["college_description"]}
                 </p>
                 <div className="essay-text" >
                     <h1 className="essay-header">
