@@ -54,6 +54,28 @@ class Explore extends React.Component {
         this.dateFormat = this.dateFormat.bind(this);
     }
 
+    componentDidMount(){
+        fetch("/filter", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Array: [],
+                Filter: "national_ranking",
+                IsDescending: this.state.Checkbox
+            })
+        }).then(response => {
+            console.log(response)
+            return response.json()
+        }).then(data => {
+            this.setState({
+                College: data
+            })
+        });
+        
+      }
+
     searchBarInUse = (inUse) => {
         if (inUse !== this.state.searchBar) {
             console.log(inUse);
@@ -184,18 +206,16 @@ class Explore extends React.Component {
                                 let val = JSON.parse(college);
                                 let collegeName = val["college_name"];
                                 return (
-                                    <Link to={`/loginhome/page/${collegeName}`}>
                                         <li>
                                             <Tile Alias={val["alias"]} Tuition={this.numFormat(val["tuition_normal"])} TuitionOOS={this.numFormat(val["tuition_oos"])}
                                                 Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
                                                 Logo={val["college_logo"]} Type={val["school_type"]}
                                             />
                                         </li>
-                                    </Link>
                                 )
                             })
                             }
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3} /></li>
+                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks And I hate him"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3} /></li>
                             <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"23000"} Type={"Private"} Logo={Image3} /></li>
                             <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"20"} Fee={"26000"} Type={"Private"} Logo={Image3} /></li>
                             <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3} /></li>
@@ -244,57 +264,69 @@ class Explore extends React.Component {
 
     handleClick() {
         let array = [];
-        if (this.state.App !== 'Any') {
-            if(this.state.App === 'commonapp') {
-                array.push("common_app");
-                array.push("y");
-            } else {
-                array.push("coalition_app");
-                array.push("y");    
-            }
-        }
 
-        if (this.state.School !== 'Any') {
-            array.push("school_type");
-            array.push(this.state.School);
-        }
-
-        if (this.state.StateFilter.length !== 0) {
-            console.log(this.state.StateFilter);
-            this.state.StateFilter.forEach(state => {
-            array.push("state")
-            array.push(state);
-            })
-        }
-
-        if (this.state.AppFeeLower !== '') {
+        if (this.state.AppFeeLower !== '' && /^\d+$/.test(this.state.AppFeeLower)) {
             array.push("app_fee");
             array.push("+" + this.state.AppFeeLower);
+        } else {
+            array.push("app_fee");
+            array.push("-5");
         }
 
-        if(this.state.AppFeeUpper !== '') {
+        if(this.state.AppFeeUpper !== '' && /^\d+$/.test(this.state.AppFeeUpper)) {
             array.push("app_fee");
             array.push("-" + this.state.AppFeeUpper);
+        } else {
+            array.push("app_fee");
+            array.push("-5");
         }
 
-        if (this.state.AcceptanceLower !== '') {
+        if (this.state.AcceptanceLower !== '' && /^\d+$/.test(this.state.AcceptanceLower)) {
             array.push("acceptance_rate");
             array.push("+" + this.state.AcceptanceLower);
+        } else {
+            array.push("acceptance_rate");
+            array.push("-5");
         }
 
-        if(this.state.AcceptanceUpper !== '') {
+        if(this.state.AcceptanceUpper !== '' && /^\d+$/.test(this.state.AcceptanceUpper)) {
             array.push("acceptance_rate");
             array.push("-" + this.state.AcceptanceUpper);
+        } else {
+            array.push("acceptance_rate");
+            array.push("-5");
         }
 
-        if (this.state.PopulationLower !== '') {
+        if (this.state.PopulationLower !== '' && /^\d+$/.test(this.state.PopulationLower)) {
             array.push("population");
             array.push("+" + this.state.PopulationLower);
+        } else {
+            array.push("population");
+            array.push("-5");
         }
 
-        if(this.state.PopulationUpper !== '') {
+        if(this.state.PopulationUpper !== '' && /^\d+$/.test(this.state.PopulationUpper)) {
             array.push("population");
             array.push("-" + this.state.PopulationUpper);
+        } else {
+            array.push("population");
+            array.push("-5");
+        }
+
+        if (this.state.RankingLower !== '' && /^\d+$/.test(this.state.RankingLower)) {
+            array.push("national_ranking");
+            array.push("+" + this.state.RankingLower);
+        } else {
+            array.push("national_ranking");
+            array.push("-5");
+        }
+
+        if(this.state.RankingUpper !== '' && /^\d+$/.test(this.state.RankingUpper)) {
+            array.push("national_ranking");
+            array.push("-" + this.state.RankingUpper);
+        } else {
+            array.push("national_ranking");
+            array.push("-5");
         }
 
         if (this.state.TuitionLower !== '' && this.state.TuitionLower !== '') {
@@ -321,14 +353,27 @@ class Explore extends React.Component {
             }
         }
 
-        if (this.state.RankingLower !== '') {
-            array.push("national_ranking");
-            array.push("+" + this.state.RankingLower);
+        if (this.state.App !== 'Any') {
+            if(this.state.App === 'commonapp') {
+                array.push("common_app");
+                array.push("y");
+            } else {
+                array.push("coalition_app");
+                array.push("y");    
+            }
         }
 
-        if(this.state.RankingUpper !== '') {
-            array.push("national_ranking");
-            array.push("-" + this.state.RankingUpper);
+        if (this.state.School !== 'Any') {
+            array.push("school_type");
+            array.push(this.state.School);
+        }
+
+        if (this.state.StateFilter.length !== 0) {
+            console.log(this.state.StateFilter);
+            this.state.StateFilter.forEach(state => {
+            array.push("state")
+            array.push(state);
+            })
         }
 
         console.log(array);
@@ -351,7 +396,6 @@ class Explore extends React.Component {
             })
         });
     }
-
     handleFilter(e) {
         this.setState({ Filter: e.value }, () => {
             this.handleClick();

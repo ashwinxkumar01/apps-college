@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     width: calc(96%);
-    height: calc(23rem);
+    height: calc(30rem);
     border-radius: calc(1vmin);
     margin-bottom: calc(1vmin);
     color: black;
@@ -19,10 +19,17 @@
     transform: scale(1.05);
 }
 
-.header-tile {
-    width: 100%;
+.center-header {
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;
+    position: relative;
+}
+
+.header-tile {
+    width: 90%;
+    display: block;
+    flex-direction: row; 
+    margin-left: calc(1.5rem);   
 }
 
 .college-name {
@@ -42,14 +49,14 @@
 }
 
 .specifications {
-    text-align: left;
+    text-align: center;
     width: 100%;
-    margin-left: calc(0.5rem);
+    margin-left: calc(0rem);
     margin-top: calc(1.5rem);
 }
 
 .specifications h3 {
-    font-size: calc(1rem);
+    font-size: calc(1.15rem);
     font-family: 'Lato', sans-serif;
 }
 
@@ -69,9 +76,11 @@
 }
 
 .favorite-icon{
-    width: calc(12%);
+    width: calc(9.5%);
     padding-top: calc(2.9rem);
     justify-content: right;
+    position: absolute;
+    right: 0;
     height: 0;
     -webkit-transform: scale(0.7);
     -ms-transform: scale(0.7);

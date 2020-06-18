@@ -1,39 +1,46 @@
 import React, { Component } from 'react';
 import '../css/Tile.css';
 import Heart from './content/Heart';
+import { Link } from 'react-router-dom';
 
 class Node extends Component {    
     render() {
         return (
             <div className="tile-layout">
-                <div className="header-tile">
-                    <div className="college-name">
-                        <h1>{this.props.Alias}</h1>
-                    </div>
-                    
-                    <div className="favorite-icon">
-                        <Heart collegeName={this.props.collegeName} />
-                    </div>
-                </div>
+                    <div className="center-header">
+                        <div className="header-tile">
+                            <Link style={{textDecoration: 'none', color: 'black', width: '100%'}} to={`/loginhome/page/${this.props.collegeName}`}>
+                                <div className="college-name">
+                                    <h1>{this.props.Alias}</h1>
+                                </div>
+                            </Link>
+                        </div>
 
-                <div className="college-icon">
-                        <img src={this.props.Logo} alt="Logo" height="150" width="70%" />
-                </div>
-
-                <div className="specifications">
-                    <div className="tuition-display">
-                        <h3>(In State): ${this.props.Tuition}</h3>
-                        <span></span>
-                        <h3>(Out of State): ${this.props.TuitionOOS}</h3>
-                    </div>
-                    
-                    <div className="information-div">
-                        <h3>Acceptance Rate: {this.props.Acceptance}%</h3>
-                        <h3>School Type: {this.props.Type}</h3>
-                        <h3>App Fee: ${this.props.Fee}</h3>
+                        <div className="favorite-icon">
+                                <Heart collegeName={this.props.collegeName} />
+                        </div>
                     </div>
 
-                </div>
+                    <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${this.props.collegeName}`}>
+                        <div className="college-icon">
+                                <img src={this.props.Logo} alt="Logo" height="175" width="63%" />
+                        </div>
+
+                        <div className="specifications">
+                            <div className="tuition-display">
+                                <h3>(In State): ${this.props.Tuition}</h3>
+                                <span></span>
+                                <h3>(Out of State): ${this.props.TuitionOOS}</h3>
+                            </div>
+                            
+                            <div className="information-div">
+                                <h3>Acceptance Rate: {this.props.Acceptance}%</h3>
+                                <h3>School Type: {this.props.Type}</h3>
+                                <h3>App Fee: ${this.props.Fee}</h3>
+                            </div>
+
+                        </div>
+                    </Link>
 
             </div>
        )
