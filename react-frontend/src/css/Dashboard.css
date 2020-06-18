@@ -80,3 +80,7 @@
     left: calc(92vw);
     position: absolute;
   }
+
+  .collegeName {
+    z-index: 1;
+  }

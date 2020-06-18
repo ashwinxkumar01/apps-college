@@ -21,9 +21,9 @@ class Heart extends React.Component {
                 body: JSON.stringify({
                     CollegeName: this.state.currentCollege
                 })
-                }).then(response => {
-                    return response.json();
-                }).then(data => {})
+            }).then(response => {
+                return response.json();
+            }).then(data => { })
             this.setState({ status: false });
         } else {
             fetch("/addcollege", {
@@ -34,14 +34,24 @@ class Heart extends React.Component {
                 body: JSON.stringify({
                     CollegeName: this.state.currentCollege
                 })
-                }).then(response => {
-                    return response.json();
-                }).then(data => {})
+            }).then(response => {
+                return response.json();
+            }).then(data => { })
             this.setState({ status: true });
         }
     }
 
     render() {
+        JSON.parse(sessionStorage.getItem("collegeNames")).map(college => {
+            console.log(college.college_name);
+            console.log(this.state.currentCollege);
+            if (college.college_name === this.state.currentCollege) {
+                if(this.state.status !== true){
+                    this.setState({status: true})
+                }
+            }
+        });
+
         if (this.state.status === true) {
             return (
                 <div className="redheart" onClick={this.handleClick} />

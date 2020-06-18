@@ -104,9 +104,6 @@ class SearchBar extends React.Component {
             }
             filteredResults.push(college);
         })
-        console.log(perfectMatches);
-        // console.log(semiMatches);
-        console.log(filteredResults);
         this.props.setSearch(filteredResults);
         this.setState({
             searchResults: filteredResults,

@@ -47,7 +47,7 @@ class Dashboard extends React.Component {
     }
   }
 
-  componentWillMount(){
+  pullColleges() {
 
     fetch("/dashboard", {
       method: "POST",
@@ -59,26 +59,26 @@ class Dashboard extends React.Component {
       return response.json()
     }).then(data => {
       let collegeList = [];
+      let boolean = true;
+      if (this.state.users.length !== data.length) {
+        boolean = false;
+      }
       data.map(college => {
         var collegeName = JSON.parse(college);
         collegeList.push(collegeName);
       })
-      console.log(collegeList);
-      console.log(this.state.users);
-      console.log(this.state.users === collegeList);
-      if (this.state.users === collegeList) {
-        console.log("here");
-        console.log(this.state.users);
+      if (boolean) {
+        sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
       } else {
-        console.log("else loop");
         this.setState({ users: collegeList });
       }
     });
 
   }
+  
 
   renderDashboard = () => {
-
+    this.pullColleges();
     if (this.state.searchBar === false) {
       return (
         <div className={useStyles.root}>
@@ -97,11 +97,13 @@ class Dashboard extends React.Component {
                 <div className="backgroundSolid" />
                 <div className="backgroundBlend" />
                 <img src={Image3} alt="Hello" className="imageBox" />
-                {college}
+                <div className="collegeName">
+                  {college}
+                </div>
               </div>
             </Nav.Link>
             <div className="height">
-              <Heart collegeName={college} />
+              <Heart collegeName={college} status={true}/>
             </div>
           </div>
         )
@@ -114,7 +116,6 @@ class Dashboard extends React.Component {
     if (sessionStorage.getItem("userData")) {
       console.log(sessionStorage.getItem("userData"));
     }
-
     return (
       <div className="dashboard">
         <Navigationbar active="1" />
