@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Archivo:wght@500&family=Lato&family=Montserrat&display=swap');
 
 .Background-home-page {
   width: 100%;
@@ -11,6 +11,7 @@
 	background-repeat:no-repeat;
   background-size:cover;
   height: calc(45rem);
+  font-family: 'Lato', sans-serif;
 }
 
 .nav {
@@ -38,15 +39,17 @@
 
 .features {
   height: calc(35rem);
-  width: 98%;
+  width: 100%;
 }
 
 .features .row {
   margin-top: calc(5.5rem) !important;
 }
 
-.features h1 {
+.features .header-h1 {
   margin-top: calc(1rem) !important;
+  font-size: calc(3rem) !important;
+  font-family: 'Archivo', sans-serif;
 }
 
 .row {
@@ -60,8 +63,10 @@
 }
 
 .header-feature {
-  font-size: calc(2.5rem);
+  margin-top: calc(1rem);
+  font-size: calc(2rem);
   width: calc(33.333333%);
+  font-family: 'Archivo', sans-serif;
 }
 
 .icon-border {
@@ -71,13 +76,6 @@
   -ms-transform: scale(1.2);
   transform: scale(1.2);
   transition: 0.3s;
-}
-
-.icon-border:hover {
-  transition: 0.3s;
-  -webkit-transform: scale(1.5);
-  -ms-transform: scale(1.5);
-  transform: scale(1.5);  
 }
 
 .icon-border div {
@@ -93,13 +91,7 @@
 .description-hover p {
   font-size: calc(1.5rem);
   margin-top: calc(3rem);
-  visibility: hidden;
   font-family: 'Alegreya', serif;
-}
-
-.description-hover:hover p {
-  visibility: visible;
-  opacity: 1;
 }
 
 .image-background .container {

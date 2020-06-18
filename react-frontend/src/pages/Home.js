@@ -28,7 +28,7 @@ function Home() {
                     </Row>
 
                     <Row className="justify-content-md-center">
-                        <Col md="auto">ALL YOUR NEEDS SATISFIED BY BOSSMAN</Col>
+                        <Col md="auto" style={{fontSize: "calc(2rem", marginTop: 'calc(0.7rem)'}}>ALL YOUR NEEDS SATISFIED BY BOSSMAN</Col>
                     </Row>
 
                     <Row className="justify-content-md-center">
@@ -44,7 +44,7 @@ function Home() {
 
             <div className="features-container">
                 <div className="features">
-                    <h1>FEATURES OF THIS NONSENSE</h1>
+                    <h1 className="header-h1">FEATURES OF THIS NONSENSE</h1>
                     
                     <div className="header-div">
                         <h1 className="header-feature">SEARCH</h1>
@@ -59,7 +59,8 @@ function Home() {
                                     <div className="icon-border">
                                         <div><FontAwesomeIcon icon={faSearch} /></div>
                                     </div>
-                                    <p> SEARCH FOR ANY COLLEGE YOU NEED </p>
+                                    <p>Bossman said he is going to give us all raises if we finish this project in the next two weeks, 
+                                    please work hard so we can finish this project!</p>
                                 </div>
                             </Col>
                             <Col xs={6} md={4}>
@@ -67,7 +68,8 @@ function Home() {
                                     <div className="icon-border">
                                         <div><FontAwesomeIcon icon={faGlobeAmericas} /></div>
                                     </div>
-                                    <p> ACCESS TO INFORMATION FOR 100+ SCHOOLS </p>
+                                    <p> Don't know where to start? Explore colleges with filters customizable by you. Explore and
+                                    find hundreds of colleges that fit your needs </p>
                                 </div>
                             </Col>
                             <Col xs={6} md={4}> 
@@ -75,7 +77,8 @@ function Home() {
                                     <div className="icon-border">
                                         <div><FontAwesomeIcon icon={faLayerGroup} /></div>
                                     </div>
-                                    <p> ALL YOUR NEEDS ORGANIZED. ONE PLACE </p>
+                                    <p> Bossman said he is going to give us all raises if we finish this project in the next two weeks, 
+                                    please work hard so we can finish this project!</p>
                                 </div>
                             </Col>
                         </Row>
@@ -89,21 +92,21 @@ function Home() {
                     <Form>
                         <Form.Row>
                             <Col style={{marginTop: 'calc(4rem)'}}>
-                                <Form.Group controlId="exampleForm.ControlInput1" style={{display: 'flex', justifyContent: 'center'}}>
-                                    <Form.Control type="text" placeholder="John Doe" style={{width: 'calc(85%)'}}/>
+                                <Form.Group controlId="exampleForm.ControlInput1" style={{display: 'flex', justifyContent: 'flex-end'}}>
+                                    <Form.Control type="text" placeholder="John Doe" style={{width: 'calc(55%)'}}/>
                                 </Form.Group>
-                                <Form.Group controlId="exampleForm.ControlInput1" style={{display: 'flex', justifyContent: 'center'}}>
-                                    <Form.Control type="email" placeholder="name@example.com" style={{width: 'calc(85%)'}}/>
+                                <Form.Group controlId="exampleForm.ControlInput1" style={{display: 'flex', justifyContent: 'flex-end'}}>
+                                    <Form.Control type="email" placeholder="name@example.com" style={{width: 'calc(55%)'}}/>
                                 </Form.Group>
                             </Col>
                             <Col style={{marginTop: 'calc(4rem)'}}>
-                                <Form.Group controlId="exampleForm.ControlTextarea1" style={{display: 'flex', justifyContent: 'center'}}>
-                                    <Form.Control as="textarea" rows="3" style={{height: 'calc(10rem)', width: 'calc(85%)'}} placeholder="Enter message here..."/>
+                                <Form.Group controlId="exampleForm.ControlTextarea1" style={{display: 'flex', justifyContent: 'left'}}>
+                                    <Form.Control as="textarea" rows="3" style={{height: 'calc(10rem)', width: 'calc(55%)'}} placeholder="Enter message here..."/>
                                 </Form.Group>
                             </Col>
                         </Form.Row>
                         <Row>
-                            <Col md={{ span: 6, offset: 6 }}>
+                            <Col md={{ span: 4, offset: 4 }}>
                                 <Button variant="primary" size="lg">
                                     Send Message
                                 </Button>{' '}
