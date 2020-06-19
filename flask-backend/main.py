@@ -54,15 +54,15 @@ def get_colleges(query_lst):
                 query_lst[i + 1] = query_lst[i + 1][0] + str(epoch)
             if query_lst[i] in numbers:
                 if query_lst[i + 1][0] == "+":
-                    query += " " + query_lst[i] + " >= " + query_lst[i + 1][1:]
+                    query += " " + str(query_lst[i]) + " >= " + str(query_lst[i + 1][1:])
                 else:
-                    query += " " + query_lst[i] + " <= " + query_lst[i + 1][1:]
+                    query += " " + str(query_lst[i]) + " <= " + str(query_lst[i + 1][1:])
             else:
                 if query_lst[i] == "state":
                     if first_state == True:
                         query += " (" 
                         first_state = False
-                    query += query_lst[i] + "=\'" + query_lst[i+1] + "\'" 
+                    query += str(query_lst[i]) + "=\'" + str(query_lst[i+1]) + "\'" 
                     if i < len(query_lst)-2 and query_lst[i+2] == "state":
                         query += " OR "
                         i += 2
@@ -70,7 +70,7 @@ def get_colleges(query_lst):
                     else:
                         query += ")"
                 else:
-                    query += " " + query_lst[i] + "=\'" + query_lst[i + 1] + "\'"
+                    query += " " + str(query_lst[i]) + "=\'" + str(query_lst[i+1]) + "\'"
 
             if i != len(query_lst) - 2:
                     query += " AND"
