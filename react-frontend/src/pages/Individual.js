@@ -17,10 +17,19 @@ class Individual extends Component {
         this.numFormat = this.numFormat.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
         this.goBack = this.goBack.bind(this);
+        this.essayFormat = this.essayFormat.bind(this);
+        this.essayHeaderFunc = this.essayHeaderFunc.bind(this);
+        this.applyFormat = this.applyFormat.bind(this);
+
     }
 
     numFormat(num) {
-        return num.toLocaleString();
+        if(typeof num === 'number'){ 
+            return num.toLocaleString();
+        }
+        else {
+            return num;
+        }
     }
 
     dateFormat(input) {
@@ -31,8 +40,76 @@ class Individual extends Component {
         return ((myDate.getUTCMonth() + 1) + "/" + myDate.getUTCDate() + "/" + myDate.getUTCFullYear());
     }
 
-    goBack(){
+    goBack() {
         this.props.history.goBack();
+    }
+
+    essayFormat(essays) {
+        if(typeof essays === 'string') {
+            var essayArrayInit = essays.split("/");
+            var essayArray = [];
+            for(var i=1; i<essayArrayInit.length; i++) {
+                essayArray.push(essayArrayInit[i]);
+            }
+            return (
+            <ul className="essay-text">
+                <h1 className="essay-header">
+                        Essay Questions ( {this.essayHeaderFunc(this.state.college_json["supplemental_essays"])})
+                </h1>
+                {essayArray.map((essay) => {   
+                    return (
+                    <li>      
+                    {essay}
+                    </li>
+                    )
+                })}
+            </ul>
+            );
+        }
+        else {
+            return essays;
+        }
+    }
+
+    essayHeaderFunc(essays) {
+        if(typeof essays === 'string') {
+            var essayArrayInit = essays.split("/");
+            console.log(essayArrayInit.length);
+            if(essayArrayInit.length > 1) {
+                var essayArray = essayArrayInit[0];
+                return essayArray;
+            }
+            else {
+                console.log("entered");
+                return "None Required ";
+            }
+        }
+        else {
+            return essays;
+        }
+    }
+
+    applyFormat(application) {
+        if(typeof application === 'string') {
+            var applicationArray = application.split("/");
+            return (
+                <ul className="application-type">
+                    <h1 className="application-header" >
+                        Apply Via: 
+                    </h1>
+                    {applicationArray.map((applications) => { 
+                        return (
+                        <li>      
+                        {applications}
+                        </li>
+                        )
+                    })}
+                </ul>
+                );
+        }
+        else {
+            return application;
+        }
     }
 
 
@@ -76,43 +153,8 @@ class Individual extends Component {
                 <p className="description-text" >
                     {this.state.college_json["college_description"]}
                 </p>
-                <div className="essay-text" >
-                    <h1 className="essay-header">
-                        Essay Questions (4)
-                    </h1>
-                    <p>
-                    1. Describe an example of your leadership experience in which you have positively influenced others, helped resolve disputes or contributed to group efforts over time. (350) 
-                    </p>
-                    <p>
-                    2. Every person has a creative side, and it can be expressed in many ways: problem solving, original and innovative thinking, and artistically, to name a few. Describe how you express your creative side. (350)
-                    </p>
-                    <p>
-                    3. What would you say is your greatest talent or skill? How have you developed and demonstrated that talent over time? (350) 
-                    </p>
-                    <p>
-                    4. Describe how you have taken advantage of a significant educational opportunity or worked to overcome an educational barrier you have faced. (350)
-                    </p>
-                    <p>
-                    5. Describe the most significant challenge you have faced and the steps you have taken to overcome this challenge. How has this challenge affected your academic achievement? (350)
-                    </p>
-                    <p>
-                    6.  Think about an academic subject that inspires you. Describe how you have furthered this interest inside and/or outside of the classroom. (350)
-                    </p>
-                    <p>
-                    7. What have you done to make your school or your community a better place? (350)
-                    </p>
-                    <p>
-                    8. Beyond what has already been shared in your application, what do you believe makes you stand out as a strong candidate for admissions to the University of California? (350)
-                    </p>
-                </div>
-                <div className="application-type" >
-                    <h1 className="application-header" >
-                        Apply via: 
-                    </h1>
-                    <p>
-                        {this.state.college_json["app_site"]}
-                    </p>
-                </div>
+                {this.essayFormat(this.state.college_json["supplemental_essays"])}
+                {this.applyFormat(this.state.college_json["app_site"])}
                 <div className = "grid-layout">
                     <Grid container direction="column" spacing={5}>
                         <Grid item className = "general-layout" >
@@ -127,10 +169,10 @@ class Individual extends Component {
                                     US News Ranking: {this.state.college_json["national_ranking"]}
                                 </p>
                                 <p> 
-                                    Undergrad Population: {this.state.college_json["population"]}
+                                    Undergrad Population: {this.numFormat(this.state.college_json["population"])}
                                 </p>
                                 <p>
-                                    Tuition: ${this.state.college_json["tuition_normal"]} (In)/ ${this.state.college_json["tuition_oos"]} (Out)
+                                    Tuition: ${this.numFormat(this.state.college_json["tuition_normal"])} (In)/ ${this.numFormat(this.state.college_json["tuition_oos"])} (Out)
                                 </p>
                                 <p>
                                     Application Fee: ${this.state.college_json["app_fee"]}
