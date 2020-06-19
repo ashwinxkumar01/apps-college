@@ -20,7 +20,12 @@ class Individual extends Component {
     }
 
     numFormat(num) {
-        return num.toLocaleString();
+        if(typeof num === 'number'){ 
+            return num.toLocaleString();
+        }
+        else {
+            return num;
+        }
     }
 
     dateFormat(input) {
@@ -127,10 +132,10 @@ class Individual extends Component {
                                     US News Ranking: {this.state.college_json["national_ranking"]}
                                 </p>
                                 <p> 
-                                    Undergrad Population: {this.state.college_json["population"]}
+                                    Undergrad Population: {this.numFormat(this.state.college_json["population"])}
                                 </p>
                                 <p>
-                                    Tuition: ${this.state.college_json["tuition_normal"]} (In)/ ${this.state.college_json["tuition_oos"]} (Out)
+                                    Tuition: ${this.numFormat(this.state.college_json["tuition_normal"])} (In)/ ${this.numFormat(this.state.college_json["tuition_oos"])} (Out)
                                 </p>
                                 <p>
                                     Application Fee: ${this.state.college_json["app_fee"]}
