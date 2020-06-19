@@ -213,11 +213,13 @@ class Explore extends React.Component {
                                 console.log(college)
                                 let val = JSON.parse(college);
                                 let collegeName = val["college_name"];
+                                console.log(val["population"]);
                                 return (
                                         <li>
                                             <Tile Alias={val["alias"]} Tuition={this.numFormat(val["tuition_normal"])} TuitionOOS={this.numFormat(val["tuition_oos"])}
                                                 Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
-                                                Logo={val["college_logo"]} Type={val["school_type"]}
+                                                Logo={val["college_logo"]} Type={val["school_type"]} Population={this.numFormat(val["population"])} 
+                                                Ranking={val["national_ranking"]}
                                             />
                                         </li>
                                 )
@@ -262,7 +264,11 @@ class Explore extends React.Component {
     }
 
     numFormat(num) {
-        return num.toLocaleString();
+        if(num === null){ 
+            return num;
+        } else {
+            return num.toLocaleString();
+        }
     }
 
     dateFormat(input) {
@@ -315,7 +321,7 @@ class Explore extends React.Component {
                 }
             } else {
                 if (this.state.TuitionLower !== '') {
-                    array.push("tuition_oss");
+                    array.push("tuition_oos");
                     array.push("+" + this.state.TuitionLower);
                 }
         
@@ -360,7 +366,6 @@ class Explore extends React.Component {
             headers: {
                 'Content-Type': 'application/json'
             },
-            // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
             body: JSON.stringify({
                 Array: array,
                 Filter: this.state.Filter,

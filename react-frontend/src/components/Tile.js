@@ -23,7 +23,7 @@ class Node extends Component {
 
                     <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${this.props.collegeName}`}>
                         <div className="college-icon">
-                                <img src={this.props.Logo} alt="Logo" height="175" width="63%" />
+                            <img src={this.props.Logo} alt="Logo" height="175" width="63%" />
                         </div>
 
                         <div className="specifications">
@@ -34,9 +34,14 @@ class Node extends Component {
                             </div>
                             
                             <div className="information-div">
+                                <h3>Ranking: {this.props.Ranking}</h3>
                                 <h3>Acceptance Rate: {this.props.Acceptance}%</h3>
                                 <h3>School Type: {this.props.Type}</h3>
-                                <h3>App Fee: ${this.props.Fee}</h3>
+                                <div className="tuition-display">
+                                    <h3>App Fee: ${this.props.Fee}</h3>
+                                    <span></span>
+                                    <h3>Population: {this.props.Population}</h3>
+                                </div>
                             </div>
 
                         </div>
