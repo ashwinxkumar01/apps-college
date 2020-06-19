@@ -10,6 +10,7 @@ function Home() {
     console.log(sessionStorage.getItem("userData"));
     return (
         <div className="Background-home-page">
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"></link>
 
             <div className="image-background">
                 <Nav className="justify-content-end" activeKey="/home">
@@ -24,11 +25,11 @@ function Home() {
 
                 <Container>
                     <Row className="justify-content-md-center">
-                        <Col md="auto" style={{fontSize: "calc(5.5rem"}}>5400 APPS. ONE PLACE</Col>
+                        <Col md="auto" style={{fontSize: "calc(5.5rem"}}>5400 APPS. ONE PLACE.</Col>
                     </Row>
 
                     <Row className="justify-content-md-center">
-                        <Col md="auto" style={{fontSize: "calc(2rem", marginTop: 'calc(0.7rem)'}}>ALL YOUR NEEDS SATISFIED BY BOSSMAN</Col>
+                        <Col md="auto" style={{fontSize: "calc(2rem", marginTop: 'calc(0.7rem)'}}>College Apps, Redefined.</Col>
                     </Row>
 
                     <Row className="justify-content-md-center">
@@ -44,7 +45,7 @@ function Home() {
 
             <div className="features-container">
                 <div className="features">
-                    <h1 className="header-h1">FEATURES OF THIS NONSENSE</h1>
+                    <h1 className="header-h1">FEATURES</h1>
                     
                     <div className="header-div">
                         <h1 className="header-feature">SEARCH</h1>
@@ -59,8 +60,8 @@ function Home() {
                                     <div className="icon-border">
                                         <div><FontAwesomeIcon icon={faSearch} /></div>
                                     </div>
-                                    <p>Bossman said he is going to give us all raises if we finish this project in the next two weeks, 
-                                    please work hard so we can finish this project!</p>
+                                    <p>Search for any college you're thinking about with one powerful search bar. 
+                                        No more endless navigation.</p>
                                 </div>
                             </Col>
                             <Col xs={6} md={4}>
@@ -69,7 +70,7 @@ function Home() {
                                         <div><FontAwesomeIcon icon={faGlobeAmericas} /></div>
                                     </div>
                                     <p> Don't know where to start? Explore colleges with filters customizable by you. Explore and
-                                    find hundreds of colleges that fit your needs </p>
+                                    find hundreds of colleges that fit your needs. </p>
                                 </div>
                             </Col>
                             <Col xs={6} md={4}> 
@@ -77,8 +78,8 @@ function Home() {
                                     <div className="icon-border">
                                         <div><FontAwesomeIcon icon={faLayerGroup} /></div>
                                     </div>
-                                    <p> Bossman said he is going to give us all raises if we finish this project in the next two weeks, 
-                                    please work hard so we can finish this project!</p>
+                                    <p> Keep track of all your colleges with a simple click, with important deadlines 
+                                        at your fingertips.       </p>
                                 </div>
                             </Col>
                         </Row>
@@ -88,7 +89,7 @@ function Home() {
 
             <div className="contact-div">
                 <section className="contact">
-                <h1>Feel free to Contact us!</h1>
+                <h1>Questions? Contact Us.</h1>
                     <Form>
                         <Form.Row>
                             <Col style={{marginTop: 'calc(4rem)'}}>
