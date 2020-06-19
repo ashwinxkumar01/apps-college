@@ -19,8 +19,9 @@ database = os.environ.get("DATABASE_NAME")
 username = os.environ.get("DB_USERNAME")
 password = os.environ.get("DB_PASSWD")
 driver = '{ODBC Driver 17 for SQL Server}'
+con = 'Yes'
 
-db_info = 'DRIVER=' + driver + ';SERVER=' + server + ';PORT=1433;DATABASE=' + database + ';UID=' + username + ';PWD=' + password
+db_info = 'DRIVER=' + driver + ';SERVER=' + server + ';PORT=1433;DATABASE=' + database + ';UID=' + username + ';PWD=' + password + ';MARS_Connection=' + con
 #print(db_info)
 
 cnxn = pyodbc.connect(db_info)
