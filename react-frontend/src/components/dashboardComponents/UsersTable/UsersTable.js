@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -123,12 +124,14 @@ const UsersTable = props => {
               </TableHead>
               <TableBody>
                 {users.slice(0, rowsPerPage).map(user => (
-                  <TableRow
+                 
+                    <TableRow
                     className={classes.tableRow}
                     hover
                     key={user.id}
                     selected={selectedUsers.indexOf(user.id) !== -1}
                   >
+                  <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>
                     <TableCell padding="checkbox">
                       <Checkbox
                         checked={selectedUsers.indexOf(user.id) !== -1}
@@ -151,7 +154,10 @@ const UsersTable = props => {
                     <TableCell>{user.regular_decison}</TableCell>
                     <TableCell>{user.tuition_normal}</TableCell>
                     <TableCell>{user.tuition_oos} </TableCell>
+                  </Link>
                   </TableRow>
+                  
+                  
                 ))}
               </TableBody>
             </Table>

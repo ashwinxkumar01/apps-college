@@ -502,5 +502,7 @@ def dashboard():
     print(json_return)
     return json.dumps(json_return)
 
+# def sendEmail(email, subject, text):
+
 
 app.run(debug=True)
