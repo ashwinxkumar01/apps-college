@@ -267,15 +267,21 @@ dictio = {}
 # parameters are Strings for email and password
 # return boolean - true if successful creation, false if not
 
-def createUserWithEmailPassword(email, password):
-    successfulCreation = True
+@app.route("/signup", methods = ['POST'])
+def createUserWithEmailPassword():
+    #gets incoming request
+    post_request = request.get_json(force=True)
+
+    email = post_request['Username']
+    password = post_request['Password']
     try:
         auth.create_user_with_email_and_password(email, password)
         dictio['initialUser'] = email
         db.child("users").child(dictio['initialUser'][:-6]).update({"college": "none"})
     except:
-        successfulCreation = False
-    return successfulCreation
+        return json.dumps({"True": 1})
+    return json.dumps({"True": 2})
+
     # this should redirect to the homepage...
 
 
@@ -290,30 +296,31 @@ def createUserWithEmailPassword(email, password):
 # takes in an email and password from the request
 @app.route("/login", methods = ['POST'])
 def loginWithEmailPassword():
-    #post_request = request.get_json(force=True)
+    post_request = request.get_json(force=True)
 
     # Assign value from the request
-    #email = post_request['Username']
-    #password = post_request['Password']
+    email = post_request['Username']
+    password = post_request['Password']
 
-    email = "aksportsmaniac@gmail.com"
-    password = "123456"
-    # successfulLogin = False
+    #email = "aksportsmaniac@gmail.com"
+    #password = "123456"
+    #successfulLogin = False
+    # try:
+    #     print(session['usr']) #if this doesn't error out, that means the user is logged in already
+    #     print(dictio['usr'])
+    #     print("here")
+    # except KeyError:
     try:
-        # print(session['usr']) #if this doesn't error out, that means the user is logged in already
-        print(dictio['usr'])
-    except KeyError:
-        try:
-            user = auth.sign_in_with_email_and_password(email, password)
-            user = auth.refresh(user['refreshToken'])
-            user_id = user['idToken']
+        user = auth.sign_in_with_email_and_password(email, password)
+        user = auth.refresh(user['refreshToken'])
+        user_id = user['idToken']
             # session['usr'] = user_id
-            dictio['usr'] = user_id
-            dictio['currentUser'] = email
-            print(dictio['currentUser'])
-            print(dictio['currentUser'][:-6])
-        except:
-            return json.dumps({"True": 1})
+        dictio['usr'] = user_id
+        dictio['currentUser'] = email
+        print(dictio['currentUser'])
+        print(dictio['currentUser'][:-6])
+    except:
+        return json.dumps({"True": 1})
     
     return json.dumps({"True": 2})
 
@@ -345,6 +352,7 @@ def loginWithEmailPasswordTest():
     return True
 
 # deletes the current session - should take them to home page?
+@app.route("/logout", methods = ['POST'])
 def logout():
     # session.pop['usr']
     dictio.pop('usr')
@@ -442,6 +450,7 @@ def dashboard():
     #listColleges()
     colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
     #print(colleges)
+    
     name_list = []
     for name in colleges.values():
         if name != "none":

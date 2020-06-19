@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { FormLabel } from '@material-ui/core';
 
 function Copyright() {
   return (
@@ -57,8 +58,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
-  const [username, setUsername] = useState({username: ''});
-  const [password, setPassword] = useState({password: ''});
+  const [usernameError, setUsernameError] = useState({ usernameError: false });
+  const [username, setUsername] = useState({ username: '' });
+  const [password, setPassword] = useState({ password: '' });
+  const [cpassword, setcPassword] = useState({ cpassword: '' });
+  const [display, setDisplay] = useState({ display: '' });
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -81,12 +85,14 @@ export default function SignInSide() {
               label="Email Address"
               name="email"
               onChange={e => {
-                const newUsername = {username: e.target.value};
+                const newUsername = { username: e.target.value };
                 setUsername(newUsername);
                 console.log(newUsername.username);
               }}
               autoComplete="email"
               autoFocus
+              error={usernameError.usernameError}
+              helperText={usernameError.usernameError ? "Email not valid!" : ' '}
             />
             <TextField
               variant="outlined"
@@ -99,7 +105,7 @@ export default function SignInSide() {
               id="password"
               autoComplete="current-password"
               onChange={e => {
-                const newPassword = {password: e.target.value};
+                const newPassword = { password: e.target.value };
                 setPassword(newPassword);
                 console.log(newPassword.password);
               }}
@@ -115,40 +121,49 @@ export default function SignInSide() {
               id="password"
               autoComplete="current-password"
               onChange={e => {
-                const newPassword = {password: e.target.value};
-                setPassword(newPassword);
-                console.log(newPassword.password);
+                const newPassword = { cpassword: e.target.value };
+                setcPassword(newPassword);
+                console.log(newPassword.cpassword);
               }}
+              error={password.password !== cpassword.cpassword}
+              helperText={password.password !== cpassword.cpassword ? "Passwords don't match!" : ' '}
             />
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
-              // href="/loginhome/features"
-              onClick={e => { 
-                  //e.preventDefault();
-                  console.log("testing");
+              onClick={e => {
+                //e.preventDefault();
+                if (cpassword.cpassword !== password.password) {
+                } else {
                   fetch("/login", {
                     method: "POST",
                     headers: {
-                        'Content-Type': 'application/json'
+                      'Content-Type': 'application/json'
                     },
                     // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
                     body: JSON.stringify({
-                        Username: username.username,
-                        Password: password.password
+                      Username: username.username,
+                      Password: password.password
                     })
-                }).then(response => {
+                  }).then(response => {
                     return response.json();
-                }).then(data => {
+                  }).then(data => {
                     console.log(data);
-                });
+                    if (data["True"] === 1) {
+                      setUsernameError(true);
+                    } else {
+                      sessionStorage.setItem("userData", username.username);
+                      window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
+                    }
+                  });
+                }
               }}
             >
               Sign Up
@@ -166,7 +181,6 @@ export default function SignInSide() {
               </Grid>
             </Grid>
             <Box mt={5}>
-              {/* <Copyright /> */}
             </Box>
           </form>
         </div>

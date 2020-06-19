@@ -244,10 +244,12 @@ class Explore extends React.Component {
                                 <img src={Image3} alt="Hello" className="imageBox" />
                                 {college}
                             </div>
-                        </Link>
                         <div className="height">
+                            <div className="heartHeight">
                             <Heart collegeName={college} />
+                            </div>
                         </div>
+                        </Link>
                     </div>
                 )
                 )

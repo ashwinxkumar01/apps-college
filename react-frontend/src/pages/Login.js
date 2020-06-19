@@ -117,7 +117,6 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}
               onClick={e => { 
-                  console.log("testing");
                   fetch("/login", {
                     method: "POST",
                     headers: {
@@ -131,10 +130,11 @@ export default function SignInSide() {
                 }).then(response => {
                     return response.json();
                 }).then(data => {
+                  console.log(data);
                   if(data["True"] === 1) {
                     setDisplay({ display: data["True"]});
                   } else {
-                    sessionStorage.setItem("userData", "aksportsmaniac");
+                    sessionStorage.setItem("userData", username.username);
                     window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
                   }
                 })
@@ -155,7 +155,7 @@ export default function SignInSide() {
               </Grid>
             </Grid>
             <Box mt={5}>
-              {display.display === 1 && <p>lOGIN FAILED</p>}
+              {display.display === 1 && <p>Login Unsuccessful</p>}
             </Box>
           </form>
         </div>

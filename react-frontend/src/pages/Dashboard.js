@@ -104,7 +104,7 @@ class Dashboard extends React.Component {
               </div>
             </Link>
             <div className="height">
-              <Heart collegeName={college} status={true}/>
+              <Heart collegeName={college} className="fixedHeight"/>
             </div>
           </div>
         )

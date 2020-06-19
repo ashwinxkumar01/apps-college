@@ -28,6 +28,12 @@ class NavBar extends React.Component {
   // }
   handleClick = () => {
     sessionStorage.clear();
+    fetch("/logout", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })  
   }
   render() {
     return (
