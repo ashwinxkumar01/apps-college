@@ -74,9 +74,18 @@ const Sortby = [
     {value: "population", label: 'Population'}
 ]
 
+const LOR = [
+    {value: "Any", label: 'Any'},
+    {value: 1, label: '1'},
+    {value: 2, label: '2'},
+    {value: 3, label: '3'},
+    {value: 4, label: '4'},  
+]
+
 export {
     States,
     Type,
     App,
-    Sortby
+    Sortby,
+    LOR
   }

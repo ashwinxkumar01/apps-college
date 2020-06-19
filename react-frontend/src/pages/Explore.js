@@ -7,7 +7,7 @@ import NavBar from '../components/content/Navbar';
 import Image3 from './UCSD_3.jpg';
 import Tile from '../components/Tile';
 import Heart from '../components/content/Heart';
-import { States, Type, App, Sortby } from '../components/State';
+import { States, Type, App, Sortby, LOR } from '../components/State';
 import Select from 'react-select';
 
 class Explore extends React.Component {
@@ -18,6 +18,7 @@ class Explore extends React.Component {
             College: [],
             School: 'Any',
             App: 'Any',
+            LOR: 'Any',
             Filter: 'national_ranking',
             Checkbox: true,
             AppFeeLower: '',
@@ -52,6 +53,7 @@ class Explore extends React.Component {
         
         this.numFormat = this.numFormat.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
+        this.pushToArray = this.pushToArray.bind(this);
     }
 
     componentDidMount(){
@@ -160,6 +162,12 @@ class Explore extends React.Component {
 
                         <hr></hr>
 
+                        <div className="app-type">
+                            <Select onChange={(e) => this.setState({ LOR: e.value }, () => console.log(this.state.LOR))} options={LOR} placeholder={"Letter of Recommendations"}/>
+                        </div>
+
+                        <hr></hr>
+
                         <div className="school-type">
                             <Select onChange={(e) => this.setState({ School: e.value })} options={Type} placeholder={"School Type"}/>
                         </div>
@@ -262,72 +270,37 @@ class Explore extends React.Component {
         return ((myDate.getUTCMonth() + 1) + "/" + myDate.getUTCDate() + "/" + myDate.getUTCFullYear());
     }
 
+    pushToArray(state, string, array, sign) {
+        if (state === '') {
+            //Nothing happens
+            console.log("Expected");
+        } else if(/^\d+$/.test(state)){
+            array.push(string);
+            array.push(sign + state);   
+        } else {
+            array.push(string);
+            array.push("-0");    
+        }
+    }
+
     handleClick() {
         let array = [];
 
-        if (this.state.AppFeeLower !== '' && /^\d+$/.test(this.state.AppFeeLower)) {
-            array.push("app_fee");
-            array.push("+" + this.state.AppFeeLower);
-        } else {
-            array.push("app_fee");
-            array.push("-5");
-        }
+        this.pushToArray(this.state.AppFeeLower, "app_fee", array, "+");
 
-        if(this.state.AppFeeUpper !== '' && /^\d+$/.test(this.state.AppFeeUpper)) {
-            array.push("app_fee");
-            array.push("-" + this.state.AppFeeUpper);
-        } else {
-            array.push("app_fee");
-            array.push("-5");
-        }
+        this.pushToArray(this.state.AppFeeUpper, "app_fee", array, "-");
 
-        if (this.state.AcceptanceLower !== '' && /^\d+$/.test(this.state.AcceptanceLower)) {
-            array.push("acceptance_rate");
-            array.push("+" + this.state.AcceptanceLower);
-        } else {
-            array.push("acceptance_rate");
-            array.push("-5");
-        }
+        this.pushToArray(this.state.AcceptanceLower, "acceptance_rate", array, "+");
 
-        if(this.state.AcceptanceUpper !== '' && /^\d+$/.test(this.state.AcceptanceUpper)) {
-            array.push("acceptance_rate");
-            array.push("-" + this.state.AcceptanceUpper);
-        } else {
-            array.push("acceptance_rate");
-            array.push("-5");
-        }
+        this.pushToArray(this.state.AcceptanceUpper, "acceptance_rate", array, "-");
+        
+        this.pushToArray(this.state.RankingLower, "national_ranking", array, "+");
 
-        if (this.state.PopulationLower !== '' && /^\d+$/.test(this.state.PopulationLower)) {
-            array.push("population");
-            array.push("+" + this.state.PopulationLower);
-        } else {
-            array.push("population");
-            array.push("-5");
-        }
+        this.pushToArray(this.state.RankingUpper, "national_ranking", array, "-");
 
-        if(this.state.PopulationUpper !== '' && /^\d+$/.test(this.state.PopulationUpper)) {
-            array.push("population");
-            array.push("-" + this.state.PopulationUpper);
-        } else {
-            array.push("population");
-            array.push("-5");
-        }
+        this.pushToArray(this.state.PopulationLower, "population", array, "+");
 
-        if (this.state.RankingLower !== '' && /^\d+$/.test(this.state.RankingLower)) {
-            array.push("national_ranking");
-            array.push("+" + this.state.RankingLower);
-        } else {
-            array.push("national_ranking");
-            array.push("-5");
-        }
-
-        if(this.state.RankingUpper !== '' && /^\d+$/.test(this.state.RankingUpper)) {
-            array.push("national_ranking");
-            array.push("-" + this.state.RankingUpper);
-        } else {
-            array.push("national_ranking");
-            array.push("-5");
-        }
+        this.pushToArray(this.state.PopulationUpper, "population", array, "-");
 
         if (this.state.TuitionLower !== '' && this.state.TuitionLower !== '') {
             if (this.state.TuitionState === "tuition_normal") {
@@ -366,6 +339,11 @@ class Explore extends React.Component {
         if (this.state.School !== 'Any') {
             array.push("school_type");
             array.push(this.state.School);
+        }
+
+        if (this.state.LOR !== 'Any') {
+            array.push("letter_of_rec_required");
+            array.push(this.state.LOR);
         }
 
         if (this.state.StateFilter.length !== 0) {
