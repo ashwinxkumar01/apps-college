@@ -283,6 +283,7 @@ def createUserWithEmailPassword():
         db.child("users").child(dictio['initialUser'][:-6]).update({"college": "none"})
     except:
         return json.dumps({"True": 1})
+    createUserWithEmailPasswordTest(email, password)
     return json.dumps({"True": 2})
 
     # this should redirect to the homepage...
@@ -292,14 +293,22 @@ def createUserWithEmailPasswordTest(email, password):
     #gets incoming request
     #post_request = request.get_json(force=True)
 
-    #email = post_request['Username']
-    #password = post_request['Password']
     try:
-        auth.create_user_with_email_and_password(email, password)
-        dictio['initialUser'] = email
-        db.child("users").child(dictio['initialUser'][:-6]).update({"college": "none"})
-    except:
-        return json.dumps({"True": 1})
+        print(session['usr']) #if this doesn't error out, that means the user is logged in already
+        print(dictio['usr'])
+        print("here")
+    except KeyError:
+        try:
+            user = auth.sign_in_with_email_and_password(email, password)
+            user = auth.refresh(user['refreshToken'])
+            user_id = user['idToken']
+            # session['usr'] = user_id
+            dictio['usr'] = user_id
+            dictio['currentUser'] = email
+            print(dictio['currentUser'])
+            print(dictio['currentUser'][:-6])
+        except:
+            return json.dumps({"True": 1})
     return json.dumps({"True": 2})
 
 
@@ -323,23 +332,22 @@ def loginWithEmailPassword():
     #email = "aksportsmaniac@gmail.com"
     #password = "123456"
     #successfulLogin = False
-    # try:
-    #     print(session['usr']) #if this doesn't error out, that means the user is logged in already
-    #     print(dictio['usr'])
-    #     print("here")
-    # except KeyError:
     try:
-        user = auth.sign_in_with_email_and_password(email, password)
-        user = auth.refresh(user['refreshToken'])
-        user_id = user['idToken']
+        print(session['usr']) #if this doesn't error out, that means the user is logged in already
+        print(dictio['usr'])
+        print("here")
+    except KeyError:
+        try:
+            user = auth.sign_in_with_email_and_password(email, password)
+            user = auth.refresh(user['refreshToken'])
+            user_id = user['idToken']
             # session['usr'] = user_id
-        dictio['usr'] = user_id
-        dictio['currentUser'] = email
-        print(dictio['currentUser'])
-        print(dictio['currentUser'][:-6])
-    except:
-        return json.dumps({"True": 1})
-    
+            dictio['usr'] = user_id
+            dictio['currentUser'] = email
+            print(dictio['currentUser'])
+            print(dictio['currentUser'][:-6])
+        except:
+            return json.dumps({"True": 1})
     return json.dumps({"True": 2})
 
 def loginWithEmailPasswordTest():

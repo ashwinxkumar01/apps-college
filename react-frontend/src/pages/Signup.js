@@ -109,6 +109,8 @@ export default function SignInSide() {
                 setPassword(newPassword);
                 console.log(newPassword.password);
               }}
+              error={password.password.length < 6}
+              helperText={password.password.length < 6 ? "Password not 6 characters!" : ' '}
             />
             <TextField
               variant="outlined"
@@ -141,6 +143,9 @@ export default function SignInSide() {
               onClick={e => {
                 //e.preventDefault();
                 if (cpassword.cpassword !== password.password) {
+              
+                } else if (password.password.length < 6) {
+
                 } else {
                   fetch("/signup", {
                     method: "POST",
@@ -163,8 +168,9 @@ export default function SignInSide() {
                       window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
                     }
                   });
-                }
+
               }}
+              }
             >
               Sign Up
             </Button>
