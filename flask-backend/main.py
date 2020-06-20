@@ -120,7 +120,7 @@ def get_order(json_lst, param, is_descending):
     for college in colleges:
         json_out.append(college.get_json())
 
-    if not is_descending:
+    if is_descending:
         json_out.reverse()
 
     return json_out

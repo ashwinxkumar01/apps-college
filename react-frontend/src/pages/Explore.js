@@ -20,7 +20,7 @@ class Explore extends React.Component {
             App: App[0],
             LOR: LOR[0],
             Filter: Sortby[0],
-            Checkbox: true,
+            Checkbox: false,
             AppFeeLower: null,
             AppFeeUpper: null,
             AcceptanceLower: null,
@@ -69,11 +69,51 @@ class Explore extends React.Component {
         }
         
         const filterBy = sessionStorage.getItem("filterby");
+        const descending = sessionStorage.getItem("descending")
+        var isDescending = (descending === 'true')
+        let text = !isDescending ? "Low to High" : "High to Low";
+        this.setState({Ordering : text})
         if(filterBy !== null) {
-           const index = this.splitToArray(filterBy, Sortby);
-           console.log(Sortby[index]);
-           this.setState({ Filter: Sortby[index] });
-        }
+            const index = this.splitToArray(filterBy, Sortby);
+            console.log(Sortby[index]);
+            this.setState({ Filter: Sortby[index], Checkbox: isDescending}, () => {fetch("/filter", {
+             method: "POST",
+             headers: {
+                 'Content-Type': 'application/json'
+             },
+             body: JSON.stringify({
+                 Array: copyArray,
+                 Filter: this.state.Filter.value,
+                 IsDescending: this.state.Checkbox
+             })
+         }).then(response => {
+             console.log(response)
+             return response.json()
+         }).then(data => {
+             this.setState({
+                 College: data
+             })
+         })});
+         } else {
+             fetch("/filter", {
+                 method: "POST",
+                 headers: {
+                     'Content-Type': 'application/json'
+                 },
+                 body: JSON.stringify({
+                     Array: copyArray,
+                     Filter: this.state.Filter.value,
+                     IsDescending: this.state.Checkbox
+                 })
+             }).then(response => {
+                 console.log(response)
+                 return response.json()
+             }).then(data => {
+                 this.setState({
+                     College: data
+                 })
+             });
+         }
 
         if(copyArray[0] === "") {
             copyArray = [];
@@ -548,6 +588,7 @@ class Explore extends React.Component {
         });
         let style = !this.state.Checkbox
         this.setState({ Checkbox: style }, () => {
+            sessionStorage.setItem("descending" , this.state.Checkbox)
             console.log(this.state.Checkbox);
         })
     }
