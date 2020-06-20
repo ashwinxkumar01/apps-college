@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/react/css/main.1b710cea.chunk.css",
-    "main.js": "/static/react/js/main.d4dc436f.chunk.js",
-    "main.js.map": "/static/react/js/main.d4dc436f.chunk.js.map",
+    "main.js": "/static/react/js/main.663f3afc.chunk.js",
+    "main.js.map": "/static/react/js/main.663f3afc.chunk.js.map",
     "runtime-main.js": "/static/react/js/runtime-main.725b2ec0.js",
     "runtime-main.js.map": "/static/react/js/runtime-main.725b2ec0.js.map",
     "css/2.829c9cb5.chunk.css": "/static/react/css/2.829c9cb5.chunk.css",
@@ -16,7 +16,7 @@
     "media/UCSDLogo.png": "/static/react/media/UCSDLogo.b619b951.png",
     "media/UCSD_3.jpg": "/static/react/media/UCSD_3.914f5b55.jpg",
     "media/Home.css": "/static/react/media/wp2017235.e4ac0c4f.jpg",
-    "precache-manifest.eeabd0299403dfcc5f0ba0ef2c2b8ac0.js": "/static/react/precache-manifest.eeabd0299403dfcc5f0ba0ef2c2b8ac0.js",
+    "precache-manifest.47951362b161d072f6c7504a17487477.js": "/static/react/precache-manifest.47951362b161d072f6c7504a17487477.js",
     "service-worker.js": "/static/react/service-worker.js"
   },
   "entrypoints": [
@@ -24,6 +24,6 @@
     "css/2.829c9cb5.chunk.css",
     "js/2.7f500cad.chunk.js",
     "css/main.1b710cea.chunk.css",
-    "js/main.d4dc436f.chunk.js"
+    "js/main.663f3afc.chunk.js"
   ]
 }
