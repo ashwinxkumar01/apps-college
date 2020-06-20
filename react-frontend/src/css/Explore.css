@@ -31,7 +31,7 @@
 }
 
 .filter {
-    width: calc(25rem);
+    width: calc(21%);
     height: calc(60vh);
     margin-left: calc(0.5rem);
     margin-top: calc(1.5rem);
@@ -47,14 +47,13 @@
 .header {
     width: calc(60%);
     text-align: left;
-    padding-left: calc(0.3rem);
     font-size: calc(1rem);
     white-space: nowrap;
     position: relative;
     top: calc(0rem);
     font-family: 'Muli', sans-serif;
     outline: none;
-    margin-left: calc(1rem);
+    margin-left: calc(0.5rem);
 }
 
 .filter-form {
@@ -72,6 +71,7 @@
     outline: none;
     border: none;
     border-bottom: 1px solid black;
+    margin-top: calc(0.2rem);
 }
 
 input[type="text"]
