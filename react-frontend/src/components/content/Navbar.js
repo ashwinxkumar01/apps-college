@@ -53,6 +53,7 @@ class NavBar extends React.Component {
 
   handleClick = () => {
     sessionStorage.clear();
+    localStorage.clear();
     fetch("/logout", {
       method: "POST",
       headers: {

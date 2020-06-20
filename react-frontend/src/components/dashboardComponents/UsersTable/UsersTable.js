@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -47,8 +48,11 @@ const UsersTable = props => {
   const classes = useStyles();
 
   const [selectedUsers, setSelectedUsers] = useState([]);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(10000);
+   //important!!!!!!!!!!!!!!!!! this determines how many are on a page - hardcoded to 10k
   const [page, setPage] = useState(0);
+  console.log(users.length);
+
 
   const handleSelectAll = event => {
     const { users } = props;
@@ -123,12 +127,14 @@ const UsersTable = props => {
               </TableHead>
               <TableBody>
                 {users.slice(0, rowsPerPage).map(user => (
-                  <TableRow
+                 
+                    <TableRow
                     className={classes.tableRow}
                     hover
                     key={user.id}
                     selected={selectedUsers.indexOf(user.id) !== -1}
                   >
+                  <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>
                     <TableCell padding="checkbox">
                       <Checkbox
                         checked={selectedUsers.indexOf(user.id) !== -1}
@@ -151,7 +157,10 @@ const UsersTable = props => {
                     <TableCell>{user.regular_decison}</TableCell>
                     <TableCell>{user.tuition_normal}</TableCell>
                     <TableCell>{user.tuition_oos} </TableCell>
+                  </Link>
                   </TableRow>
+                  
+                  
                 ))}
               </TableBody>
             </Table>
@@ -159,7 +168,7 @@ const UsersTable = props => {
         </PerfectScrollbar>
       </CardContent>
       <CardActions className={classes.actions}>
-        <TablePagination
+        {/* <TablePagination
           component="div"
           count={users.length}
           page={page}
@@ -167,7 +176,9 @@ const UsersTable = props => {
           onChangeRowsPerPage={handleRowsPerPageChange}
           rowsPerPage={rowsPerPage}
           rowsPerPageOptions={[5, 10, 25]}
-        />
+          //rowsPerPageOptions={[users.length]}
+
+        /> */}
       </CardActions>
     </Card>
   );

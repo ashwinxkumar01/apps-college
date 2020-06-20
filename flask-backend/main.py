@@ -285,6 +285,21 @@ def createUserWithEmailPassword():
     # this should redirect to the homepage...
 
 
+def createUserWithEmailPasswordTest(email, password):
+    #gets incoming request
+    #post_request = request.get_json(force=True)
+
+    #email = post_request['Username']
+    #password = post_request['Password']
+    try:
+        auth.create_user_with_email_and_password(email, password)
+        dictio['initialUser'] = email
+        db.child("users").child(dictio['initialUser'][:-6]).update({"college": "none"})
+    except:
+        return json.dumps({"True": 1})
+    return json.dumps({"True": 2})
+
+
 # db.child("users").push({"name": "raj"}) - this is a sample line
 # FIXME: a pyrebase token expires after 1 hour, so we need to set a timer and refresh the token every hour
 # or tell them that their token will run out
@@ -330,7 +345,7 @@ def loginWithEmailPasswordTest():
     # # Assign value from the request
     # email = post_request['Username']
     # password = post_request['Password']
-    email = "aksportsmaniac@gmail.com"
+    email = "jim2@gmail.com"
     password = "123456"
     # successfulLogin = False
     try:
@@ -380,6 +395,17 @@ def addCollege():
     colleges[collegeName] = collegeName
     db.child("users").child(dictio['currentUser'][:-6]).update(colleges)
 
+def addCollegeTest(collegeName):
+    print("add function call")
+    #post_request = request.get_json(force=True)
+
+    # Assign value from the request
+    # collegeName = post_request['CollegeName']
+    
+    colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
+    colleges[collegeName] = collegeName
+    db.child("users").child(dictio['currentUser'][:-6]).update(colleges)
+
 
 @app.route("/removecollege", methods = ['POST'])
 def removeCollege():
@@ -388,6 +414,17 @@ def removeCollege():
 
     # Assign value from the request
     collegeName = post_request['CollegeName']
+    
+    colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
+    colleges[collegeName] = "none"
+    db.child("users").child(dictio['currentUser'][:-6]).update(colleges)
+
+def removeCollegeTest(collegeName):
+    print("remove function call")
+    #post_request = request.get_json(force=True)
+
+    # Assign value from the request
+    #collegeName = post_request['CollegeName']
     
     colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
     colleges[collegeName] = "none"
@@ -418,10 +455,11 @@ def listColleges():
     return json_lst
 
 
-# testing method
+#testing method
 # if __name__ == '__main__':
 #     print("im here")
 #     # createUserWithEmailPassword("aksportsmaniac@gmail.com", "123456")
+#     createUserWithEmailPasswordTest("jim2@gmail.com", "123456")
 #     loginWithEmailPasswordTest()
 #     print(dictio['currentUser'])
 #     # db.child("users").child(short)
@@ -431,8 +469,8 @@ def listColleges():
 #     # colleges['ucsb'] = 'ucsb'
 #     # addCollege('USC')
 #     # addCollege('University of Southern California')
-#     # addCollege('University of California, San Diego')
-#     removeCollege('college')
+#     addCollegeTest('University of California, San Diego')
+#     #removeCollegeTest('college')
 #     listColleges()
 
 #     # print(colleges)
@@ -463,6 +501,8 @@ def dashboard():
     json_return = get_colleges_for_dashboard(query_lst)
     print(json_return)
     return json.dumps(json_return)
+
+# def sendEmail(email, subject, text):
 
 
 app.run(debug=True)
