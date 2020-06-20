@@ -6,7 +6,8 @@ class Heart extends React.Component {
         super(props);
         this.state = {
             status: false,
-            currentCollege: this.props.collegeName
+            currentCollege: this.props.collegeName,
+            key: this.props.key
         }
         this.handleClick = this.handleClick.bind(this);
     }
@@ -39,20 +40,52 @@ class Heart extends React.Component {
             }).then(data => { })
             this.setState({ status: true });
         }
+        fetch("/dashboard", {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+          }).then(response => {
+            console.log(response)
+            return response.json()
+          }).then(data => {
+            let collegeList = [];
+            data.map(college => {
+              var collegeName = JSON.parse(college);
+              collegeList.push(collegeName);
+            })
+            sessionStorage.removeItem("collegeNames");
+            sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));   
+        })   
     }
     componentWillMount(){
+        console.log("here")
         if (sessionStorage.getItem("collegeNames") !==  null){
             JSON.parse(sessionStorage.getItem("collegeNames")).map(college => {
-                if (college.college_name === this.state.currentCollege) {
+                if (college.college_name === this.props.collegeName) {
                     if(this.state.status !== true){
                         this.setState({status: true})
+                    }
+                }else{
+                    if(this.state.status !== false){
+                        this.setState({status: false})
                     }
                 }
             });
         }
     }
+    // componentDidMount(){
+    //     if (sessionStorage.getItem("collegeNames") !==  null){
+    //         JSON.parse(sessionStorage.getItem("collegeNames")).map(college => {
+    //             if (college.college_name === this.props.collegeName) {
+    //                 if(this.state.status !== true){
+    //                     this.setState({status: true})
+    //                 }
+    //             }
+    //         });
+    //     }
+    // }
     render() {
-        
         if (this.state.status === true) {
             return (
                 <div className="redheart" onClick={this.handleClick} />

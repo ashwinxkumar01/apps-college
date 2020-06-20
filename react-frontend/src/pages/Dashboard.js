@@ -31,6 +31,7 @@ class Dashboard extends React.Component {
       users: mockData,
     };
     this.setSearch = this.setSearch.bind(this);
+    this.renderHeart = this.renderHeart.bind(this);
     this.searchBarInUse = this.searchBarInUse.bind(this);
   }
 
@@ -76,11 +77,15 @@ class Dashboard extends React.Component {
     });
 
   }
+  renderHeart(collegeName){
+    return(
+      <Heart collegeName={collegeName} key={collegeName}/>
+    )
+  }
   
-
   renderDashboard = () => {
-    this.pullColleges();
     if (this.state.searchBar === false) {
+      this.pullColleges();
       return (
         <div className={useStyles.root}>
           {/* <UsersToolbar /> */}
@@ -90,8 +95,9 @@ class Dashboard extends React.Component {
         </div>
       )
     } else {
-      return (
-        this.state.resultsFromSearch.map(college => (
+      return(
+      this.state.resultsFromSearch.map(college => {
+        return(
           <div>
             <Link to={`/loginhome/page/${college}`} className="fixedHeight">
               <div className="searchResult">
@@ -104,11 +110,12 @@ class Dashboard extends React.Component {
               </div>
             </Link>
             <div className="height">
-              <Heart collegeName={college} className="fixedHeight"/>
+              {this.renderHeart(college)}
             </div>
           </div>
         )
-        )
+      }
+      )
       )
     }
   }

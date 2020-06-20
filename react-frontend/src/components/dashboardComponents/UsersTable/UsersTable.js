@@ -162,7 +162,7 @@ const UsersTable = props => {
         <TablePagination
           component="div"
           count={users.length}
-          page={page.page}
+          page={page}
           onChangePage={handlePageChange}
           onChangeRowsPerPage={handleRowsPerPageChange}
           rowsPerPage={rowsPerPage}

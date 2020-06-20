@@ -142,7 +142,7 @@ export default function SignInSide() {
                 //e.preventDefault();
                 if (cpassword.cpassword !== password.password) {
                 } else {
-                  fetch("/login", {
+                  fetch("/signup", {
                     method: "POST",
                     headers: {
                       'Content-Type': 'application/json'
