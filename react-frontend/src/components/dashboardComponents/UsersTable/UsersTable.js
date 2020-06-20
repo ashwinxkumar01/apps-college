@@ -134,7 +134,6 @@ const UsersTable = props => {
                     key={user.id}
                     selected={selectedUsers.indexOf(user.id) !== -1}
                   >
-                  <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>
                     <TableCell padding="checkbox">
                       <Checkbox
                         checked={selectedUsers.indexOf(user.id) !== -1}
@@ -143,7 +142,9 @@ const UsersTable = props => {
                         value="true"
                       />
                     </TableCell>
+
                     <TableCell>
+                    <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>
                       <div className={classes.nameContainer}>
                         {/* <Avatar src={ucsd}
                           className={classes.avatar}
@@ -152,12 +153,40 @@ const UsersTable = props => {
                         </Avatar> */}
                         <Typography variant="body1">{user.college_name}</Typography>
                       </div>
+                      </Link>
                     </TableCell>
-                    <TableCell>{user.state}</TableCell>
-                    <TableCell>{user.regular_decison}</TableCell>
-                    <TableCell>{user.tuition_normal}</TableCell>
-                    <TableCell>{user.tuition_oos} </TableCell>
-                  </Link>
+                    
+                    <TableCell>
+                      <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>
+                        <div className={classes.nameContainer}>
+                          <Typography variant="body1">{user.state}</Typography>
+                        </div>
+                      </Link>
+                    </TableCell>
+
+                    <TableCell>
+                      <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>
+                        <div className={classes.nameContainer}>
+                          <Typography variant="body1">{user.regular_decison}</Typography>
+                        </div>
+                      </Link>
+                    </TableCell>
+
+                    <TableCell>
+                      <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>
+                        <div className={classes.nameContainer}>
+                          <Typography variant="body1">{user.tuition_normal}</Typography>
+                        </div>
+                      </Link>
+                    </TableCell>
+
+                    <TableCell>
+                      <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>
+                        <div className={classes.nameContainer}>
+                          <Typography variant="body1">{user.tuition_oos}</Typography>
+                        </div>
+                      </Link>
+                    </TableCell>
                   </TableRow>
                   
                   
