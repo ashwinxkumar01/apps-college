@@ -72,7 +72,7 @@ class Explore extends React.Component {
         if(filterBy !== null) {
            const index = this.splitToArray(filterBy, Sortby);
            console.log(Sortby[index]);
-           this.setState({ Filter: Sortby[index]}, () => console.log(this.state.Filter));
+           this.setState({ Filter: Sortby[index] });
         }
 
         if(copyArray[0] === "") {
@@ -129,7 +129,6 @@ class Explore extends React.Component {
         this.setState({ TuitionUpper: tuitionUpper});
 
         const appType = sessionStorage.getItem("appfee");
-        console.log(appType);
         if(appType !== null) {
             const index = this.splitToArray(appType, App);
             this.setState({ App: App[index]}, () => console.log(this.state.App));
@@ -138,7 +137,6 @@ class Explore extends React.Component {
         const letterRec = sessionStorage.getItem("letterrec");
         if(letterRec !== null) {
             const index = this.splitToArray(letterRec, LOR);
-            console.log(LOR[index]);
             this.setState({ LOR: LOR[index]}, () => console.log(this.state.LOR));
         }
 
@@ -147,26 +145,36 @@ class Explore extends React.Component {
             const index = this.splitToArray(schoolType, Type);
             this.setState({ School: Type[index]});
         }
+
+        const stateFilter = sessionStorage.getItem("statefilter");
+        if(stateFilter !== null) {
+            let splitArray = stateFilter.split(",");
+            let newArray = [];
+            for(let i = 0; i < splitArray.length; i++) {
+                let obj = {
+                    value: splitArray[i],
+                    label: splitArray[i]
+                }
+                newArray.push(obj);
+            }
+            
+            this.setState({ StateFilter: newArray}, () => console.log(this.state.StateFilter));
+        }
       }
 
     splitToArray(type, compare) {
         let spliceApp = type.split(",");
         let appTypeObj = '';
-        console.log(compare);
-        console.log(type);
         for(let i = 0; i < compare.length; i++) {
             let getValue = spliceApp[0];
             if(!isNaN(parseFloat(getValue))) {
                 getValue = Number.parseFloat(getValue);
             }
 
-            console.log(getValue);
-            console.log(compare[i].value);
             if(getValue === compare[i].value) {
                 appTypeObj = i;
             }
         }
-        console.log(appTypeObj);
         return appTypeObj;
     }
 
@@ -309,6 +317,7 @@ class Explore extends React.Component {
                                 options={States}
                                 className="basic-multi-select"
                                 classNamePrefix="select"
+                                value={this.state.StateFilter}
                             />   
                             </div>
                         </div>
@@ -495,11 +504,11 @@ class Explore extends React.Component {
             array.push(this.state.LOR.value);
         }
 
-        if (this.state.StateFilter.length !== 0) {
+        if (this.state.StateFilter.value !== 'Any') {
             console.log(this.state.StateFilter);
             this.state.StateFilter.forEach(state => {
             array.push("state")
-            array.push(state);
+            array.push(state.value);
             })
         }
 
@@ -552,9 +561,16 @@ class Explore extends React.Component {
         const state = this.state;
         state.StateFilter = [];
         e.forEach((option) => {
-          state.StateFilter.push(option.label);
+          state.StateFilter.push(option);
         });
-        this.setState({StateFilter: state.StateFilter}, console.log(this.state.StateFilter));
+        this.setState({StateFilter: state.StateFilter}, () => {
+            let array = [];
+            this.state.StateFilter.forEach(state => {
+                array.push(state.value);
+            })
+            sessionStorage.setItem("statefilter", array);
+            console.log(this.state.StateFilter)
+        });
     };
 
     render() {

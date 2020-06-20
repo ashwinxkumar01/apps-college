@@ -515,16 +515,23 @@ def dashboard():
 
 #method to send email for contact page
 #sends email to redpandas920@gmail.com from itself
+@app.route('/email', methods = ['POST'])
 def sendEmail(email_address, subject_email, message_email):
     port = 465  # For SSL
     password = os.environ.get("DB_PASSWD")
+    
+    post_request = request.get_json(force=True)
     
     context = ssl.create_default_context()
     smtp_server = "smtp.gmail.com"
     email = "redpandas920@gmail.com"  # Enter your address
 
+    email_from = post_request['Email']
+    subject_email = post_request['Name']
+    message_email = post_request['Message']
+
     msg = MIMEMultipart()
-    msg['From'] = email
+    msg['From'] = email_from
     msg['To'] = email
     msg['Subject'] = subject_email
     body = message_email
@@ -533,6 +540,8 @@ def sendEmail(email_address, subject_email, message_email):
 
     with smtplib.SMTP_SSL("smtp.gmail.com:465") as server:
         server.login(email, password)
-        server.sendmail(email, email, msg.as_string())
+        server.sendmail(email_from, email, msg.as_string())
+
+    return json.dumps({"True": 2})
 
 app.run(debug=True)
