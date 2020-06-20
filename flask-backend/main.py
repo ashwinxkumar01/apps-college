@@ -516,7 +516,7 @@ def dashboard():
 #method to send email for contact page
 #sends email to redpandas920@gmail.com from itself
 @app.route('/email', methods = ['POST'])
-def sendEmail(email_address, subject_email, message_email):
+def sendEmail():
     port = 465  # For SSL
     password = os.environ.get("DB_PASSWD")
     
