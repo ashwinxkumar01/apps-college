@@ -48,8 +48,11 @@ const UsersTable = props => {
   const classes = useStyles();
 
   const [selectedUsers, setSelectedUsers] = useState([]);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(10000);
+   //important!!!!!!!!!!!!!!!!! this determines how many are on a page - hardcoded to 10k
   const [page, setPage] = useState(0);
+  console.log(users.length);
+
 
   const handleSelectAll = event => {
     const { users } = props;
@@ -165,7 +168,7 @@ const UsersTable = props => {
         </PerfectScrollbar>
       </CardContent>
       <CardActions className={classes.actions}>
-        <TablePagination
+        {/* <TablePagination
           component="div"
           count={users.length}
           page={page.page}
@@ -173,7 +176,9 @@ const UsersTable = props => {
           onChangeRowsPerPage={handleRowsPerPageChange}
           rowsPerPage={rowsPerPage}
           rowsPerPageOptions={[5, 10, 25]}
-        />
+          //rowsPerPageOptions={[users.length]}
+
+        /> */}
       </CardActions>
     </Card>
   );
