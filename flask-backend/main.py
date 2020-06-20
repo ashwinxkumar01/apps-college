@@ -22,18 +22,18 @@ database = os.environ.get("DATABASE_NAME")
 username = os.environ.get("DB_USERNAME")
 password = os.environ.get("DB_PASSWD")
 driver = '{ODBC Driver 17 for SQL Server}'
-con = 'Yes'
+con = 'No'
 
 db_info = 'DRIVER=' + driver + ';SERVER=' + server + ';PORT=1433;DATABASE=' + database + ';UID=' + username + ';PWD=' + password + ';MARS_Connection=' + con
 #print(db_info)
 
-cnxn = pyodbc.connect(db_info)
 
 
 # method to query the SQL database with standard SQL syntax
 # returns a list
 # colleges is the table where accurate information is stored
 def get_query(query):
+    cnxn = pyodbc.connect(db_info)
     cursor = cnxn.cursor()
 
     cursor.execute(query)
