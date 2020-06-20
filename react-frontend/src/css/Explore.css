@@ -31,10 +31,10 @@
 }
 
 .filter {
-    width: calc(21%);
+    width: calc(26%);
     height: calc(60vh);
     margin-left: calc(0.5rem);
-    margin-top: calc(1.5rem);
+    margin-top: calc(0rem);
 }
 
 .tuition {

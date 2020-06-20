@@ -27,7 +27,7 @@
 }
 
 .header-tile {
-    width: calc(87%);
+    width: calc(80%);
     display: block;
     flex-direction: row; 
     margin-left: calc(1.75rem);   
@@ -35,7 +35,7 @@
 
 .college-name {
     text-align: center;
-    width: 100%;  
+    width: calc(100%);  
 }
 
 .college-name h1{
@@ -58,7 +58,7 @@
 }
 
 .specifications h3 {
-    font-size: calc(1.15rem);
+    font-size: calc(1.1rem);
     font-family: 'Karla', serif;
     font-weight: 900;
 }
@@ -80,7 +80,7 @@
 
 .favorite-icon{
     width: calc(9.5%);
-    padding-top: calc(2.9rem);
+    padding-top: calc(2.5rem);
     justify-content: right;
     position: absolute;
     right: 0;
