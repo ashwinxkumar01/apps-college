@@ -41,7 +41,7 @@ def get_query(query):
 
     cursor.close()
     cnxn.close()
-
+    
     return myresult
 
 
