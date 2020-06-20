@@ -8,6 +8,9 @@ from flask import jsonify, redirect, url_for
 import pyodbc
 #from firebase import * #Causing errors when testing, Ashwin fix it
 from flask_cors import CORS, cross_origin
+import smtplib, ssl
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 app = flask.Flask(__name__)
 CORS(app)
@@ -502,7 +505,26 @@ def dashboard():
     print(json_return)
     return json.dumps(json_return)
 
-# def sendEmail(email, subject, text):
+#method to send email for contact page
+#sends email to redpandas920@gmail.com from itself
+def sendEmail(email_address, subject_email, message_email):
+    port = 465  # For SSL
+    password = os.environ.get("DB_PASSWD")
+    
+    context = ssl.create_default_context()
+    smtp_server = "smtp.gmail.com"
+    email = "redpandas920@gmail.com"  # Enter your address
 
+    msg = MIMEMultipart()
+    msg['From'] = email
+    msg['To'] = email
+    msg['Subject'] = subject_email
+    body = message_email
+    body = MIMEText(body)
+    msg.attach(body)
+
+    with smtplib.SMTP_SSL("smtp.gmail.com:465") as server:
+        server.login(email, password)
+        server.sendmail(email, email, msg.as_string())
 
 app.run(debug=True)

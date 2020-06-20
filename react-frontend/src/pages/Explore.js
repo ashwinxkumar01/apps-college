@@ -16,10 +16,10 @@ class Explore extends React.Component {
         this.state = {
             searchBar: false,
             College: [],
-            School: 'Any',
-            App: 'Any',
-            LOR: 'Any',
-            Filter: 'national_ranking',
+            School: Type[0],
+            App: App[0],
+            LOR: LOR[0],
+            Filter: Sortby[0],
             Checkbox: true,
             AppFeeLower: null,
             AppFeeUpper: null,
@@ -54,17 +54,30 @@ class Explore extends React.Component {
         this.numFormat = this.numFormat.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
         this.pushToArray = this.pushToArray.bind(this);
+        this.splitToArray = this.splitToArray.bind(this);
     }
 
     componentDidMount(){
         let savedArray = sessionStorage.getItem("array");
         let copyArray = [];
-        if(savedArray === null) {
-            copyArray = [];
+
+        if(savedArray === null || savedArray === undefined) {
+            //do nothing
         } else {
             copyArray = savedArray.split(",");
         }
-        console.log(copyArray);
+        
+        const filterBy = sessionStorage.getItem("filterby");
+        if(filterBy !== null) {
+           const index = this.splitToArray(filterBy, Sortby);
+           console.log(Sortby[index]);
+           this.setState({ Filter: Sortby[index]}, () => console.log(this.state.Filter));
+        }
+
+        if(copyArray[0] === "") {
+            copyArray = [];
+        }
+
         fetch("/filter", {
             method: "POST",
             headers: {
@@ -72,7 +85,7 @@ class Explore extends React.Component {
             },
             body: JSON.stringify({
                 Array: copyArray,
-                Filter: "national_ranking",
+                Filter: this.state.Filter.value,
                 IsDescending: this.state.Checkbox
             })
         }).then(response => {
@@ -114,10 +127,47 @@ class Explore extends React.Component {
         const tuitionUpper = sessionStorage.getItem("normalupper");
         this.setState({ TuitionUpper: tuitionUpper});
 
-        const checked = sessionStorage.getItem("checked");
-        this.setState({ Checked: checked});
-        
+        const appType = sessionStorage.getItem("appfee");
+        console.log(appType);
+        if(appType !== null) {
+            const index = this.splitToArray(appType, App);
+            this.setState({ App: App[index]}, () => console.log(this.state.App));
+        }
+
+        const letterRec = sessionStorage.getItem("letterrec");
+        if(letterRec !== null) {
+            const index = this.splitToArray(letterRec, LOR);
+            console.log(LOR[index]);
+            this.setState({ LOR: LOR[index]}, () => console.log(this.state.LOR));
+        }
+
+        const schoolType = sessionStorage.getItem("schooltype");
+        if(schoolType !== null) {
+            const index = this.splitToArray(schoolType, Type);
+            this.setState({ School: Type[index]});
+        }
       }
+
+    splitToArray(type, compare) {
+        let spliceApp = type.split(",");
+        let appTypeObj = '';
+        console.log(compare);
+        console.log(type);
+        for(let i = 0; i < compare.length; i++) {
+            let getValue = spliceApp[0];
+            if(!isNaN(parseFloat(getValue))) {
+                getValue = Number.parseFloat(getValue);
+            }
+
+            console.log(getValue);
+            console.log(compare[i].value);
+            if(getValue === compare[i].value) {
+                appTypeObj = i;
+            }
+        }
+        console.log(appTypeObj);
+        return appTypeObj;
+    }
 
     searchBarInUse = (inUse) => {
         if (inUse !== this.state.searchBar) {
@@ -219,19 +269,31 @@ class Explore extends React.Component {
                         <hr></hr>
 
                         <div className="app-type">
-                            <Select onChange={(e) => this.setState({ App: e.value })} options={App} placeholder={"Application type"}/>
+                            <Select onChange={(e) => {this.setState({ App: e }, () => {
+                                console.log(this.state.App);
+                                sessionStorage.setItem("appfee", [this.state.App.value, this.state.App.label]);
+                            }
+                            )}} 
+                            options={App} placeholder={"Application type"} value={this.state.App}
+                            />
                         </div>
 
                         <hr></hr>
 
                         <div className="app-type">
-                            <Select onChange={(e) => this.setState({ LOR: e.value }, () => console.log(this.state.LOR))} options={LOR} placeholder={"Letter of Recommendations"}/>
+                            <Select onChange={(e) => this.setState({ LOR: e }, () => {
+                                sessionStorage.setItem("letterrec", [this.state.LOR.value, this.state.LOR.label]);
+                            })} 
+                            options={LOR} placeholder={"Letter of Recommendations"} value={this.state.LOR}/>
                         </div>
 
                         <hr></hr>
 
                         <div className="school-type">
-                            <Select onChange={(e) => this.setState({ School: e.value })} options={Type} placeholder={"School Type"}/>
+                            <Select onChange={(e) => this.setState({ School: e }, () => {
+                                sessionStorage.setItem("schooltype", [this.state.School.value, this.state.School.label]);
+                            })} 
+                            options={Type} placeholder={"School Type"} value={this.state.School}/>
                         </div>
 
                         <hr></hr>
@@ -260,7 +322,8 @@ class Explore extends React.Component {
                     <div className="content-display">
                         <div className="float-display">
                             <div className="sort-by">
-                                <Select onChange={this.handleFilter} options={Sortby} placeholder={"National Ranking"}/>
+                                <Select onChange={this.handleFilter} 
+                                options={Sortby} placeholder={"National Ranking"} value={this.state.Filter}/>
                             </div>
                                 <input
                                     className="button"
@@ -410,24 +473,25 @@ class Explore extends React.Component {
             }
         }
 
-        if (this.state.App !== 'Any') {
-            if(this.state.App === 'commonapp') {
+        console.log(this.state.App);
+        if (this.state.App.value !== 'Any') {
+            if(this.state.App.value === 'commonapp') {
                 array.push("common_app");
                 array.push("y");
             } else {
                 array.push("coalition_app");
-                array.push("y");    
+                array.push("y");  
             }
         }
 
-        if (this.state.School !== 'Any') {
+        if (this.state.School.value !== 'Any') {
             array.push("school_type");
-            array.push(this.state.School);
+            array.push(this.state.School.value);
         }
 
-        if (this.state.LOR !== 'Any') {
+        if (this.state.LOR.value !== 'Any') {
             array.push("letter_of_rec_required");
-            array.push(this.state.LOR);
+            array.push(this.state.LOR.value);
         }
 
         if (this.state.StateFilter.length !== 0) {
@@ -447,7 +511,7 @@ class Explore extends React.Component {
             },
             body: JSON.stringify({
                 Array: array,
-                Filter: this.state.Filter,
+                Filter: this.state.Filter.value,
                 IsDescending: this.state.Checkbox
             })
         }).then(response => {
@@ -459,8 +523,9 @@ class Explore extends React.Component {
         });
     }
     handleFilter(e) {
-        this.setState({ Filter: e.value }, () => {
+        this.setState({ Filter: e }, () => {
             this.handleClick();
+            sessionStorage.setItem("filterby", [this.state.Filter.value, this.state.Filter.label]);
             console.log(this.state.Filter);
         });
     }
