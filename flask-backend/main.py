@@ -39,6 +39,9 @@ def get_query(query):
     cursor.execute(query)
     myresult = cursor.fetchall()
 
+    cursor.close()
+    cnxn.close()
+    
     return myresult
 
 
