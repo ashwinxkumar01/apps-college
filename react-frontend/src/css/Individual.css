@@ -70,9 +70,7 @@
 .general-layout {
     background-color: white;
     width: calc(40vmin);
-    border-top-right-radius: 10px;
     box-shadow: 5px 0 5px -2px #888;
-    border-bottom-right-radius: 10px;
     padding-top: calc(5vmin);
     /**
     border-top-style: solid;
@@ -113,7 +111,7 @@
 .essay-text {
     position: absolute;
     text-align: left;
-    left: calc(25vw);
+    left: calc(45vmin);
     top: calc(80vh);
     font-size: calc(1.25vw);
     width: calc(57.5vw);
@@ -149,9 +147,7 @@
 .deadline-layout {
     background-color: white;
     width: calc(40vmin);
-    border-top-right-radius: 10px;
     box-shadow: 5px 0 5px -2px #888;
-    border-bottom-right-radius: 10px;
     padding-top: calc(5vmin);
     /**
     border-top-style: solid;
@@ -171,9 +167,7 @@
 .sat-layout {
     background-color: white;
     width: calc(40vmin);
-    border-top-right-radius: 10px;
     box-shadow: 5px 0 5px -2px #888;
-    border-bottom-right-radius: 10px;
     padding-top: calc(5vmin);
     /**
     border-top-style: solid;
@@ -200,7 +194,6 @@
 
 .image-box {
     width: calc(75vw);
-    position: absolute; 
     left: calc(25vw);
     height: calc(72.5vh); 
     text-align: center;
@@ -224,4 +217,28 @@
 .logo-1 {
     width: calc(15vmin);
     height: calc(15vmin);
+}
+
+.individual-heart {
+    width: calc(9.5%);
+    position: absolute;
+    -webkit-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
+    top: calc(4.6vh);
+}
+
+.return {
+    margin-top: calc(1.5vmin);
+    background-color: #003366;
+    border-radius: 7.5px;
+    color: white;
+    padding: 8px 11px;
+    font-size: calc(2vmin);
+    transition-duration: 0.5s;
+    text-decoration: none;
+}
+
+.return:hover {
+    background-color: #0059b3;
 }

@@ -4,6 +4,7 @@ import UCSDImage from './UCSDLogo.png';
 import Grid from '@material-ui/core/Grid';
 import Geisel from './UCSDCampus.jpg';
 import Heart from '../components/content/Heart';
+import { IoIosUndo } from "react-icons/io";
 
 class Individual extends Component {
     constructor(props){
@@ -54,7 +55,7 @@ class Individual extends Component {
             return (
             <ul className="essay-text">
                 <h1 className="essay-header">
-                        Essay Questions ( {this.essayHeaderFunc(this.state.college_json["supplemental_essays"])})
+                        Supplemental Essay Questions ( {this.essayHeaderFunc(this.state.college_json["supplemental_essays"])})
                 </h1>
                 {essayArray.map((essay) => {   
                     return (
@@ -114,6 +115,7 @@ class Individual extends Component {
 
 
     componentDidMount(){
+        window.scrollTo(0,0);
         fetch("/individual", {
             method: "POST",
             headers: {
@@ -143,6 +145,9 @@ class Individual extends Component {
                 <div className="image-box">
                     <h1>
                         {this.state.college_json["college_name"]}  
+                        <span className = "individual-heart">
+                        <Heart collegeName={this.state.college_json["college_name"]} key={this.state.college_json["college_name"]}/>
+                        </span>
                     </h1>
                 </div>
                 <div className="circle">
@@ -158,7 +163,7 @@ class Individual extends Component {
                 <div className = "grid-layout">
                     <Grid container direction="column" spacing={5}>
                         <Grid item className = "general-layout" >
-                            <button onClick={this.goBack}>Return</button>
+                            <button onClick={this.goBack} className="return"><IoIosUndo/> Return</button>
                             <h1 className="general-text">
                                 General Info
                             </h1>
@@ -209,7 +214,7 @@ class Individual extends Component {
                                 Mid-Year Report: {this.state.college_json["mid_year"]}
                             </p>
                             <p>
-                                Letters of Recommendation Required: {this.state.college_json["letter_of_rec_required"]}
+                                Letters of Rec. Required: {this.state.college_json["letter_of_rec_required"]}
                             </p>
                             <p>
                                 SAT/ACT Required: {this.state.college_json["sat"]}

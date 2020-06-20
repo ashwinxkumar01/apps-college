@@ -58,6 +58,7 @@ class Explore extends React.Component {
     }
 
     componentDidMount(){
+        window.scrollTo(0,0);
         let savedArray = sessionStorage.getItem("array");
         let copyArray = [];
 
