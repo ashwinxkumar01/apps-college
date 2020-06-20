@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -127,14 +127,12 @@ const UsersTable = props => {
               </TableHead>
               <TableBody>
                 {users.slice(0, rowsPerPage).map(user => (
-                 
                     <TableRow
                     className={classes.tableRow}
                     hover
                     key={user.id}
                     selected={selectedUsers.indexOf(user.id) !== -1}
                   >
-                  <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>
                     <TableCell padding="checkbox">
                       <Checkbox
                         checked={selectedUsers.indexOf(user.id) !== -1}
@@ -143,8 +141,9 @@ const UsersTable = props => {
                         value="true"
                       />
                     </TableCell>
+                    
                     <TableCell>
-                      <div className={classes.nameContainer}>
+                      <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}> <div className={classes.nameContainer}>
                         {/* <Avatar src={ucsd}
                           className={classes.avatar}
                           // src={user.avatarUrl}
@@ -152,14 +151,13 @@ const UsersTable = props => {
                         </Avatar> */}
                         <Typography variant="body1">{user.college_name}</Typography>
                       </div>
+                      </Link>
                     </TableCell>
-                    <TableCell>{user.state}</TableCell>
-                    <TableCell>{user.regular_decison}</TableCell>
-                    <TableCell>{user.tuition_normal}</TableCell>
-                    <TableCell>{user.tuition_oos} </TableCell>
-                  </Link>
+                    <TableCell><Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>{user.state}</Link></TableCell>
+                    <TableCell><Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>{user.regular_decison}</Link></TableCell>
+                    <TableCell><Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>{user.tuition_normal}</Link></TableCell>
+                    <TableCell><Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>{user.tuition_oos}</Link> </TableCell>
                   </TableRow>
-                  
                   
                 ))}
               </TableBody>
