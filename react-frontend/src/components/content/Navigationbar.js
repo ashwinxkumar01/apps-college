@@ -24,11 +24,6 @@ class Navigationbar extends React.Component {
                         <Nav.Link eventKey="2" href="/loginhome/explore">
                         <FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon>  Explore</Nav.Link>
                     </Nav.Item>
-
-                    <Nav.Item className="faq">
-                        <Nav.Link eventKey="7" href="/loginhome/page">
-                        <FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon>  College Page</Nav.Link>
-                    </Nav.Item>
                 </Nav>
             </div>
         );

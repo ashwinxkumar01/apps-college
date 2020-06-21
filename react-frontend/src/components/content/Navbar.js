@@ -36,7 +36,6 @@ class NavBar extends React.Component {
     console.log(response)
     return response.json()
 }).then(data => {
-  console.log(data)
   let collegeList = [];
   data.map(college => {
     let collegeNames = [];
@@ -68,12 +67,11 @@ class NavBar extends React.Component {
         className="navbar p-3 mb-4 bg-white rounded"
         expand
       >
-
         <SearchBar list={this.state.collegelist} searchBarInUse={this.props.searchBarInUse} setSearch={this.props.setSearch}/>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ml-auto" navbar>
-            <Nav.Link onClick={this.handleClick} href="/">LOGOUT</Nav.Link>
+          <Nav className="ml-auto" navbar style={{border: "calc(.18vh)", borderColor: "#313b4c", borderStyle: "solid", borderRadius: "calc(2vh)"}}>
+            <Nav.Link onClick={this.handleClick} href="/" className="logout">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

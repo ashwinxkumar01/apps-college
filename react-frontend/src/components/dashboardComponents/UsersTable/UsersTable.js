@@ -19,6 +19,7 @@ import {
   Typography,
   TablePagination
 } from '@material-ui/core';
+import Heart from '../../content/Heart';
 
 // import { getInitials } from 'helpers';
 
@@ -49,7 +50,7 @@ const UsersTable = props => {
 
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10000);
-   //important!!!!!!!!!!!!!!!!! this determines how many are on a page - hardcoded to 10k
+  //important!!!!!!!!!!!!!!!!! this determines how many are on a page - hardcoded to 10k
   const [page, setPage] = useState(0);
   console.log(users.length);
 
@@ -108,7 +109,7 @@ const UsersTable = props => {
               <TableHead>
                 <TableRow>
                   <TableCell padding="checkbox">
-                    <Checkbox
+                    {/* <Checkbox
                       checked={selectedUsers.length === users.length}
                       color="primary"
                       indeterminate={
@@ -116,7 +117,7 @@ const UsersTable = props => {
                         selectedUsers.length < users.length
                       }
                       onChange={handleSelectAll}
-                    />
+                    /> */}
                   </TableCell>
                   <TableCell>College Name</TableCell>
                   <TableCell>State</TableCell>
@@ -127,23 +128,20 @@ const UsersTable = props => {
               </TableHead>
               <TableBody>
                 {users.slice(0, rowsPerPage).map(user => (
-                    <TableRow
+                  <TableRow
                     className={classes.tableRow}
                     hover
                     key={user.id}
                     selected={selectedUsers.indexOf(user.id) !== -1}
                   >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        checked={selectedUsers.indexOf(user.id) !== -1}
-                        color="primary"
-                        onChange={event => handleSelectOne(event, user.id)}
-                        value="true"
-                      />
-                    </TableCell>
-                    
                     <TableCell>
-                      <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}> <div className={classes.nameContainer}>
+                      {/* <div style={{ marginLeft: "calc(2.75vw)", marginTop: "calc(4vh)"}}>
+                        <Heart collegeName={user.college_name} key={user.college_name} />
+                      </div> */}
+                    </TableCell>
+
+                    <TableCell>
+                      <Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}> <div className={classes.nameContainer}>
                         {/* <Avatar src={ucsd}
                           className={classes.avatar}
                           // src={user.avatarUrl}
@@ -153,12 +151,12 @@ const UsersTable = props => {
                       </div>
                       </Link>
                     </TableCell>
-                    <TableCell><Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>{user.state}</Link></TableCell>
-                    <TableCell><Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>{user.regular_decison}</Link></TableCell>
-                    <TableCell><Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>{user.tuition_normal}</Link></TableCell>
-                    <TableCell><Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${user.college_name}`}>{user.tuition_oos}</Link> </TableCell>
+                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.state}</Link></TableCell>
+                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.regular_decison}</Link></TableCell>
+                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.tuition_normal}</Link></TableCell>
+                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.tuition_oos}</Link> </TableCell>
                   </TableRow>
-                  
+
                 ))}
               </TableBody>
             </Table>
