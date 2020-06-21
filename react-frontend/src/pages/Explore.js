@@ -214,11 +214,12 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">Population</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({ PopulationLower: e.target.value })} type="text" placeholder="Lower" size="100"
+                                <input onChange={(e) => this.setState({ PopulationLower: e.target.value })} type="number" 
+                                placeholder="Lower" size="100"
                                     value={this.state.PopulationLower}
                                 ></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({ PopulationUpper: e.target.value })} type="text" placeholder="Upper" size="100"
+                                <input onChange={(e) => this.setState({ PopulationUpper: e.target.value })} type="number" placeholder="Upper" size="100"
                                     value={this.state.PopulationUpper}
                                 ></input>
                             </form>
@@ -229,11 +230,11 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">Acceptance</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({ AcceptanceLower: e.target.value })} type="text" placeholder="Lower" size="100"
+                                <input onChange={(e) => this.setState({ AcceptanceLower: e.target.value })} type="number" placeholder="Lower" size="100"
                                     value={this.state.AcceptanceLower}
                                 ></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({ AcceptanceUpper: e.target.value })} type="text" placeholder="Upper" size="100"
+                                <input onChange={(e) => this.setState({ AcceptanceUpper: e.target.value })} type="number" placeholder="Upper" size="100"
                                     value={this.state.AcceptanceUpper}
                                 ></input>
                             </form>
@@ -244,11 +245,11 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">App fee</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({ AppFeeLower: e.target.value })} type="text" placeholder="Lower" size="100"
+                                <input onChange={(e) => this.setState({ AppFeeLower: e.target.value })} type="number" placeholder="Lower" size="100"
                                     value={this.state.AppFeeLower}
                                 ></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({ AppFeeUpper: e.target.value })} type="text" placeholder="Upper" size="100"
+                                <input onChange={(e) => this.setState({ AppFeeUpper: e.target.value })} type="number" placeholder="Upper" size="100"
                                     value={this.state.AppFeeUpper}
                                 ></input>
                             </form>
@@ -259,11 +260,11 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">Ranking</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({ RankingLower: e.target.value })} type="text" placeholder="Lower" size="100"
+                                <input onChange={(e) => this.setState({ RankingLower: e.target.value })} type="number" placeholder="Lower" size="100"
                                     value={this.state.RankingLower}
                                 ></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({ RankingUpper: e.target.value })} type="text" placeholder="Upper" size="100"
+                                <input onChange={(e) => this.setState({ RankingUpper: e.target.value })} type="number" placeholder="Upper" size="100"
                                     value={this.state.RankingUpper}
                                 ></input>
                             </form>
@@ -274,11 +275,11 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">Tuition</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({ TuitionLower: e.target.value })} type="text" placeholder="Lower" size="100"
+                                <input onChange={(e) => this.setState({ TuitionLower: e.target.value })} type="number" placeholder="Lower" size="100"
                                     value={this.state.TuitionLower}
                                 ></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({ TuitionUpper: e.target.value })} type="text" placeholder="Upper" size="100"
+                                <input onChange={(e) => this.setState({ TuitionUpper: e.target.value })} type="number" placeholder="Upper" size="100"
                                     value={this.state.TuitionUpper}
                                 ></input>
                             </form>
