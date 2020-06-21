@@ -69,55 +69,34 @@ class Explore extends React.Component {
         }
         
         const filterBy = sessionStorage.getItem("filterby");
-        const descending = sessionStorage.getItem("descending")
-        var isDescending = (descending === 'true')
-        let text = !isDescending ? "Low to High" : "High to Low";
-        this.setState({Ordering : text})
+        let indices = 0;
         if(filterBy !== null) {
-            const index = this.splitToArray(filterBy, Sortby);
-            console.log(Sortby[index]);
-            this.setState({ Filter: Sortby[index], Checkbox: isDescending}, () => {fetch("/filter", {
-             method: "POST",
-             headers: {
-                 'Content-Type': 'application/json'
-             },
-             body: JSON.stringify({
-                 Array: copyArray,
-                 Filter: this.state.Filter.value,
-                 IsDescending: this.state.Checkbox
-             })
-         }).then(response => {
-             console.log(response)
-             return response.json()
-         }).then(data => {
-             this.setState({
-                 College: data
-             })
-         })});
-         } else {
-             fetch("/filter", {
-                 method: "POST",
-                 headers: {
-                     'Content-Type': 'application/json'
-                 },
-                 body: JSON.stringify({
-                     Array: copyArray,
-                     Filter: this.state.Filter.value,
-                     IsDescending: this.state.Checkbox
-                 })
-             }).then(response => {
-                 console.log(response)
-                 return response.json()
-             }).then(data => {
-                 this.setState({
-                     College: data
-                 })
-             });
-         }
+           const index = this.splitToArray(filterBy, Sortby);
+           indices = index;
+           console.log(Sortby[index]);
+           this.setState({ Filter: Sortby[index] });
+        }
 
         if(copyArray[0] === "") {
             copyArray = [];
         }
+
+        const ordering = sessionStorage.getItem("ordering");
+        console.log(ordering);
+        let checkTemp = false;
+        if(ordering !== null) {
+            console.log('ordering');
+            this.setState({Ordering: ordering});
+            const checked = sessionStorage.getItem("checked");
+            if(checked !== null) {
+                let isChecked = checked === 'true';
+                checkTemp = isChecked;
+                console.log(isChecked);
+                this.setState({Checkbox: isChecked});
+            }
+        }
+
+        console.log(this.state.Ordering);
 
         fetch("/filter", {
             method: "POST",
@@ -126,8 +105,8 @@ class Explore extends React.Component {
             },
             body: JSON.stringify({
                 Array: copyArray,
-                Filter: this.state.Filter.value,
-                IsDescending: this.state.Checkbox
+                Filter: Sortby[indices].value,
+                IsDescending: checkTemp
             })
         }).then(response => {
             console.log(response)
@@ -583,12 +562,13 @@ class Explore extends React.Component {
     changeAscent(e) {
         let value = this.state.Ordering === "Low to High" ? "High to Low" : "Low to High";
         this.setState({ Ordering: value }, () => {
+            sessionStorage.setItem("ordering", this.state.Ordering);
             console.log(this.state.Ordering);
             this.handleClick();
         });
         let style = !this.state.Checkbox
         this.setState({ Checkbox: style }, () => {
-            sessionStorage.setItem("descending" , this.state.Checkbox)
+            sessionStorage.setItem("checked", this.state.Checkbox);
             console.log(this.state.Checkbox);
         })
     }
