@@ -135,9 +135,9 @@ const UsersTable = props => {
                     selected={selectedUsers.indexOf(user.id) !== -1}
                   >
                     <TableCell>
-                      {/* <div style={{ marginLeft: "calc(2.75vw)", marginTop: "calc(4vh)"}}>
+                      <div style={{ marginLeft: "calc(2.75vw)", marginTop: "calc(4vh)"}}>
                         <Heart collegeName={user.college_name} key={user.college_name} />
-                      </div> */}
+                      </div>
                     </TableCell>
 
                     <TableCell>
