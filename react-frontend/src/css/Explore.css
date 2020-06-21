@@ -179,8 +179,37 @@ span {
     width: calc(100%);
 }
 
+.filter-clear{ 
+    width: calc(65%);
+    margin-left: calc(5%);
+    outline: none;
+    border: none;
+}
+
+.filter-clear button {
+    border: none;
+    border-left: none;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: calc(0.5vh);
+    font-family: 'Cuprum', sans-serif;
+    font-size: calc(1.3rem);
+    outline: none;
+}
+
+.filter-clear button:hover {
+    transition: 0.3s;
+    background-color: #d5d6d8;
+}
+
+.topbar-info {
+    display: flex;
+    flex-direction: row;
+    width: calc(100%);
+    justify-content: left;
+}
+
 .float-display {
-    float: right;
     width: calc(25rem);
     display: flex;
     flex-direction: row;

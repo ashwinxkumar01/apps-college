@@ -52,6 +52,9 @@ class Explore extends React.Component {
         //Handles the State array
         this.handleState = this.handleState.bind(this);
 
+        //Clears the filters on the page
+        this.clearFilter = this.clearFilter.bind(this);
+        
         this.numFormat = this.numFormat.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
         this.pushToArray = this.pushToArray.bind(this);
@@ -350,18 +353,24 @@ class Explore extends React.Component {
                         </div>
                     </div>
 
-                    <div className="content-display">
-                        <div className="float-display">
-                            <div className="sort-by">
-                                <Select onChange={this.handleFilter}
-                                    options={Sortby} placeholder={"National Ranking"} value={this.state.Filter} />
+                    <div className="content-display">                        
+                        <div className="topbar-info">
+                            <div className="filter-clear">
+                                <button onClick={this.clearFilter}>CLEAR FILTERS</button>
                             </div>
-                            <input
-                                className="button"
-                                type="submit"
-                                onClick={this.changeAscent}
-                                value={this.state.Ordering}
-                            />
+
+                            <div className="float-display">
+                                <div className="sort-by">
+                                    <Select onChange={this.handleFilter} 
+                                    options={Sortby} placeholder={"National Ranking"} value={this.state.Filter}/>
+                                </div>
+                                    <input
+                                        className="button"
+                                        type="submit"
+                                        onClick={this.changeAscent}
+                                        value={this.state.Ordering}
+                                    />                        
+                            </div>
                         </div>
 
                         <ul className="ListColleges" >
@@ -411,6 +420,30 @@ class Explore extends React.Component {
                 )
             )
         }
+    }
+
+    clearFilter(e) {
+        console.log("here");
+        this.setState({
+            AppFeeLower: '',
+            AppFeeUpper: '',
+            AcceptanceLower: '',
+            AcceptanceUpper: '',
+            PopulationLower: '',
+            PopulationUpper: '',
+            TuitionLower: '',
+            TuitionUpper: '',
+            RankingLower: '',
+            RankingUpper: '',
+            School: [],
+            App: [],
+            LOR: [],
+            Filter: Sortby[0],
+            StateFilter: [],
+            Ordering: "Low to High",
+            TuitionState: "tuition_normal",
+            Checkbox: false
+        }, () => this.handleClick())
     }
 
     renderHeart(collegeName){
