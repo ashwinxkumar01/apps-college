@@ -1,6 +1,7 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IoMdContact } from "react-icons/io";
 import {
     faHome,
     faQuestion
@@ -12,7 +13,7 @@ class Navigationbar extends React.Component {
         return (
             <div className="navigation-div">
                 <div className="sidebar-header">
-                    <h3>College Search</h3>
+                    <h3><IoMdContact className="profile"/>Welcome Bossman</h3>
                 </div>
                 <Nav variant="tabs" className="flex-column" defaultActiveKey={this.props.active}>
                     <Nav.Item className="dashboard">
