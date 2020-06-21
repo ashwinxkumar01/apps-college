@@ -28,7 +28,8 @@ class Dashboard extends React.Component {
     this.state = {
       searchBar: false,
       resultsFromSearch: [],
-      users: mockData,
+      users: [],
+      rerenders: 0
     };
     this.setSearch = this.setSearch.bind(this);
     this.renderHeart = this.renderHeart.bind(this);
@@ -45,44 +46,63 @@ class Dashboard extends React.Component {
 
   searchBarInUse = (inUse) => {
     if (inUse !== this.state.searchBar) {
-      this.setState({ searchBar: inUse });
+      this.setState({ searchBar: inUse});
     }
   }
 
   pullColleges() {
-
     fetch("/dashboard", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
     }).then(response => {
-      console.log(response)
       return response.json()
     }).then(data => {
       let collegeList = [];
       let boolean = true;
-      if (this.state.users.length !== data.length) {
-        boolean = false;
-      }
       data.map(college => {
         var collegeName = JSON.parse(college);
         collegeList.push(collegeName);
       })
+      if(collegeList.length !== this.state.users.length){
+        boolean = false;
+      }
+      // if (sessionStorage.getItem("collegeNames")) {
+      //   JSON.parse(sessionStorage.getItem("collegeNames")).map(college1 => {
+      //     if (boolean) {
+      //       let inside = false;
+      //       collegeList.map(college2 => {
+      //         if (college1.college_name === college2.college_name) {
+      //           inside = true;
+      //         }
+      //       })
+      //       if (inside) {
+
+      //       } else {
+      //         boolean = false;
+      //       }
+      //     }
+      //   })
+      //   sessionStorage.removeItem("collegeNames");
+      // }else{
+      //   boolean = false;
+      // }
+      sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
       if (boolean) {
-        sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
       } else {
-        this.setState({ users: collegeList });
+        this.setState({ users: collegeList, rerenders: 1});
       }
     });
 
   }
-  renderHeart(collegeName){
-    return(
-      <Heart collegeName={collegeName} key={collegeName}/>
+
+  renderHeart(collegeName) {
+    return (
+      <Heart collegeName={collegeName} key={collegeName} />
     )
   }
-  
+
   renderDashboard = () => {
     if (this.state.searchBar === false) {
       this.pullColleges();
@@ -90,32 +110,34 @@ class Dashboard extends React.Component {
         <div className={useStyles.root}>
           {/* <UsersToolbar /> */}
           <div className={useStyles.theme}>
-            <UsersTable users={this.state.users} />
+            <UsersTable users={this.state.users} heartClicked={this.pullColleges()} />
           </div>
         </div>
       )
     } else {
-      return(
-      this.state.resultsFromSearch.map(college => {
-        return(
-          <div>
-            <Link to={`/loginhome/page/${college}`} className="fixedHeight">
-              <div className="searchResult">
-                <div className="backgroundSolid" />
-                <div className="backgroundBlend" />
-                <img src={Image3} alt="Hello" className="imageBox" />
-                <div className="collegeName">
-                  {college}
+      return (
+        this.state.resultsFromSearch.map(college => {
+          return (
+            <div>
+              <Link to={`/loginhome/page/${college}`} className="fixedHeight">
+                <div className="searchResult">
+                  <div className="backgroundSolid" />
+                  <div className="backgroundBlend" />
+                  <img src={Image3} alt="Hello" className="imageBox" />
+                  <div className="collegeName">
+                    {college}
+                  </div>
+                </div>
+              </Link>
+              <div className="height">
+                <div style={{ marginTop: "calc(-1.5vh)" }}>
+                  {this.renderHeart(college)}
                 </div>
               </div>
-            </Link>
-            <div className="height">
-              {this.renderHeart(college)}
             </div>
-          </div>
+          )
+        }
         )
-      }
-      )
       )
     }
   }

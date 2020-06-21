@@ -45,9 +45,7 @@ const useStyles = makeStyles(theme => ({
 
 const UsersTable = props => {
   const { className, users, ...rest } = props;
-
   const classes = useStyles();
-
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10000);
   //important!!!!!!!!!!!!!!!!! this determines how many are on a page - hardcoded to 10k
@@ -135,8 +133,12 @@ const UsersTable = props => {
                     selected={selectedUsers.indexOf(user.id) !== -1}
                   >
                     <TableCell>
-                      <div style={{ marginLeft: "calc(2.75vw)", marginTop: "calc(4vh)"}}>
-                        <Heart collegeName={user.college_name} key={user.college_name} />
+                      <div style={{ marginLeft: "calc(2.75vw)" }}>
+                        <div style={{ marginTop: "calc(8vh)" }} onClick={ e => {
+                              this.props.heartClicked();
+                          }}>
+                          <Heart collegeName={user.college_name} key={user.college_name}/>
+                        </div>
                       </div>
                     </TableCell>
 

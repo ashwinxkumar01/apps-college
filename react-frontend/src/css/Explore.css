@@ -242,7 +242,6 @@ select {
     height: calc(100%);
     width: calc(25vw);
   }
-
   .backgroundBlend {
     height: calc(100%);
     position: absolute;
@@ -251,7 +250,6 @@ select {
     background-image: linear-gradient(to right, white, #313b4c);
     opacity: 0;
   }
-
   .searchResult:hover > .backgroundBlend{
     height: calc(100%);
     opacity: 1;
@@ -280,9 +278,6 @@ select {
     cursor: pointer;
     color: rgb(228, 209, 255);
     transition-duration: .3s;
-  }
-  .heartHeight {
-      top: calc(-10vh);
   }
   
   .fixedHeight {

@@ -59,7 +59,6 @@ class Heart extends React.Component {
         })   
     }
     componentWillMount(){
-        console.log("here")
         if (sessionStorage.getItem("collegeNames") !==  null){
             JSON.parse(sessionStorage.getItem("collegeNames")).map(college => {
                 if (college.college_name === this.props.collegeName) {

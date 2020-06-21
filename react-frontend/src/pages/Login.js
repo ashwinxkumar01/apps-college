@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -58,9 +58,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
-  const [username, setUsername] = useState({username: ''});
-  const [password, setPassword] = useState({password: ''});
-  const [display, setDisplay] = useState({display: ''});
+  const [username, setUsername] = useState({ username: '' });
+  const [password, setPassword] = useState({ password: '' });
+  const [display, setDisplay] = useState({ display: '' });
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -83,7 +83,7 @@ export default function SignInSide() {
               label="Email Address"
               name="email"
               onChange={e => {
-                const newUsername = {username: e.target.value};
+                const newUsername = { username: e.target.value };
                 setUsername(newUsername);
                 console.log(newUsername.username);
               }}
@@ -101,7 +101,7 @@ export default function SignInSide() {
               id="password"
               autoComplete="current-password"
               onChange={e => {
-                const newPassword = {password: e.target.value};
+                const newPassword = { password: e.target.value };
                 setPassword(newPassword);
                 console.log(newPassword.password);
               }}
@@ -116,23 +116,23 @@ export default function SignInSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={e => { 
-                  fetch("/login", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
-                    body: JSON.stringify({
-                        Username: username.username,
-                        Password: password.password
-                    })
+              onClick={e => {
+                fetch("/login", {
+                  method: "POST",
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
+                  body: JSON.stringify({
+                    Username: username.username,
+                    Password: password.password
+                  })
                 }).then(response => {
-                    return response.json();
+                  return response.json();
                 }).then(data => {
                   console.log(data);
-                  if(data["True"] === 1) {
-                    setDisplay({ display: data["True"]});
+                  if (data["True"] === 1) {
+                    setDisplay({ display: data["True"] });
                   } else {
                     sessionStorage.setItem("userData", username.username);
                     window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";

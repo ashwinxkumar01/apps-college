@@ -17,7 +17,7 @@ class Node extends Component {
                         </div>
 
                         <div className="favorite-icon">
-                            <Heart collegeName={this.props.collegeName} />
+                            <Heart collegeName={this.props.collegeName} key={this.props.collegeName} />
                         </div>
                     </div>
 
