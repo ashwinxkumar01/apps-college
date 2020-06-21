@@ -24,6 +24,7 @@ password = os.environ.get("DB_PASSWD")
 driver = '{ODBC Driver 17 for SQL Server}'
 con = 'No'
 
+#print(server)
 db_info = 'DRIVER=' + driver + ';SERVER=' + server + ';PORT=1433;DATABASE=' + database + ';UID=' + username + ';PWD=' + password + ';MARS_Connection=' + con
 #print(db_info)
 
@@ -284,20 +285,21 @@ def createUserWithEmailPassword():
         auth.create_user_with_email_and_password(email, password)
         dictio['initialUser'] = email
         db.child("users").child(dictio['initialUser'][:-6]).update({"college": "none"})
+        db.child("users").child(dictio['initialUser'][:-6]).update({"username": email})
     except:
         return json.dumps({"True": 1})
-    createUserWithEmailPasswordTest(email, password)
+    loginAfterCreation(email, password)
     return json.dumps({"True": 2})
 
     # this should redirect to the homepage...
 
 
-def createUserWithEmailPasswordTest(email, password):
+def loginAfterCreation(email, password):
     #gets incoming request
     #post_request = request.get_json(force=True)
 
     try:
-        print(session['usr']) #if this doesn't error out, that means the user is logged in already
+        #print(session['usr']) #if this doesn't error out, that means the user is logged in already
         print(dictio['usr'])
         print("here")
     except KeyError:
@@ -336,7 +338,7 @@ def loginWithEmailPassword():
     #password = "123456"
     #successfulLogin = False
     try:
-        print(session['usr']) #if this doesn't error out, that means the user is logged in already
+        #print(session['usr']) #if this doesn't error out, that means the user is logged in already
         print(dictio['usr'])
         print("here")
     except KeyError:
@@ -393,6 +395,7 @@ def isLoggedIn():
     isLoggedIn = True
     try:
         print(session['usr'])
+        print(dictio['usr'])
     except:
         isLoggedIn = False
     return isLoggedIn
@@ -468,6 +471,11 @@ def listColleges():
     print(json_lst)
     return json_lst
 
+
+def getEmail():
+    if (isLoggedIn):
+        info = db.child("users").child(dictio['currentUser'][:-6]).get().val()
+        return info["username"]
 
 #testing method
 # if __name__ == '__main__':
