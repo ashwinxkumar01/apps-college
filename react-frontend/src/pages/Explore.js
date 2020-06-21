@@ -16,9 +16,9 @@ class Explore extends React.Component {
         this.state = {
             searchBar: false,
             College: [],
-            School: Type[0],
-            App: App[0],
-            LOR: LOR[0],
+            School: [],
+            App: [],
+            LOR: [],
             Filter: Sortby[0],
             Checkbox: false,
             AppFeeLower: null,
@@ -55,6 +55,8 @@ class Explore extends React.Component {
         this.dateFormat = this.dateFormat.bind(this);
         this.pushToArray = this.pushToArray.bind(this);
         this.splitToArray = this.splitToArray.bind(this);
+
+        this.renderHeart = this.renderHeart.bind(this);
     }
 
     componentDidMount(){
@@ -73,7 +75,6 @@ class Explore extends React.Component {
         if(filterBy !== null) {
            const index = this.splitToArray(filterBy, Sortby);
            indices = index;
-           console.log(Sortby[index]);
            this.setState({ Filter: Sortby[index] });
         }
 
@@ -82,21 +83,16 @@ class Explore extends React.Component {
         }
 
         const ordering = sessionStorage.getItem("ordering");
-        console.log(ordering);
         let checkTemp = false;
         if(ordering !== null) {
-            console.log('ordering');
             this.setState({Ordering: ordering});
             const checked = sessionStorage.getItem("checked");
             if(checked !== null) {
                 let isChecked = checked === 'true';
                 checkTemp = isChecked;
-                console.log(isChecked);
                 this.setState({Checkbox: isChecked});
             }
         }
-
-        console.log(this.state.Ordering);
 
         fetch("/filter", {
             method: "POST",
@@ -109,7 +105,6 @@ class Explore extends React.Component {
                 IsDescending: checkTemp
             })
         }).then(response => {
-            console.log(response)
             return response.json()
         }).then(data => {
             this.setState({
@@ -118,10 +113,10 @@ class Explore extends React.Component {
         });
 
         const appFee = sessionStorage.getItem("feelower");
-        this.setState({ AppFeeLower: appFee}, () => console.log(this.state.AppFeeLower));
+        this.setState({ AppFeeLower: appFee});
 
         const appFeeUpper = sessionStorage.getItem("feeupper");
-        this.setState({ AppFeeUpper: appFeeUpper}, () => console.log(this.state.AppFeeUpper));
+        this.setState({ AppFeeUpper: appFeeUpper});
 
         const acceptLower = sessionStorage.getItem("acceptlower");
         this.setState({ AcceptanceLower: acceptLower});
@@ -150,13 +145,13 @@ class Explore extends React.Component {
         const appType = sessionStorage.getItem("appfee");
         if(appType !== null) {
             const index = this.splitToArray(appType, App);
-            this.setState({ App: App[index]}, () => console.log(this.state.App));
+            this.setState({ App: App[index]});
         }
 
         const letterRec = sessionStorage.getItem("letterrec");
         if(letterRec !== null) {
             const index = this.splitToArray(letterRec, LOR);
-            this.setState({ LOR: LOR[index]}, () => console.log(this.state.LOR));
+            this.setState({ LOR: LOR[index]});
         }
 
         const schoolType = sessionStorage.getItem("schooltype");
@@ -177,7 +172,7 @@ class Explore extends React.Component {
                 newArray.push(obj);
             }
             
-            this.setState({ StateFilter: newArray}, () => console.log(this.state.StateFilter));
+            this.setState({ StateFilter: newArray});
         }
       }
 
@@ -199,7 +194,6 @@ class Explore extends React.Component {
 
     searchBarInUse = (inUse) => {
         if (inUse !== this.state.searchBar) {
-            console.log(inUse);
             this.setState({ searchBar: inUse });
         }
     }
@@ -299,7 +293,6 @@ class Explore extends React.Component {
 
                         <div className="app-type">
                             <Select onChange={(e) => {this.setState({ App: e }, () => {
-                                console.log(this.state.App);
                                 sessionStorage.setItem("appfee", [this.state.App.value, this.state.App.label]);
                             }
                             )}} 
@@ -399,7 +392,7 @@ class Explore extends React.Component {
                             </div>
                         <div className="height">
                             <div className="heartHeight">
-                            <Heart collegeName={college} />
+                                {this.renderHeart(college)}
                             </div>
                         </div>
                         </Link>
@@ -409,6 +402,12 @@ class Explore extends React.Component {
             )
         }
     }
+
+    renderHeart(collegeName){
+        return(
+          <Heart collegeName={collegeName} key={collegeName}/>
+        )
+      }
 
     setSearch = (results) => {
         if (results !== this.state.resultsFromSearch) {
@@ -434,14 +433,12 @@ class Explore extends React.Component {
     pushToArray(state, string, array, sign, storage) {
         if (state === null || state === '') {
             //Nothing happens
-            console.log("Expected");
             sessionStorage.setItem(storage, '');
         } else if(/^\d+$/.test(state)){
             array.push(string);
             array.push(sign + state);
             sessionStorage.setItem(storage, state);   
         } else {
-            console.log(state);
             array.push(string);
             array.push("-0");    
         }
@@ -503,8 +500,7 @@ class Explore extends React.Component {
             }
         }
 
-        console.log(this.state.App);
-        if (this.state.App.value !== 'Any') {
+        if (this.state.App.value !== 'Any' && this.state.App.length !== 0) {
             if(this.state.App.value === 'commonapp') {
                 array.push("common_app");
                 array.push("y");
@@ -514,25 +510,23 @@ class Explore extends React.Component {
             }
         }
 
-        if (this.state.School.value !== 'Any') {
+        if (this.state.School.value !== 'Any' && this.state.School.length !== 0) {
             array.push("school_type");
             array.push(this.state.School.value);
         }
 
-        if (this.state.LOR.value !== 'Any') {
+        if (this.state.LOR.value !== 'Any' && this.state.LOR.length !== 0) {
             array.push("letter_of_rec_required");
             array.push(this.state.LOR.value);
         }
 
-        if (this.state.StateFilter.value !== 'Any') {
-            console.log(this.state.StateFilter);
+        if (this.state.StateFilter.value !== 'Any' && this.state.StateFilter.length !== 0) {
             this.state.StateFilter.forEach(state => {
             array.push("state")
             array.push(state.value);
             })
         }
 
-        console.log(array);
         sessionStorage.setItem("array", array);
         fetch("/filter", {
             method: "POST",
@@ -556,7 +550,6 @@ class Explore extends React.Component {
         this.setState({ Filter: e }, () => {
             this.handleClick();
             sessionStorage.setItem("filterby", [this.state.Filter.value, this.state.Filter.label]);
-            console.log(this.state.Filter);
         });
     }
 
@@ -564,13 +557,11 @@ class Explore extends React.Component {
         let value = this.state.Ordering === "Low to High" ? "High to Low" : "Low to High";
         this.setState({ Ordering: value }, () => {
             sessionStorage.setItem("ordering", this.state.Ordering);
-            console.log(this.state.Ordering);
             this.handleClick();
         });
         let style = !this.state.Checkbox
         this.setState({ Checkbox: style }, () => {
             sessionStorage.setItem("checked", this.state.Checkbox);
-            console.log(this.state.Checkbox);
         })
     }
 
@@ -591,42 +582,10 @@ class Explore extends React.Component {
                 array.push(state.value);
             })
             sessionStorage.setItem("statefilter", array);
-            console.log(this.state.StateFilter)
         });
     };
 
     render() {
-        //console.log(filter);
-        //Testing the fetch from database call
-        // fetch("/test").then(response => {
-        //     console.log(response);
-        //     response.text().then(data => {
-        //         console.log(data);
-        //     })
-        // })
-
-        // let college = '';
-        // fetch("/filter", {
-        //     method: "POST",
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
-        // }).then(response => {
-        //     console.log(response);
-        //     return response.json();
-        // }).then(data => {
-        //     console.log(data);
-        //     let value = data[0];
-        //     console.log(value);
-        //     const name = JSON.parse(value);
-        //     console.log(name["college_name"]);
-        //     this.setState({
-        //         College: name["college_name"]
-        //     })
-        // });
-
-        // console.log(this.state.College);
         return (
             <div className="Explore">
                 <Navigationbar active="2" />
