@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Nav, Button, Row, Col, Form} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../css/Home.css';
@@ -8,6 +8,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Home() {
     console.log(sessionStorage.getItem("userData"));
+
+    const [email, setEmail] = useState({Email: ''});
+    const [name, setName] = useState({Name: ''});
+    const [message, setMessage] = useState({Message: ''});
+    function handleClick(e) {
+        fetch("/email", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Email: email.Email,
+                Name: name.Name,
+                Message: message.Message
+            })
+        }).then(response => {
+            console.log("success");
+            return response.json();
+        }).then(data => {
+            setMessage({Message: ''});
+            setEmail({Email: ''});
+            setName({Name: ''});
+        });
+    }
     return (
         <div className="Background-home-page">
             <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"></link>
@@ -94,21 +118,26 @@ function Home() {
                         <Form.Row>
                             <Col style={{marginTop: 'calc(4rem)'}}>
                                 <Form.Group controlId="exampleForm.ControlInput1" style={{display: 'flex', justifyContent: 'flex-end'}}>
-                                    <Form.Control type="text" placeholder="John Doe" style={{width: 'calc(55%)'}}/>
+                                    <Form.Control type="text" placeholder="John Doe" style={{width: 'calc(55%)'}} onChange={(e) => setName({Name: e.target.value})} 
+                                        value={name.Name}
+                                    />
                                 </Form.Group>
                                 <Form.Group controlId="exampleForm.ControlInput1" style={{display: 'flex', justifyContent: 'flex-end'}}>
-                                    <Form.Control type="email" placeholder="name@example.com" style={{width: 'calc(55%)'}}/>
+                                    <Form.Control type="email" placeholder="name@example.com" style={{width: 'calc(55%)'}} 
+                                    onChange={(e) => setEmail({Email: e.target.value})} value={email.Email}/>
                                 </Form.Group>
                             </Col>
                             <Col style={{marginTop: 'calc(4rem)'}}>
                                 <Form.Group controlId="exampleForm.ControlTextarea1" style={{display: 'flex', justifyContent: 'left'}}>
-                                    <Form.Control as="textarea" rows="3" style={{height: 'calc(10rem)', width: 'calc(55%)'}} placeholder="Enter message here..."/>
+                                    <Form.Control as="textarea" rows="3" style={{height: 'calc(10rem)', width: 'calc(55%)'}} placeholder="Enter message here..."
+                                        onChange={(e) => setMessage({Message: e.target.value})} value={message.Message}
+                                    />
                                 </Form.Group>
                             </Col>
                         </Form.Row>
                         <Row>
                             <Col md={{ span: 4, offset: 4 }}>
-                                <Button variant="primary" size="lg">
+                                <Button variant="primary" size="lg" onClick={handleClick}>
                                     Send Message
                                 </Button>{' '}
                             </Col>

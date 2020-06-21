@@ -17,12 +17,13 @@ class Node extends Component {
                         </div>
 
                         <div className="favorite-icon">
-                                <Heart collegeName={this.props.collegeName} />
+                            <Heart collegeName={this.props.collegeName} />
                         </div>
                     </div>
 
                     <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${this.props.collegeName}`}>
                         <div className="college-icon">
+                            {console.log(this.props.Logo)}
                             <img src={this.props.Logo} alt="Logo" height="175" width="63%" />
                         </div>
 

@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/static/react/css/main.1b710cea.chunk.css",
-    "main.js": "/static/react/js/main.663f3afc.chunk.js",
-    "main.js.map": "/static/react/js/main.663f3afc.chunk.js.map",
+    "main.css": "/static/react/css/main.63016b16.chunk.css",
+    "main.js": "/static/react/js/main.b06a28ba.chunk.js",
+    "main.js.map": "/static/react/js/main.b06a28ba.chunk.js.map",
     "runtime-main.js": "/static/react/js/runtime-main.725b2ec0.js",
     "runtime-main.js.map": "/static/react/js/runtime-main.725b2ec0.js.map",
     "css/2.829c9cb5.chunk.css": "/static/react/css/2.829c9cb5.chunk.css",
-    "js/2.7f500cad.chunk.js": "/static/react/js/2.7f500cad.chunk.js",
-    "js/2.7f500cad.chunk.js.map": "/static/react/js/2.7f500cad.chunk.js.map",
+    "js/2.c8412fa3.chunk.js": "/static/react/js/2.c8412fa3.chunk.js",
+    "js/2.c8412fa3.chunk.js.map": "/static/react/js/2.c8412fa3.chunk.js.map",
     "../../templates/index.html": "/static/react/../../templates/index.html",
     "css/2.829c9cb5.chunk.css.map": "/static/react/css/2.829c9cb5.chunk.css.map",
-    "css/main.1b710cea.chunk.css.map": "/static/react/css/main.1b710cea.chunk.css.map",
-    "js/2.7f500cad.chunk.js.LICENSE.txt": "/static/react/js/2.7f500cad.chunk.js.LICENSE.txt",
+    "css/main.63016b16.chunk.css.map": "/static/react/css/main.63016b16.chunk.css.map",
+    "js/2.c8412fa3.chunk.js.LICENSE.txt": "/static/react/js/2.c8412fa3.chunk.js.LICENSE.txt",
     "media/UCSDCampus.jpg": "/static/react/media/UCSDCampus.cf68b2dd.jpg",
     "media/UCSDLogo.png": "/static/react/media/UCSDLogo.b619b951.png",
     "media/UCSD_3.jpg": "/static/react/media/UCSD_3.914f5b55.jpg",
     "media/Home.css": "/static/react/media/wp2017235.e4ac0c4f.jpg",
-    "precache-manifest.47951362b161d072f6c7504a17487477.js": "/static/react/precache-manifest.47951362b161d072f6c7504a17487477.js",
+    "precache-manifest.0eeafaed3661ab07a62441a2ece37cac.js": "/static/react/precache-manifest.0eeafaed3661ab07a62441a2ece37cac.js",
     "service-worker.js": "/static/react/service-worker.js"
   },
   "entrypoints": [
     "js/runtime-main.725b2ec0.js",
     "css/2.829c9cb5.chunk.css",
-    "js/2.7f500cad.chunk.js",
-    "css/main.1b710cea.chunk.css",
-    "js/main.663f3afc.chunk.js"
+    "js/2.c8412fa3.chunk.js",
+    "css/main.63016b16.chunk.css",
+    "js/main.b06a28ba.chunk.js"
   ]
 }

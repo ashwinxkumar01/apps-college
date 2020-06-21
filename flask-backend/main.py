@@ -22,23 +22,26 @@ database = os.environ.get("DATABASE_NAME")
 username = os.environ.get("DB_USERNAME")
 password = os.environ.get("DB_PASSWD")
 driver = '{ODBC Driver 17 for SQL Server}'
-con = 'Yes'
+con = 'No'
 
 db_info = 'DRIVER=' + driver + ';SERVER=' + server + ';PORT=1433;DATABASE=' + database + ';UID=' + username + ';PWD=' + password + ';MARS_Connection=' + con
 #print(db_info)
 
-cnxn = pyodbc.connect(db_info)
 
 
 # method to query the SQL database with standard SQL syntax
 # returns a list
 # colleges is the table where accurate information is stored
 def get_query(query):
+    cnxn = pyodbc.connect(db_info)
     cursor = cnxn.cursor()
 
     cursor.execute(query)
     myresult = cursor.fetchall()
 
+    cursor.close()
+    cnxn.close()
+    
     return myresult
 
 
@@ -120,7 +123,7 @@ def get_order(json_lst, param, is_descending):
     for college in colleges:
         json_out.append(college.get_json())
 
-    if not is_descending:
+    if is_descending:
         json_out.reverse()
 
     return json_out
@@ -515,16 +518,23 @@ def dashboard():
 
 #method to send email for contact page
 #sends email to redpandas920@gmail.com from itself
-def sendEmail(email_address, subject_email, message_email):
+@app.route('/email', methods = ['POST'])
+def sendEmail():
     port = 465  # For SSL
     password = os.environ.get("DB_PASSWD")
+    
+    post_request = request.get_json(force=True)
     
     context = ssl.create_default_context()
     smtp_server = "smtp.gmail.com"
     email = "redpandas920@gmail.com"  # Enter your address
 
+    email_from = post_request['Email']
+    subject_email = post_request['Name']
+    message_email = post_request['Message']
+
     msg = MIMEMultipart()
-    msg['From'] = email
+    msg['From'] = email_from
     msg['To'] = email
     msg['Subject'] = subject_email
     body = message_email
@@ -533,6 +543,8 @@ def sendEmail(email_address, subject_email, message_email):
 
     with smtplib.SMTP_SSL("smtp.gmail.com:465") as server:
         server.login(email, password)
-        server.sendmail(email, email, msg.as_string())
+        server.sendmail(email_from, email, msg.as_string())
+
+    return json.dumps({"True": 2})
 
 app.run(debug=True)

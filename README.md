@@ -30,6 +30,7 @@ Ensure that:
 7. yarn add @material-ui/styles
 8. npm install react-perfect-scrollbar
 9. npm install react-select
+10. npm install react-icons
 
 are executed in the react-frontend folder beforehand. 
 
