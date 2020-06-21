@@ -24,6 +24,7 @@ password = os.environ.get("DB_PASSWD")
 driver = '{ODBC Driver 17 for SQL Server}'
 con = 'No'
 
+#print(server)
 db_info = 'DRIVER=' + driver + ';SERVER=' + server + ';PORT=1433;DATABASE=' + database + ';UID=' + username + ';PWD=' + password + ';MARS_Connection=' + con
 #print(db_info)
 
@@ -284,20 +285,36 @@ def createUserWithEmailPassword():
         auth.create_user_with_email_and_password(email, password)
         dictio['initialUser'] = email
         db.child("users").child(dictio['initialUser'][:-6]).update({"college": "none"})
+        db.child("users").child(dictio['initialUser'][:-6]).update({"username": email})
     except:
         return json.dumps({"True": 1})
-    createUserWithEmailPasswordTest(email, password)
+    loginAfterCreation(email, password)
     return json.dumps({"True": 2})
 
     # this should redirect to the homepage...
-
 
 def createUserWithEmailPasswordTest(email, password):
     #gets incoming request
     #post_request = request.get_json(force=True)
 
+    #email = post_request['Username']
+    #password = post_request['Password']
     try:
-        print(session['usr']) #if this doesn't error out, that means the user is logged in already
+        auth.create_user_with_email_and_password(email, password)
+        dictio['initialUser'] = email
+        db.child("users").child(dictio['initialUser'][:-6]).update({"college": "none"})
+        db.child("users").child(dictio['initialUser'][:-6]).update({"username": email})
+    except:
+        return json.dumps({"True": 1})
+    loginAfterCreation(email, password)
+    return json.dumps({"True": 2})
+
+def loginAfterCreation(email, password):
+    #gets incoming request
+    #post_request = request.get_json(force=True)
+
+    try:
+        #print(session['usr']) #if this doesn't error out, that means the user is logged in already
         print(dictio['usr'])
         print("here")
     except KeyError:
@@ -336,7 +353,7 @@ def loginWithEmailPassword():
     #password = "123456"
     #successfulLogin = False
     try:
-        print(session['usr']) #if this doesn't error out, that means the user is logged in already
+        #print(session['usr']) #if this doesn't error out, that means the user is logged in already
         print(dictio['usr'])
         print("here")
     except KeyError:
@@ -353,14 +370,14 @@ def loginWithEmailPassword():
             return json.dumps({"True": 1})
     return json.dumps({"True": 2})
 
-def loginWithEmailPasswordTest():
+def loginWithEmailPasswordTest(email, password):
     # post_request = request.get_json(force=True)
 
     # # Assign value from the request
     # email = post_request['Username']
     # password = post_request['Password']
-    email = "jim2@gmail.com"
-    password = "123456"
+    #email = "jim2@gmail.com"
+    #password = "123456"
     # successfulLogin = False
     try:
         # print(session['usr']) #if this doesn't error out, that means the user is logged in already
@@ -393,6 +410,7 @@ def isLoggedIn():
     isLoggedIn = True
     try:
         print(session['usr'])
+        print(dictio['usr'])
     except:
         isLoggedIn = False
     return isLoggedIn
@@ -469,12 +487,18 @@ def listColleges():
     return json_lst
 
 
+def getEmail():
+    if (isLoggedIn):
+        info = db.child("users").child(dictio['currentUser'][:-6]).get().val()
+        return info["username"]
+
 #testing method
+
 # if __name__ == '__main__':
 #     print("im here")
 #     # createUserWithEmailPassword("aksportsmaniac@gmail.com", "123456")
 #     createUserWithEmailPasswordTest("jim2@gmail.com", "123456")
-#     loginWithEmailPasswordTest()
+#     loginWithEmailPasswordTest("jim2@gmail.com", "123456")
 #     print(dictio['currentUser'])
 #     # db.child("users").child(short)
 #     # print(db.child("users").child(dictio['currentUser'][:-6]).get().val())
@@ -486,6 +510,8 @@ def listColleges():
 #     addCollegeTest('University of California, San Diego')
 #     #removeCollegeTest('college')
 #     listColleges()
+#     print("Here's my email!")
+#     print(getEmail())
 
 #     # print(colleges)
 #     logout()

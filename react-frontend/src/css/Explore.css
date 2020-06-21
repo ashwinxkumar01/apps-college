@@ -75,9 +75,16 @@
     margin-top: calc(0.2rem);
 }
 
-input[type="text"]
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"]
 {
     font-size:calc(1rem);
+    -moz-appearance: textfield;
 }
 
 .oos-tuition {
