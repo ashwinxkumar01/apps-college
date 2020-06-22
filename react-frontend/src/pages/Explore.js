@@ -1,7 +1,7 @@
 import React from "react";
 import '../css/Explore.css';
 import Navigationbar from '../components/content/Navigationbar';
-import { Nav } from 'react-bootstrap';
+import { Popover, OverlayTrigger } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/content/Navbar';
 import Image3 from './UCSD_3.jpg';
@@ -9,6 +9,8 @@ import Tile from '../components/Tile';
 import Heart from '../components/content/Heart';
 import { States, Type, App, Sortby, LOR } from '../components/State';
 import Select from 'react-select';
+import { faQuestion } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Explore extends React.Component {
     constructor(props) {
@@ -210,6 +212,16 @@ class Explore extends React.Component {
     }
 
     renderExplore = (College) => {
+        const popover = (
+            <Popover id="popover-basic">
+              <Popover.Title as="h3">Popover right</Popover.Title>
+              <Popover.Content>
+                And here's some <strong>amazing</strong> content. It's very engaging.
+                right?
+              </Popover.Content>
+            </Popover>
+          );
+        
         if (this.state.searchBar === false) {
             return (
                 <div className="container-div">
@@ -228,6 +240,9 @@ class Explore extends React.Component {
                                     value={this.state.PopulationUpper}
                                 ></input>
                             </form>
+                            <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                                <div><FontAwesomeIcon icon={faQuestion} /></div>
+                            </OverlayTrigger>
                         </div>
 
                         <hr></hr>
@@ -243,6 +258,9 @@ class Explore extends React.Component {
                                     value={this.state.AcceptanceUpper}
                                 ></input>
                             </form>
+                            <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                                <div><FontAwesomeIcon icon={faQuestion} /></div>
+                            </OverlayTrigger>
                         </div>
 
                         <hr></hr>
@@ -258,6 +276,9 @@ class Explore extends React.Component {
                                     value={this.state.AppFeeUpper}
                                 ></input>
                             </form>
+                            <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                                <div><FontAwesomeIcon icon={faQuestion} /></div>
+                            </OverlayTrigger>
                         </div>
 
                         <hr></hr>
@@ -273,6 +294,9 @@ class Explore extends React.Component {
                                     value={this.state.RankingUpper}
                                 ></input>
                             </form>
+                            <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                                <div><FontAwesomeIcon icon={faQuestion} /></div>
+                            </OverlayTrigger>
                         </div>
 
                         <hr></hr>
@@ -288,6 +312,9 @@ class Explore extends React.Component {
                                     value={this.state.TuitionUpper}
                                 ></input>
                             </form>
+                            <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                                <div><FontAwesomeIcon icon={faQuestion} /></div>
+                            </OverlayTrigger>
                         </div>
 
                         <div className="oos-tuition">
