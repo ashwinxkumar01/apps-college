@@ -8,11 +8,7 @@ import Image3 from './UCSD_3.jpg';
 import Tile from '../components/Tile';
 import Heart from '../components/content/Heart';
 import { States, Type, App, Sortby, LOR } from '../components/State';
-import { Tuition,
-    Rankings,
-    AcceptanceRate,
-    AppFee,
-    Population } from '../components/Popovers';
+import { Tuition, Rankings, AcceptanceRate, AppFee, Population, AppType, LetterRec, SchoolType, StateList } from '../components/Popovers';
 import Select from 'react-select';
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -196,7 +192,7 @@ class Explore extends React.Component {
 
     splitToArray(type, compare) {
         let spliceApp = type.split(",");
-        let appTypeObj = '';
+        let appTypeObj = 0;
         for (let i = 0; i < compare.length; i++) {
             let getValue = spliceApp[0];
             if (!isNaN(parseFloat(getValue))) {
@@ -204,6 +200,7 @@ class Explore extends React.Component {
             }
 
             if (getValue === compare[i].value) {
+                console.log(i);
                 appTypeObj = i;
             }
         }
@@ -226,8 +223,7 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">Population</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({ PopulationLower: e.target.value })} type="number" 
-                                placeholder="Lower" size="100"
+                                <input onChange={(e) => this.setState({ PopulationLower: e.target.value })} type="number" placeholder="Lower" size="100"
                                     value={this.state.PopulationLower}
                                 ></input>
                                 <span>-</span>
@@ -236,7 +232,7 @@ class Explore extends React.Component {
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={Population}>
-                                <div><FontAwesomeIcon icon={faQuestion} /></div>
+                                <div><FontAwesomeIcon icon={faQuestion} style={{opacity: '60%'}}/></div>
                             </OverlayTrigger>
                         </div>
 
@@ -254,7 +250,7 @@ class Explore extends React.Component {
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={AcceptanceRate}>
-                                <div><FontAwesomeIcon icon={faQuestion} /></div>
+                                <div><FontAwesomeIcon icon={faQuestion} style={{opacity: '60%'}}/></div>
                             </OverlayTrigger>
                         </div>
 
@@ -272,7 +268,7 @@ class Explore extends React.Component {
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={AppFee}>
-                                <div><FontAwesomeIcon icon={faQuestion} /></div>
+                                <div><FontAwesomeIcon icon={faQuestion} style={{opacity: '60%'}}/></div>
                             </OverlayTrigger>
                         </div>
 
@@ -290,7 +286,7 @@ class Explore extends React.Component {
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={Rankings}>
-                                <div><FontAwesomeIcon icon={faQuestion} /></div>
+                                <div><FontAwesomeIcon icon={faQuestion} style={{opacity: '60%'}}/></div>
                             </OverlayTrigger>
                         </div>
 
@@ -308,7 +304,7 @@ class Explore extends React.Component {
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={Tuition}>
-                                <div><FontAwesomeIcon icon={faQuestion} /></div>
+                                <div><FontAwesomeIcon icon={faQuestion} style={{opacity: '60%'}}/></div>
                             </OverlayTrigger>
                         </div>
 
@@ -325,30 +321,48 @@ class Explore extends React.Component {
                         <hr></hr>
 
                         <div className="app-type">
-                            <Select onChange={(e) => {this.setState({ App: e }, () => {
-                                sessionStorage.setItem("appfee", [this.state.App.value, this.state.App.label]);
-                            }
-                            )}} 
-                            options={App} placeholder={"Application type"} value={this.state.App}
+                            <div className="dropdown-div">
+                                <Select onChange={(e) => {this.setState({ App: e }, () => {
+                                    sessionStorage.setItem("appfee", [this.state.App.value, this.state.App.label]);
+                                }
+                                )}} 
+                                options={App} placeholder={"Application type"} value={this.state.App}
                             />
+                            </div>
+                            <OverlayTrigger trigger="click" placement="right" overlay={AppType}>
+                                <div><FontAwesomeIcon icon={faQuestion} 
+                                    style={{opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)'}}/></div>
+                            </OverlayTrigger>
                         </div>
 
                         <hr></hr>
 
                         <div className="app-type">
-                            <Select onChange={(e) => this.setState({ LOR: e }, () => {
-                                sessionStorage.setItem("letterrec", [this.state.LOR.value, this.state.LOR.label]);
-                            })}
-                                options={LOR} placeholder={"Letter of Recommendations"} value={this.state.LOR} />
+                            <div className="dropdown-div">
+                                <Select onChange={(e) => this.setState({ LOR: e }, () => {
+                                    sessionStorage.setItem("letterrec", [this.state.LOR.value, this.state.LOR.label]);
+                                })}
+                                    options={LOR} placeholder={"Letter of Recommendations"} value={this.state.LOR} />
+                            </div>
+                            <OverlayTrigger trigger="click" placement="right" overlay={LetterRec}>
+                                <div><FontAwesomeIcon icon={faQuestion} 
+                                style={{opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)'}}/></div>
+                            </OverlayTrigger>
                         </div>
 
                         <hr></hr>
 
                         <div className="school-type">
-                            <Select onChange={(e) => this.setState({ School: e }, () => {
-                                sessionStorage.setItem("schooltype", [this.state.School.value, this.state.School.label]);
-                            })}
-                                options={Type} placeholder={"School Type"} value={this.state.School} />
+                            <div className="dropdown-div">
+                                <Select onChange={(e) => this.setState({ School: e }, () => {
+                                    sessionStorage.setItem("schooltype", [this.state.School.value, this.state.School.label]);
+                                })}
+                                    options={Type} placeholder={"School Type"} value={this.state.School} />
+                            </div>
+                            <OverlayTrigger trigger="click" placement="right" overlay={SchoolType}>
+                                <div><FontAwesomeIcon icon={faQuestion} 
+                                style={{opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)'}}/></div>
+                            </OverlayTrigger>
                         </div>
 
                         <hr></hr>
@@ -366,6 +380,10 @@ class Explore extends React.Component {
                                     value={this.state.StateFilter}
                                 />
                             </div>
+                            <OverlayTrigger trigger="click" placement="right" overlay={StateList}>
+                                <div><FontAwesomeIcon icon={faQuestion} 
+                                style={{opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)'}}/></div>
+                            </OverlayTrigger>
                         </div>
 
                         <hr></hr>
@@ -410,10 +428,10 @@ class Explore extends React.Component {
                                 )
                             })
                             }
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks And I hate him"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3} /></li>
+                            {/* <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks And I hate him"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3} /></li>
                             <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"23000"} Type={"Private"} Logo={Image3} /></li>
                             <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"20"} Fee={"26000"} Type={"Private"} Logo={Image3} /></li>
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3} /></li>
+                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3} /></li> */}
                         </ul>
                     </div>
                 </div>

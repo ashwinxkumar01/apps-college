@@ -94,6 +94,7 @@ input[type="number"]
     justify-content: flex-end;
     padding-right: calc(0.4rem);
     margin-bottom: 0;
+    margin-top: calc(0.5rem);
 }
 
 .oos-tuition h4 {
@@ -113,25 +114,19 @@ span {
 .app-type {
     margin-top: calc(0.75rem);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .school-type {
     margin-top: calc(1rem);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .filter-type {
     width: 100%;
     margin-bottom: calc(0.6rem);
     outline: none;
-}
-
-.app-div {
-    width: 40%;
-    margin-left: calc(1rem);
-    margin-bottom: calc(0.6rem);
 }
 
 .dropdown-div {
