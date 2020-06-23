@@ -36,7 +36,8 @@ class Explore extends React.Component {
             RankingUpper: null,
             Ordering: "Low to High",
             TuitionState: "tuition_normal",
-            StateFilter: []
+            StateFilter: [],
+            CheckedState: false
         };
 
         this.setSearch = this.setSearch.bind(this);
@@ -143,6 +144,16 @@ class Explore extends React.Component {
 
         const nationalUpper = sessionStorage.getItem("nationalupper");
         this.setState({ RankingUpper: nationalUpper });
+
+        const checkedState = sessionStorage.getItem("checkedstate");
+        if (checkedState !== null) {
+            this.setState({CheckedState: checkedState});
+        }
+
+        const tuitionState = sessionStorage.getItem("tuitionstate");
+        if (tuitionState !== null) {
+            this.setState({ TuitionState: tuitionState});
+        }
 
         const tuitionLower = sessionStorage.getItem("normallower");
         this.setState({ TuitionLower: tuitionLower });
@@ -313,6 +324,7 @@ class Explore extends React.Component {
                             <input
                                 className="checkbox"
                                 type="checkbox"
+                                checked={this.state.CheckedState}
                                 onClick={this.changeTuitionState}
                                 value={this.state.TuitionState}
                             />
@@ -664,7 +676,11 @@ class Explore extends React.Component {
 
     changeTuitionState(e) {
         let value = this.state.TuitionState === "tuition_normal" ? "tuition_oos" : "tuition_normal";
-        this.setState({ TuitionState: value }, () => this.handleClick());
+        this.setState({ TuitionState: value, CheckedState: !this.state.CheckedState }, () => {
+            sessionStorage.setItem("checkedstate", this.state.CheckedState);
+            sessionStorage.setItem("tuitionstate", this.state.TuitionState);
+            this.handleClick();
+        });
     }
 
     handleState(e) {
