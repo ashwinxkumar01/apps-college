@@ -6,6 +6,8 @@ import Geisel from './UCSDCampus.jpg';
 import Heart from '../components/content/Heart';
 import { IoIosUndo } from "react-icons/io";
 
+const commonApp = "https://www.commonapp.org/apply/essay-prompts";
+
 class Individual extends Component {
     constructor(props){
 		super(props);
@@ -81,7 +83,6 @@ class Individual extends Component {
                 return essayArray;
             }
             else {
-                console.log("entered");
                 return "None Required ";
             }
         }
@@ -99,11 +100,21 @@ class Individual extends Component {
                         Apply Via: 
                     </h1>
                     {applicationArray.map((applications) => { 
+                        console.log(applications);
+                        if(applications === "Common Application") {
                         return (
-                        <li>      
-                        {applications}
-                        </li>
-                        )
+                            <li>      
+                            <a href={commonApp} target="_blank" rel="noopener noreferrer" style={{textDecoration: "underline"}}>{applications}</a>
+                            </li>
+                        );
+                        }
+                        else {
+                            return (
+                                <li>
+                                    {applications}
+                                </li>
+                            );
+                        }
                     })}
                 </ul>
                 );
