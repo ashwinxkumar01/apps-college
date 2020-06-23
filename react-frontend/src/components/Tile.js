@@ -4,6 +4,21 @@ import Heart from './content/Heart';
 import { Link } from 'react-router-dom';
 
 class Node extends Component {    
+
+    constructor(props) {
+        super(props);
+        this.handleRanking = this.handleRanking.bind(this);
+    }
+
+    handleRanking() {
+        console.log("here");
+        if(this.props.Ranking >= 500) {
+            return <h3>Ranking: Unranked</h3>
+        } else {
+            return <h3>Ranking: {this.props.Ranking}</h3>
+        }
+    }
+
     render() {
         return (
             <div className="tile-layout">
@@ -34,7 +49,7 @@ class Node extends Component {
                             </div>
                             
                             <div className="information-div">
-                                <h3>Ranking: {this.props.Ranking}</h3>
+                                {this.handleRanking()}
                                 <h3>Acceptance Rate: {this.props.Acceptance}%</h3>
                                 <h3>School Type: {this.props.Type}</h3>
                                 <div className="tuition-display">
