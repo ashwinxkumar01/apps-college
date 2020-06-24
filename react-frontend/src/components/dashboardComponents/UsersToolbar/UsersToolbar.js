@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UsersToolbar = props => {
-  const { className, ...rest } = props;
+  const { className, selectedColleges, setRerender, ...rest } = props;
 
   const classes = useStyles();
 
@@ -45,8 +45,23 @@ const UsersToolbar = props => {
         <Button
           color="primary"
           variant="contained"
+          onClick={e => {
+            selectedColleges.map(colleges => {
+              fetch("/removecollege", {
+                method: "POST",
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  CollegeName: colleges.college_name
+                })
+              }).then(response => {
+                return response.json();
+              }).then(data => { })
+            }).then(setRerender(false))
+          }}
         >
-          Add user
+          Remove College
         </Button>
       </div>
       {/* <div className={classes.row}>

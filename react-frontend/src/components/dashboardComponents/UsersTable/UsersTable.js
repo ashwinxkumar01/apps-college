@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { makeStyles } from '@material-ui/core/styles';
+import UsersToolbar from '../UsersToolbar/UsersToolbar';
 import {
   Card,
   CardActions,
@@ -44,13 +45,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UsersTable = props => {
-  const { className, users, ...rest } = props;
+  const { className, setColleges, users, ...rest } = props;
   const classes = useStyles();
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10000);
   //important!!!!!!!!!!!!!!!!! this determines how many are on a page - hardcoded to 10k
   const [page, setPage] = useState(0);
-  console.log(users.length);
 
 
   const handleSelectAll = event => {
@@ -59,18 +59,18 @@ const UsersTable = props => {
     let selectedUsers;
 
     if (event.target.checked) {
-      selectedUsers = users.map(user => user.id);
+      selectedUsers = users.map(user => user);
     } else {
       selectedUsers = [];
     }
 
     setSelectedUsers(selectedUsers);
+    props.setColleges(selectedUsers);
   };
 
   const handleSelectOne = (event, id) => {
     const selectedIndex = selectedUsers.indexOf(id);
     let newSelectedUsers = [];
-
     if (selectedIndex === -1) {
       newSelectedUsers = newSelectedUsers.concat(selectedUsers, id);
     } else if (selectedIndex === 0) {
@@ -83,8 +83,8 @@ const UsersTable = props => {
         selectedUsers.slice(selectedIndex + 1)
       );
     }
-
     setSelectedUsers(newSelectedUsers);
+    setColleges(newSelectedUsers);
   };
 
   const handlePageChange = (event, page) => {
@@ -96,6 +96,7 @@ const UsersTable = props => {
   };
 
   return (
+    <div>
     <Card
       {...rest}
       className={clsx(classes.root, className)}
@@ -120,6 +121,7 @@ const UsersTable = props => {
                   <TableCell>College Name</TableCell>
                   <TableCell>State</TableCell>
                   <TableCell>RD Deadline</TableCell>
+                  <TableCell>ED Deadline</TableCell>
                   <TableCell>In-state Tuition</TableCell>
                   <TableCell>Out-of-State Tuition</TableCell>
                 </TableRow>
@@ -130,13 +132,13 @@ const UsersTable = props => {
                     className={classes.tableRow}
                     hover
                     key={user.id}
-                    selected={selectedUsers.indexOf(user.id) !== -1}
+                    selected={selectedUsers.indexOf(user) !== -1}
                   >
                     <TableCell>
                     <Checkbox
-                        checked={selectedUsers.indexOf(user.id) !== -1}
+                        checked={selectedUsers.indexOf(user) !== -1}
                         color="primary"
-                        onChange={event => handleSelectOne(event, user.id)}
+                        onChange={event => handleSelectOne(event, user)}
                         value="true"
                       />
                     </TableCell>
@@ -154,6 +156,7 @@ const UsersTable = props => {
                     </TableCell>
                     <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.state}</Link></TableCell>
                     <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.regular_decison}</Link></TableCell>
+                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.early_decison}</Link></TableCell>
                     <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.tuition_normal}</Link></TableCell>
                     <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.tuition_oos}</Link> </TableCell>
                   </TableRow>
@@ -178,6 +181,7 @@ const UsersTable = props => {
         /> */}
       </CardActions>
     </Card>
+    </div>
   );
 };
 

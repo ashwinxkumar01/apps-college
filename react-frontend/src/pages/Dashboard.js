@@ -29,11 +29,24 @@ class Dashboard extends React.Component {
       searchBar: false,
       resultsFromSearch: [],
       users: [],
-      rerender: false
+      rerender: false,
+      selectedColleges: []
     };
+    this.setRerender = this.setRerender.bind(this);
+    this.selectedCollegeSet = this.selectedCollegeSet.bind(this);
     this.setSearch = this.setSearch.bind(this);
     this.renderHeart = this.renderHeart.bind(this);
     this.searchBarInUse = this.searchBarInUse.bind(this);
+  }
+
+  setRerender = (boolean) => {
+    this.setState({rerender: boolean})
+  }
+
+  selectedCollegeSet = (colleges) => {
+    if(this.state.selectedColleges !== colleges){
+      this.setState({selectedColleges: colleges});
+    }
   }
 
   setSearch = (results) => {
@@ -69,30 +82,9 @@ class Dashboard extends React.Component {
         var collegeName = JSON.parse(college);
         collegeList.push(collegeName);
       })
-      // if (sessionStorage.getItem("collegeNames")) {
-      //   JSON.parse(sessionStorage.getItem("collegeNames")).map(college1 => {
-      //     if (boolean) {
-      //       let inside = false;
-      //       collegeList.map(college2 => {
-      //         if (college1.college_name === college2.college_name) {
-      //           inside = true;
-      //         }
-      //       })
-      //       if (inside) {
-
-      //       } else {
-      //         boolean = false;
-      //       }
-      //     }
-      //   })
-      //   sessionStorage.removeItem("collegeNames");
-      // }else{
-      //   boolean = false;
-      // }
       sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
       if (this.state.rerender) {
       } else {
-        console.log("rerendered");
         this.setState({ users: collegeList, rerender: true});
       }
     });
@@ -106,7 +98,6 @@ class Dashboard extends React.Component {
   }
 
   renderDashboard = () => {
-    console.log(this.state.rerender);
     if (this.state.searchBar === false) {
       if(this.state.rerender){
 
@@ -115,9 +106,9 @@ class Dashboard extends React.Component {
       }
       return (
         <div className={useStyles.root}>
-          {/* <UsersToolbar /> */}
+        <UsersToolbar selectedColleges={this.state.selectedColleges} setRerender={this.setRerender}/>
           <div className={useStyles.theme}>
-            <UsersTable users={this.state.users}/>
+            <UsersTable users={this.state.users} setColleges={this.selectedCollegeSet}/>
           </div>
         </div>
       )
@@ -150,9 +141,6 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    if (sessionStorage.getItem("userData")) {
-      console.log(sessionStorage.getItem("userData"));
-    }
     return (
       <div className="dashboard">
         <Navigationbar active="1" />
@@ -169,20 +157,5 @@ class Dashboard extends React.Component {
 
 
 }
-
-// const Dashboard = () => {
-//     const classes = useStyles();
-
-//     const [users] = useState(mockData);
-
-//     return (
-//       <div className={classes.root}>
-//         <UsersToolbar />
-//         <div className={classes.content}>
-//           <UsersTable users={users} />
-//         </div>
-//       </div>
-//     );
-//   };
 
 export default Dashboard;
