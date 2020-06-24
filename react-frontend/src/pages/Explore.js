@@ -10,7 +10,7 @@ import Heart from '../components/content/Heart';
 import { States, Type, App, Sortby, LOR } from '../components/State';
 import { Tuition, Rankings, AcceptanceRate, AppFee, Population, AppType, LetterRec, SchoolType, StateList } from '../components/Popovers';
 import Select from 'react-select';
-import { faQuestion } from "@fortawesome/free-solid-svg-icons";
+import { faQuestion, faSadTear } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Explore extends React.Component {
@@ -59,6 +59,8 @@ class Explore extends React.Component {
         this.clearFilter = this.clearFilter.bind(this);
         //Handle the enter key when pressed
         this.enterKey = this.enterKey.bind(this);
+        //Renders the results, if any
+        this.displayResults = this.displayResults.bind(this);
         
         this.numFormat = this.numFormat.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
@@ -222,6 +224,35 @@ class Explore extends React.Component {
     searchBarInUse = (inUse) => {
         if (inUse !== this.state.searchBar) {
             this.setState({ searchBar: inUse });
+        }
+    }
+
+    displayResults() {
+        if(this.state.College.length !== 0) {
+            return (
+                <ul className="ListColleges" >
+                    {this.state.College.map(college => {
+                        let val = JSON.parse(college);
+                        let collegeName = val["college_name"];
+                        return (
+                            <li>
+                                <Tile Alias={val["alias"]} Tuition={this.numFormat(val["tuition_normal"])} TuitionOOS={this.numFormat(val["tuition_oos"])}
+                                    Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
+                                    Logo={val["college_logo"]} Type={val["school_type"]} Population={this.numFormat(val["population"])}
+                                    Ranking={val["national_ranking"]}
+                                />
+                            </li>
+                        )
+                    })}
+                </ul>
+            )
+        } else {
+            return (
+                <div className="results-div">
+                    <div className="icon-results"><FontAwesomeIcon icon={faSadTear}/></div>
+                    <h1>No results founds...</h1>
+                </div>
+            )
         }
     }
 
@@ -431,26 +462,7 @@ class Explore extends React.Component {
                             </div>
                         </div>
 
-                        <ul className="ListColleges" >
-                            {this.state.College.map(college => {
-                                let val = JSON.parse(college);
-                                let collegeName = val["college_name"];
-                                return (
-                                    <li>
-                                        <Tile Alias={val["alias"]} Tuition={this.numFormat(val["tuition_normal"])} TuitionOOS={this.numFormat(val["tuition_oos"])}
-                                            Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
-                                            Logo={val["college_logo"]} Type={val["school_type"]} Population={this.numFormat(val["population"])}
-                                            Ranking={val["national_ranking"]}
-                                        />
-                                    </li>
-                                )
-                            })
-                            }
-                            {/* <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks And I hate him"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3} /></li>
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"23000"} Type={"Private"} Logo={Image3} /></li>
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"20"} Fee={"26000"} Type={"Private"} Logo={Image3} /></li>
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3} /></li> */}
-                        </ul>
+                        {this.displayResults()}
                     </div>
                 </div>
             )
