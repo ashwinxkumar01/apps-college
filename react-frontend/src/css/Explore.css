@@ -8,21 +8,12 @@
     height: 100%;
 }
 
-.height {
-    left: calc(92vw);
-    position: absolute;
-  }
-
 .filter-name {
     text-align: center;
     padding-bottom: calc(0.2rem);
     padding-top: calc(0.5rem);
     font-family: 'Karla', serif;
     font-weight: 900;
-}
-
-.slider {
-    width: calc(90%);
 }
 
 .container-div {
@@ -32,10 +23,15 @@
 }
 
 .filter {
-    width: calc(26%);
+    width: calc(25%);
     height: calc(60vh);
     margin-left: calc(0.5rem);
     margin-top: calc(0rem);
+}
+
+.filter-fixed {
+    position: fixed;
+    width: calc(17.3%);
 }
 
 .tuition {
@@ -46,7 +42,7 @@
 }
 
 .header {
-    width: calc(60%);
+    width: calc(55%);
     text-align: left;
     font-size: calc(1rem);
     white-space: nowrap;
@@ -67,7 +63,7 @@
 
 .filter-form input {
     font-family: 'Lato', sans-serif;
-    width: calc(40%);
+    width: calc(42%);
     font-size: inherit;
     outline: none;
     border: none;
@@ -382,14 +378,22 @@ select {
       margin-top: calc(1.5rem);
   }
 
-  .spinner-div {
+  .spinner-center {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    -webkit-transform: scale(3) !important;
-    -ms-transform: scale(3) !important;
-    transform: scale(3) !important;
-    margin-top: calc(15rem) !important;
+  }
+
+  .spinner-div {
+    width: calc(50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    -webkit-transform: scale(2) !important;
+    -ms-transform: scale(2) !important;
+    transform: scale(2) !important;
+    margin-top: calc(20rem);
   }

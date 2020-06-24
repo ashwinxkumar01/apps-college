@@ -70,9 +70,9 @@ class NavBar extends React.Component {
         <SearchBar list={this.state.collegelist} searchBarInUse={this.props.searchBarInUse} setSearch={this.props.setSearch}/>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ml-auto" navbar style={{border: "calc(.18vh)", borderColor: "#313b4c", borderStyle: "solid", borderRadius: "calc(2vh)"}}>
-            <Nav.Link onClick={this.handleClick} href="/" className="logout">Logout</Nav.Link>
-          </Nav>
+        <Nav className="ml-auto" navbar>
+          <Nav.Link onClick={this.handleClick} href="/">LOGOUT</Nav.Link>
+        </Nav>
         </Navbar.Collapse>
       </Navbar>
     );

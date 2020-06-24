@@ -2,14 +2,10 @@
 
 .logout {
     font-family: 'Oswald', sans-serif;
-    color: #313b4c !important;
     font-size: calc(3.15vh);
-}
-
-.logout:hover {
-    color: white !important; 
+    font-weight: 700;
 }
 
 .ml-auto:hover {
-    background-color: #313b4c;
+    color: #313b4c;
 }
