@@ -55,8 +55,10 @@ def get_colleges(query_lst):
     first_state = True
     if len(query_lst) > 0:
         query += " WHERE"
-
         for i in range(0, len(query_lst), 2):
+            if query_lst[i+1].find("'") is not -1:
+                query_lst[i+1] = query_lst[i+1][:query_lst[i+1].find("\'")]  + "\'" + query_lst[i+1][query_lst[i+1].find("\'"):]
+                print(query_lst[i+1])     
             if query_lst[i] in dates:
                 epoch = get_epoch(query_lst[i + 1][1:])
                 query_lst[i + 1] = query_lst[i + 1][0] + str(epoch)
@@ -143,6 +145,8 @@ def get_colleges_for_dashboard(query_lst):
     if len(query_lst) > 0:
         query += " WHERE"
         for i in range(0, len(query_lst), 2):
+            if query_lst[i+1].find("'") is not -1:
+                query_lst[i+1] = query_lst[i+1][:query_lst[i+1].find("\'")]  + "\'" + query_lst[i+1][query_lst[i+1].find("\'"):]
             if query_lst[i] == "college_name":
                 query += " " + query_lst[i] + "=\'" + query_lst[i + 1] + "\'"
             else:
@@ -195,9 +199,9 @@ def get_college_names():
 
 
 #QUERY TESTING
-# lst = get_colleges(["national_ranking", "+15", "national_ranking", "-30"])
-# for i in lst:
-#     print(i)
+lst = get_colleges(["college_name", "St John's University", "college_name", "Harvard University"])
+for i in lst:
+    print(i)
 
 # GET NAMES TESTING
 # names = get_college_names()

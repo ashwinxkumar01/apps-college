@@ -36,7 +36,8 @@ class Explore extends React.Component {
             RankingUpper: null,
             Ordering: "Low to High",
             TuitionState: "tuition_normal",
-            StateFilter: []
+            StateFilter: [],
+            CheckedState: false
         };
 
         this.setSearch = this.setSearch.bind(this);
@@ -54,9 +55,10 @@ class Explore extends React.Component {
         this.changeTuitionState = this.changeTuitionState.bind(this);
         //Handles the State array
         this.handleState = this.handleState.bind(this);
-
         //Clears the filters on the page
         this.clearFilter = this.clearFilter.bind(this);
+        //Handle the enter key when pressed
+        this.enterKey = this.enterKey.bind(this);
         
         this.numFormat = this.numFormat.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
@@ -143,6 +145,16 @@ class Explore extends React.Component {
         const nationalUpper = sessionStorage.getItem("nationalupper");
         this.setState({ RankingUpper: nationalUpper });
 
+        const checkedState = sessionStorage.getItem("checkedstate");
+        if (checkedState !== null) {
+            this.setState({CheckedState: checkedState});
+        }
+
+        const tuitionState = sessionStorage.getItem("tuitionstate");
+        if (tuitionState !== null) {
+            this.setState({ TuitionState: tuitionState});
+        }
+
         const tuitionLower = sessionStorage.getItem("normallower");
         this.setState({ TuitionLower: tuitionLower });
 
@@ -224,11 +236,11 @@ class Explore extends React.Component {
                             <div className="header">Population</div>
                             <form className="filter-form">
                                 <input onChange={(e) => this.setState({ PopulationLower: e.target.value })} type="number" placeholder="Lower" size="100"
-                                    value={this.state.PopulationLower}
+                                    value={this.state.PopulationLower} onKeyDown={this.enterKey}
                                 ></input>
                                 <span>-</span>
                                 <input onChange={(e) => this.setState({ PopulationUpper: e.target.value })} type="number" placeholder="Upper" size="100"
-                                    value={this.state.PopulationUpper}
+                                    value={this.state.PopulationUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={Population}>
@@ -242,11 +254,11 @@ class Explore extends React.Component {
                             <div className="header">Acceptance</div>
                             <form className="filter-form">
                                 <input onChange={(e) => this.setState({ AcceptanceLower: e.target.value })} type="number" placeholder="Lower" size="100"
-                                    value={this.state.AcceptanceLower}
+                                    value={this.state.AcceptanceLower} onKeyDown={this.enterKey}
                                 ></input>
                                 <span>-</span>
                                 <input onChange={(e) => this.setState({ AcceptanceUpper: e.target.value })} type="number" placeholder="Upper" size="100"
-                                    value={this.state.AcceptanceUpper}
+                                    value={this.state.AcceptanceUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={AcceptanceRate}>
@@ -260,11 +272,11 @@ class Explore extends React.Component {
                             <div className="header">App fee</div>
                             <form className="filter-form">
                                 <input onChange={(e) => this.setState({ AppFeeLower: e.target.value })} type="number" placeholder="Lower" size="100"
-                                    value={this.state.AppFeeLower}
+                                    value={this.state.AppFeeLower} onKeyDown={this.enterKey}
                                 ></input>
                                 <span>-</span>
                                 <input onChange={(e) => this.setState({ AppFeeUpper: e.target.value })} type="number" placeholder="Upper" size="100"
-                                    value={this.state.AppFeeUpper}
+                                    value={this.state.AppFeeUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={AppFee}>
@@ -278,11 +290,11 @@ class Explore extends React.Component {
                             <div className="header">Ranking</div>
                             <form className="filter-form">
                                 <input onChange={(e) => this.setState({ RankingLower: e.target.value })} type="number" placeholder="Lower" size="100"
-                                    value={this.state.RankingLower}
+                                    value={this.state.RankingLower} onKeyDown={this.enterKey}
                                 ></input>
                                 <span>-</span>
                                 <input onChange={(e) => this.setState({ RankingUpper: e.target.value })} type="number" placeholder="Upper" size="100"
-                                    value={this.state.RankingUpper}
+                                    value={this.state.RankingUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={Rankings}>
@@ -296,11 +308,11 @@ class Explore extends React.Component {
                             <div className="header">Tuition</div>
                             <form className="filter-form">
                                 <input onChange={(e) => this.setState({ TuitionLower: e.target.value })} type="number" placeholder="Lower" size="100"
-                                    value={this.state.TuitionLower}
+                                    value={this.state.TuitionLower} onKeyDown={this.enterKey}
                                 ></input>
                                 <span>-</span>
                                 <input onChange={(e) => this.setState({ TuitionUpper: e.target.value })} type="number" placeholder="Upper" size="100"
-                                    value={this.state.TuitionUpper}
+                                    value={this.state.TuitionUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={Tuition}>
@@ -312,6 +324,7 @@ class Explore extends React.Component {
                             <input
                                 className="checkbox"
                                 type="checkbox"
+                                checked={this.state.CheckedState}
                                 onClick={this.changeTuitionState}
                                 value={this.state.TuitionState}
                             />
@@ -324,6 +337,7 @@ class Explore extends React.Component {
                             <div className="dropdown-div">
                                 <Select onChange={(e) => {this.setState({ App: e }, () => {
                                     sessionStorage.setItem("appfee", [this.state.App.value, this.state.App.label]);
+                                    this.handleClick();
                                 }
                                 )}} 
                                 options={App} placeholder={"Application type"} value={this.state.App}
@@ -341,8 +355,10 @@ class Explore extends React.Component {
                             <div className="dropdown-div">
                                 <Select onChange={(e) => this.setState({ LOR: e }, () => {
                                     sessionStorage.setItem("letterrec", [this.state.LOR.value, this.state.LOR.label]);
+                                    this.handleClick();
                                 })}
-                                    options={LOR} placeholder={"Letter of Recommendations"} value={this.state.LOR} />
+                                    options={LOR} placeholder={"Letter of Recommendations"} value={this.state.LOR} 
+                                    />
                             </div>
                             <OverlayTrigger trigger="click" placement="right" overlay={LetterRec}>
                                 <div><FontAwesomeIcon icon={faQuestion} 
@@ -356,8 +372,10 @@ class Explore extends React.Component {
                             <div className="dropdown-div">
                                 <Select onChange={(e) => this.setState({ School: e }, () => {
                                     sessionStorage.setItem("schooltype", [this.state.School.value, this.state.School.label]);
+                                    this.handleClick();
                                 })}
-                                    options={Type} placeholder={"School Type"} value={this.state.School} />
+                                    options={Type} placeholder={"School Type"} value={this.state.School} 
+                                    />
                             </div>
                             <OverlayTrigger trigger="click" placement="right" overlay={SchoolType}>
                                 <div><FontAwesomeIcon icon={faQuestion} 
@@ -527,6 +545,14 @@ class Explore extends React.Component {
         }
     }
 
+
+    enterKey(e) {
+        console.log(e.key);
+        if(e.key === 'Enter') {
+            this.handleClick();
+        }
+    }
+
     handleClick() {
         let array = [];
 
@@ -650,7 +676,11 @@ class Explore extends React.Component {
 
     changeTuitionState(e) {
         let value = this.state.TuitionState === "tuition_normal" ? "tuition_oos" : "tuition_normal";
-        this.setState({ TuitionState: value });
+        this.setState({ TuitionState: value, CheckedState: !this.state.CheckedState }, () => {
+            sessionStorage.setItem("checkedstate", this.state.CheckedState);
+            sessionStorage.setItem("tuitionstate", this.state.TuitionState);
+            this.handleClick();
+        });
     }
 
     handleState(e) {
@@ -665,6 +695,7 @@ class Explore extends React.Component {
                 array.push(state.value);
             })
             sessionStorage.setItem("statefilter", array);
+            this.handleClick();
         });
     };
 
