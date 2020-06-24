@@ -107,7 +107,7 @@ const UsersTable = props => {
               <TableHead>
                 <TableRow>
                   <TableCell padding="checkbox">
-                    {/* <Checkbox
+                    <Checkbox
                       checked={selectedUsers.length === users.length}
                       color="primary"
                       indeterminate={
@@ -115,7 +115,7 @@ const UsersTable = props => {
                         selectedUsers.length < users.length
                       }
                       onChange={handleSelectAll}
-                    /> */}
+                    />
                   </TableCell>
                   <TableCell>College Name</TableCell>
                   <TableCell>State</TableCell>
@@ -133,13 +133,12 @@ const UsersTable = props => {
                     selected={selectedUsers.indexOf(user.id) !== -1}
                   >
                     <TableCell>
-                      <div style={{ marginLeft: "calc(2.75vw)" }}>
-                        <div style={{ marginTop: "calc(8vh)" }} onClick={ e => {
-                              this.props.heartClicked();
-                          }}>
-                          <Heart collegeName={user.college_name} key={user.college_name}/>
-                        </div>
-                      </div>
+                    <Checkbox
+                        checked={selectedUsers.indexOf(user.id) !== -1}
+                        color="primary"
+                        onChange={event => handleSelectOne(event, user.id)}
+                        value="true"
+                      />
                     </TableCell>
 
                     <TableCell>

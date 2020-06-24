@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
       searchBar: false,
       resultsFromSearch: [],
       users: [],
-      rerenders: 0
+      rerender: false
     };
     this.setSearch = this.setSearch.bind(this);
     this.renderHeart = this.renderHeart.bind(this);
@@ -46,7 +46,11 @@ class Dashboard extends React.Component {
 
   searchBarInUse = (inUse) => {
     if (inUse !== this.state.searchBar) {
-      this.setState({ searchBar: inUse});
+      if(inUse){
+        this.setState({ searchBar: inUse, rerender: true});
+      }else{
+        this.setState({ searchBar: inUse, rerender: false});
+      }
     }
   }
 
@@ -65,9 +69,6 @@ class Dashboard extends React.Component {
         var collegeName = JSON.parse(college);
         collegeList.push(collegeName);
       })
-      if(collegeList.length !== this.state.users.length){
-        boolean = false;
-      }
       // if (sessionStorage.getItem("collegeNames")) {
       //   JSON.parse(sessionStorage.getItem("collegeNames")).map(college1 => {
       //     if (boolean) {
@@ -89,9 +90,10 @@ class Dashboard extends React.Component {
       //   boolean = false;
       // }
       sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
-      if (boolean) {
+      if (this.state.rerender) {
       } else {
-        this.setState({ users: collegeList, rerenders: 1});
+        console.log("rerendered");
+        this.setState({ users: collegeList, rerender: true});
       }
     });
 
@@ -104,13 +106,18 @@ class Dashboard extends React.Component {
   }
 
   renderDashboard = () => {
+    console.log(this.state.rerender);
     if (this.state.searchBar === false) {
-      this.pullColleges();
+      if(this.state.rerender){
+
+      }else{
+        this.pullColleges();
+      }
       return (
         <div className={useStyles.root}>
           {/* <UsersToolbar /> */}
           <div className={useStyles.theme}>
-            <UsersTable users={this.state.users} heartClicked={this.pullColleges()} />
+            <UsersTable users={this.state.users}/>
           </div>
         </div>
       )
