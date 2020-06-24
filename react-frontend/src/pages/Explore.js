@@ -10,7 +10,7 @@ import Heart from '../components/content/Heart';
 import { States, Type, App, Sortby, LOR } from '../components/State';
 import { Tuition, Rankings, AcceptanceRate, AppFee, Population, AppType, LetterRec, SchoolType, StateList } from '../components/Popovers';
 import Select from 'react-select';
-import { faQuestion } from "@fortawesome/free-solid-svg-icons";
+import { faQuestion, faSadTear } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Explore extends React.Component {
@@ -59,6 +59,8 @@ class Explore extends React.Component {
         this.clearFilter = this.clearFilter.bind(this);
         //Handle the enter key when pressed
         this.enterKey = this.enterKey.bind(this);
+        //Renders the results, if any
+        this.displayResults = this.displayResults.bind(this);
         
         this.numFormat = this.numFormat.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
@@ -225,6 +227,35 @@ class Explore extends React.Component {
         }
     }
 
+    displayResults() {
+        if(this.state.College.length !== 0) {
+            return (
+                <ul className="ListColleges" >
+                    {this.state.College.map(college => {
+                        let val = JSON.parse(college);
+                        let collegeName = val["college_name"];
+                        return (
+                            <li>
+                                <Tile Alias={val["alias"]} Tuition={this.numFormat(val["tuition_normal"])} TuitionOOS={this.numFormat(val["tuition_oos"])}
+                                    Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
+                                    Logo={val["college_logo"]} Type={val["school_type"]} Population={this.numFormat(val["population"])}
+                                    Ranking={val["national_ranking"]}
+                                />
+                            </li>
+                        )
+                    })}
+                </ul>
+            )
+        } else {
+            return (
+                <div className="results-div">
+                    <div className="icon-results"><FontAwesomeIcon icon={faSadTear}/></div>
+                    <h1>No results founds...</h1>
+                </div>
+            )
+        }
+    }
+
     renderExplore = (College) => {
         if (this.state.searchBar === false) {
             return (
@@ -235,11 +266,11 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">Population</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({ PopulationLower: e.target.value })} type="number" placeholder="Lower" size="100"
+                                <input onChange={(e) => this.setState({ PopulationLower: e.target.value }, () => console.log(this.state.PopulationLower))} type="text" placeholder="Lower" size="100"
                                     value={this.state.PopulationLower} onKeyDown={this.enterKey}
                                 ></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({ PopulationUpper: e.target.value })} type="number" placeholder="Upper" size="100"
+                                <input onChange={(e) => this.setState({ PopulationUpper: e.target.value })} type="text" placeholder="Upper" size="100"
                                     value={this.state.PopulationUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
@@ -253,11 +284,11 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">Acceptance</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({ AcceptanceLower: e.target.value })} type="number" placeholder="Lower" size="100"
+                                <input onChange={(e) => this.setState({ AcceptanceLower: e.target.value })} type="text" placeholder="Lower" size="100"
                                     value={this.state.AcceptanceLower} onKeyDown={this.enterKey}
                                 ></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({ AcceptanceUpper: e.target.value })} type="number" placeholder="Upper" size="100"
+                                <input onChange={(e) => this.setState({ AcceptanceUpper: e.target.value })} type="text" placeholder="Upper" size="100"
                                     value={this.state.AcceptanceUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
@@ -271,11 +302,11 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">App fee</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({ AppFeeLower: e.target.value })} type="number" placeholder="Lower" size="100"
+                                <input onChange={(e) => this.setState({ AppFeeLower: e.target.value })} type="text" placeholder="Lower" size="100"
                                     value={this.state.AppFeeLower} onKeyDown={this.enterKey}
                                 ></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({ AppFeeUpper: e.target.value })} type="number" placeholder="Upper" size="100"
+                                <input onChange={(e) => this.setState({ AppFeeUpper: e.target.value })} type="text" placeholder="Upper" size="100"
                                     value={this.state.AppFeeUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
@@ -289,11 +320,11 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">Ranking</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({ RankingLower: e.target.value })} type="number" placeholder="Lower" size="100"
+                                <input onChange={(e) => this.setState({ RankingLower: e.target.value })} type="text" placeholder="Lower" size="100"
                                     value={this.state.RankingLower} onKeyDown={this.enterKey}
                                 ></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({ RankingUpper: e.target.value })} type="number" placeholder="Upper" size="100"
+                                <input onChange={(e) => this.setState({ RankingUpper: e.target.value })} type="text" placeholder="Upper" size="100"
                                     value={this.state.RankingUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
@@ -307,11 +338,11 @@ class Explore extends React.Component {
                         <div className="tuition">
                             <div className="header">Tuition</div>
                             <form className="filter-form">
-                                <input onChange={(e) => this.setState({ TuitionLower: e.target.value })} type="number" placeholder="Lower" size="100"
+                                <input onChange={(e) => this.setState({ TuitionLower: e.target.value })} type="text" placeholder="Lower" size="100"
                                     value={this.state.TuitionLower} onKeyDown={this.enterKey}
                                 ></input>
                                 <span>-</span>
-                                <input onChange={(e) => this.setState({ TuitionUpper: e.target.value })} type="number" placeholder="Upper" size="100"
+                                <input onChange={(e) => this.setState({ TuitionUpper: e.target.value })} type="text" placeholder="Upper" size="100"
                                     value={this.state.TuitionUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
@@ -431,26 +462,7 @@ class Explore extends React.Component {
                             </div>
                         </div>
 
-                        <ul className="ListColleges" >
-                            {this.state.College.map(college => {
-                                let val = JSON.parse(college);
-                                let collegeName = val["college_name"];
-                                return (
-                                    <li>
-                                        <Tile Alias={val["alias"]} Tuition={this.numFormat(val["tuition_normal"])} TuitionOOS={this.numFormat(val["tuition_oos"])}
-                                            Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
-                                            Logo={val["college_logo"]} Type={val["school_type"]} Population={this.numFormat(val["population"])}
-                                            Ranking={val["national_ranking"]}
-                                        />
-                                    </li>
-                                )
-                            })
-                            }
-                            {/* <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks And I hate him"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3} /></li>
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"23000"} Type={"Private"} Logo={Image3} /></li>
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"20"} Fee={"26000"} Type={"Private"} Logo={Image3} /></li>
-                            <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3} /></li> */}
-                        </ul>
+                        {this.displayResults()}
                     </div>
                 </div>
             )
@@ -541,7 +553,7 @@ class Explore extends React.Component {
             sessionStorage.setItem(storage, state);
         } else {
             array.push(string);
-            array.push("-0");
+            array.push("-1000");
         }
     }
 
@@ -551,6 +563,11 @@ class Explore extends React.Component {
         if(e.key === 'Enter') {
             this.handleClick();
         }
+
+        // if(e.keyCode === 69 && e.keyCode === 190 && e.keyCode === 189) {
+        //     e.preventDefault();
+
+        // }
     }
 
     handleClick() {
@@ -572,40 +589,56 @@ class Explore extends React.Component {
 
         this.pushToArray(this.state.PopulationUpper, "population", array, "-", "populationupper");
 
-        if (this.state.TuitionLower !== null && this.state.TuitionLower !== null) {
-            if (this.state.TuitionState === "tuition_normal") {
-                if (this.state.TuitionLower !== null && this.state.TuitionLower !== '') {
-                    array.push("tuition_normal");
-                    array.push("+" + this.state.TuitionLower);
-                    sessionStorage.setItem("normallower", this.state.TuitionLower);
-                } else if (this.state.TuitionLower === '') {
-                    sessionStorage.setItem("normallower", this.state.TuitionLower);
-                }
-
-                if (this.state.TuitionUpper !== null && this.state.TuitionUpper !== '') {
-                    array.push("tuition_normal");
-                    array.push("-" + this.state.TuitionUpper);
-                    sessionStorage.setItem("normalupper", this.state.TuitionUpper);
-                } else if (this.state.TuitionUpper === '') {
-                    sessionStorage.setItem("normalupper", this.state.TuitionUpper);
-                }
-
+        if (this.state.TuitionState === "tuition_normal") {
+            if (this.state.TuitionLower === null || this.state.TuitionLower === '') {
+                console.log(this.state.TuitionLower);
+                sessionStorage.setItem("normallower", this.state.TuitionLower);
+            } else if (/^\d+$/.test(this.state.TuitionLower)) {
+                array.push("tuition_normal");
+                array.push("+" + this.state.TuitionLower);
+                sessionStorage.setItem("normallower", this.state.TuitionLower);
+                console.log(this.state.TuitionLower);
             } else {
-                if (this.state.TuitionLower !== null && this.state.TuitionLower !== '') {
-                    array.push("tuition_oos");
-                    array.push("+" + this.state.TuitionLower);
-                    sessionStorage.setItem("normallower", this.state.TuitionLower);
-                } else if (this.state.TuitionLower === '') {
-                    sessionStorage.setItem("normallower", this.state.TuitionLower);
-                }
+                array.push("tuition_normal");
+                console.log(this.state.TuitionLower);
+                array.push("-1000");    
+            }
 
-                if (this.state.TuitionUpper !== null && this.state.TuitionUpper !== '') {
-                    array.push("tuition_oos");
-                    array.push("-" + this.state.TuitionUpper);
-                    sessionStorage.setItem("normalupper", this.state.TuitionUpper);
-                } else if (this.state.TuitionUpper === '') {
-                    sessionStorage.setItem("normalupper", this.state.TuitionUpper);
-                }
+            if (this.state.TuitionUpper === null || this.state.TuitionUpper === '') {
+                sessionStorage.setItem("normalupper", this.state.TuitionUpper);
+                console.log(this.state.TuitionLower);
+            } else if (/^\d+$/.test(this.state.TuitionUpper)) {
+                array.push("tuition_normal");
+                array.push("-" + this.state.TuitionUpper);
+                console.log(this.state.TuitionLower);
+                sessionStorage.setItem("normalupper", this.state.TuitionUpper);
+            } else {
+                array.push("tuition_normal");
+                array.push("-1000");    
+                console.log(this.state.TuitionLower);
+            }
+
+        } else {
+            if (this.state.TuitionLower === null || this.state.TuitionLower === '') {
+                sessionStorage.setItem("normallower", this.state.TuitionLower);
+            } else if (/^\d+$/.test(this.state.TuitionLower)) {
+                array.push("tuition_oos");
+                array.push("+" + this.state.TuitionLower);
+                sessionStorage.setItem("normallower", this.state.TuitionLower);
+            } else {
+                array.push("tuition_oos");
+                array.push("-1000");    
+            }
+
+            if (this.state.TuitionUpper === null || this.state.TuitionUpper === '') {
+                sessionStorage.setItem("normalupper", this.state.TuitionUpper);
+            } else if (/^\d+$/.test(this.state.TuitionUpper)) {
+                array.push("tuition_oos");
+                array.push("-" + this.state.TuitionUpper);
+                sessionStorage.setItem("normalupper", this.state.TuitionUpper);
+            } else {
+                array.push("tuition_oos");
+                array.push("-1000");    
             }
         }
 

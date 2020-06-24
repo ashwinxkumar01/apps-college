@@ -3,7 +3,7 @@ import Select from 'react-select';
 
 const States = [
     { value: 'AL', label: 'AL' },
-    { value: 'AZ', label: 'AK' },
+    { value: 'AK', label: 'AK' },
     { value: 'AZ', label: 'AZ' },
     { value: 'AR', label: 'AR' },
     { value: 'CA', label: 'CA' },
