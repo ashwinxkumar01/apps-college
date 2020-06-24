@@ -1,7 +1,7 @@
 import React from "react";
 import '../css/Explore.css';
 import Navigationbar from '../components/content/Navigationbar';
-import { Popover, OverlayTrigger } from 'react-bootstrap';
+import { Popover, OverlayTrigger, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/content/Navbar';
 import Image3 from './UCSD_3.jpg';
@@ -37,7 +37,8 @@ class Explore extends React.Component {
             Ordering: "Low to High",
             TuitionState: "tuition_normal",
             StateFilter: [],
-            CheckedState: false
+            CheckedState: false,
+            Loading: true
         };
 
         this.setSearch = this.setSearch.bind(this);
@@ -72,6 +73,7 @@ class Explore extends React.Component {
 
     componentDidMount() {
         window.scrollTo(0, 0);
+        this.setState({ isTrue: true});
         let savedArray = sessionStorage.getItem("array");
         let copyArray = [];
 
@@ -119,7 +121,8 @@ class Explore extends React.Component {
             return response.json()
         }).then(data => {
             this.setState({
-                College: data
+                College: data,
+                Loading: false
             })
         });
 
@@ -183,14 +186,18 @@ class Explore extends React.Component {
 
         const stateFilter = sessionStorage.getItem("statefilter");
         if (stateFilter !== null) {
-            let splitArray = stateFilter.split(",");
             let newArray = [];
-            for (let i = 0; i < splitArray.length; i++) {
+            if(stateFilter === "" || stateFilter.length === 0) {
+                newArray = []
+            } else {
+                let splitArray = stateFilter.split(",");
+                for (let i = 0; i < splitArray.length; i++) {
                 let obj = {
                     value: splitArray[i],
                     label: splitArray[i]
                 }
                 newArray.push(obj);
+            }
             }
             
             this.setState({ StateFilter: newArray});
@@ -228,7 +235,16 @@ class Explore extends React.Component {
     }
 
     displayResults() {
-        if(this.state.College.length !== 0) {
+        if(this.state.Loading) {
+            return (
+                <div className="spinner-div">
+                    <Spinner animation="border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </Spinner>
+                </div>
+
+            )   
+        } else if(this.state.College.length !== 0) {
             return (
                 <ul className="ListColleges" >
                     {this.state.College.map(college => {
@@ -274,7 +290,7 @@ class Explore extends React.Component {
                                     value={this.state.PopulationUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
-                            <OverlayTrigger trigger="click" placement="right" overlay={Population}>
+                            <OverlayTrigger trigger="click" placement="right" overlay={Population} rootClose>
                                 <div><FontAwesomeIcon icon={faQuestion} style={{opacity: '60%'}}/></div>
                             </OverlayTrigger>
                         </div>
@@ -292,7 +308,7 @@ class Explore extends React.Component {
                                     value={this.state.AcceptanceUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
-                            <OverlayTrigger trigger="click" placement="right" overlay={AcceptanceRate}>
+                            <OverlayTrigger trigger="click" placement="right" overlay={AcceptanceRate} rootClose>
                                 <div><FontAwesomeIcon icon={faQuestion} style={{opacity: '60%'}}/></div>
                             </OverlayTrigger>
                         </div>
@@ -310,7 +326,7 @@ class Explore extends React.Component {
                                     value={this.state.AppFeeUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
-                            <OverlayTrigger trigger="click" placement="right" overlay={AppFee}>
+                            <OverlayTrigger trigger="click" placement="right" overlay={AppFee} rootClose>
                                 <div><FontAwesomeIcon icon={faQuestion} style={{opacity: '60%'}}/></div>
                             </OverlayTrigger>
                         </div>
@@ -328,7 +344,7 @@ class Explore extends React.Component {
                                     value={this.state.RankingUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
-                            <OverlayTrigger trigger="click" placement="right" overlay={Rankings}>
+                            <OverlayTrigger trigger="click" placement="right" overlay={Rankings} rootClose>
                                 <div><FontAwesomeIcon icon={faQuestion} style={{opacity: '60%'}}/></div>
                             </OverlayTrigger>
                         </div>
@@ -346,7 +362,7 @@ class Explore extends React.Component {
                                     value={this.state.TuitionUpper} onKeyDown={this.enterKey}
                                 ></input>
                             </form>
-                            <OverlayTrigger trigger="click" placement="right" overlay={Tuition}>
+                            <OverlayTrigger trigger="click" placement="right" overlay={Tuition} rootClose>
                                 <div><FontAwesomeIcon icon={faQuestion} style={{opacity: '60%'}}/></div>
                             </OverlayTrigger>
                         </div>
@@ -374,7 +390,7 @@ class Explore extends React.Component {
                                 options={App} placeholder={"Application type"} value={this.state.App}
                             />
                             </div>
-                            <OverlayTrigger trigger="click" placement="right" overlay={AppType}>
+                            <OverlayTrigger trigger="click" placement="right" overlay={AppType} rootClose>
                                 <div><FontAwesomeIcon icon={faQuestion} 
                                     style={{opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)'}}/></div>
                             </OverlayTrigger>
@@ -391,7 +407,7 @@ class Explore extends React.Component {
                                     options={LOR} placeholder={"Letter of Recommendations"} value={this.state.LOR} 
                                     />
                             </div>
-                            <OverlayTrigger trigger="click" placement="right" overlay={LetterRec}>
+                            <OverlayTrigger trigger="click" placement="right" overlay={LetterRec} rootClose>
                                 <div><FontAwesomeIcon icon={faQuestion} 
                                 style={{opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)'}}/></div>
                             </OverlayTrigger>
@@ -408,7 +424,7 @@ class Explore extends React.Component {
                                     options={Type} placeholder={"School Type"} value={this.state.School} 
                                     />
                             </div>
-                            <OverlayTrigger trigger="click" placement="right" overlay={SchoolType}>
+                            <OverlayTrigger trigger="click" placement="right" overlay={SchoolType} rootClose>
                                 <div><FontAwesomeIcon icon={faQuestion} 
                                 style={{opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)'}}/></div>
                             </OverlayTrigger>
@@ -419,17 +435,16 @@ class Explore extends React.Component {
                         <div className="school-type">
                             <div className="dropdown-div">
                                 <Select
-                                    placeholder={"State"}
+                                    placeholder="State"
                                     onChange={this.handleState}
                                     isMulti
-                                    name="colors"
                                     options={States}
                                     className="basic-multi-select"
                                     classNamePrefix="select"
                                     value={this.state.StateFilter}
                                 />
                             </div>
-                            <OverlayTrigger trigger="click" placement="right" overlay={StateList}>
+                            <OverlayTrigger trigger="click" placement="right" overlay={StateList} rootClose>
                                 <div><FontAwesomeIcon icon={faQuestion} 
                                 style={{opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)'}}/></div>
                             </OverlayTrigger>
@@ -553,7 +568,21 @@ class Explore extends React.Component {
             sessionStorage.setItem(storage, state);
         } else {
             array.push(string);
-            array.push("-1000");
+            array.push("--1000");
+        }
+    }
+
+    pushToArrayDouble(state, string, array, sign, storage) {
+        if (state === null || state === '') {
+            //Nothing happens
+            sessionStorage.setItem(storage, '');
+        } else if (/\d+|(\d*.)\d+/.test(state)) {
+            array.push(string);
+            array.push(sign + state);
+            sessionStorage.setItem(storage, state);
+        } else {
+            array.push(string);
+            array.push("--1000");
         }
     }
 
@@ -577,9 +606,9 @@ class Explore extends React.Component {
 
         this.pushToArray(this.state.AppFeeUpper, "app_fee", array, "-", "feeupper");
 
-        this.pushToArray(this.state.AcceptanceLower, "acceptance_rate", array, "+", "acceptlower");
+        this.pushToArrayDouble(this.state.AcceptanceLower, "acceptance_rate", array, "+", "acceptlower");
 
-        this.pushToArray(this.state.AcceptanceUpper, "acceptance_rate", array, "-", "acceptupper");
+        this.pushToArrayDouble(this.state.AcceptanceUpper, "acceptance_rate", array, "-", "acceptupper");
 
         this.pushToArray(this.state.RankingLower, "national_ranking", array, "+", "nationallower");
 
@@ -590,56 +619,14 @@ class Explore extends React.Component {
         this.pushToArray(this.state.PopulationUpper, "population", array, "-", "populationupper");
 
         if (this.state.TuitionState === "tuition_normal") {
-            if (this.state.TuitionLower === null || this.state.TuitionLower === '') {
-                console.log(this.state.TuitionLower);
-                sessionStorage.setItem("normallower", this.state.TuitionLower);
-            } else if (/^\d+$/.test(this.state.TuitionLower)) {
-                array.push("tuition_normal");
-                array.push("+" + this.state.TuitionLower);
-                sessionStorage.setItem("normallower", this.state.TuitionLower);
-                console.log(this.state.TuitionLower);
-            } else {
-                array.push("tuition_normal");
-                console.log(this.state.TuitionLower);
-                array.push("-1000");    
-            }
+            this.pushToArray(this.state.TuitionLower, "tuition_normal", array, "+", "normallower");
 
-            if (this.state.TuitionUpper === null || this.state.TuitionUpper === '') {
-                sessionStorage.setItem("normalupper", this.state.TuitionUpper);
-                console.log(this.state.TuitionLower);
-            } else if (/^\d+$/.test(this.state.TuitionUpper)) {
-                array.push("tuition_normal");
-                array.push("-" + this.state.TuitionUpper);
-                console.log(this.state.TuitionLower);
-                sessionStorage.setItem("normalupper", this.state.TuitionUpper);
-            } else {
-                array.push("tuition_normal");
-                array.push("-1000");    
-                console.log(this.state.TuitionLower);
-            }
+            this.pushToArray(this.state.TuitionUpper, "tuition_normal", array, "-", "normalupper");
 
         } else {
-            if (this.state.TuitionLower === null || this.state.TuitionLower === '') {
-                sessionStorage.setItem("normallower", this.state.TuitionLower);
-            } else if (/^\d+$/.test(this.state.TuitionLower)) {
-                array.push("tuition_oos");
-                array.push("+" + this.state.TuitionLower);
-                sessionStorage.setItem("normallower", this.state.TuitionLower);
-            } else {
-                array.push("tuition_oos");
-                array.push("-1000");    
-            }
+            this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
 
-            if (this.state.TuitionUpper === null || this.state.TuitionUpper === '') {
-                sessionStorage.setItem("normalupper", this.state.TuitionUpper);
-            } else if (/^\d+$/.test(this.state.TuitionUpper)) {
-                array.push("tuition_oos");
-                array.push("-" + this.state.TuitionUpper);
-                sessionStorage.setItem("normalupper", this.state.TuitionUpper);
-            } else {
-                array.push("tuition_oos");
-                array.push("-1000");    
-            }
+            this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");
         }
 
         if (this.state.App.value !== 'Any' && this.state.App.length !== 0) {
@@ -719,9 +706,16 @@ class Explore extends React.Component {
     handleState(e) {
         const state = this.state;
         state.StateFilter = [];
-        e.forEach((option) => {
-            state.StateFilter.push(option);
-        });
+        console.log(e);
+        
+        if(e === null) {
+            state.stateFilter = [];
+        } else {
+            e.forEach((option) => {
+                console.log(option);
+                state.StateFilter.push(option);
+            });
+        }
         this.setState({ StateFilter: state.StateFilter }, () => {
             let array = [];
             this.state.StateFilter.forEach(state => {

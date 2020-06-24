@@ -381,3 +381,15 @@ select {
   .results-div h1 {
       margin-top: calc(1.5rem);
   }
+
+  .spinner-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    -webkit-transform: scale(3) !important;
+    -ms-transform: scale(3) !important;
+    transform: scale(3) !important;
+    margin-top: calc(15rem) !important;
+  }
