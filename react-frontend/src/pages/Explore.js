@@ -272,7 +272,7 @@ class Explore extends React.Component {
             return (
                 <div className="results-div">
                     <div className="icon-results"><FontAwesomeIcon icon={faSadTear}/></div>
-                    <h1>No results founds...</h1>
+                    <h1>No results found...</h1>
                 </div>
             )
         }
@@ -410,7 +410,7 @@ class Explore extends React.Component {
                                         sessionStorage.setItem("letterrec", [this.state.LOR.value, this.state.LOR.label]);
                                         this.handleClick();
                                     })}
-                                        options={LOR} placeholder={"Letter of Recommendations"} value={this.state.LOR} 
+                                        options={LOR} placeholder={"Letters of Rec."} value={this.state.LOR} 
                                         />
                                 </div>
                                 <OverlayTrigger trigger="click" placement="right" overlay={LetterRec} rootClose>
@@ -441,7 +441,7 @@ class Explore extends React.Component {
                             <div className="school-type">
                                 <div className="dropdown-div">
                                     <Select
-                                        placeholder="State"
+                                        placeholder="State(s)"
                                         onChange={this.handleState}
                                         isMulti
                                         options={States}
