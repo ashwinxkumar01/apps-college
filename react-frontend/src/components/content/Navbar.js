@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Dropdown, ButtonGroup } from "react-bootstrap";
 import '../../App.css';
 import SearchBar from './SearchBar';
 import { IoMdContact } from "react-icons/io";
@@ -8,6 +8,7 @@ import {
   faHome,
   faQuestion
 } from "@fortawesome/free-solid-svg-icons";
+
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -76,20 +77,27 @@ class NavBar extends React.Component {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
         <Navbar.Brand>College Search</Navbar.Brand>
-        <Nav className="mr-auto" defaultActiveKey={this.props.active}>
+        <Nav variant="tabs" className="mr-auto" defaultActiveKey={this.props.active}>
             <Nav.Item className="dashboard">
                 <Nav.Link eventKey="1" href="/loginhome/dashboard">
-                Dashboard</Nav.Link>
+                  Dashboard
+                </Nav.Link>
             </Nav.Item>
 
             <Nav.Item className="explore">
                 <Nav.Link eventKey="2" href="/loginhome/explore">
-                Explore</Nav.Link>
+                  Explore
+                </Nav.Link>
             </Nav.Item>
         </Nav>
         <SearchBar list={this.state.collegelist} searchBarInUse={this.props.searchBarInUse} setSearch={this.props.setSearch}/>
         <Nav className="ml-auto" navbar>
-          <Nav.Link onClick={this.handleClick} href="/">LOGOUT</Nav.Link>
+          <Nav.Item>
+            <NavDropdown drop="down" alignRight="false">
+              <NavDropdown.Item href="#action/3.2">Profile</NavDropdown.Item> 
+              <NavDropdown.Item onClick={this.handleClick} href="/">Logout</NavDropdown.Item>
+            </NavDropdown>
+          </Nav.Item>
         </Nav>
         </Navbar.Collapse>
       </Navbar>
