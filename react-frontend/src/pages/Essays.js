@@ -4,6 +4,34 @@ import '../css/Essays.css';
 
 
 class Essays extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedColleges: [],
+        };
+    }
+
+    componentDidMount() {
+        fetch("/essays", {
+            method: "GET",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+          }).then(response => {
+            console.log(response);
+            return response.json()
+          }).then(data => {
+            let collegeList = [];
+            data.map(college => {
+              var collegeName = JSON.parse(college);
+              collegeList.push(collegeName);
+            })
+            console.log(collegeList);
+            this.setState({selectedColleges: collegeList});
+            console.log(this.state.selectedColleges);
+          });
+        
+    }
 
     render() {
         return(

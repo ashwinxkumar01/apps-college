@@ -220,7 +220,7 @@ def test_func():
 @app.route("/loginhome/signup")
 @app.route("/loginhome/dashboard")
 @app.route("/loginhome/page/:collegeName")
-@app.route("/loginhome/essays")
+@app.route("/loginhome/essays", methods = ['POST', 'GET'])
 def my_index():
     return flask.render_template("index.html", token="Hello Flask and React")
 
@@ -239,6 +239,29 @@ def test_filter():
     # print(colleges_array)
 
     return jsonify(get_order(colleges_array, filter_by, is_descending))
+
+@app.route("/essays", methods = ['GET'])
+def essays():
+    db.child("users").get().val()
+    #print(db.get().val())
+    #listColleges()
+    colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
+    #print(colleges)
+    
+    name_list = []
+    for name in colleges.values():
+        if name != "none":
+            name_list.append(name)
+    query_lst = []
+    for i in name_list:
+        query_lst.append("college_name")
+        query_lst.append(i)
+    #print(query_lst)
+    json_return = get_colleges_for_dashboard(query_lst)
+    print("essays here")
+    print(json_return)
+    return json.dumps(json_return)
+
 
 @app.route("/individual", methods = ['POST'])
 def individual():
