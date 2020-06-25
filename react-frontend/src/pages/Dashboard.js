@@ -40,134 +40,137 @@ class Dashboard extends React.Component {
   }
 
   removeColleges = async () => {
-    await Promise.all(this.state.selectedColleges.map(async (colleges) => {
-      fetch("/removecollege", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          CollegeName: colleges.college_name
-        })
-      }).then(response => {
-        return response.json();
-      }).then(data => { })
-    }))
-    this.setState({rerender: false, selectedColleges: []})
-  }
-
-  selectedCollegeSet = (colleges) => {
-    if(this.state.selectedColleges !== colleges){
-      this.setState({selectedColleges: colleges});
-    }
-  }
-
-  setSearch = (results) => {
-    if (results !== this.state.resultsFromSearch) {
-      this.setState({
-        resultsFromSearch: results
-      })
-    }
-  }
-
-  searchBarInUse = (inUse) => {
-    if (inUse !== this.state.searchBar) {
-      if(inUse){
-        this.setState({ searchBar: inUse, rerender: true});
-      }else{
-        this.setState({ searchBar: inUse, rerender: false});
-      }
-    }
-  }
-
-  pullColleges() {
-    fetch("/dashboard", {
+    let CollegeNames = []
+    this.state.selectedColleges.map(colleges => {
+      CollegeNames.push(colleges.college_name);
+    })
+    fetch("/removecolleges", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-    }).then(response => {
-      return response.json()
-    }).then(data => {
-      let collegeList = [];
-      let boolean = true;
-      data.map(college => {
-        var collegeName = JSON.parse(college);
-        collegeList.push(collegeName);
+      body: JSON.stringify({
+        CollegeName: CollegeNames
       })
-      sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
-      if (this.state.rerender) {
-      } else {
-        this.setState({ users: collegeList, rerender: true});
-      }
-    });
+    }).then(response => {
+      return response.json();
+    }).then(data => {
+      this.setState({ rerender: false, selectedColleges: [] })
+    })
+}
 
+selectedCollegeSet = (colleges) => {
+  if (this.state.selectedColleges !== colleges) {
+    this.setState({ selectedColleges: colleges });
   }
+}
 
-  renderHeart(collegeName) {
-    return (
-      <Heart collegeName={collegeName} key={collegeName} />
-    )
+setSearch = (results) => {
+  if (results !== this.state.resultsFromSearch) {
+    this.setState({
+      resultsFromSearch: results
+    })
   }
+}
 
-  renderDashboard = () => {
-    if (this.state.searchBar === false) {
-      if(this.state.rerender){
-
-      }else{
-        this.pullColleges();
-      }
-      console.log(this.state.selectedColleges)
-      return (
-        <div className={useStyles.root}>
-        <UsersToolbar selectedColleges={this.state.selectedColleges} removeColleges={this.removeColleges}/>
-          <div className={useStyles.theme}>
-            <UsersTable users={this.state.users} setColleges={this.selectedCollegeSet} selectedColleges={this.state.selectedColleges} />
-          </div>
-        </div>
-      )
+searchBarInUse = (inUse) => {
+  if (inUse !== this.state.searchBar) {
+    if (inUse) {
+      this.setState({ searchBar: inUse, rerender: true });
     } else {
-      return (
-        this.state.resultsFromSearch.map(college => {
-          return (
-            <div>
-              <Link to={`/loginhome/page/${college}`} className="fixedHeight">
-                <div className="searchResult">
-                  <div className="backgroundSolid" />
-                  <div className="backgroundBlend" />
-                  <img src={Image3} alt="Hello" className="imageBox" />
-                  <div className="collegeName">
-                    {college}
-                  </div>
-                </div>
-              </Link>
-              <div className="height">
-                <div style={{ marginTop: "calc(-1.5vh)" }}>
-                  {this.renderHeart(college)}
-                </div>
-              </div>
-            </div>
-          )
-        }
-        )
-      )
+      this.setState({ searchBar: inUse, rerender: false });
     }
   }
+}
 
-  render() {
+pullColleges() {
+  fetch("/dashboard", {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  }).then(response => {
+    return response.json()
+  }).then(data => {
+    let collegeList = [];
+    let boolean = true;
+    data.map(college => {
+      var collegeName = JSON.parse(college);
+      collegeList.push(collegeName);
+    })
+    console.log(collegeList);
+    sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
+    if (this.state.rerender) {
+    } else {
+      this.setState({ users: collegeList, rerender: true });
+    }
+  });
+
+}
+
+renderHeart(collegeName) {
+  return (
+    <Heart collegeName={collegeName} key={collegeName} />
+  )
+}
+
+renderDashboard = () => {
+  if (this.state.searchBar === false) {
+    if (this.state.rerender) {
+
+    } else {
+      this.pullColleges();
+    }
     return (
-      <div className="dashboard">
-        {/* <Navigationbar active="1" /> */}
-        <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="1"/>
-        <div>
-          {
-            this.renderDashboard()
-          }
+      <div className={useStyles.root}>
+        <UsersToolbar selectedColleges={this.state.selectedColleges} removeColleges={this.removeColleges} />
+        <div className={useStyles.theme}>
+          <UsersTable users={this.state.users} setColleges={this.selectedCollegeSet} selectedColleges={this.state.selectedColleges} />
         </div>
-
       </div>
     )
+  } else {
+    return (
+      this.state.resultsFromSearch.map(college => {
+        return (
+          <div>
+            <Link to={`/loginhome/page/${college}`} className="fixedHeight">
+              <div className="searchResult">
+                <div className="backgroundSolid" />
+                <div className="backgroundBlend" />
+                <img src={Image3} alt="Hello" className="imageBox" />
+                <div className="collegeName">
+                  {college}
+                </div>
+              </div>
+            </Link>
+            <div className="height">
+              <div style={{ marginTop: "calc(-1.5vh)" }}>
+                {this.renderHeart(college)}
+              </div>
+            </div>
+          </div>
+        )
+      }
+      )
+    )
   }
+}
+
+render() {
+  return (
+    <div className="dashboard">
+      {/* <Navigationbar active="1" /> */}
+      <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="1" />
+      <div>
+        {
+          this.renderDashboard()
+        }
+      </div>
+
+    </div>
+  )
+}
 
 
 }

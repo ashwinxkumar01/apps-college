@@ -51,7 +51,6 @@ const UsersTable = props => {
   const [rowsPerPage, setRowsPerPage] = useState(10000);
   //important!!!!!!!!!!!!!!!!! this determines how many are on a page - hardcoded to 10k
   const [page, setPage] = useState(0);
-  console.log(selectedUsers);
 
   const handleSelectAll = event => {
     const { users } = props;
@@ -67,6 +66,14 @@ const UsersTable = props => {
     setSelectedUsers(selectedUsers);
     props.setColleges(selectedUsers);
   };
+  
+  const dateFormat = input => {
+    if(input === -1) {
+        return("N/A");
+    }
+    var myDate = new Date(input * 1000);
+    return ((myDate.getUTCMonth() + 1) + "/" + myDate.getUTCDate() + "/" + myDate.getUTCFullYear());
+  }
 
   const handleSelectOne = (event, id) => {
     const selectedIndex = selectedUsers.indexOf(id);
@@ -109,7 +116,13 @@ const UsersTable = props => {
                 <TableRow>
                   <TableCell padding="checkbox">
                     <Checkbox
-                      checked={selectedUsers.length === users.length}
+                      checked={()=> {
+                        if(users.length <= 0){
+                          return false;
+                        }else{
+                          return selectedUsers.length === users.length
+                        }
+                      }}
                       color="primary"
                       indeterminate={
                         selectedUsers.length > 0 &&
@@ -155,8 +168,8 @@ const UsersTable = props => {
                       </Link>
                     </TableCell>
                     <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.state}</Link></TableCell>
-                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.regular_decison}</Link></TableCell>
-                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.early_decison}</Link></TableCell>
+                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{dateFormat(user.regular_decision)}</Link></TableCell>
+                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{dateFormat(user.early_decision)}</Link></TableCell>
                     <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.tuition_normal}</Link></TableCell>
                     <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.tuition_oos}</Link> </TableCell>
                   </TableRow>

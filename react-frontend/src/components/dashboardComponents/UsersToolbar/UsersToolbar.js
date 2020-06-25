@@ -45,8 +45,8 @@ const UsersToolbar = props => {
         <Button
           color="primary"
           variant="contained"
-          onClick={e => {
-            removeColleges();
+          onClick={async () => {
+            const finish = await removeColleges();
           }}
         >
           Remove College

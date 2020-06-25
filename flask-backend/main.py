@@ -454,6 +454,19 @@ def removeCollege():
     colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
     colleges[collegeName] = "none"
     db.child("users").child(dictio['currentUser'][:-6]).update(colleges)
+    return json.dumps({"True": 2})
+
+@app.route("/removecolleges", methods = ['POST'])
+def removeColleges():
+    post_request = request.get_json(force=True)
+
+    # Assign value from the request
+    collegeNames = post_request['CollegeName']
+    for collegeName in collegeNames:
+        colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
+        colleges[collegeName] = "none"
+        db.child("users").child(dictio['currentUser'][:-6]).update(colleges)
+    return json.dumps({"True": 2})
 
 def removeCollegeTest(collegeName):
     print("remove function call")
