@@ -6,6 +6,12 @@
     font-weight: 700;
 }
 
+.profile {
+    -webkit-transform: scale(4);
+    -ms-transform: scale(4);
+    transform: scale(4);
+  }
+
 .ml-auto:hover {
     color: #313b4c;
 }
