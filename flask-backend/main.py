@@ -217,7 +217,7 @@ def get_college_names():
 
 
 #QUERY TESTING
-lst = get_colleges(["letter_of_rec_required","-2","college_type","public"])
+#lst = get_colleges(["letter_of_rec_required","-2","school_type","public"])
 # for i in lst:
 #     print(i)
 
