@@ -8,7 +8,7 @@
 
 .header-div{
     padding-left: calc(4vw);
-    padding-top: calc(3vh);
+    padding-top: calc(2vh);
 }
 
 .required{
@@ -19,9 +19,10 @@
 
 .subtitle{
     padding-left: calc(3vw);
-    padding-top: calc(3vh);
+    padding-top: calc(1vh);
 }
 
 .essaytext{
+    padding-top: calc(5vh);
     padding-left: calc(6vw);
 }
