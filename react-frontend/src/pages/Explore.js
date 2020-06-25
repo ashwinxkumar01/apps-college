@@ -656,9 +656,12 @@ class Explore extends React.Component {
             array.push(this.state.School.value);
         }
 
+        console.log(this.state.LOR);
         if (this.state.LOR.value !== 'Any' && this.state.LOR.length !== 0) {
+            console.log("here");
             array.push("letter_of_rec_required");
-            array.push(this.state.LOR.value);
+            array.push("-" + this.state.LOR.value);
+            console.log(array);
         }
 
         if (this.state.StateFilter.value !== 'Any' && this.state.StateFilter.length !== 0) {

@@ -24,21 +24,17 @@
 
 .filter {
     width: calc(30%);
-    height: calc(600vh);
+    height: calc(60vh);
     margin-left: calc(0.5rem);
     margin-top: calc(0rem);
 }
 
 .filter-fixed {
     position: fixed;
-    height: calc(40rem);
-    width: calc(20.3%);
+    height: calc(50rem);
+    width: calc(20%);
     overflow-y: auto;
 }
-
-.filter-fixed::-webkit-scrollbar {
-    display: none;
-  }
 
 .tuition {
     width: 100%;
@@ -69,7 +65,7 @@
 
 .filter-form input {
     font-family: 'Lato', sans-serif;
-    width: calc(42%);
+    width: calc(43%);
     font-size: inherit;
     outline: none;
     border: none;
@@ -256,9 +252,10 @@ select {
 
 .ListColleges {
     width: 100%;
-    margin-left: 0;
+    margin-left: calc(0rem);
     display: grid;
-    grid-template-columns: calc(33%) calc(33%) calc(33%);
+    grid-template-columns: calc(33.3%) calc(33.3%) calc(33.3%);
+    margin-left: calc(-1rem);
 }
 
 .ListColleges li {
@@ -266,6 +263,7 @@ select {
     text-align: center;
     display: inline-block;
     margin-top: calc(0.7rem);
+    margin-left: calc(-1rem);
 }
 
 .backgroundSolid{

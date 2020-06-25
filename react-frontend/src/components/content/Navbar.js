@@ -70,14 +70,14 @@ class NavBar extends React.Component {
   render() {
     return (
       <Navbar
-        bg="dark" variant="dark"
-        className="navbar p-3 mb-4 bg-dark"
+        className="navbar p-3 mb-4"
         expand="lg"
+        bg="dark" variant="dark"
       >
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
         <Navbar.Brand>College Search</Navbar.Brand>
-        <Nav variant="tabs" className="mr-auto" defaultActiveKey={this.props.active}>
+        <Nav className="mr-auto" defaultActiveKey={this.props.active}>
             <Nav.Item className="dashboard">
                 <Nav.Link eventKey="1" href="/loginhome/dashboard">
                   Dashboard
