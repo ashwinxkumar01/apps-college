@@ -23,17 +23,10 @@
 }
 
 .filter {
-    width: calc(30%);
+    width: calc(25%);
     height: calc(60vh);
     margin-left: calc(0.5rem);
     margin-top: calc(0rem);
-}
-
-.filter-fixed {
-    position: fixed;
-    height: calc(50rem);
-    width: calc(20%);
-    overflow-y: auto;
 }
 
 .tuition {
@@ -44,7 +37,7 @@
 }
 
 .header {
-    width: calc(55%);
+    width: calc(50%);
     text-align: left;
     font-size: calc(1rem);
     white-space: nowrap;
@@ -255,7 +248,7 @@ select {
     margin-left: calc(0rem);
     display: grid;
     grid-template-columns: calc(33.3%) calc(33.3%) calc(33.3%);
-    margin-left: calc(-1rem);
+    margin-left: calc(0rem);
 }
 
 .ListColleges li {
@@ -263,7 +256,7 @@ select {
     text-align: center;
     display: inline-block;
     margin-top: calc(0.7rem);
-    margin-left: calc(-1rem);
+    margin-left: calc(-0.5rem);
 }
 
 .backgroundSolid{

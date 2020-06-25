@@ -14,7 +14,7 @@ class Essays extends Component {
     componentDidMount() {
         fetch("/essays", {
             method: "GET",
-            headers: {
+            header: {
               'Content-Type': 'application/json'
             },
           }).then(response => {
@@ -36,7 +36,7 @@ class Essays extends Component {
     render() {
         return(
             <div>
-                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="2"/>
+                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="3"/>
                 <div className="title">
                     <h1>Your Essay Summary</h1>
                 </div>
@@ -47,7 +47,7 @@ class Essays extends Component {
                     <h2>General Essays</h2>
                 </div>
 
-                <div className = "header">
+                <div className = "header-div">
                     <h3>UC Application (4 of 8 Required)</h3>
                 </div>
 
@@ -63,7 +63,7 @@ class Essays extends Component {
 
                 </div>
 
-                <div className = "header">
+                <div className = "header-div">
                     <h3>Common Application (1 of 7 Required)</h3>
                 </div>
 
@@ -78,7 +78,7 @@ class Essays extends Component {
 
                 </div>
 
-                <div className = "header">
+                <div className = "header-div">
                     <h3>Coalition Application (1 of 5 Required)</h3>
                 </div>
 
@@ -94,7 +94,7 @@ class Essays extends Component {
                     <h2>Supplemental Essays</h2>
                 </div>
 
-                <div className= "header" >
+                <div className= "header-div" >
                     <h3>Harvard University (1 of 2 Required)</h3>
                 </div>
 
@@ -103,7 +103,7 @@ class Essays extends Component {
                     <p>2. What can you contribute to our diverse group of students?</p>
                 </div>
 
-                <div className= "header" >
+                <div className= "header-div" >
                     <h3>Cornell University (2 of 2 Required)</h3>
                 </div>
 

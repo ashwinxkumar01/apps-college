@@ -89,6 +89,12 @@ class NavBar extends React.Component {
                   Explore
                 </Nav.Link>
             </Nav.Item>
+
+            <Nav.Item className="explore">
+                <Nav.Link eventKey="3" href="/loginhome/essays">
+                  Essays
+                </Nav.Link>
+            </Nav.Item>
         </Nav>
         <SearchBar list={this.state.collegelist} searchBarInUse={this.props.searchBarInUse} setSearch={this.props.setSearch}/>
         <Nav className="ml-auto" navbar>
