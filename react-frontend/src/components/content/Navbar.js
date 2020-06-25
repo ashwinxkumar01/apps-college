@@ -2,6 +2,11 @@ import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import '../../App.css';
 import SearchBar from './SearchBar';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHome,
+  faQuestion
+} from "@fortawesome/free-solid-svg-icons";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -63,13 +68,25 @@ class NavBar extends React.Component {
   render() {
     return (
       <Navbar
-        bg="dark"
-        className="navbar p-3 mb-4 bg-white rounded"
-        expand
+        bg="dark" variant="dark"
+        className="navbar p-3 mb-4 bg-dark"
+        expand="lg"
       >
-        <SearchBar list={this.state.collegelist} searchBarInUse={this.props.searchBarInUse} setSearch={this.props.setSearch}/>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Brand>College Search</Navbar.Brand>
+        <Nav className="mr-auto" defaultActiveKey={this.props.active}>
+            <Nav.Item className="dashboard">
+                <Nav.Link eventKey="1" href="/loginhome/dashboard">
+                Dashboard</Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item className="explore">
+                <Nav.Link eventKey="2" href="/loginhome/explore">
+                Explore</Nav.Link>
+            </Nav.Item>
+        </Nav>
+        <SearchBar list={this.state.collegelist} searchBarInUse={this.props.searchBarInUse} setSearch={this.props.setSearch}/>
         <Nav className="ml-auto" navbar>
           <Nav.Link onClick={this.handleClick} href="/">LOGOUT</Nav.Link>
         </Nav>

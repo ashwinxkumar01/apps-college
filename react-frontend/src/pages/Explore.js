@@ -235,7 +235,7 @@ class Explore extends React.Component {
     }
 
     displayResults() {
-        if(this.state.Loading) {
+        if(!this.state.Loading) {
             return (
                 <div className="spinner-center">
                     <div className="spinner-div">
@@ -246,7 +246,7 @@ class Explore extends React.Component {
                 </div>
 
             )   
-        } else if(this.state.College.length !== 0) {
+        } else if(this.state.College.length === 0) {
             return (
                 <ul className="ListColleges" >
                     {this.state.College.map(college => {
@@ -741,7 +741,7 @@ class Explore extends React.Component {
     render() {
         return (
             <div className="Explore">
-                <Navigationbar active="2" />
+                {/* <Navigationbar active="2" /> */}
                 <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} />
                 {this.renderExplore(this.state.College)}
             </div>
