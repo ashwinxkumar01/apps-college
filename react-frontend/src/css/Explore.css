@@ -23,16 +23,22 @@
 }
 
 .filter {
-    width: calc(25%);
-    height: calc(60vh);
+    width: calc(30%);
+    height: calc(600vh);
     margin-left: calc(0.5rem);
     margin-top: calc(0rem);
 }
 
 .filter-fixed {
     position: fixed;
-    width: calc(17.3%);
+    height: calc(40rem);
+    width: calc(20.3%);
+    overflow-y: auto;
 }
+
+.filter-fixed::-webkit-scrollbar {
+    display: none;
+  }
 
 .tuition {
     width: 100%;

@@ -742,7 +742,7 @@ class Explore extends React.Component {
         return (
             <div className="Explore">
                 {/* <Navigationbar active="2" /> */}
-                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} />
+                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="2"/>
                 {this.renderExplore(this.state.College)}
             </div>
         );
