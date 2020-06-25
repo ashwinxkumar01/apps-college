@@ -150,7 +150,7 @@ class Individual extends Component {
     
         return (
             <div>
-                <img className="Geisel" src={Geisel} />
+                <img className="Geisel" src={this.state.college_json["college_campus"]} />
                 <div className = "tint"> 
                 </div>
                 <div className="image-box">
