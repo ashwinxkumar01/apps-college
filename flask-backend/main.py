@@ -4,6 +4,7 @@ import os
 from flask import session
 from flask import request
 from sql_helpers import *
+from collections import Counter
 from flask import jsonify, redirect, url_for
 import pyodbc
 #from firebase import * #Causing errors when testing, Ashwin fix it
@@ -53,6 +54,11 @@ def get_query(query):
 def get_colleges(query_lst):
     query = "SELECT * FROM " + os.environ.get("TABLE_NAME")
     first_state = True
+    tuition_absolute = False
+    tuition_count = Counter(query_lst)
+    last_tuition = False
+    if tuition_count["tuition_oos"] + tuition_count["tuition_normal"] is 4:
+        tuition_absolute = True
     if len(query_lst) > 0:
         query += " WHERE"
         for i in range(0, len(query_lst), 2): 
@@ -62,10 +68,20 @@ def get_colleges(query_lst):
                 epoch = get_epoch(query_lst[i + 1][1:])
                 query_lst[i + 1] = query_lst[i + 1][0] + str(epoch)
             if query_lst[i] in numbers:
+                if tuition_absolute and not last_tuition:
+                    query += "("
+                else:
+                    last_tuition = True
                 if query_lst[i + 1][0] == "+":
                     query += " " + str(query_lst[i]) + " >= " + str(query_lst[i + 1][1:])
                 else:
                     query += " " + str(query_lst[i]) + " <= " + str(query_lst[i + 1][1:])
+                if tuition_absolute and last_tuition:
+                    query += ")"
+                    if i+2 < len(query_lst) and "tuition" in query_lst[i+2]:
+                        last_tuition = False
+                else:
+                    last_tuition = True
             else:
                 if query_lst[i] == "state":
                     if first_state == True:
@@ -80,6 +96,9 @@ def get_colleges(query_lst):
                         query += ")"
                 else:
                     query += " " + str(query_lst[i]) + "=\'" + str(query_lst[i+1]) + "\'"
+            if i+2 < len(query_lst) and "tuition" in query_lst[i+2] and tuition_absolute and not last_tuition:
+                query += " OR "
+                continue
 
             if i != len(query_lst) - 2:
                     query += " AND"
@@ -198,9 +217,12 @@ def get_college_names():
 
 
 #QUERY TESTING
-# lst = get_colleges(["letter_of_rec_required","-2"])
+lst = get_colleges(["letter_of_rec_required","-2","college_type","public"])
 # for i in lst:
 #     print(i)
+
+#TUITION TESTING
+#lst = get_colleges(["tuition_oos", "+10000","tuition_oos","-20000"])
 
 # GET NAMES TESTING
 # names = get_college_names()
