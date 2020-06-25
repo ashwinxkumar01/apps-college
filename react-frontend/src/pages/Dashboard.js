@@ -32,15 +32,28 @@ class Dashboard extends React.Component {
       rerender: false,
       selectedColleges: []
     };
-    this.setRerender = this.setRerender.bind(this);
+    this.removeColleges = this.removeColleges.bind(this);
     this.selectedCollegeSet = this.selectedCollegeSet.bind(this);
     this.setSearch = this.setSearch.bind(this);
     this.renderHeart = this.renderHeart.bind(this);
     this.searchBarInUse = this.searchBarInUse.bind(this);
   }
 
-  setRerender = (boolean) => {
-    this.setState({rerender: boolean})
+  removeColleges = async () => {
+    await Promise.all(this.state.selectedColleges.map(async (colleges) => {
+      fetch("/removecollege", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          CollegeName: colleges.college_name
+        })
+      }).then(response => {
+        return response.json();
+      }).then(data => { })
+    }))
+    this.setState({rerender: false, selectedColleges: []})
   }
 
   selectedCollegeSet = (colleges) => {
@@ -104,11 +117,12 @@ class Dashboard extends React.Component {
       }else{
         this.pullColleges();
       }
+      console.log(this.state.selectedColleges)
       return (
         <div className={useStyles.root}>
-        <UsersToolbar selectedColleges={this.state.selectedColleges} setRerender={this.setRerender}/>
+        <UsersToolbar selectedColleges={this.state.selectedColleges} removeColleges={this.removeColleges}/>
           <div className={useStyles.theme}>
-            <UsersTable users={this.state.users} setColleges={this.selectedCollegeSet}/>
+            <UsersTable users={this.state.users} setColleges={this.selectedCollegeSet} selectedColleges={this.state.selectedColleges} />
           </div>
         </div>
       )

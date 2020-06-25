@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UsersToolbar = props => {
-  const { className, selectedColleges, setRerender, ...rest } = props;
+  const { className, selectedColleges, removeColleges, ...rest } = props;
 
   const classes = useStyles();
 
@@ -46,19 +46,7 @@ const UsersToolbar = props => {
           color="primary"
           variant="contained"
           onClick={e => {
-            selectedColleges.map(colleges => {
-              fetch("/removecollege", {
-                method: "POST",
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                  CollegeName: colleges.college_name
-                })
-              }).then(response => {
-                return response.json();
-              }).then(data => { })
-            }).then(setRerender(false))
+            removeColleges();
           }}
         >
           Remove College

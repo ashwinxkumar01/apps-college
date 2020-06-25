@@ -45,13 +45,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UsersTable = props => {
-  const { className, setColleges, users, ...rest } = props;
+  const { className, setColleges, users, selectedColleges, ...rest } = props;
   const classes = useStyles();
-  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [selectedUsers, setSelectedUsers] = useState(selectedColleges);
   const [rowsPerPage, setRowsPerPage] = useState(10000);
   //important!!!!!!!!!!!!!!!!! this determines how many are on a page - hardcoded to 10k
   const [page, setPage] = useState(0);
-
+  console.log(selectedUsers);
 
   const handleSelectAll = event => {
     const { users } = props;
