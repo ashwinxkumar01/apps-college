@@ -9,7 +9,43 @@ class Essays extends Component {
         this.state = {
             selectedColleges: [],
         };
+        this.requiresUCApp = this.requiresUCApp.bind(this);
+        this.requiresCommonApp = this.requiresCommonApp.bind(this);
+        this.requiresCoalitionApp = this.requiresCoalitionApp.bind(this);
+        this.requiresOnlyCoalition = this.requiresOnlyCoalition.bind(this);
+        this.requiresOnlyCommon = this.requiresOnlyCommon.bind(this);
     }
+
+    requiresUCApp() {
+        var requires = this.state.selectedColleges.some(college => college.app_site === "UC Application");
+        console.log("uc app: " +  requires);
+        return requires;
+    }
+
+    requiresCommonApp() {
+        var requires = this.state.selectedColleges.some(college => college.common_app === "y");
+        console.log("common app: " + requires);
+        return requires;
+    }
+
+    requiresCoalitionApp() {
+        var requires = this.state.selectedColleges.some(college => college.coalition_app === "y");
+        console.log("coalition app: " + requires);
+        return requires;
+    }
+
+    requiresOnlyCommon() {
+        var requires = this.state.selectedColleges.every(college => college.common_app === "y" || college.app_site === "UC Application");
+        console.log("only common: " + requires);
+        return requires;
+    }
+
+    requiresOnlyCoalition() {
+        var requires = this.state.selectedColleges.every(college => college.coalition_app === "y" || college.app_site === "UC Application");
+        console.log("only coalition: " + requires);
+        return requires;
+    }
+
 
     componentDidMount() {
         fetch("/essays", {
@@ -30,10 +66,22 @@ class Essays extends Component {
             this.setState({selectedColleges: collegeList});
             console.log(this.state.selectedColleges);
           });
-        
+    }
+
+    renderFirstHeader() {
+        var coalition = this.requiresCoalitionApp();
+        var uc = this.requiresUCApp();
+        var common = this.requiresCommonApp();
+
+
     }
 
     render() {
+        this.requiresCoalitionApp();
+        this.requiresUCApp();
+        this.requiresCommonApp();
+        this.requiresOnlyCoalition();
+        this.requiresOnlyCommon();
         return(
             <div>
                 <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="3"/>
