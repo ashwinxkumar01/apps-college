@@ -154,8 +154,12 @@ class Explore extends React.Component {
 
         const tuitionState = sessionStorage.getItem("tuitionstate");
         if (tuitionState !== null) {
-            const index = this.splitToArray(tuitionState, TuitionState);
-            this.setState({ TuitionState: TuitionState[index]});
+            if(tuitionState.length === 0 || tuitionState === ',') {
+                this.setState({ TuitionState: []});
+            } else {
+                const index = this.splitToArray(tuitionState, TuitionState);
+                this.setState({ TuitionState: TuitionState[index]});
+            }
         }
 
         const tuitionLower = sessionStorage.getItem("normallower");
@@ -165,27 +169,43 @@ class Explore extends React.Component {
         this.setState({ TuitionUpper: tuitionUpper });
 
         const appType = sessionStorage.getItem("appfee");
+        console.log(appType);
         if (appType !== null) {
-            const index = this.splitToArray(appType, App);
-            this.setState({ App: App[index]});
+            if(appType.length === 0 || appType === ',') {
+                this.setState({ App: []});
+            } else {
+                const index = this.splitToArray(appType, App);
+                this.setState({ App: App[index]});
+            }
         }
 
         const letterRec = sessionStorage.getItem("letterrec");
+        console.log(letterRec);
         if (letterRec !== null) {
-            const index = this.splitToArray(letterRec, LOR);
-            this.setState({ LOR: LOR[index]});
+            if(letterRec.length === 0 || letterRec === ',') {
+                this.setState({ LOR: []});
+            } else {
+                const index = this.splitToArray(letterRec, LOR);
+                this.setState({ LOR: LOR[index]});
+            }          
         }
 
         const schoolType = sessionStorage.getItem("schooltype");
+        console.log(schoolType);
         if (schoolType !== null) {
-            const index = this.splitToArray(schoolType, Type);
-            this.setState({ School: Type[index] });
+            if(schoolType.length === 0 || schoolType === ',') {
+                this.setState({ School: [] });
+            } else {
+                const index = this.splitToArray(schoolType, Type);
+                this.setState({ School: Type[index] });
+            }
         }
 
         const stateFilter = sessionStorage.getItem("statefilter");
+        console.log(stateFilter);
         if (stateFilter !== null) {
             let newArray = [];
-            if(stateFilter === "" || stateFilter.length === 0) {
+            if(stateFilter === "," || stateFilter.length === 0) {
                 newArray = []
             } else {
                 let splitArray = stateFilter.split(",");
@@ -393,7 +413,6 @@ class Explore extends React.Component {
                         <div className="app-type">
                             <div className="dropdown-div">
                                 <Select onChange={(e) => {this.setState({ App: e }, () => {
-                                    sessionStorage.setItem("appfee", [this.state.App.value, this.state.App.label]);
                                     this.handleClick();
                                 }
                                 )}} 
@@ -411,7 +430,6 @@ class Explore extends React.Component {
                         <div className="app-type">
                             <div className="dropdown-div">
                                 <Select onChange={(e) => this.setState({ LOR: e }, () => {
-                                    sessionStorage.setItem("letterrec", [this.state.LOR.value, this.state.LOR.label]);
                                     this.handleClick();
                                 })}
                                     options={LOR} placeholder={"Letters of Rec."} value={this.state.LOR} 
@@ -428,7 +446,6 @@ class Explore extends React.Component {
                         <div className="school-type">
                             <div className="dropdown-div">
                                 <Select onChange={(e) => this.setState({ School: e }, () => {
-                                    sessionStorage.setItem("schooltype", [this.state.School.value, this.state.School.label]);
                                     this.handleClick();
                                 })}
                                     options={Type} placeholder={"School Type"} value={this.state.School} 
@@ -590,7 +607,14 @@ class Explore extends React.Component {
         if (state === null || state === '') {
             //Nothing happens
             sessionStorage.setItem(storage, '');
-        } else if (/\d+|(\d*.)\d+/.test(state)) {
+        } else if (/\d*\.?\d?/g.test(state)) {
+            console.log(state.split("."));
+            console.log(state.split(".").length);
+            if(state.split(".").length > 2) {
+                array.push(string);
+                array.push("--1000");
+                return;
+            }
             array.push(string);
             array.push(sign + state);
             sessionStorage.setItem(storage, state);
@@ -691,6 +715,10 @@ class Explore extends React.Component {
         sessionStorage.setItem("ordering", this.state.Ordering);
         sessionStorage.setItem("checked", this.state.Checkbox);
         sessionStorage.setItem("tuitionstate", [this.state.TuitionState.value, this.state.TuitionState.label]);
+        sessionStorage.setItem("schooltype", [this.state.School.value, this.state.School.label]);
+        sessionStorage.setItem("letterrec", [this.state.LOR.value, this.state.LOR.label]);
+        sessionStorage.setItem("appfee", [this.state.App.value, this.state.App.label]);
+        sessionStorage.setItem("statefilter", [this.state.StateFilter.value, this.state.StateFilter.label]);
 
         sessionStorage.setItem("array", array);
         fetch("/filter", {
@@ -745,7 +773,6 @@ class Explore extends React.Component {
             this.state.StateFilter.forEach(state => {
                 array.push(state.value);
             })
-            sessionStorage.setItem("statefilter", array);
             this.handleClick();
         });
     };

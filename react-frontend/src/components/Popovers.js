@@ -9,10 +9,6 @@ const Tuition = (
         <br/>
         <br/>
         Example: 10000 for lower bound, 20000 for upper bound will return all colleges that are between $10,000 and $20,000 for tuition.
-        <br/>
-        <br/>
-        The checkbox allows you to filter by in-state tuition or by out-of-state tuition. When checked, it will search by out-of-state, and unchecked
-        will search by in-state tuition.
       </Popover.Content>
     </Popover>
   );
