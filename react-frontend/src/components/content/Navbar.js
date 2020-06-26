@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, NavDropdown, Dropdown, ButtonGroup } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Dropdown, DropdownButton } from "react-bootstrap";
 import '../../App.css';
 import SearchBar from './SearchBar';
 import { IoMdContact } from "react-icons/io";

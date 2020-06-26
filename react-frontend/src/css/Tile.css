@@ -31,11 +31,13 @@
     width: calc(100%);
     display: flex;
     flex-direction: row; 
+    align-items: center;
+    text-align: center;
 }
 
 .college-name {
     text-align: center;
-    width: calc(80%); 
+    width: calc(84%); 
     display: inline-block;
     justify-content: center;
     align-items: center;
@@ -49,6 +51,7 @@
 .college-icon {
     margin-top: calc(2rem);
     width: 100%;
+    display: flex;
     justify-content: center;
     overflow: hidden;
 }
@@ -81,7 +84,8 @@
 
 .favorite-icon{
     width: calc(9.5%);
-    padding-top: calc(2.5rem);
+    padding-top: calc(9.5rem);
+    padding-right: calc(7.7rem);
     justify-content: right;
     position: absolute;
     right: 0;
@@ -89,5 +93,21 @@
     -webkit-transform: scale(0.6);
     -ms-transform: scale(0.6);
     transform: scale(0.6);
+    z-index: 1;
 }
+
+@media screen and (max-width: 767px) {
+    .tile-layout {
+        width: 100%;
+        box-shadow: calc(0px) calc(0px) calc(0px) grey; 
+    }
+
+    .tile-layout:hover {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        overflow: hidden;
+    }
+}
+
 

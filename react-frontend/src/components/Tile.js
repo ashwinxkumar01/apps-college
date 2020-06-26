@@ -57,10 +57,8 @@ class Node extends Component {
                                     <h3>Population: {this.props.Population}</h3>
                                 </div>
                             </div>
-
                         </div>
                     </Link>
-
             </div>
        )
     }

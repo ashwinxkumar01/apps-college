@@ -37,7 +37,8 @@ class Explore extends React.Component {
             TuitionState: [],
             StateFilter: [],
             CheckedState: false,
-            Loading: true
+            Loading: true,
+            Open: false
         };
         this.setSearch = this.setSearch.bind(this);
         this.searchBarInUse = this.searchBarInUse.bind(this);
@@ -57,6 +58,9 @@ class Explore extends React.Component {
         this.enterKey = this.enterKey.bind(this);
         //Renders the results, if any
         this.displayResults = this.displayResults.bind(this);
+        //Toggle display for mobile
+        this.togglePanel = this.togglePanel.bind(this);
+        this.renderFilter = this.renderFilter.bind(this);
 
         this.numFormat = this.numFormat.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
@@ -262,23 +266,29 @@ class Explore extends React.Component {
 
             )
         } else if (this.state.College.length !== 0) {
-            return (
-                <ul className="ListColleges" >
-                    {this.state.College.map(college => {
-                        let val = JSON.parse(college);
-                        let collegeName = val["college_name"];
-                        return (
-                            <li>
-                                <Tile Alias={val["alias"]} Tuition={this.numFormat(val["tuition_normal"])} TuitionOOS={this.numFormat(val["tuition_oos"])}
-                                    Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
-                                    Logo={val["college_logo"]} Type={val["school_type"]} Population={this.numFormat(val["population"])}
-                                    Ranking={val["national_ranking"]}
-                                />
-                            </li>
-                        )
-                    })}
-                </ul>
-            )
+            if(this.state.Open){ 
+                return (
+                    <div></div>
+                )
+            } else {
+                return (
+                    <ul className="ListColleges">
+                        {this.state.College.map(college => {
+                            let val = JSON.parse(college);
+                            let collegeName = val["college_name"];
+                            return (
+                                <li>
+                                    <Tile Alias={val["alias"]} Tuition={this.numFormat(val["tuition_normal"])} TuitionOOS={this.numFormat(val["tuition_oos"])}
+                                        Acceptance={val["acceptance_rate"]} Fee={val["app_fee"]} collegeName={val["college_name"]}
+                                        Logo={val["college_logo"]} Type={val["school_type"]} Population={this.numFormat(val["population"])}
+                                        Ranking={val["national_ranking"]}
+                                    />
+                                </li>
+                            )
+                        })}
+                    </ul>
+                )
+            }
         } else {
             return (
                 <div className="results-div">
@@ -289,195 +299,201 @@ class Explore extends React.Component {
         }
     }
 
-    renderExplore = (College) => {
+    renderFilter(String) {
+        return (
+            <div className="filter" style={{display: String}}>
+                <h1 className="filter-name">Filters</h1>
+                <div className="tuition">
+                    <div className="header">Population</div>
+                    <form className="filter-form">
+                        <input onChange={(e) => this.setState({ PopulationLower: e.target.value }, () => console.log(this.state.PopulationLower))} type="text" placeholder="Lower" size="100"
+                            value={this.state.PopulationLower} onKeyDown={this.enterKey}
+                        ></input>
+                        <span>-</span>
+                        <input onChange={(e) => this.setState({ PopulationUpper: e.target.value })} type="text" placeholder="Upper" size="100"
+                            value={this.state.PopulationUpper} onKeyDown={this.enterKey}
+                        ></input>
+                    </form>
+                    <OverlayTrigger trigger="click" placement="right" overlay={Population} rootClose>
+                        <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
+                    </OverlayTrigger>
+                </div>
+
+                <hr></hr>
+
+                <div className="tuition">
+                    <div className="header">Acceptance</div>
+                    <form className="filter-form">
+                        <input onChange={(e) => this.setState({ AcceptanceLower: e.target.value })} type="text" placeholder="Lower" size="100"
+                            value={this.state.AcceptanceLower} onKeyDown={this.enterKey}
+                        ></input>
+                        <span>-</span>
+                        <input onChange={(e) => this.setState({ AcceptanceUpper: e.target.value })} type="text" placeholder="Upper" size="100"
+                            value={this.state.AcceptanceUpper} onKeyDown={this.enterKey}
+                        ></input>
+                    </form>
+                    <OverlayTrigger trigger="click" placement="right" overlay={AcceptanceRate} rootClose>
+                        <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
+                    </OverlayTrigger>
+                </div>
+
+                <hr></hr>
+
+                <div className="tuition">
+                    <div className="header">App fee</div>
+                    <form className="filter-form">
+                        <input onChange={(e) => this.setState({ AppFeeLower: e.target.value })} type="text" placeholder="Lower" size="100"
+                            value={this.state.AppFeeLower} onKeyDown={this.enterKey}
+                        ></input>
+                        <span>-</span>
+                        <input onChange={(e) => this.setState({ AppFeeUpper: e.target.value })} type="text" placeholder="Upper" size="100"
+                            value={this.state.AppFeeUpper} onKeyDown={this.enterKey}
+                        ></input>
+                    </form>
+                    <OverlayTrigger trigger="click" placement="right" overlay={AppFee} rootClose>
+                        <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
+                    </OverlayTrigger>
+                </div>
+
+                <hr></hr>
+
+                <div className="tuition">
+                    <div className="header">Ranking</div>
+                    <form className="filter-form">
+                        <input onChange={(e) => this.setState({ RankingLower: e.target.value })} type="text" placeholder="Lower" size="100"
+                            value={this.state.RankingLower} onKeyDown={this.enterKey}
+                        ></input>
+                        <span>-</span>
+                        <input onChange={(e) => this.setState({ RankingUpper: e.target.value })} type="text" placeholder="Upper" size="100"
+                            value={this.state.RankingUpper} onKeyDown={this.enterKey}
+                        ></input>
+                    </form>
+                    <OverlayTrigger trigger="click" placement="right" overlay={Rankings} rootClose>
+                        <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
+                    </OverlayTrigger>
+                </div>
+
+                <hr></hr>
+
+                <div className="tuition">
+                    <div className="header">Tuition</div>
+                    <form className="filter-form">
+                        <input onChange={(e) => this.setState({ TuitionLower: e.target.value })} type="text" placeholder="Lower" size="100"
+                            value={this.state.TuitionLower} onKeyDown={this.enterKey}
+                        ></input>
+                        <span>-</span>
+                        <input onChange={(e) => this.setState({ TuitionUpper: e.target.value })} type="text" placeholder="Upper" size="100"
+                            value={this.state.TuitionUpper} onKeyDown={this.enterKey}
+                        ></input>
+                    </form>
+                    <OverlayTrigger trigger="click" placement="right" overlay={Tuition} rootClose>
+                        <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
+                    </OverlayTrigger>
+                </div>
+
+                <hr></hr>
+
+                <div className="app-type">
+                    <div className="dropdown-div">
+                        <Select onChange={(e) => {
+                            this.setState({ TuitionState: e }, () => {
+                                this.handleClick();
+                                console.log(this.state.TuitionState);
+                            }
+                            )
+                        }}
+                            options={TuitionState} placeholder={"Tuition Type"} value={this.state.TuitionState}
+                        />
+                    </div>
+                    <OverlayTrigger trigger="click" placement="right" overlay={TuitionStateList} rootClose>
+                        <div><FontAwesomeIcon icon={faInfoCircle}
+                            style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
+                    </OverlayTrigger>
+                </div>
+
+                <hr></hr>
+
+                <div className="app-type">
+                    <div className="dropdown-div">
+                        <Select onChange={(e) => {this.setState({ App: e }, () => {
+                            this.handleClick();
+                        }
+                        )}} 
+                        options={App} placeholder={"Application type"} value={this.state.App}
+                    />
+                    </div>
+                    <OverlayTrigger trigger="click" placement="right" overlay={AppType} rootClose>
+                        <div><FontAwesomeIcon icon={faInfoCircle}
+                            style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
+                    </OverlayTrigger>
+                </div>
+
+                <hr></hr>
+
+                <div className="app-type">
+                    <div className="dropdown-div">
+                        <Select onChange={(e) => this.setState({ LOR: e }, () => {
+                            this.handleClick();
+                        })}
+                            options={LOR} placeholder={"Letters of Rec."} value={this.state.LOR}
+                        />
+                    </div>
+                    <OverlayTrigger trigger="click" placement="right" overlay={LetterRec} rootClose>
+                        <div><FontAwesomeIcon icon={faInfoCircle}
+                            style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
+                    </OverlayTrigger>
+                </div>
+
+                <hr></hr>
+
+                <div className="school-type">
+                    <div className="dropdown-div">
+                        <Select onChange={(e) => this.setState({ School: e }, () => {
+                            this.handleClick();
+                        })}
+                            options={Type} placeholder={"School Type"} value={this.state.School}
+                        />
+                    </div>
+                    <OverlayTrigger trigger="click" placement="right" overlay={SchoolType} rootClose>
+                        <div><FontAwesomeIcon icon={faInfoCircle}
+                            style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
+                    </OverlayTrigger>
+                </div>
+
+                <hr></hr>
+
+                <div className="school-type">
+                    <div className="dropdown-div">
+                        <Select
+                            placeholder="State(s)"
+                            onChange={this.handleState}
+                            isMulti
+                            options={States}
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                            value={this.state.StateFilter}
+                        />
+                    </div>
+                    <OverlayTrigger trigger="click" placement="right" overlay={StateList} rootClose>
+                        <div><FontAwesomeIcon icon={faInfoCircle}
+                            style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
+                    </OverlayTrigger>
+                </div>
+
+                <hr></hr>
+
+                <div className="filter-button-div">
+                    <button onClick={this.handleClick} className="filter-button">Apply</button>
+                </div>
+            </div>
+        )
+    }
+
+    renderExplore = () => {
         if (this.state.searchBar === false) {
             return (
                 <div className="container-div">
-                    <div className="filter">
-                        <h1 className="filter-name">Filters</h1>
-                        <div className="tuition">
-                            <div className="header">Population</div>
-                            <form className="filter-form">
-                                <input onChange={(e) => this.setState({ PopulationLower: e.target.value }, () => console.log(this.state.PopulationLower))} type="text" placeholder="Lower" size="100"
-                                    value={this.state.PopulationLower} onKeyDown={this.enterKey}
-                                ></input>
-                                <span>-</span>
-                                <input onChange={(e) => this.setState({ PopulationUpper: e.target.value })} type="text" placeholder="Upper" size="100"
-                                    value={this.state.PopulationUpper} onKeyDown={this.enterKey}
-                                ></input>
-                            </form>
-                            <OverlayTrigger trigger="click" placement="right" overlay={Population} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
-                            </OverlayTrigger>
-                        </div>
-
-                        <hr></hr>
-
-                        <div className="tuition">
-                            <div className="header">Acceptance</div>
-                            <form className="filter-form">
-                                <input onChange={(e) => this.setState({ AcceptanceLower: e.target.value })} type="text" placeholder="Lower" size="100"
-                                    value={this.state.AcceptanceLower} onKeyDown={this.enterKey}
-                                ></input>
-                                <span>-</span>
-                                <input onChange={(e) => this.setState({ AcceptanceUpper: e.target.value })} type="text" placeholder="Upper" size="100"
-                                    value={this.state.AcceptanceUpper} onKeyDown={this.enterKey}
-                                ></input>
-                            </form>
-                            <OverlayTrigger trigger="click" placement="right" overlay={AcceptanceRate} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
-                            </OverlayTrigger>
-                        </div>
-
-                        <hr></hr>
-
-                        <div className="tuition">
-                            <div className="header">App fee</div>
-                            <form className="filter-form">
-                                <input onChange={(e) => this.setState({ AppFeeLower: e.target.value })} type="text" placeholder="Lower" size="100"
-                                    value={this.state.AppFeeLower} onKeyDown={this.enterKey}
-                                ></input>
-                                <span>-</span>
-                                <input onChange={(e) => this.setState({ AppFeeUpper: e.target.value })} type="text" placeholder="Upper" size="100"
-                                    value={this.state.AppFeeUpper} onKeyDown={this.enterKey}
-                                ></input>
-                            </form>
-                            <OverlayTrigger trigger="click" placement="right" overlay={AppFee} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
-                            </OverlayTrigger>
-                        </div>
-
-                        <hr></hr>
-
-                        <div className="tuition">
-                            <div className="header">Ranking</div>
-                            <form className="filter-form">
-                                <input onChange={(e) => this.setState({ RankingLower: e.target.value })} type="text" placeholder="Lower" size="100"
-                                    value={this.state.RankingLower} onKeyDown={this.enterKey}
-                                ></input>
-                                <span>-</span>
-                                <input onChange={(e) => this.setState({ RankingUpper: e.target.value })} type="text" placeholder="Upper" size="100"
-                                    value={this.state.RankingUpper} onKeyDown={this.enterKey}
-                                ></input>
-                            </form>
-                            <OverlayTrigger trigger="click" placement="right" overlay={Rankings} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
-                            </OverlayTrigger>
-                        </div>
-
-                        <hr></hr>
-
-                        <div className="tuition">
-                            <div className="header">Tuition</div>
-                            <form className="filter-form">
-                                <input onChange={(e) => this.setState({ TuitionLower: e.target.value })} type="text" placeholder="Lower" size="100"
-                                    value={this.state.TuitionLower} onKeyDown={this.enterKey}
-                                ></input>
-                                <span>-</span>
-                                <input onChange={(e) => this.setState({ TuitionUpper: e.target.value })} type="text" placeholder="Upper" size="100"
-                                    value={this.state.TuitionUpper} onKeyDown={this.enterKey}
-                                ></input>
-                            </form>
-                            <OverlayTrigger trigger="click" placement="right" overlay={Tuition} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
-                            </OverlayTrigger>
-                        </div>
-
-                        <hr></hr>
-
-                        <div className="app-type">
-                            <div className="dropdown-div">
-                                <Select onChange={(e) => {
-                                    this.setState({ TuitionState: e }, () => {
-                                        this.handleClick();
-                                        console.log(this.state.TuitionState);
-                                    }
-                                    )
-                                }}
-                                    options={TuitionState} placeholder={"Tuition Type"} value={this.state.TuitionState}
-                                />
-                            </div>
-                            <OverlayTrigger trigger="click" placement="right" overlay={TuitionStateList} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle}
-                                    style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
-                            </OverlayTrigger>
-                        </div>
-
-                        <hr></hr>
-
-                        <div className="app-type">
-                            <div className="dropdown-div">
-                                <Select onChange={(e) => {this.setState({ App: e }, () => {
-                                    this.handleClick();
-                                }
-                                )}} 
-                                options={App} placeholder={"Application type"} value={this.state.App}
-                            />
-                            </div>
-                            <OverlayTrigger trigger="click" placement="right" overlay={AppType} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle}
-                                    style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
-                            </OverlayTrigger>
-                        </div>
-
-                        <hr></hr>
-
-                        <div className="app-type">
-                            <div className="dropdown-div">
-                                <Select onChange={(e) => this.setState({ LOR: e }, () => {
-                                    this.handleClick();
-                                })}
-                                    options={LOR} placeholder={"Letters of Rec."} value={this.state.LOR}
-                                />
-                            </div>
-                            <OverlayTrigger trigger="click" placement="right" overlay={LetterRec} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle}
-                                    style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
-                            </OverlayTrigger>
-                        </div>
-
-                        <hr></hr>
-
-                        <div className="school-type">
-                            <div className="dropdown-div">
-                                <Select onChange={(e) => this.setState({ School: e }, () => {
-                                    this.handleClick();
-                                })}
-                                    options={Type} placeholder={"School Type"} value={this.state.School}
-                                />
-                            </div>
-                            <OverlayTrigger trigger="click" placement="right" overlay={SchoolType} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle}
-                                    style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
-                            </OverlayTrigger>
-                        </div>
-
-                        <hr></hr>
-
-                        <div className="school-type">
-                            <div className="dropdown-div">
-                                <Select
-                                    placeholder="State(s)"
-                                    onChange={this.handleState}
-                                    isMulti
-                                    options={States}
-                                    className="basic-multi-select"
-                                    classNamePrefix="select"
-                                    value={this.state.StateFilter}
-                                />
-                            </div>
-                            <OverlayTrigger trigger="click" placement="right" overlay={StateList} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle}
-                                    style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
-                            </OverlayTrigger>
-                        </div>
-
-                        <hr></hr>
-
-                        <div className="filter-button-div">
-                            <button onClick={this.handleClick} className="filter-button">Apply</button>
-                        </div>
-                    </div>
+                    {this.renderFilter()}
 
                     <div className="content-display">
                         <div className="topbar-info">
@@ -699,6 +715,10 @@ class Explore extends React.Component {
                 Loading: false
             })
         });
+
+        if(this.state.Open === true) {
+            this.togglePanel();
+        }
     }
     handleFilter(e) {
         this.setState({ Filter: e }, () => {
@@ -737,11 +757,25 @@ class Explore extends React.Component {
         });
     };
 
+    togglePanel(e) {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+        this.setState({ Open: !this.state.Open}, () => {
+            console.log(this.state.Open);
+        });
+    }
+
     render() {
         return (
             <div className="Explore">
                 <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="2" />
-                {this.renderExplore(this.state.College)}
+                {this.renderExplore()}
+
+                {this.state.Open ? this.renderFilter("block") : null}
+                <button className="filter-toggle" onClick={(e) => this.togglePanel(e)}>+</button>
             </div>
         );
     }
