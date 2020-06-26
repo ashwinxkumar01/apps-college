@@ -32,10 +32,9 @@ class Dashboard extends React.Component {
       rerender: false,
       selectedColleges: []
     };
+    this.setSearch = this.setSearch.bind(this);
     this.removeColleges = this.removeColleges.bind(this);
     this.selectedCollegeSet = this.selectedCollegeSet.bind(this);
-    this.setSearch = this.setSearch.bind(this);
-    this.renderHeart = this.renderHeart.bind(this);
     this.searchBarInUse = this.searchBarInUse.bind(this);
   }
 
@@ -57,122 +56,91 @@ class Dashboard extends React.Component {
     }).then(data => {
       this.setState({ rerender: false, selectedColleges: [] })
     })
-}
-
-selectedCollegeSet = (colleges) => {
-  if (this.state.selectedColleges !== colleges) {
-    this.setState({ selectedColleges: colleges });
   }
-}
 
-setSearch = (results) => {
-  if (results !== this.state.resultsFromSearch) {
-    this.setState({
-      resultsFromSearch: results
-    })
-  }
-}
-
-searchBarInUse = (inUse) => {
-  if (inUse !== this.state.searchBar) {
-    if (inUse) {
-      this.setState({ searchBar: inUse, rerender: true });
-    } else {
-      this.setState({ searchBar: inUse, rerender: false });
+  selectedCollegeSet = (colleges) => {
+    if (this.state.selectedColleges !== colleges) {
+      this.setState({ selectedColleges: colleges });
     }
   }
-}
 
-pullColleges() {
-  fetch("/dashboard", {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-  }).then(response => {
-    return response.json()
-  }).then(data => {
-    let collegeList = [];
-    let boolean = true;
-    data.map(college => {
-      var collegeName = JSON.parse(college);
-      collegeList.push(collegeName);
-    })
-    console.log(collegeList);
-    sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
-    if (this.state.rerender) {
-    } else {
-      this.setState({ users: collegeList, rerender: true });
+  setSearch = (results) => {
+    if (results !== this.state.resultsFromSearch) {
+      this.setState({
+        resultsFromSearch: results
+      })
     }
-  });
+  }
 
-}
-
-renderHeart(collegeName) {
-  return (
-    <Heart collegeName={collegeName} key={collegeName} />
-  )
-}
-
-renderDashboard = () => {
-  if (this.state.searchBar === false) {
-    if (this.state.rerender) {
-
-    } else {
-      this.pullColleges();
-    }
-    return (
-      <div className={useStyles.root}>
-        <UsersToolbar selectedColleges={this.state.selectedColleges} removeColleges={this.removeColleges} />
-        <div className={useStyles.theme}>
-          <UsersTable users={this.state.users} setColleges={this.selectedCollegeSet} selectedColleges={this.state.selectedColleges} />
-        </div>
-      </div>
-    )
-  } else {
-    return (
-      this.state.resultsFromSearch.map(college => {
-        return (
-          <div>
-            <Link to={`/loginhome/page/${college}`} className="fixedHeight">
-              <div className="searchResult">
-                <div className="backgroundSolid" />
-                <div className="backgroundBlend" />
-                <img src={Image3} alt="Hello" className="imageBox" />
-                <div className="collegeName">
-                  {college}
-                </div>
-              </div>
-            </Link>
-            <div className="height">
-              <div style={{ marginTop: "calc(-1.5vh)" }}>
-                {this.renderHeart(college)}
-              </div>
-            </div>
-          </div>
-        )
+  searchBarInUse = (inUse) => {
+    if (inUse !== this.state.searchBar) {
+      if (inUse) {
+        this.setState({ searchBar: inUse, rerender: true });
+      } else {
+        this.setState({ searchBar: inUse, rerender: false });
       }
+    }
+  }
+
+  pullColleges() {
+    fetch("/dashboard", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(response => {
+      return response.json()
+    }).then(data => {
+      let collegeList = [];
+      let boolean = true;
+      data.map(college => {
+        var collegeName = JSON.parse(college);
+        collegeList.push(collegeName);
+      })
+      console.log(collegeList);
+      sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
+      if (this.state.rerender) {
+      } else {
+        this.setState({ users: collegeList, rerender: true });
+      }
+    });
+
+  }
+
+  renderDashboard = () => {
+    if (this.state.searchBar === false) {
+      if (this.state.rerender) {
+
+      } else {
+        this.pullColleges();
+      }
+      return (
+        <div className={useStyles.root}>
+          <UsersToolbar selectedColleges={this.state.selectedColleges} removeColleges={this.removeColleges} />
+          <div className={useStyles.theme}>
+            <UsersTable users={this.state.users} setColleges={this.selectedCollegeSet} selectedColleges={this.state.selectedColleges} />
+          </div>
+        </div>
       )
+    } else {
+    }
+  }
+
+  render() {
+    return (
+      <div className="dashboard">
+        <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="1" />
+        <div>
+          {
+            this.renderDashboard()
+          }
+        </div>
+
+      </div>
     )
   }
 }
 
-render() {
-  return (
-    <div className="dashboard">
-      {/* <Navigationbar active="1" /> */}
-      <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="1" />
-      <div>
-        {
-          this.renderDashboard()
-        }
-      </div>
 
-    </div>
-  )
-}
-
-
-}
 
 export default Dashboard;

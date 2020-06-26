@@ -107,10 +107,9 @@ export default function SignInSide() {
               onChange={e => {
                 const newPassword = { password: e.target.value };
                 setPassword(newPassword);
-                console.log(newPassword.password);
               }}
-              error={password.password.length < 6}
-              helperText={password.password.length < 6 ? "Password not 6 characters!" : ' '}
+              error={(password.password.length < 6 && password.password.length > 0)}
+              helperText={(password.password.length < 6 && password.password.length > 0) ? "Password not 6 characters!" : ' '}
             />
             <TextField
               variant="outlined"

@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap');
+
+.individual:hover{
+    background-color: #b0bed6;
+    cursor: pointer;
+  }
+
+  .individual {
+    position: relative;
+    background-color: white;
+    height: calc(6.5vh);
+    margin-top: 0;
+    width: calc(75%);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-color: #313b4c;
+    border-style: solid;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-width: calc(.03vw);
+  }
+
+  .imageBox{
+    position: absolute !important;
+    left: calc(3.5%) !important;
+    height: calc(100%) !important;
+  }
+  
+  .heart {
+    position: absolute !important;
+    margin-top: calc(5.75%) !important;
+    left: calc(93%) !important;
+  }
+  
+  .redheart {
+    position: absolute !important;
+    margin-top: calc(5.75%) !important;
+    left: calc(93%) !important;
+  }
+
+  .collegeName {
+    font-family: 'Oswald', sans-serif;
+    font-size: calc(2.95vh);
+    color: black !important;
+    margin-top: calc(.72%) !important;
+    position: absolute !important;
+    left: calc(20%) !important;
+    z-index: 1;
+  }

@@ -11,7 +11,6 @@ class Node extends Component {
     }
 
     handleRanking() {
-        console.log("here");
         if(this.props.Ranking >= 500) {
             return <h3>Ranking: Unranked</h3>
         } else {

@@ -9,7 +9,7 @@
   .heart {
     top: calc(-4vh);
     position: relative;
-    background-color: rgb(177, 179, 250);
+    background-color: #313b4c;
     height: calc(3.5vh);
     transform: rotate(-45deg);
     width: calc(3.5vh);
@@ -18,7 +18,7 @@
   .heart:before,
   .heart:after {
     content: "";
-    background-color: rgb(177, 179, 250);
+    background-color: #313b4c;
     border-radius: 50%;
     height: calc(3.5vh);
     position: absolute;
@@ -37,7 +37,7 @@
   .redheart:hover,
   .redheart:hover:before,
   .redheart:hover:after {
-    background-color: #313b4c;
+    background-color: #bd4646;
     transition-duration: .3s;
     cursor: pointer;
   }
@@ -45,7 +45,7 @@
   .redheart {
     top: calc(-4vh);
     position: relative;
-    background-color: #313b4c;
+    background-color: #bd4646;
     height: calc(3.5vh);
     transform: rotate(-45deg);
     width: calc(3.5vh);
@@ -54,7 +54,7 @@
   .redheart:before,
   .redheart:after {
     content: "";
-    background-color: #313b4c;
+    background-color: #bd4646;
     border-radius: 50%;
     height: calc(3.5vh);
     position: absolute;

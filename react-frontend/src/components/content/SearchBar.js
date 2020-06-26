@@ -1,7 +1,10 @@
 import React from 'react';
 import { Button, Form } from "react-bootstrap";
 import '../../App.css';
-import Stack from './Stack';
+import '../../css/SearchBar.css';
+import { Link } from 'react-router-dom';
+import Heart from './Heart';
+import Imaged from '../../pages/UCSDLogo.png';
 
 class SearchBar extends React.Component {
     constructor(props) {
@@ -9,7 +12,6 @@ class SearchBar extends React.Component {
         this.state = {
             searchResults: [],
         };
-        this.allResults = new Stack(this.props.list);
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -27,10 +29,11 @@ class SearchBar extends React.Component {
         if (e.target.value !== "") {
             this.props.searchBarInUse(true);
             currentResults = this.props.list;
-            currentResults.map(collegeNames => {
+            currentResults.map(collegeArray => {
                 var alreadyExists = false;
+                var collegeNames = collegeArray[0];
                 collegeNames.map(college => {
-                    if(alreadyExists){
+                    if (alreadyExists) {
                         return;
                     }
                     const collegeName = college.toLowerCase();
@@ -46,7 +49,7 @@ class SearchBar extends React.Component {
                     }
                     if (matchPerfect) {
                         alreadyExists = true;
-                        perfectMatches.push(collegeNames[0]);
+                        perfectMatches.push([collegeNames[0], collegeArray[1]]);
                         return;
                     }
                     const collegeNameSplit = collegeName.split(' ');
@@ -65,21 +68,21 @@ class SearchBar extends React.Component {
                             return;
                         }
                     }
-                    if(typedInSplit.length === 0){
-                        semiMatches.push(collegeNames[0]);
+                    if (typedInSplit.length === 0) {
+                        semiMatches.push([collegeNames[0], collegeArray[1]]);
                         alreadyExists = true;
                         return;
                     }
                     for (i = 0; i < collegeNameSplit.length; i++) {
                         var partMatch = true;
-                        for (j = 0; j < typedInSplit[typedInSplit.length -1].length; j++) {
-                            if (typedInSplit[typedInSplit.length -1].substring(j, j + 1) !== collegeNameSplit[i].substring(j, j + 1)) {
+                        for (j = 0; j < typedInSplit[typedInSplit.length - 1].length; j++) {
+                            if (typedInSplit[typedInSplit.length - 1].substring(j, j + 1) !== collegeNameSplit[i].substring(j, j + 1)) {
                                 partMatch = false;
                                 break;
                             }
                         }
                         if (partMatch) {
-                            semiMatches.push(collegeNames[0]);
+                            semiMatches.push([collegeNames[0], collegeArray[1]]);
                             alreadyExists = true;
                             return;
                         }
@@ -104,20 +107,39 @@ class SearchBar extends React.Component {
             }
             filteredResults.push(college);
         })
-        this.props.setSearch(filteredResults);
         this.setState({
-            searchResults: filteredResults,
-            allResults: this.allResults.push(filteredResults)
+            searchResults: filteredResults
         });
     }
 
     render() {
+        console.log(this.state.searchResults);  
         const divStyle = {
-            width: '200px'
+            width: 'calc(50vw)'
+        }
+        const searchBar = {
+            display: 'flex',
+            flexDirection: 'column'
         }
         return (
-            <Form inline className="ml-5 w-100">
-                <Form.Control type="text" onInput={this.handleChange} placeholder="Search" className="mr-0 w-75" style={divStyle} />
+            <Form className="ml-5 w-100" style={searchBar}>
+                <Form.Control type="text" onInput={this.handleChange} placeholder="Search for colleges" className="mr-0 w-75" style={divStyle} />
+                <div>
+                    {this.state.searchResults.map(collegeArray => {
+                        var college = collegeArray[0];
+                        return (
+                            <div className="individual">
+                                <img src={collegeArray[1]} alt="Hello" className="imageBox" />
+                                <Link to={`/loginhome/page/${college}`}>
+                                    <div className="collegeName">
+                                        {college}
+                                    </div>
+                                </Link>
+                                <Heart className="heart" collegeName={college} key={college} />
+                            </div>
+                        )
+                    })}
+                </div>
             </Form>
         )
     }

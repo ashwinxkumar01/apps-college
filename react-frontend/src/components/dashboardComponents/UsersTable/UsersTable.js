@@ -116,13 +116,7 @@ const UsersTable = props => {
                 <TableRow>
                   <TableCell padding="checkbox">
                     <Checkbox
-                      checked={()=> {
-                        if(selectedUsers.length <= 0){
-                          return false;
-                        }else{
-                          return selectedUsers.length === users.length
-                        }
-                      }}
+                      checked={(selectedUsers.length === users.length && users.length !== 0)}
                       color="primary"
                       indeterminate={
                         selectedUsers.length > 0 &&

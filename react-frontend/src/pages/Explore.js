@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/content/Navbar';
 import Image3 from './UCSD_3.jpg';
 import Tile from '../components/Tile';
-import Heart from '../components/content/Heart';
 import { States, Type, App, Sortby, LOR, TuitionState } from '../components/State';
 import { Tuition, Rankings, AcceptanceRate, AppFee, Population, AppType, LetterRec, SchoolType, StateList, TuitionStateList } from '../components/Popovers';
 import Select from 'react-select';
@@ -17,6 +16,7 @@ class Explore extends React.Component {
         super(props);
         this.state = {
             searchBar: false,
+            resultsFromSearch: [],
             College: [],
             School: [],
             App: [],
@@ -39,9 +39,7 @@ class Explore extends React.Component {
             CheckedState: false,
             Loading: true
         };
-
         this.setSearch = this.setSearch.bind(this);
-        this.renderHeart = this.renderHeart.bind(this);
         this.searchBarInUse = this.searchBarInUse.bind(this);
         this.renderExplore = this.renderExplore.bind(this);
 
@@ -59,18 +57,24 @@ class Explore extends React.Component {
         this.enterKey = this.enterKey.bind(this);
         //Renders the results, if any
         this.displayResults = this.displayResults.bind(this);
-        
+
         this.numFormat = this.numFormat.bind(this);
         this.dateFormat = this.dateFormat.bind(this);
         this.pushToArray = this.pushToArray.bind(this);
         this.splitToArray = this.splitToArray.bind(this);
-
-        this.renderHeart = this.renderHeart.bind(this);
     }
+
+    setSearch = (results) => {
+        if (results !== this.state.resultsFromSearch) {
+          this.setState({
+            resultsFromSearch: results
+          })
+        }
+      }
 
     componentDidMount() {
         window.scrollTo(0, 0);
-        this.setState({ isTrue: true});
+        this.setState({ isTrue: true });
         let savedArray = sessionStorage.getItem("array");
         let copyArray = [];
 
@@ -82,10 +86,10 @@ class Explore extends React.Component {
 
         const filterBy = sessionStorage.getItem("filterby");
         let indices = 0;
-        if(filterBy !== null) {
-           const index = this.splitToArray(filterBy, Sortby);
-           indices = index;
-           this.setState({ Filter: Sortby[index] });
+        if (filterBy !== null) {
+            const index = this.splitToArray(filterBy, Sortby);
+            indices = index;
+            this.setState({ Filter: Sortby[index] });
         }
 
         if (copyArray[0] === "") {
@@ -94,13 +98,13 @@ class Explore extends React.Component {
 
         const ordering = sessionStorage.getItem("ordering");
         let checkTemp = false;
-        if(ordering !== null) {
-            this.setState({Ordering: ordering});
+        if (ordering !== null) {
+            this.setState({ Ordering: ordering });
             const checked = sessionStorage.getItem("checked");
             if (checked !== null) {
                 let isChecked = checked === 'true';
                 checkTemp = isChecked;
-                this.setState({Checkbox: isChecked});
+                this.setState({ Checkbox: isChecked });
             }
         }
 
@@ -124,10 +128,10 @@ class Explore extends React.Component {
         });
 
         const appFee = sessionStorage.getItem("feelower");
-        this.setState({ AppFeeLower: appFee});
+        this.setState({ AppFeeLower: appFee });
 
         const appFeeUpper = sessionStorage.getItem("feeupper");
-        this.setState({ AppFeeUpper: appFeeUpper});
+        this.setState({ AppFeeUpper: appFeeUpper });
 
         const acceptLower = sessionStorage.getItem("acceptlower");
         this.setState({ AcceptanceLower: acceptLower });
@@ -149,13 +153,13 @@ class Explore extends React.Component {
 
         const checkedState = sessionStorage.getItem("checkedstate");
         if (checkedState !== null) {
-            this.setState({CheckedState: checkedState});
+            this.setState({ CheckedState: checkedState });
         }
 
         const tuitionState = sessionStorage.getItem("tuitionstate");
         if (tuitionState !== null) {
             const index = this.splitToArray(tuitionState, TuitionState);
-            this.setState({ TuitionState: TuitionState[index]});
+            this.setState({ TuitionState: TuitionState[index] });
         }
 
         const tuitionLower = sessionStorage.getItem("normallower");
@@ -167,13 +171,13 @@ class Explore extends React.Component {
         const appType = sessionStorage.getItem("appfee");
         if (appType !== null) {
             const index = this.splitToArray(appType, App);
-            this.setState({ App: App[index]});
+            this.setState({ App: App[index] });
         }
 
         const letterRec = sessionStorage.getItem("letterrec");
         if (letterRec !== null) {
             const index = this.splitToArray(letterRec, LOR);
-            this.setState({ LOR: LOR[index]});
+            this.setState({ LOR: LOR[index] });
         }
 
         const schoolType = sessionStorage.getItem("schooltype");
@@ -185,28 +189,21 @@ class Explore extends React.Component {
         const stateFilter = sessionStorage.getItem("statefilter");
         if (stateFilter !== null) {
             let newArray = [];
-            if(stateFilter === "" || stateFilter.length === 0) {
+            if (stateFilter === "" || stateFilter.length === 0) {
                 newArray = []
             } else {
                 let splitArray = stateFilter.split(",");
                 for (let i = 0; i < splitArray.length; i++) {
-                let obj = {
-                    value: splitArray[i],
-                    label: splitArray[i]
+                    let obj = {
+                        value: splitArray[i],
+                        label: splitArray[i]
+                    }
+                    newArray.push(obj);
                 }
-                newArray.push(obj);
             }
-            }
-            
-            this.setState({ StateFilter: newArray});
+
+            this.setState({ StateFilter: newArray });
         }
-    }
-
-
-    renderHeart(collegeName) {
-        return (
-            <Heart collegeName={collegeName} key={collegeName} />
-        )
     }
 
     splitToArray(type, compare) {
@@ -233,7 +230,7 @@ class Explore extends React.Component {
     }
 
     displayResults() {
-        if(this.state.Loading) {
+        if (this.state.Loading) {
             return (
                 <div className="spinner-center">
                     <div className="spinner-div">
@@ -243,8 +240,8 @@ class Explore extends React.Component {
                     </div>
                 </div>
 
-            )   
-        } else if(this.state.College.length !== 0) {
+            )
+        } else if (this.state.College.length !== 0) {
             return (
                 <ul className="ListColleges" >
                     {this.state.College.map(college => {
@@ -261,15 +258,15 @@ class Explore extends React.Component {
                         )
                     })}
                     <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks And I hate him"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3} /></li>
-                        <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"23000"} Type={"Private"} Logo={Image3} /></li>
-                        <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"20"} Fee={"26000"} Type={"Private"} Logo={Image3} /></li>
-                        <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3} /></li>
+                    <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"23000"} Type={"Private"} Logo={Image3} /></li>
+                    <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"20"} Fee={"26000"} Type={"Private"} Logo={Image3} /></li>
+                    <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3} /></li>
                 </ul>
             )
         } else {
             return (
                 <div className="results-div">
-                    <div className="icon-results"><FontAwesomeIcon icon={faSadTear}/></div>
+                    <div className="icon-results"><FontAwesomeIcon icon={faSadTear} /></div>
                     <h1>No results found...</h1>
                 </div>
             )
@@ -294,7 +291,7 @@ class Explore extends React.Component {
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={Population} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></div>
+                                <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
                             </OverlayTrigger>
                         </div>
 
@@ -312,7 +309,7 @@ class Explore extends React.Component {
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={AcceptanceRate} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></div>
+                                <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
                             </OverlayTrigger>
                         </div>
 
@@ -330,7 +327,7 @@ class Explore extends React.Component {
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={AppFee} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></div>
+                                <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
                             </OverlayTrigger>
                         </div>
 
@@ -348,7 +345,7 @@ class Explore extends React.Component {
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={Rankings} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></div>
+                                <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
                             </OverlayTrigger>
                         </div>
 
@@ -366,7 +363,7 @@ class Explore extends React.Component {
                                 ></input>
                             </form>
                             <OverlayTrigger trigger="click" placement="right" overlay={Tuition} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></div>
+                                <div><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></div>
                             </OverlayTrigger>
                         </div>
 
@@ -374,17 +371,19 @@ class Explore extends React.Component {
 
                         <div className="app-type">
                             <div className="dropdown-div">
-                                <Select onChange={(e) => {this.setState({ TuitionState: e }, () => {
-                                    this.handleClick();
-                                    console.log(this.state.TuitionState);
-                                }
-                                )}} 
-                                options={TuitionState} placeholder={"Tuition Type"} value={this.state.TuitionState}
-                            />
+                                <Select onChange={(e) => {
+                                    this.setState({ TuitionState: e }, () => {
+                                        this.handleClick();
+                                        console.log(this.state.TuitionState);
+                                    }
+                                    )
+                                }}
+                                    options={TuitionState} placeholder={"Tuition Type"} value={this.state.TuitionState}
+                                />
                             </div>
                             <OverlayTrigger trigger="click" placement="right" overlay={TuitionStateList} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} 
-                                    style={{opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)'}}/></div>
+                                <div><FontAwesomeIcon icon={faInfoCircle}
+                                    style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
                             </OverlayTrigger>
                         </div>
 
@@ -392,17 +391,19 @@ class Explore extends React.Component {
 
                         <div className="app-type">
                             <div className="dropdown-div">
-                                <Select onChange={(e) => {this.setState({ App: e }, () => {
-                                    sessionStorage.setItem("appfee", [this.state.App.value, this.state.App.label]);
-                                    this.handleClick();
-                                }
-                                )}} 
-                                options={App} placeholder={"Application type"} value={this.state.App}
-                            />
+                                <Select onChange={(e) => {
+                                    this.setState({ App: e }, () => {
+                                        sessionStorage.setItem("appfee", [this.state.App.value, this.state.App.label]);
+                                        this.handleClick();
+                                    }
+                                    )
+                                }}
+                                    options={App} placeholder={"Application type"} value={this.state.App}
+                                />
                             </div>
                             <OverlayTrigger trigger="click" placement="right" overlay={AppType} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} 
-                                    style={{opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)'}}/></div>
+                                <div><FontAwesomeIcon icon={faInfoCircle}
+                                    style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
                             </OverlayTrigger>
                         </div>
 
@@ -414,12 +415,12 @@ class Explore extends React.Component {
                                     sessionStorage.setItem("letterrec", [this.state.LOR.value, this.state.LOR.label]);
                                     this.handleClick();
                                 })}
-                                    options={LOR} placeholder={"Letters of Rec."} value={this.state.LOR} 
-                                    />
+                                    options={LOR} placeholder={"Letters of Rec."} value={this.state.LOR}
+                                />
                             </div>
                             <OverlayTrigger trigger="click" placement="right" overlay={LetterRec} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} 
-                                style={{opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)'}}/></div>
+                                <div><FontAwesomeIcon icon={faInfoCircle}
+                                    style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
                             </OverlayTrigger>
                         </div>
 
@@ -431,12 +432,12 @@ class Explore extends React.Component {
                                     sessionStorage.setItem("schooltype", [this.state.School.value, this.state.School.label]);
                                     this.handleClick();
                                 })}
-                                    options={Type} placeholder={"School Type"} value={this.state.School} 
-                                    />
+                                    options={Type} placeholder={"School Type"} value={this.state.School}
+                                />
                             </div>
                             <OverlayTrigger trigger="click" placement="right" overlay={SchoolType} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} 
-                                style={{opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)'}}/></div>
+                                <div><FontAwesomeIcon icon={faInfoCircle}
+                                    style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
                             </OverlayTrigger>
                         </div>
 
@@ -455,8 +456,8 @@ class Explore extends React.Component {
                                 />
                             </div>
                             <OverlayTrigger trigger="click" placement="right" overlay={StateList} rootClose>
-                                <div><FontAwesomeIcon icon={faInfoCircle} 
-                                style={{opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)'}}/></div>
+                                <div><FontAwesomeIcon icon={faInfoCircle}
+                                    style={{ opacity: '60%', marginLeft: 'calc(0.5rem)', marginTop: 'calc(0.6rem)' }} /></div>
                             </OverlayTrigger>
                         </div>
 
@@ -467,7 +468,7 @@ class Explore extends React.Component {
                         </div>
                     </div>
 
-                    <div className="content-display">                        
+                    <div className="content-display">
                         <div className="topbar-info">
                             <div className="filter-clear">
                                 <button onClick={this.clearFilter}>CLEAR FILTERS</button>
@@ -475,50 +476,29 @@ class Explore extends React.Component {
 
                             <div className="float-display">
                                 <div className="sort-by">
-                                    <Select onChange={this.handleFilter} 
-                                    options={Sortby} placeholder={"National Ranking"} value={this.state.Filter}/>
+                                    <Select onChange={this.handleFilter}
+                                        options={Sortby} placeholder={"National Ranking"} value={this.state.Filter} />
                                 </div>
-                                    <input
-                                        className="button"
-                                        type="submit"
-                                        onClick={this.changeAscent}
-                                        value={this.state.Ordering}
-                                    />                        
+                                <input
+                                    className="button"
+                                    type="submit"
+                                    onClick={this.changeAscent}
+                                    value={this.state.Ordering}
+                                />
                             </div>
                         </div>
-
                         {this.displayResults()}
                     </div>
                 </div>
             )
         } else {
             return (
-                this.state.resultsFromSearch.map(college => (
-                    <div>
-                        <Link to={`/loginhome/page/${college}`} className="fixedHeight">
-                            <div className="searchResult">
-                                <div className="backgroundSolid" />
-                                <div className="backgroundBlend" />
-                                <img src={Image3} alt="Hello" className="imageBox" />
-                                <div className="collegeName">
-                                    {college}
-                                </div>
-                            </div>
-                        </Link>
-                        <div className="height">
-                            <div style={{ marginTop: "calc(-1.5vh)" }}>
-                                {this.renderHeart(college)}
-                            </div>
-                        </div>
-                    </div>
-                )
-                )
+                <div />
             )
         }
     }
 
     clearFilter(e) {
-        console.log("here");
         this.setState({
             searchBar: false,
             College: [],
@@ -543,20 +523,6 @@ class Explore extends React.Component {
             CheckedState: false,
             Loading: true
         }, () => this.handleClick())
-    }
-
-    renderHeart(collegeName){
-        return(
-          <Heart collegeName={collegeName} key={collegeName}/>
-        )
-      }
-
-    setSearch = (results) => {
-        if (results !== this.state.resultsFromSearch) {
-            this.setState({
-                resultsFromSearch: results
-            })
-        }
     }
 
     numFormat(num) {
@@ -603,7 +569,7 @@ class Explore extends React.Component {
 
     enterKey(e) {
         console.log(e.key);
-        if(e.key === 'Enter') {
+        if (e.key === 'Enter') {
             this.handleClick();
         }
 
@@ -655,11 +621,11 @@ class Explore extends React.Component {
 
             this.pushToArray(this.state.TuitionLower, "tuition_normal", array, "+", "normallower");
 
-            this.pushToArray(this.state.TuitionUpper, "tuition_normal", array, "-", "normalupper");   
+            this.pushToArray(this.state.TuitionUpper, "tuition_normal", array, "-", "normalupper");
         }
 
         if (this.state.App.value !== 'Any' && this.state.App.length !== 0) {
-            if(this.state.App.value === 'commonapp') {
+            if (this.state.App.value === 'commonapp') {
                 array.push("common_app");
                 array.push("y");
             } else {
@@ -731,8 +697,8 @@ class Explore extends React.Component {
         const state = this.state;
         state.StateFilter = [];
         console.log(e);
-        
-        if(e === null) {
+
+        if (e === null) {
             state.stateFilter = [];
         } else {
             e.forEach((option) => {
@@ -753,8 +719,7 @@ class Explore extends React.Component {
     render() {
         return (
             <div className="Explore">
-                {/* <Navigationbar active="2" /> */}
-                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="2"/>
+                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="2" />
                 {this.renderExplore(this.state.College)}
             </div>
         );
