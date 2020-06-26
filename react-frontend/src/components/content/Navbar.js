@@ -69,7 +69,6 @@ class NavBar extends React.Component {
   }
   render() {
     return (
-<<<<<<< HEAD
       <div>
         <Navbar
           className="navbar p-3"
@@ -81,18 +80,6 @@ class NavBar extends React.Component {
             <Navbar.Brand>College Search</Navbar.Brand>
             <Nav className="mr-auto" defaultActiveKey={this.props.active}>
               <Nav.Item className="dashboard">
-=======
-      <Navbar
-        className="navbar p-3 mb-0"
-        expand="lg"
-        bg="dark" variant="dark"
-      >
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-        <Navbar.Brand>College Search</Navbar.Brand>
-        <Nav className="mr-auto" defaultActiveKey={this.props.active}>
-            <Nav.Item className="dashboard">
->>>>>>> ff28a21e119c7740fe2938232be92e431be11268
                 <Nav.Link eventKey="1" href="/loginhome/dashboard">
                   Dashboard
                 </Nav.Link>
