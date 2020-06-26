@@ -11,6 +11,7 @@ class Essays extends Component {
         super(props);
         this.state = {
             selectedColleges: [],
+            numEssays: 0,
         };
         this.requiresUCApp = this.requiresUCApp.bind(this);
         this.requiresCommonApp = this.requiresCommonApp.bind(this);
@@ -20,6 +21,10 @@ class Essays extends Component {
         this.renderFirstHeader = this.renderFirstHeader.bind(this);
         this.renderUC = this.renderUC.bind(this);
         this.renderCommon = this.renderCommon.bind(this);
+        this.requiresOnlyCoalition = this.requiresOnlyCoalition.bind(this);
+        this.requiresCommonApp = this.requiresOnlyCommon.bind(this);
+        this.renderPopup = this.renderPopup.bind(this);
+        this.calculateNumEssays = this.calculateNumEssays.bind(this);
 
     }
 
@@ -75,6 +80,41 @@ class Essays extends Component {
 
     calculateNumEssays() {
         var num = 0;
+
+        // first do for general essays
+        if(this.requiresUCApp()) {
+            num++;
+        }
+
+        if(this.requiresOnlyCommon()) {
+            num++;
+        }
+        else if(this.requiresOnlyCoalition()) {
+            num++;
+        }
+        else {
+            if(this.requiresCommonApp()) {
+                num++;
+            }
+
+            if(this.requiresCoalitionApp()) {
+                num++;
+            }
+        }
+
+        var json = this.state.selectedColleges;
+
+        
+        for(var i = 0 ; i < json.length ; i++) {
+            var curr = json[i].supplemental_essays;
+            console.log(curr);
+            var parsed = parseInt(curr,10);
+            if(!isNaN(parsed)) {
+                num += parseInt(curr,10);
+            }
+            console.log(num);
+        }
+        return num;
     }
 
 
@@ -95,6 +135,7 @@ class Essays extends Component {
             })
             console.log(collegeList);
             this.setState({selectedColleges: collegeList});
+            this.setState({numEssays: this.calculateNumEssays()})
             console.log(this.state.selectedColleges);
           });
     }
@@ -175,7 +216,7 @@ class Essays extends Component {
                 </div>
 
                 <div className="required">
-                    <h3>You have <b>8</b> required prompts.</h3>
+                    <h3>You have <b>{this.state.numEssays}</b> required prompt(s).</h3>
                 </div>
 
                 {this.renderPopup()}
