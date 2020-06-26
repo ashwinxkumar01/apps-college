@@ -74,6 +74,12 @@ const Sortby = [
     {value: "population", label: 'Population'}
 ]
 
+const TuitionState = [
+    {value: "both", label: 'In State and Out of State'},
+    {value: "tuition_normal", label: 'In State Tuition'},
+    {value: "tuition_oos", label: 'Out of State Tuition'},
+]
+
 const LOR = [
     {value: "Any", label: 'Any'},
     {value: 0, label: '0'},
@@ -88,5 +94,6 @@ export {
     Type,
     App,
     Sortby,
-    LOR
+    LOR,
+    TuitionState
   }

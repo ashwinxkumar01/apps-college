@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Features from './pages/Features';
 import Individual from './pages/Individual';
+import Essays from './pages/Essays';
 
 const RequireAuth = (Component) => {
   return class Application extends Component {
@@ -37,6 +38,7 @@ class App extends React.Component {
             <Route path="/loginhome/login" component={Login} />
             <Route path="/loginhome/signup" component={Signup} />
             <Route path="/loginhome/page/:collegeName" component={Individual} />
+            <Route path="/loginhome/essays" component={Essays} />
             <Route path="/" component={Home} />
           </Switch>
         </div>

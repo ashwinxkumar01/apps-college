@@ -100,40 +100,22 @@ class NavBar extends React.Component {
                 Explore
                 </Nav.Link>
             </Nav.Item>
-          </Nav>
-          <div>
-            <SearchBar list={this.state.collegelist} searchBarInUse={this.props.searchBarInUse} setSearch={this.props.setSearch} />
-            <div>
-              {this.state.resultsFromSearch.map(college => {
-                return (
-                  <div>
-                    <Link to={`/loginhome/page/${college}`} className="fixedHeight">
-                      <div className="searchResult">
-                        <div className="backgroundSolid" />
-                        <div className="backgroundBlend" />
-                        <div className="collegeName">
-                          {college}
-                        </div>
-                      </div>
-                    </Link>
-                    <div className="height">
-                      <div style={{ marginTop: "calc(-1.5vh)" }}>
-                        {this.renderHeart(college)}
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-          <Nav className="ml-auto" navbar>
-            <Nav.Item>
-              <NavDropdown drop="down" alignRight="false">
-                <NavDropdown.Item href="#action/3.2">Profile</NavDropdown.Item>
-                <NavDropdown.Item onClick={this.handleClick} href="/">Logout</NavDropdown.Item>
-              </NavDropdown>
+
+            <Nav.Item className="explore">
+                <Nav.Link eventKey="3" href="/loginhome/essays">
+                  Essays
+                </Nav.Link>
             </Nav.Item>
-          </Nav>
+        </Nav>
+        <SearchBar list={this.state.collegelist} searchBarInUse={this.props.searchBarInUse} setSearch={this.props.setSearch}/>
+        <Nav className="ml-auto" navbar>
+          <Nav.Item>
+            <NavDropdown drop="down" alignRight="false">
+              <NavDropdown.Item href="#action/3.2">Profile</NavDropdown.Item> 
+              <NavDropdown.Item onClick={this.handleClick} href="/">Logout</NavDropdown.Item>
+            </NavDropdown>
+          </Nav.Item>
+        </Nav>
         </Navbar.Collapse>
       </Navbar>
     );

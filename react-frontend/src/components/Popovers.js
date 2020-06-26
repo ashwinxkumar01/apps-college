@@ -114,6 +114,18 @@ const Tuition = (
     </Popover>
   );
 
+  const TuitionStateList = (
+    <Popover id="popover-basic">
+      <Popover.Title as="h3">Tuition Type</Popover.Title>
+      <Popover.Content>
+        Filter results based on what tuition you want
+          <br/>
+          <br/>
+        Example: Select both will return all tuitions between the numbers
+      </Popover.Content>
+    </Popover>
+  );
+
   export {
       Tuition,
       Rankings,
@@ -123,5 +135,6 @@ const Tuition = (
       AppType,
       SchoolType,
       StateList,
-      LetterRec
+      LetterRec,
+      TuitionStateList
   }

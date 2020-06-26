@@ -11,6 +11,7 @@
     color: black;
     background-color: rgb(243, 243, 243);
     box-shadow: calc(3px) calc(3px) calc(10px) grey; 
+    transition: 0.3s;
 }
 
 .tile-layout:hover {

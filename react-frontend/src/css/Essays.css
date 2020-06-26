@@ -1,0 +1,28 @@
+
+.title{
+    padding-left: calc(1vw);
+    text-align: left;
+    font-family: Helvetica;
+    font-weight: bolder;
+}
+
+.header-div{
+    padding-left: calc(4vw);
+    padding-top: calc(2vh);
+}
+
+.required{
+    text-align: left;
+    padding-top: calc(2vh);
+    padding-left: calc(1vw);
+}
+
+.subtitle{
+    padding-left: calc(3vw);
+    padding-top: calc(1vh);
+}
+
+.essaytext{
+    padding-top: calc(5vh);
+    padding-left: calc(6vw);
+}

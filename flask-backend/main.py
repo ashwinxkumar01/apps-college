@@ -4,6 +4,7 @@ import os
 from flask import session
 from flask import request
 from sql_helpers import *
+from collections import Counter
 from flask import jsonify, redirect, url_for
 import pyodbc
 #from firebase import * #Causing errors when testing, Ashwin fix it
@@ -53,6 +54,11 @@ def get_query(query):
 def get_colleges(query_lst):
     query = "SELECT * FROM " + os.environ.get("TABLE_NAME")
     first_state = True
+    tuition_absolute = False
+    tuition_count = Counter(query_lst)
+    last_tuition = False
+    if tuition_count["tuition_oos"] + tuition_count["tuition_normal"] is 4:
+        tuition_absolute = True
     if len(query_lst) > 0:
         query += " WHERE"
         for i in range(0, len(query_lst), 2): 
@@ -62,10 +68,20 @@ def get_colleges(query_lst):
                 epoch = get_epoch(query_lst[i + 1][1:])
                 query_lst[i + 1] = query_lst[i + 1][0] + str(epoch)
             if query_lst[i] in numbers:
+                if tuition_absolute and not last_tuition:
+                    query += "("
+                else:
+                    last_tuition = True
                 if query_lst[i + 1][0] == "+":
                     query += " " + str(query_lst[i]) + " >= " + str(query_lst[i + 1][1:])
                 else:
                     query += " " + str(query_lst[i]) + " <= " + str(query_lst[i + 1][1:])
+                if tuition_absolute and last_tuition:
+                    query += ")"
+                    if i+2 < len(query_lst) and "tuition" in query_lst[i+2]:
+                        last_tuition = False
+                else:
+                    last_tuition = True
             else:
                 if query_lst[i] == "state":
                     if first_state == True:
@@ -80,6 +96,9 @@ def get_colleges(query_lst):
                         query += ")"
                 else:
                     query += " " + str(query_lst[i]) + "=\'" + str(query_lst[i+1]) + "\'"
+            if i+2 < len(query_lst) and "tuition" in query_lst[i+2] and tuition_absolute and not last_tuition:
+                query += " OR "
+                continue
 
             if i != len(query_lst) - 2:
                     query += " AND"
@@ -198,9 +217,12 @@ def get_college_names():
 
 
 #QUERY TESTING
-# lst = get_colleges(["letter_of_rec_required","-2"])
+#lst = get_colleges(["letter_of_rec_required","-2","school_type","public"])
 # for i in lst:
 #     print(i)
+
+#TUITION TESTING
+#lst = get_colleges(["tuition_oos", "+10000","tuition_oos","-20000"])
 
 # GET NAMES TESTING
 # names = get_college_names()
@@ -220,6 +242,7 @@ def test_func():
 @app.route("/loginhome/signup")
 @app.route("/loginhome/dashboard")
 @app.route("/loginhome/page/:collegeName")
+@app.route("/loginhome/essays", methods = ['POST', 'GET'])
 def my_index():
     return flask.render_template("index.html", token="Hello Flask and React")
 
@@ -238,6 +261,29 @@ def test_filter():
     # print(colleges_array)
 
     return jsonify(get_order(colleges_array, filter_by, is_descending))
+
+@app.route("/essays", methods = ['GET'])
+def essays():
+    db.child("users").get().val()
+    #print(db.get().val())
+    #listColleges()
+    colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
+    #print(colleges)
+    
+    name_list = []
+    for name in colleges.values():
+        if name != "none":
+            name_list.append(name)
+    query_lst = []
+    for i in name_list:
+        query_lst.append("college_name")
+        query_lst.append(i)
+    #print(query_lst)
+    json_return = get_colleges_for_dashboard(query_lst)
+    print("essays here")
+    print(json_return)
+    return json.dumps(json_return)
+
 
 @app.route("/individual", methods = ['POST'])
 def individual():
