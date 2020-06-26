@@ -57,21 +57,18 @@
 
   .searchResult{
     position: relative;
-    border-color: rgb(180, 180, 180);
+    border-color: transparent;
+    /* border-color: rgb(180, 180, 180); */
     color: black;
     font-family: 'Oswald', sans-serif;
     font-size: calc(4.5vh);
-    border-bottom-style: solid;
+    /* border-bottom-style: solid;
     border-top-color: transparent;
     border-right-color: transparent;
-    border-left-color: transparent;
-    text-align: center;
-    width: calc(87%);
-    height: calc(8vh);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    border-left-color: transparent; */
+    width: calc(100%);
+    height: calc(8.33vh);
+    justify-content: center;  
     padding-top: calc(0px);
     padding-bottom: calc(0px);
   }
@@ -82,5 +79,7 @@
   }
 
   .collegeName {
+    position: absolute;
+    left: calc(42vw);
     z-index: 1;
   }
