@@ -70,7 +70,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <Navbar
-        className="navbar p-3 mb-4"
+        className="navbar p-3 mb-0"
         expand="lg"
         bg="dark" variant="dark"
       >
