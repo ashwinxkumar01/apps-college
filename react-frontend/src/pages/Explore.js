@@ -253,7 +253,7 @@ class Explore extends React.Component {
     }
 
     displayResults() {
-        if(!this.state.Loading) {
+        if(this.state.Loading) {
             return (
                 <div className="spinner-center">
                     <div className="spinner-div">
@@ -264,7 +264,7 @@ class Explore extends React.Component {
                 </div>
 
             )   
-        } else if(this.state.College.length === 0) {
+        } else if(this.state.College.length !== 0) {
             return (
                 <ul className="ListColleges" >
                     {this.state.College.map(college => {
@@ -280,10 +280,6 @@ class Explore extends React.Component {
                             </li>
                         )
                     })}
-                    <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks And I hate him"} Acceptance={"10"} Fee={"20000"} Type={"Private"} Logo={Image3} /></li>
-                        <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"10"} Fee={"23000"} Type={"Private"} Logo={Image3} /></li>
-                        <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"20"} Fee={"26000"} Type={"Private"} Logo={Image3} /></li>
-                        <li> <Tile Tuition={"10000"} TuitionOOS={"10000"} Alias={"Ashwin sucks"} Acceptance={"30"} Fee={"29000"} Type={"Private"} Logo={Image3} /></li>
                 </ul>
             )
         } else {

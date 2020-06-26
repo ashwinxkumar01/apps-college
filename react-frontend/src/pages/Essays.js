@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from '../components/content/Navbar';
 import '../css/Essays.css';
-import {Popover, OverlayTrigger} from 'react-bootstrap';
+import {Popover, OverlayTrigger, Button} from 'react-bootstrap';
 import {Common, Coalition } from '../components/Popovers';
 import {faInfoCircle} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -65,14 +65,14 @@ class Essays extends Component {
         if(onlyCommon && this.requiresCoalitionApp()) {
             return(
                 <OverlayTrigger trigger="click" placement="right" overlay={Common} rootClose>
-                            <div><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></div>
+                    <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></Button>
                 </OverlayTrigger>
             )
         }
         else if(onlyCoalition && this.requiresCommonApp()) {
             return(
                 <OverlayTrigger trigger="click" placement="right" overlay={Coalition} rootClose>
-                            <div><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></div>
+                    <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></Button>
                 </OverlayTrigger>
             )
         }
