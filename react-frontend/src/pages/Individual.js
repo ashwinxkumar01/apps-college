@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Geisel from './UCSDCampus.jpg';
 import Heart from '../components/content/Heart';
 import { IoIosUndo } from "react-icons/io";
+import NavBar from '../components/content/Navbar';
 
 const commonApp = "https://www.commonapp.org/apply/essay-prompts";
 
@@ -149,7 +150,7 @@ class Individual extends Component {
     renderIndividual = () => {
     
         return (
-            <div>
+            <div className="individual-container">
                 <img className="Geisel" src={this.state.college_json["college_campus"]} />
                 <div className = "tint"> 
                 </div>
@@ -246,6 +247,7 @@ class Individual extends Component {
     render() {
         return (
             <div>
+             <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="2"/>
              {this.renderIndividual()}
             </div>
         );

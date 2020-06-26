@@ -9,10 +9,6 @@ const Tuition = (
         <br/>
         <br/>
         Example: 10000 for lower bound, 20000 for upper bound will return all colleges that are between $10,000 and $20,000 for tuition.
-        <br/>
-        <br/>
-        The checkbox allows you to filter by in-state tuition or by out-of-state tuition. When checked, it will search by out-of-state, and unchecked
-        will search by in-state tuition.
       </Popover.Content>
     </Popover>
   );
@@ -126,6 +122,28 @@ const Tuition = (
     </Popover>
   );
 
+  const Common = (
+    <Popover id="popover-basic">
+      <Popover.Title as="h3">Note:</Popover.Title>
+      <Popover.Content>
+        You have selected colleges for which the Common Application will suffice. 
+        <br />
+        Some of your colleges also accept the Coalition Application, so these prompts are also visible but do not count towards the required prompt total.
+      </Popover.Content>
+    </Popover>
+  );
+
+  const Coalition = (
+    <Popover id="popover-basic">
+      <Popover.Title as="h3">Note:</Popover.Title>
+      <Popover.Content>
+        You have selected colleges for which the Coalition Application will suffice. 
+        <br />
+        Some of your colleges also accept the Common Application, so these prompts are also visible but do not count towards the required prompt total.
+      </Popover.Content>
+    </Popover>
+  );
+
   export {
       Tuition,
       Rankings,
@@ -136,5 +154,7 @@ const Tuition = (
       SchoolType,
       StateList,
       LetterRec,
-      TuitionStateList
+      TuitionStateList,
+      Common,
+      Coalition
   }
