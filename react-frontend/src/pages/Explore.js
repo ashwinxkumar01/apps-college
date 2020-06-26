@@ -253,7 +253,7 @@ class Explore extends React.Component {
     }
 
     displayResults() {
-        if(this.state.Loading) {
+        if(!this.state.Loading) {
             return (
                 <div className="spinner-center">
                     <div className="spinner-div">
@@ -264,7 +264,7 @@ class Explore extends React.Component {
                 </div>
 
             )   
-        } else if(this.state.College.length !== 0) {
+        } else if(this.state.College.length === 0) {
             return (
                 <ul className="ListColleges" >
                     {this.state.College.map(college => {
