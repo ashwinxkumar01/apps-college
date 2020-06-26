@@ -83,7 +83,7 @@ class Essays extends Component {
 
         // first do for general essays
         if(this.requiresUCApp()) {
-            num++;
+            num+=4;
         }
 
         if(this.requiresOnlyCommon()) {
