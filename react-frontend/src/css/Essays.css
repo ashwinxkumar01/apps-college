@@ -2,7 +2,6 @@
 .title{
     padding-left: calc(1vw);
     text-align: left;
-    font-family: Helvetica;
     font-weight: bolder;
 }
 
@@ -13,8 +12,9 @@
 
 .required{
     text-align: left;
-    padding-top: calc(2vh);
+    padding-top: calc(1vh);
     padding-left: calc(1vw);
+    font-weight: lighter;
 }
 
 .subtitle{

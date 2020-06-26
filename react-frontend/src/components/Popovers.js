@@ -122,6 +122,28 @@ const Tuition = (
     </Popover>
   );
 
+  const Common = (
+    <Popover id="popover-basic">
+      <Popover.Title as="h3">Note:</Popover.Title>
+      <Popover.Content>
+        You have selected colleges for which the Common Application will suffice. 
+        <br />
+        Some of your colleges also accept the Coalition Application, so these prompts are also visible but do not count towards the required prompt total.
+      </Popover.Content>
+    </Popover>
+  );
+
+  const Coalition = (
+    <Popover id="popover-basic">
+      <Popover.Title as="h3">Note:</Popover.Title>
+      <Popover.Content>
+        You have selected colleges for which the Coalition Application will suffice. 
+        <br />
+        Some of your colleges also accept the Common Application, so these prompts are also visible but do not count towards the required prompt total.
+      </Popover.Content>
+    </Popover>
+  );
+
   export {
       Tuition,
       Rankings,
@@ -132,5 +154,7 @@ const Tuition = (
       SchoolType,
       StateList,
       LetterRec,
-      TuitionStateList
+      TuitionStateList,
+      Common,
+      Coalition
   }
