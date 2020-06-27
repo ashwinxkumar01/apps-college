@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import NavBar from '../components/content/Navbar';
 import '../css/Essays.css';
-import {Popover, OverlayTrigger, Button} from 'react-bootstrap';
-import {Common, Coalition } from '../components/Popovers';
-import {faInfoCircle} from "@fortawesome/free-solid-svg-icons";
+import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
+import { Common, Coalition } from '../components/Popovers';
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Essays extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            resultsFromSearch: [],
+            searchBar: false,
             selectedColleges: [],
             numEssays: 0,
         };
+        this.searchBarInUse = this.searchBarInUse.bind(this);
+        this.setSearch = this.setSearch.bind(this);
         this.requiresUCApp = this.requiresUCApp.bind(this);
         this.requiresCommonApp = this.requiresCommonApp.bind(this);
         this.requiresCoalitionApp = this.requiresCoalitionApp.bind(this);
@@ -33,9 +37,23 @@ class Essays extends Component {
         this.renderSupplementalHeader = this.renderSupplementalHeader.bind(this);
     }
 
+    setSearch = (results) => {
+        if (results !== this.state.resultsFromSearch) {
+            this.setState({
+                resultsFromSearch: results
+            })
+        }
+    }
+
+    searchBarInUse = (inUse) => {
+        if (inUse !== this.state.searchBar) {
+            this.setState({ searchBar: inUse });
+        }
+    }
+
     requiresUCApp() {
         var requires = this.state.selectedColleges.some(college => college.app_site === "UC Application");
-        console.log("uc app: " +  requires);
+        console.log("uc app: " + requires);
         return requires;
     }
 
@@ -78,24 +96,24 @@ class Essays extends Component {
         var onlyCommon = this.requiresOnlyCommon();
         var onlyCoalition = this.requiresOnlyCoalition();
 
-        if(onlyCommon && this.requiresCoalitionApp() && !this.requiresOnlyUC()) {
-            return(
+        if (onlyCommon && this.requiresCoalitionApp() && !this.requiresOnlyUC()) {
+            return (
                 <OverlayTrigger trigger="click" placement="right" overlay={Common} rootClose>
-                    <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></Button>
+                    <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></Button>
                 </OverlayTrigger>
             )
         }
-        else if(onlyCoalition && this.requiresCommonApp() && !this.requiresOnlyUC()) {
-            return(
+        else if (onlyCoalition && this.requiresCommonApp() && !this.requiresOnlyUC()) {
+            return (
                 <OverlayTrigger trigger="click" placement="right" overlay={Coalition} rootClose>
-                    <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></Button>
+                    <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></Button>
                 </OverlayTrigger>
             )
         }
         else {
-            return(
+            return (
                 <OverlayTrigger trigger="click" placement="right" overlay={Common} rootClose>
-                    <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></Button>
+                    <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></Button>
                 </OverlayTrigger>
             )
         }
@@ -105,39 +123,39 @@ class Essays extends Component {
         var num = 0;
 
         // first do for general essays
-        if(this.requiresOnlyUC()) {
+        if (this.requiresOnlyUC()) {
             return 4;
         }
 
-        if(this.requiresUCApp()) {
-            num+=4;
+        if (this.requiresUCApp()) {
+            num += 4;
         }
 
-        if(this.requiresOnlyCommon()) {
+        if (this.requiresOnlyCommon()) {
             num++;
         }
-        else if(this.requiresOnlyCoalition()) {
+        else if (this.requiresOnlyCoalition()) {
             num++;
         }
         else {
-            if(this.requiresCommonApp()) {
+            if (this.requiresCommonApp()) {
                 num++;
             }
 
-            if(this.requiresCoalitionApp()) {
+            if (this.requiresCoalitionApp()) {
                 num++;
             }
         }
 
         var json = this.state.selectedColleges;
 
-        
-        for(var i = 0 ; i < json.length ; i++) {
+
+        for (var i = 0; i < json.length; i++) {
             var curr = json[i].supplemental_essays;
             console.log(curr);
-            var parsed = parseInt(curr,10);
-            if(!isNaN(parsed)) {
-                num += parseInt(curr,10);
+            var parsed = parseInt(curr, 10);
+            if (!isNaN(parsed)) {
+                num += parseInt(curr, 10);
             }
             console.log(num);
         }
@@ -149,30 +167,30 @@ class Essays extends Component {
         fetch("/essays", {
             method: "GET",
             header: {
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
-          }).then(response => {
+        }).then(response => {
             console.log(response);
             return response.json()
-          }).then(data => {
+        }).then(data => {
             let collegeList = [];
             data.map(college => {
-              var collegeName = JSON.parse(college);
-              collegeList.push(collegeName);
+                var collegeName = JSON.parse(college);
+                collegeList.push(collegeName);
             })
             console.log(collegeList);
-            this.setState({selectedColleges: collegeList});
-            this.setState({numEssays: this.calculateNumEssays()})
+            this.setState({ selectedColleges: collegeList });
+            this.setState({ numEssays: this.calculateNumEssays() })
             console.log(this.state.selectedColleges);
-          });
+        });
     }
 
     renderUC = () => {
         var uc = this.requiresUCApp();
-        if(uc) {
-            return(
+        if (uc) {
+            return (
                 <div>
-                    <div className = "header-div">
+                    <div className="header-div">
                         <h3>UC Application (4 of 8 Required)</h3>
                     </div>
                     <div className="essaytext">
@@ -192,10 +210,10 @@ class Essays extends Component {
 
     renderCommon = () => {
         var common = this.requiresCommonApp() && !this.requiresOnlyUC();
-        if(common) {
+        if (common) {
             return (
                 <div>
-                    <div className = "header-div">
+                    <div className="header-div">
                         <h3>Common Application (1 of 7 Required)</h3>
                     </div>
 
@@ -216,14 +234,14 @@ class Essays extends Component {
     renderCoalition = () => {
         var coalition = this.requiresCoalitionApp() && !this.requiresOnlyUC();
 
-        if(coalition) {
-            return(
+        if (coalition) {
+            return (
                 <div>
-                    <div className = "header-div">
+                    <div className="header-div">
                         <h3>Coalition Application (1 of 5 Required)</h3>
                     </div>
 
-                    <div className = "essaytext" >
+                    <div className="essaytext" >
                         <p>1. Tell a story from your life, describing an experience that either demonstrates your character or helped to shape it.</p>
                         <p>2. Describe a time when you made a meaningful contribution to others in which the greater good was your focus. Discuss the challenges and rewards of making your contribution.</p>
                         <p>3. Has there been a time when you’ve had a long-cherished or accepted belief challenged? How did you respond? How did the challenge affect your beliefs?</p>
@@ -240,7 +258,7 @@ class Essays extends Component {
             <div>
                 <div className="titleheader">
                     <div className="title">
-                        <br/>
+                        <br />
                         <h1>Your Essay Summary</h1>
                     </div>
                     <div className="popup">
@@ -250,28 +268,28 @@ class Essays extends Component {
 
                 <div className="required">
                     <h3>You have <b>{this.state.numEssays}</b> required prompt(s).</h3>
-                </div>  
+                </div>
             </div>
 
         )
     }
 
     renderGeneralHeader = () => {
-        if(this.calculateNumEssays() != 0) {
-            return(
+        if (this.calculateNumEssays() != 0) {
+            return (
                 <div>
-                    <div className = "subtitle">
+                    <div className="subtitle">
                         <h2>General Essays</h2>
-                    </div>  
+                    </div>
                 </div>
             )
         }
     }
 
     renderSupplementalHeader = () => {
-        if(this.requiresSupplementals()) {
-            return(
-                <div className = "subtitle">
+        if (this.requiresSupplementals()) {
+            return (
+                <div className="subtitle">
                     <h2>Supplemental Essays</h2>
                 </div>
             )
@@ -279,11 +297,11 @@ class Essays extends Component {
     }
 
     renderSupplementalTitle(college) {
-        var total = college.supplemental_essays.split("/").length-1;
-        var required = parseInt(college.supplemental_essays,10);
-        if(!isNaN(required)) {
-            return(
-                <div className = "header-div">
+        var total = college.supplemental_essays.split("/").length - 1;
+        var required = parseInt(college.supplemental_essays, 10);
+        if (!isNaN(required)) {
+            return (
+                <div className="header-div">
                     <h3>{college.college_name} ({required} of {total} Required)</h3>
                 </div>
             );
@@ -293,49 +311,54 @@ class Essays extends Component {
     renderSupplementalBody(college) {
         var essays = college.supplemental_essays.split("/");
         essays.shift();
-        if(essays.length > 0) {
+        if (essays.length > 0) {
             return (
                 <div>
-                    {essays.map((prompt,index) => { 
+                    {essays.map((prompt, index) => {
                         return (
-                            <div className = "supplementaltext">
-                                <p>{index+1}.{prompt}</p>
+                            <div className="supplementaltext">
+                                <p>{index + 1}.{prompt}</p>
                             </div>
                         )
                     })}
                 </div>
-                );
+            );
         }
     }
 
     renderSupplementals = () => {
-            return (
-                <div>
-                    {this.state.selectedColleges.map((college) => { 
-                        console.log(college);
-                        return (
-                            <div>
-                                {this.renderSupplementalTitle(college)}
-                                {this.renderSupplementalBody(college)}
-                            </div>
-                        )
-                    })}
-                </div>
-                );
+        return (
+            <div>
+                {this.state.selectedColleges.map((college) => {
+                    console.log(college);
+                    return (
+                        <div>
+                            {this.renderSupplementalTitle(college)}
+                            {this.renderSupplementalBody(college)}
+                        </div>
+                    )
+                })}
+            </div>
+        );
+    }
+
+    renderPage() {
+        if (this.state.searchBar === false) {
+                this.renderFirstHeader()
+                this.renderGeneralHeader()
+                this.renderUC()
+                this.renderCommon()
+                this.renderCoalition()
+                this.renderSupplementalHeader()
+                this.renderSupplement()
         }
-    
+    }
 
     render() {
-        return(
+        return (
             <div>
-                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="3"/>
-                {this.renderFirstHeader()}
-                {this.renderGeneralHeader()}
-                {this.renderUC()}
-                {this.renderCommon()}
-                {this.renderCoalition()}
-                {this.renderSupplementalHeader()}
-                {this.renderSupplementals()}
+                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="3" />
+                {this.renderPage()}
                 <br></br>
                 <br></br>
                 <br></br>

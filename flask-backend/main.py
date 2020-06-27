@@ -237,6 +237,7 @@ def test_func():
 
 
 @app.route("/")
+@app.route("/profile")
 @app.route("/loginhome/explore")
 @app.route("/loginhome/login")
 @app.route("/loginhome/signup")
