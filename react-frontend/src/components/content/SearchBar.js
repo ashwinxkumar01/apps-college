@@ -113,7 +113,6 @@ class SearchBar extends React.Component {
     }
 
     render() {
-        console.log(this.state.searchResults);  
         const divStyle = {
             width: 'calc(50vw)'
         }
@@ -129,7 +128,11 @@ class SearchBar extends React.Component {
                         var college = collegeArray[0];
                         return (
                             <div className="individual">
-                                <img src={collegeArray[1]} alt="Hello" className="imageBox" />
+                                <div>
+                                <div className="circle">
+                                </div>
+                                <img className="logo" src={collegeArray[1]} alt="Hello" />
+                                </div>
                                 <Link to={`/loginhome/page/${college}`}>
                                     <div className="collegeName">
                                         {college}
