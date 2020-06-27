@@ -22,3 +22,17 @@
 .profile-icon {
     width: 10%;
 }
+
+.navbar-search { 
+    position: absolute;
+    top: calc(2vh); 
+    left: calc(32vw); 
+    width: calc(60vw); 
+}
+
+@media screen and (max-width: 767px) {
+    .navbar-search {
+        width: calc(80vw);
+        left: calc(20vw);
+    }
+}

@@ -109,7 +109,7 @@ class NavBar extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <div style={{ position: 'absolute', top: 'calc(3vh)', left: 'calc(32vw)', width: 'calc(60vw)' }}>
+        <div className="navbar-search">
           <SearchBar list={this.state.collegelist} searchBarInUse={this.props.searchBarInUse}/>
         </div>
       </div>
