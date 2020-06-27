@@ -71,18 +71,27 @@ class Essays extends Component {
 
     requiresOnlyCommon() {
         var requires = this.state.selectedColleges.every(college => college.common_app === "y" || college.app_site === "UC Application");
+        if(this.state.selectedColleges.length === 0) {
+            return false;
+        }
         console.log("only common: " + requires);
         return requires;
     }
 
     requiresOnlyCoalition() {
         var requires = this.state.selectedColleges.every(college => college.coalition_app === "y" || college.app_site === "UC Application");
+        if(this.state.selectedColleges.length === 0) {
+            return false;
+        }
         console.log("only coalition: " + requires);
         return requires;
     }
 
     requiresOnlyUC() {
         var requires = this.state.selectedColleges.every(college => college.coalition_app === "n" && college.common_app === "n" && college.app_site === "UC Application");
+        if(this.state.selectedColleges.length === 0) {
+            return false;
+        }
         console.log("only uc: " + requires);
         return requires;
     }
@@ -110,18 +119,13 @@ class Essays extends Component {
                 </OverlayTrigger>
             )
         }
-        else {
-            return (
-                <OverlayTrigger trigger="click" placement="right" overlay={Common} rootClose>
-                    <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></Button>
-                </OverlayTrigger>
-            )
-        }
     }
 
     calculateNumEssays() {
         var num = 0;
-
+        if(this.state.selectedColleges.length === 0) {
+            return 0;
+        }
         // first do for general essays
         if (this.requiresOnlyUC()) {
             return 4;
