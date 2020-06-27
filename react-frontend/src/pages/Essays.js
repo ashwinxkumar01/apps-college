@@ -344,13 +344,18 @@ class Essays extends Component {
 
     renderPage() {
         if (this.state.searchBar === false) {
-                this.renderFirstHeader()
-                this.renderGeneralHeader()
-                this.renderUC()
-                this.renderCommon()
-                this.renderCoalition()
-                this.renderSupplementalHeader()
-                this.renderSupplement()
+            return(
+                <div>
+                 {this.renderFirstHeader()}
+                 {this.renderGeneralHeader()}
+                 {this.renderUC()}
+                 {this.renderCommon()}
+                 {this.renderCoalition()}
+                 {this.renderSupplementalHeader()}
+                 {this.renderSupplementals()}
+                </div>
+            )
+
         }
     }
 
