@@ -58,18 +58,24 @@ class Essays extends Component {
         return requires;
     }
 
+    requiresOnlyUC() {
+        var requires = this.state.selectedColleges.every(college => college.coalition_app === "n" && college.common_app === "n" && college.app_site === "UC Application");
+        console.log("only uc: " + requires);
+        return requires;
+    }
+
     renderPopup() {
         var onlyCommon = this.requiresOnlyCommon();
         var onlyCoalition = this.requiresOnlyCoalition();
 
-        if(onlyCommon && this.requiresCoalitionApp()) {
+        if(onlyCommon && this.requiresCoalitionApp() && !this.requiresOnlyUC()) {
             return(
                 <OverlayTrigger trigger="click" placement="right" overlay={Common} rootClose>
                     <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></Button>
                 </OverlayTrigger>
             )
         }
-        else if(onlyCoalition && this.requiresCommonApp()) {
+        else if(onlyCoalition && this.requiresCommonApp() && !this.requiresOnlyUC()) {
             return(
                 <OverlayTrigger trigger="click" placement="right" overlay={Coalition} rootClose>
                     <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></Button>
@@ -82,6 +88,10 @@ class Essays extends Component {
         var num = 0;
 
         // first do for general essays
+        if(this.requiresOnlyUC()) {
+            return 4;
+        }
+
         if(this.requiresUCApp()) {
             num+=4;
         }
@@ -164,7 +174,7 @@ class Essays extends Component {
     }
 
     renderCommon = () => {
-        var common = this.requiresCommonApp();
+        var common = this.requiresCommonApp() && !this.requiresOnlyUC();
         if(common) {
             return (
                 <div>
@@ -187,7 +197,7 @@ class Essays extends Component {
     }
 
     renderCoalition = () => {
-        var coalition = this.requiresCoalitionApp();
+        var coalition = this.requiresCoalitionApp() && !this.requiresOnlyUC();
 
         if(coalition) {
             return(
