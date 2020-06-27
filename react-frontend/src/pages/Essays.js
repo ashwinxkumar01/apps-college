@@ -28,6 +28,9 @@ class Essays extends Component {
         this.renderGeneralHeader = this.renderGeneralHeader.bind(this);
         this.requiresOnlyUC = this.requiresOnlyUC.bind(this);
         this.requiresSupplementals = this.requiresSupplementals.bind(this);
+        this.renderSupplementalTitle = this.renderSupplementalTitle.bind(this);
+        this.renderSupplementals = this.renderSupplementals.bind(this);
+        this.renderSupplementalHeader = this.renderSupplementalHeader.bind(this);
     }
 
     requiresUCApp() {
@@ -263,6 +266,53 @@ class Essays extends Component {
         }
     }
 
+    renderSupplementalTitle(college) {
+        var total = college.supplemental_essays.split("/").length-1;
+        var required = parseInt(college.supplemental_essays,10);
+        if(!isNaN(required)) {
+            return(
+                <div className = "header-div">
+                    <h3>{college.college_name} ({required} of {total} Required)</h3>
+                </div>
+            );
+        }
+    }
+
+    renderSupplementalBody(college) {
+        var essays = college.supplemental_essays.split("/");
+        essays.shift();
+        if(essays.length > 0) {
+            return (
+                <div>
+                    {essays.map((prompt,index) => { 
+                        return (
+                           <p>{index+1}.{prompt}</p>
+                        )
+                    })}
+                </div>
+                );
+        }
+    }
+
+    renderSupplementals = () => {
+            return (
+                <div>
+                    {this.state.selectedColleges.map((college) => { 
+                        console.log(college);
+                        return (
+                            <div>
+                                {this.renderSupplementalTitle(college)}
+                                <div className = "essaytext">
+                                    {this.renderSupplementalBody(college)}
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+                );
+        }
+    
+
     render() {
         return(
             <div>
@@ -273,24 +323,7 @@ class Essays extends Component {
                 {this.renderCommon()}
                 {this.renderCoalition()}
                 {this.renderSupplementalHeader()}
-                <div className= "header-div" >
-                    <h3>Harvard University (1 of 2 Required)</h3>
-                </div>
-
-                <div className = "essaytext" >
-                    <p>1. Why did you choose Harvard University?</p>
-                    <p>2. What can you contribute to our diverse group of students?</p>
-                </div>
-
-                <div className= "header-div" >
-                    <h3>Cornell University (2 of 2 Required)</h3>
-                </div>
-
-                <div className = "essaytext" >
-                    <p>1. Why did you choose Cornell University?</p>
-                    <p>2. What can you contribute to our diverse group of students?</p>
-                </div>
-
+                {this.renderSupplementals()}
                 <br></br>
                 <br></br>
                 <br></br>
