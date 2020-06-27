@@ -587,7 +587,7 @@ def sendPasswordReset():
 
 #testing method
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
 #     print("im here")
 #       createUserWithEmailPasswordTest("animal.wu@gmail.com", "1234567")
 # #     createUserWithEmailPasswordTest("jim2@gmail.com", "123456")
@@ -614,6 +614,7 @@ if __name__ == '__main__':
 #     else:
 #         print("good job!")
 #     print(dictio['currentUser'])
+
 
 @app.route("/dashboard", methods = ['POST'])
 def dashboard():

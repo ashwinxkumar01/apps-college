@@ -75,6 +75,7 @@ const UsersTable = props => {
     return ((myDate.getUTCMonth() + 1) + "/" + myDate.getUTCDate() + "/" + myDate.getUTCFullYear());
   }
 
+
   const handleSelectOne = (event, id) => {
     const selectedIndex = selectedUsers.indexOf(id);
     let newSelectedUsers = [];
