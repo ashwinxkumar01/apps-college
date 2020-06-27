@@ -3,7 +3,7 @@ import '../css/Tile.css';
 import Heart from './content/Heart';
 import { Link } from 'react-router-dom';
 
-class Node extends Component {    
+class Tile extends Component {    
 
     constructor(props) {
         super(props);
@@ -64,4 +64,4 @@ class Node extends Component {
     }
 }
 
-export default Node;
+export default Tile;

@@ -8,7 +8,7 @@ import Tile from '../components/Tile';
 import { States, Type, App, Sortby, LOR, TuitionState } from '../components/State';
 import { Tuition, Rankings, AcceptanceRate, AppFee, Population, AppType, LetterRec, SchoolType, StateList, TuitionStateList } from '../components/Popovers';
 import Select from 'react-select';
-import { faInfoCircleCircle, faInfoCircle, faSadTear } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircleCircle, faInfoCircle, faSadTear, faSort } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Explore extends React.Component {
@@ -290,14 +290,6 @@ class Explore extends React.Component {
                                         Acceptance={20} Fee={30} collegeName={"hello"}
                                         Logo={Image3} Type={200} Population={10000}
                                         Ranking={100} />
-                                        <Tile  Alias={"ashwin"} Tuition={10000} TuitionOOS={10000}
-                                        Acceptance={20} Fee={30} collegeName={"hello"}
-                                        Logo={Image3} Type={200} Population={10000}
-                                        Ranking={100} />
-                                        <Tile  Alias={"ashwin"} Tuition={10000} TuitionOOS={10000}
-                                        Acceptance={20} Fee={30} collegeName={"hello"}
-                                        Logo={Image3} Type={200} Population={10000}
-                                        Ranking={100} />
                     </ul>
                 )
             }
@@ -516,7 +508,7 @@ class Explore extends React.Component {
                             <div className="float-display">
                                 <div className="sort-by">
                                     <Select onChange={this.handleFilter}
-                                        options={Sortby} placeholder={"National Ranking"} value={this.state.Filter} />
+                                        options={Sortby} placeholder={"National Ranking"} value={this.state.Filter}/>
                                 </div>
                                 <input
                                     className="button"
@@ -788,7 +780,7 @@ class Explore extends React.Component {
                 {this.renderExplore()}
 
                 {this.state.Open ? this.renderFilter("block") : null}
-                <button className="filter-toggle" onClick={(e) => this.togglePanel(e)}>+</button>
+                <button className="filter-toggle" onClick={(e) => this.togglePanel(e)}><FontAwesomeIcon icon={faSort} /></button>
             </div>
         );
     }

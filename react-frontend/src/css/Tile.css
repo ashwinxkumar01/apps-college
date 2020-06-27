@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     width: calc(96%);
-    height: calc(53vh);
+    height: auto;
     border-radius: calc(1vmin);
     margin-bottom: calc(1vmin);
     color: black;
@@ -100,12 +100,12 @@
 
 @media screen and (max-width: 767px) {
     .tile-layout {
-        width: 96%;
+        width: calc(97%);
         box-shadow: calc(0px) calc(0px) calc(0px) grey; 
         margin-left: calc(-0.5rem);
         background-color: rgb(224, 224, 224);
         margin-top: calc(0.5rem);
-        height: calc(50vh);
+        height: auto;
     }
 
     .tile-layout:hover {
@@ -116,13 +116,17 @@
     }
 
     .specifications h3 {
-        font-size: calc(3vw);
+        font-size: calc(2.6vw);
         font-family: 'Karla', serif;
         font-weight: 900;
     }
 
+    .college-name {
+        width: calc(75%);
+    }
+
     .college-name h1{
-        font-size: calc(5.5vw);
+        font-size: calc(4vw);
         font-family: 'Alegreya Sans', sans-serif;
         font-weight: bold;
     }
@@ -134,6 +138,19 @@
         display: flex;
         justify-content: center;
         overflow: hidden;
+    }
+
+    .favorite-icon{
+        width: calc(9.5%);
+        justify-content: right;
+        position: absolute;
+        right: calc(-2.3vw);
+        top: calc(-1.9vh);
+        height: 0;
+        -webkit-transform: scale(0.5);
+        -ms-transform: scale(0.5);
+        transform: scale(0.5);
+        z-index: 1;
     }
 }
 

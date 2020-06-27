@@ -39,7 +39,7 @@
 .header {
     width: calc(50%);
     text-align: left;
-    font-size: calc(1rem);
+    font-size: calc(1vw);
     white-space: nowrap;
     position: relative;
     top: calc(0rem);
@@ -268,15 +268,6 @@ select {
     flex-direction: row;
 }
 
-.node-filter {
-    margin-top : calc(0.8rem);
-    width: calc(2.6rem);
-    display: flex;
-    flex-direction: row;
-    background-color: rgb(207, 206, 206);
-    margin-left: calc(0.4rem);
-}
-
 .icon-delete {
     margin-left: calc(0.2rem);
 }
@@ -324,20 +315,32 @@ select {
 
 .filter-toggle {
     display: none;
-    width: calc(8vw);
-    height: calc(5.5vh);
+    width: calc(11vw);
+    height: calc(7vh);
 }
 
 @media screen and (max-width: 767px) {
+    .Explore {
+        width: 100%;
+        height: auto;
+    }
+    
     .filter-toggle { 
         display: block;
         position: fixed;
         right: calc(2vw);
         bottom: calc(1vh);
         z-index: 3;
-        border: 3px solid green;
+        border: none;
+        color: white;
+        font-weight: 900;
+        background-color: #313b4c;
         border-radius: calc(25px);
         overflow-x: hidden;
+    }
+
+    .filter-toggle:focus {
+        outline: 0;
     }
 
     .filter {
@@ -355,7 +358,7 @@ select {
     .ListColleges {
         width: 100%;
         display: grid;
-        grid-template-columns: calc(50%) calc(50%) calc(50%);
+        grid-template-columns: calc(52%) calc(52%);
         margin-left: calc(-0.5rem);
         overflow-x: hidden;
     }
@@ -382,6 +385,7 @@ select {
 
     .sort-by {
         width: 100%;
+        z-index: 10;
     }
 
     .button, .filter-clear button {
@@ -403,5 +407,9 @@ select {
         margin-right: calc(0.5rem);
         margin-top: calc(-0.5vh);
         margin-bottom: calc(1vh);
+    }
+
+    .header {
+        font-size: calc(3.5vw);
     }
 }

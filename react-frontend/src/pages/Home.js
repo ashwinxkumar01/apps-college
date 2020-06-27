@@ -36,7 +36,7 @@ function Home() {
             <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"></link>
 
             <div className="image-background">
-                <Nav className="justify-content-end" activeKey="/home">
+                <Nav className="justify-content-end w-100" activeKey="/home">
                     <Nav.Item>
                         <Nav.Link as={Link} to="/loginhome/login">Login</Nav.Link>
                     </Nav.Item>

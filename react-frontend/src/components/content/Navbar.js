@@ -1,7 +1,6 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Dropdown, DropdownButton, Media } from "react-bootstrap";
 import '../../App.css';
-import Image from '../../pages/download.png'
 import SearchBar from './SearchBar';
 import { IoMdContact } from "react-icons/io";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -102,8 +101,12 @@ class NavBar extends React.Component {
                 {/* <NavDropdown drop="down" alignRight="false" title={<img src={Image} width="60vw" height="50vh" 
                 style={{position: 'absolute', top: '0vh', right: '0vw', paddingBottom: 'calc(0.5vh)'}}/>}> */}
                 <NavDropdown drop="down" alignRight="false" title={<FontAwesomeIcon icon={faUser} style={{ opacity: '60%' }} />}>
-                  <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                   <NavDropdown.Item onClick={this.handleClick} href="/">Logout</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                  <NavDropdown.Item href="/profile">Reset Password</NavDropdown.Item>
+                  <NavDropdown.Item href="/profile">Delete Account</NavDropdown.Item>
+
                 </NavDropdown>
               </Nav.Item>
             </Nav>
