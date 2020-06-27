@@ -1,13 +1,29 @@
+.titleheader{
+    width: calc(100%);
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+}
 
 .title{
     padding-left: calc(1vw);
     text-align: left;
     font-weight: bolder;
+    border: 1px solid black;
 }
+
+.popup{
+    text-align: left;
+    border: 1px solid black;
+    padding-left: calc(1vw);
+    
+}
+
 
 .header-div{
     padding-left: calc(4vw);
     padding-top: calc(2vh);
+    padding-bottom: calc(4vh);
 }
 
 .required{
@@ -23,6 +39,11 @@
 }
 
 .essaytext{
-    padding-top: calc(5vh);
+    /* padding-top: calc(5vh); */
+    padding-left: calc(6vw);
+}
+
+.supplementaltext{
+    padding-top: calc(0.5vh);
     padding-left: calc(6vw);
 }
