@@ -25,7 +25,9 @@ class Essays extends Component {
         this.requiresCommonApp = this.requiresOnlyCommon.bind(this);
         this.renderPopup = this.renderPopup.bind(this);
         this.calculateNumEssays = this.calculateNumEssays.bind(this);
-
+        this.renderGeneralHeader = this.renderGeneralHeader.bind(this);
+        this.requiresOnlyUC = this.requiresOnlyUC.bind(this);
+        this.requiresSupplementals = this.requiresSupplementals.bind(this);
     }
 
     requiresUCApp() {
@@ -58,18 +60,29 @@ class Essays extends Component {
         return requires;
     }
 
+    requiresOnlyUC() {
+        var requires = this.state.selectedColleges.every(college => college.coalition_app === "n" && college.common_app === "n" && college.app_site === "UC Application");
+        console.log("only uc: " + requires);
+        return requires;
+    }
+
+    requiresSupplementals() {
+        var requires = this.state.selectedColleges.some(college => !(college.supplemental_essays === ""));
+        return requires;
+    }
+
     renderPopup() {
         var onlyCommon = this.requiresOnlyCommon();
         var onlyCoalition = this.requiresOnlyCoalition();
 
-        if(onlyCommon && this.requiresCoalitionApp()) {
+        if(onlyCommon && this.requiresCoalitionApp() && !this.requiresOnlyUC()) {
             return(
                 <OverlayTrigger trigger="click" placement="right" overlay={Common} rootClose>
                     <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></Button>
                 </OverlayTrigger>
             )
         }
-        else if(onlyCoalition && this.requiresCommonApp()) {
+        else if(onlyCoalition && this.requiresCommonApp() && !this.requiresOnlyUC()) {
             return(
                 <OverlayTrigger trigger="click" placement="right" overlay={Coalition} rootClose>
                     <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></Button>
@@ -82,6 +95,10 @@ class Essays extends Component {
         var num = 0;
 
         // first do for general essays
+        if(this.requiresOnlyUC()) {
+            return 4;
+        }
+
         if(this.requiresUCApp()) {
             num+=4;
         }
@@ -164,7 +181,7 @@ class Essays extends Component {
     }
 
     renderCommon = () => {
-        var common = this.requiresCommonApp();
+        var common = this.requiresCommonApp() && !this.requiresOnlyUC();
         if(common) {
             return (
                 <div>
@@ -187,7 +204,7 @@ class Essays extends Component {
     }
 
     renderCoalition = () => {
-        var coalition = this.requiresCoalitionApp();
+        var coalition = this.requiresCoalitionApp() && !this.requiresOnlyUC();
 
         if(coalition) {
             return(
@@ -217,32 +234,45 @@ class Essays extends Component {
 
                 <div className="required">
                     <h3>You have <b>{this.state.numEssays}</b> required prompt(s).</h3>
-                </div>
-
-                {this.renderPopup()}
-
-                <div className = "subtitle">
-                    <h2>General Essays</h2>
-                </div>    
+                </div>  
             </div>
 
         )
     }
 
+    renderGeneralHeader = () => {
+        if(this.calculateNumEssays() != 0) {
+            return(
+                <div>
+                    <div className = "subtitle">
+                        <h2>General Essays</h2>
+                        {this.renderPopup()}
+                    </div>  
+                </div>
+            )
+        }
+    }
 
+    renderSupplementalHeader = () => {
+        if(this.requiresSupplementals()) {
+            return(
+                <div className = "subtitle">
+                    <h2>Supplemental Essays</h2>
+                </div>
+            )
+        }
+    }
 
     render() {
         return(
             <div>
                 <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="3"/>
                 {this.renderFirstHeader()}
+                {this.renderGeneralHeader()}
                 {this.renderUC()}
                 {this.renderCommon()}
                 {this.renderCoalition()}
-                <div className = "subtitle">
-                    <h2>Supplemental Essays</h2>
-                </div>
-
+                {this.renderSupplementalHeader()}
                 <div className= "header-div" >
                     <h3>Harvard University (1 of 2 Required)</h3>
                 </div>

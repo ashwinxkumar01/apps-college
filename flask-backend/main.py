@@ -634,4 +634,10 @@ def sendEmail():
 
     return json.dumps({"True": 2})
 
+#should sent a password reset to email of user
+#return is void
+
+def sendPasswordReset(email):
+
+
 app.run(debug=True)

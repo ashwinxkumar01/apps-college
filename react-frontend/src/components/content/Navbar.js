@@ -1,6 +1,7 @@
 import React from "react";
-import { Navbar, Nav, NavDropdown, Dropdown, ButtonGroup } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Dropdown, DropdownButton, Media } from "react-bootstrap";
 import '../../App.css';
+import Image from '../../pages/download.png'
 import SearchBar from './SearchBar';
 import { IoMdContact } from "react-icons/io";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -99,7 +100,8 @@ class NavBar extends React.Component {
             </Nav>
             <Nav className="ml-auto" navbar>
               <Nav.Item>
-                <NavDropdown drop="down" alignRight="false">
+                <NavDropdown drop="down" alignRight="false" title={<img src={Image} width="60vw" height="50vh" 
+                style={{position: 'absolute', top: '0vh', right: '0vw', paddingBottom: 'calc(0.5vh)'}}/>}>
                   <NavDropdown.Item href="#action/3.2">Profile</NavDropdown.Item>
                   <NavDropdown.Item onClick={this.handleClick} href="/">Logout</NavDropdown.Item>
                 </NavDropdown>

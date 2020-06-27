@@ -6,31 +6,8 @@
     font-weight: 700;
 }
 
-.profile {
-    -webkit-transform: scale(4);
-    -ms-transform: scale(4);
-    transform: scale(4);
-  }
-
 .ml-auto:hover {
     color: #313b4c;
-}
-
-.dropdown-toggle {
-    background-image: url("./pages/face-icon-user-profile-user-account-avatar-icon-design-head-silhouette-neck-png-clip-art.png");
-    background-position:center;
-	background-repeat:no-repeat;
-    background-size:cover;
-    -webkit-transform: scale(3);
-    -ms-transform: scale(3);
-    transform: scale(3);
-    border-radius: calc(50%);
-    border: none;
-    margin-right: calc(0.5rem);
-}
-
-.dropdown-toggle::after {
-    content: none !important;
 }
 
 .nav-link.active {
@@ -40,4 +17,8 @@
 .navbar,
 .navbar-default {
     background-image: linear-gradient(to bottom, #313b4c 0,#313b4c 100%) !important; /* override background image gradient w/ flat color */
+}
+
+.profile-icon {
+    width: 10%;
 }

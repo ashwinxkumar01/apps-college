@@ -6,6 +6,7 @@
     color: black;
     width: 100%;
     height: 100%;
+    overflow-x: hidden;
 }
 
 .filter-name {
@@ -24,7 +25,6 @@
 
 .filter {
     width: calc(25%);
-    height: calc(60vh);
     margin-left: calc(0.5rem);
     margin-top: calc(0rem);
 }
@@ -259,56 +259,56 @@ select {
     margin-left: calc(-0.5rem);
 }
 
-  .filter-applied {
-      margin-left: calc(0.9rem);
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-  }
+.filter-applied {
+    margin-left: calc(0.9rem);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
 
-  .node-filter {
-      margin-top : calc(0.8rem);
-      width: calc(2.6rem);
-      display: flex;
-      flex-direction: row;
-      background-color: rgb(207, 206, 206);
-      margin-left: calc(0.4rem);
-  }
+.node-filter {
+    margin-top : calc(0.8rem);
+    width: calc(2.6rem);
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(207, 206, 206);
+    margin-left: calc(0.4rem);
+}
 
-  .icon-delete {
-      margin-left: calc(0.2rem);
-  }
+.icon-delete {
+    margin-left: calc(0.2rem);
+}
 
-  .state-name {
-      margin-left: calc(0.3rem)
-  }
+.state-name {
+    margin-left: calc(0.3rem)
+}
 
-  .results-div {
-      width: calc(100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: calc(13rem);
-  }
+.results-div {
+    width: calc(100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: calc(13rem);
+}
 
-  .icon-results {
-      transform: scale(4);
-      color: rgb(37, 146, 70);
-  }
+.icon-results {
+    transform: scale(4);
+    color: rgb(37, 146, 70);
+}
 
-  .results-div h1 {
-      margin-top: calc(1.5rem);
-  }
+.results-div h1 {
+    margin-top: calc(1.5rem);
+}
 
-  .spinner-center {
+.spinner-center {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-  }
+}
 
-  .spinner-div {
+.spinner-div {
     width: calc(50%);
     display: flex;
     justify-content: center;
@@ -318,4 +318,79 @@ select {
     -ms-transform: scale(2) !important;
     transform: scale(2) !important;
     margin-top: calc(20rem);
-  }
+}
+
+.filter-toggle {
+    display: none;
+    width: calc(8vw);
+    height: calc(5.5vh);
+}
+
+@media screen and (max-width: 767px) {
+    .filter-toggle { 
+        display: block;
+        position: fixed;
+        right: calc(2vw);
+        bottom: calc(1vh);
+        z-index: 3;
+        border: 3px solid green;
+        border-radius: calc(25px);
+        overflow-x: hidden;
+    }
+
+    .filter {
+        display: none;
+        width: 100%;
+        z-index: 2;
+        position: absolute;
+        top: calc(9.2vh);
+        left: 0;
+        background-color: white;
+        margin-left: calc(0.5rem);
+        overflow-x: hidden;
+    }
+
+    .ListColleges {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-left: calc(-0.5rem);
+        overflow-x: hidden;
+    }
+
+    .ListColleges li {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .explore {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .tuition {
+        width: 80%;
+        overflow-x: hidden;
+    }
+
+    .app-type, .school-type {
+        width: 80%;
+        overflow-x: hidden;
+    }
+
+    .sort-by {
+        width: 100%;
+    }
+
+    .button, .filter-clear button {
+        font-size: calc(3.5vw);
+    }
+
+    .filter-clear {
+        width: calc(30%);
+    }
+
+    .filter-clear button {
+        margin-top: calc(0.5vh);
+    }
+}
