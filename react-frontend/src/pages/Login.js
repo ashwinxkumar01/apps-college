@@ -87,6 +87,31 @@ export default function SignInSide() {
                 setUsername(newUsername);
                 console.log(newUsername.username);
               }}
+              onKeyPress={e => {
+                if (e.key === 'Enter') {
+                  fetch("/login", {
+                    method: "POST",
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
+                    body: JSON.stringify({
+                      Username: username.username,
+                      Password: password.password
+                    })
+                  }).then(response => {
+                    return response.json();
+                  }).then(data => {
+                    console.log(data);
+                    if (data["True"] === 1) {
+                      setDisplay({ display: data["True"] });
+                    } else {
+                      sessionStorage.setItem("userData", username.username);
+                      window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
+                    }
+                  })
+                }
+              }}
               autoComplete="email"
               autoFocus
             />
@@ -100,6 +125,31 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onKeyPress={e => {
+                if (e.key === 'Enter') {
+                  fetch("/login", {
+                    method: "POST",
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
+                    body: JSON.stringify({
+                      Username: username.username,
+                      Password: password.password
+                    })
+                  }).then(response => {
+                    return response.json();
+                  }).then(data => {
+                    console.log(data);
+                    if (data["True"] === 1) {
+                      setDisplay({ display: data["True"] });
+                    } else {
+                      sessionStorage.setItem("userData", username.username);
+                      window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
+                    }
+                  })
+                }
+              }}
               onChange={e => {
                 const newPassword = { password: e.target.value };
                 setPassword(newPassword);

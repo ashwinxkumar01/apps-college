@@ -89,6 +89,38 @@ export default function SignInSide() {
                 setUsername(newUsername);
                 console.log(newUsername.username);
               }}
+              onKeyPress={e => {
+                if (e.key === 'Enter') {
+                  if (cpassword.cpassword !== password.password) {
+                    setDisplay({ display: 1});
+                  } else if (password.password.length < 6) {
+                    setDisplay({ display: 1});
+                  } else {
+                    fetch("/signup", {
+                      method: "POST",
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
+                      body: JSON.stringify({
+                        Username: username.username,
+                        Password: password.password
+                      })
+                    }).then(response => {
+                      return response.json();
+                    }).then(data => {
+                      console.log(data);
+                      if (data["True"] === 1) {
+                        setDisplay({ display: data["True"] });
+                      } else {
+                        sessionStorage.setItem("userData", username.username);
+                        window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
+                      }
+                    });
+                  }
+                }
+              }
+              }
               autoComplete="email"
               autoFocus
               error={usernameError.usernameError}
@@ -108,6 +140,38 @@ export default function SignInSide() {
                 const newPassword = { password: e.target.value };
                 setPassword(newPassword);
               }}
+              onKeyPress={e => {
+                if (e.key === 'Enter') {
+                  if (cpassword.cpassword !== password.password) {
+                    setDisplay({ display: 1});
+                  } else if (password.password.length < 6) {
+                    setDisplay({ display: 1});
+                  } else {
+                    fetch("/signup", {
+                      method: "POST",
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
+                      body: JSON.stringify({
+                        Username: username.username,
+                        Password: password.password
+                      })
+                    }).then(response => {
+                      return response.json();
+                    }).then(data => {
+                      console.log(data);
+                      if (data["True"] === 1) {
+                        setDisplay({ display: data["True"] });
+                      } else {
+                        sessionStorage.setItem("userData", username.username);
+                        window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
+                      }
+                    });
+                  }
+                }
+              }
+              }
               error={(password.password.length < 6 && password.password.length > 0)}
               helperText={(password.password.length < 6 && password.password.length > 0) ? "Password not 6 characters!" : ' '}
             />
@@ -126,6 +190,38 @@ export default function SignInSide() {
                 setcPassword(newPassword);
                 console.log(newPassword.cpassword);
               }}
+              onKeyPress={e => {
+                if (e.key === 'Enter') {
+                  if (cpassword.cpassword !== password.password) {
+                    setDisplay({ display: 1});
+                  } else if (password.password.length < 6) {
+                    setDisplay({ display: 1});
+                  } else {
+                    fetch("/signup", {
+                      method: "POST",
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      // body: JSON.stringify(["national_ranking", "+15", "national_ranking", "-30"])
+                      body: JSON.stringify({
+                        Username: username.username,
+                        Password: password.password
+                      })
+                    }).then(response => {
+                      return response.json();
+                    }).then(data => {
+                      console.log(data);
+                      if (data["True"] === 1) {
+                        setDisplay({ display: data["True"] });
+                      } else {
+                        sessionStorage.setItem("userData", username.username);
+                        window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
+                      }
+                    });
+                  }
+                }
+              }
+              }
               error={password.password !== cpassword.cpassword}
               helperText={password.password !== cpassword.cpassword ? "Passwords don't match!" : ' '}
             />
@@ -142,7 +238,7 @@ export default function SignInSide() {
               onClick={e => {
                 //e.preventDefault();
                 if (cpassword.cpassword !== password.password) {
-              
+
                 } else if (password.password.length < 6) {
 
                 } else {
@@ -168,7 +264,8 @@ export default function SignInSide() {
                     }
                   });
 
-              }}
+                }
+              }
               }
             >
               Sign Up
@@ -186,6 +283,7 @@ export default function SignInSide() {
               </Grid>
             </Grid>
             <Box mt={5}>
+              {display.display === 1 && <p>Sign Up Failed</p>}
             </Box>
           </form>
         </div>

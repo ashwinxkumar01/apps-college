@@ -355,8 +355,7 @@ def createUserWithEmailPasswordTest(email, password):
         db.child("users").child(dictio['initialUser'][:-6]).update({"username": email})
     except:
         return json.dumps({"True": 1})
-    loginAfterCreation(email, password)
-    return json.dumps({"True": 2})
+    return loginAfterCreation(email, password)
 
 def loginAfterCreation(email, password):
     #gets incoming request
