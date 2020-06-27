@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
 
 .titleheader{
@@ -20,7 +20,7 @@
 }
 
 .btn {
-    margin-top: calc(3vh) !important;
+    margin-top: calc(3.3vh) !important;
 }
 
 
@@ -29,7 +29,7 @@
     padding-top: calc(2vh);
     padding-bottom: calc(4vh);
     font-family: 'Roboto', sans-serif;
-    font-weight: 900;
+    font-weight: bold;
 }
 
 .required{
@@ -37,22 +37,24 @@
     padding-top: calc(1vh);
     padding-left: calc(1vw);
     font-family: 'Roboto', sans-serif;
+    font-weight:lighter;
 }
 
 .subtitle{
     padding-left: calc(3vw);
     padding-top: calc(1vh);
     font-family: 'Roboto', sans-serif;
-    font-weight: 900;
 }
 
 .essaytext{
     padding-left: calc(6vw);
     font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
 }
 
 .supplementaltext{
-    padding-top: calc(0.35vh);
+    padding-top: calc(0.225vh);
     padding-left: calc(6vw);
     font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
 }

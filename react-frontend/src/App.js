@@ -3,13 +3,13 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Explore from './pages/Explore';
 import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Features from './pages/Features';
 import Individual from './pages/Individual';
 import Essays from './pages/Essays';
-import Profile from './pages/Profile';
 
 const RequireAuth = (Component) => {
   return class Application extends Component {

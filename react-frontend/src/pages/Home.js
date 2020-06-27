@@ -7,7 +7,6 @@ import { faSearch, faGlobeAmericas, faLayerGroup } from "@fortawesome/free-solid
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Home() {
-    console.log(sessionStorage.getItem("userData"));
 
     const [email, setEmail] = useState({Email: ''});
     const [name, setName] = useState({Name: ''});
