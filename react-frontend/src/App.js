@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import Features from './pages/Features';
 import Individual from './pages/Individual';
 import Essays from './pages/Essays';
+import Profile from './pages/Profile';
 
 const RequireAuth = (Component) => {
   return class Application extends Component {

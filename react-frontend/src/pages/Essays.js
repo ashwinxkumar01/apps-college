@@ -40,7 +40,7 @@ class Essays extends Component {
     }
 
     requiresCommonApp() {
-        var requires = this.state.selectedColleges.some(college => college.common_app === "y");
+        var requires = this.state.selectedColleges.some(college => college.common_app === "y" || college.app_site === "UC Application");
         console.log("common app: " + requires);
         return requires;
     }
@@ -88,6 +88,13 @@ class Essays extends Component {
         else if(onlyCoalition && this.requiresCommonApp() && !this.requiresOnlyUC()) {
             return(
                 <OverlayTrigger trigger="click" placement="right" overlay={Coalition} rootClose>
+                    <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></Button>
+                </OverlayTrigger>
+            )
+        }
+        else {
+            return(
+                <OverlayTrigger trigger="click" placement="right" overlay={Common} rootClose>
                     <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{opacity: '60%'}}/></Button>
                 </OverlayTrigger>
             )
@@ -231,8 +238,13 @@ class Essays extends Component {
     renderFirstHeader = () => {
         return (
             <div>
-                <div className="title">
-                    <h1>Your Essay Summary</h1>
+                <div className="titleheader">
+                    <div className="title">
+                        <h1>Your Essay Summary</h1>
+                    </div>
+                    <div className="popup">
+                        {this.renderPopup()}
+                    </div>
                 </div>
 
                 <div className="required">
@@ -249,7 +261,6 @@ class Essays extends Component {
                 <div>
                     <div className = "subtitle">
                         <h2>General Essays</h2>
-                        {this.renderPopup()}
                     </div>  
                 </div>
             )
@@ -286,7 +297,9 @@ class Essays extends Component {
                 <div>
                     {essays.map((prompt,index) => { 
                         return (
-                           <p>{index+1}.{prompt}</p>
+                            <div className = "supplementaltext">
+                                <p>{index+1}.{prompt}</p>
+                            </div>
                         )
                     })}
                 </div>
@@ -302,9 +315,7 @@ class Essays extends Component {
                         return (
                             <div>
                                 {this.renderSupplementalTitle(college)}
-                                <div className = "essaytext">
-                                    {this.renderSupplementalBody(college)}
-                                </div>
+                                {this.renderSupplementalBody(college)}
                             </div>
                         )
                     })}

@@ -6,8 +6,7 @@ import SearchBar from './SearchBar';
 import { IoMdContact } from "react-icons/io";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHome,
-  faQuestion
+  faUser
 } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -100,9 +99,10 @@ class NavBar extends React.Component {
             </Nav>
             <Nav className="ml-auto" navbar>
               <Nav.Item>
-                <NavDropdown drop="down" alignRight="false" title={<img src={Image} width="60vw" height="50vh" 
-                style={{position: 'absolute', top: '0vh', right: '0vw', paddingBottom: 'calc(0.5vh)'}}/>}>
-                  <NavDropdown.Item href="/loginhome/profile">Profile</NavDropdown.Item>
+                {/* <NavDropdown drop="down" alignRight="false" title={<img src={Image} width="60vw" height="50vh" 
+                style={{position: 'absolute', top: '0vh', right: '0vw', paddingBottom: 'calc(0.5vh)'}}/>}> */}
+                <NavDropdown drop="down" alignRight="false" title={<FontAwesomeIcon icon={faUser} style={{ opacity: '60%' }} />}>
+                  <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                   <NavDropdown.Item onClick={this.handleClick} href="/">Logout</NavDropdown.Item>
                 </NavDropdown>
               </Nav.Item>

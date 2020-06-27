@@ -13,13 +13,13 @@ class Profile extends React.Component {
         }
     }
 
-    // componentDidMount() {
-    //     const email = sessionStorage.getItem('userData');
-    //     this.setState({
-    //         username: email,
-    //         email: email
-    //     })
-    // }
+    componentDidMount() {
+        const email = sessionStorage.getItem('userData');
+        this.setState({
+            username: email,
+            email: email
+        })
+    }
 
     render() {
         return (

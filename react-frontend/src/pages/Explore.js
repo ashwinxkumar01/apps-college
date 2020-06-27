@@ -286,6 +286,18 @@ class Explore extends React.Component {
                                 </li>
                             )
                         })}
+                        <Tile  Alias={"ashwin"} Tuition={10000} TuitionOOS={10000}
+                                        Acceptance={20} Fee={30} collegeName={"hello"}
+                                        Logo={Image3} Type={200} Population={10000}
+                                        Ranking={100} />
+                                        <Tile  Alias={"ashwin"} Tuition={10000} TuitionOOS={10000}
+                                        Acceptance={20} Fee={30} collegeName={"hello"}
+                                        Logo={Image3} Type={200} Population={10000}
+                                        Ranking={100} />
+                                        <Tile  Alias={"ashwin"} Tuition={10000} TuitionOOS={10000}
+                                        Acceptance={20} Fee={30} collegeName={"hello"}
+                                        Logo={Image3} Type={200} Population={10000}
+                                        Ranking={100} />
                     </ul>
                 )
             }
@@ -648,6 +660,7 @@ class Explore extends React.Component {
 
             this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");
         } else {
+            this.setState({TuitionState: TuitionState[0]});
             console.log("both")
             this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
 

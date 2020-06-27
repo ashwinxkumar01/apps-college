@@ -37,7 +37,7 @@ class Node extends Component {
 
                     <Link style={{textDecoration: 'none', color: 'black'}} to={`/loginhome/page/${this.props.collegeName}`}>
                         <div className="college-icon">
-                            <img src={this.props.Logo} alt="Logo" height="175" width="63%" />
+                            <img src={this.props.Logo} alt="Logo" height="175vh" width="63%" />
                         </div>
 
                         <div className="specifications">
