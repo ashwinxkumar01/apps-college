@@ -1,6 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
 .titleheader{
     width: calc(100%);
-    border: 1px solid black;
     display: flex;
     flex-direction: row;
 }
@@ -9,18 +11,16 @@
     padding-left: calc(1vw);
     text-align: left;
     font-weight: bolder;
-    border: 1px solid black;
+    font-family: 'Roboto', sans-serif;
 }
 
 .popup{
     text-align: left;
-    border: 1px solid black;
     padding-left: calc(1vw);
-    
 }
 
 .btn {
-    margin-top: calc(0.6rem) !important;
+    margin-top: calc(3vh) !important;
 }
 
 
@@ -28,26 +28,31 @@
     padding-left: calc(4vw);
     padding-top: calc(2vh);
     padding-bottom: calc(4vh);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
 }
 
 .required{
     text-align: left;
     padding-top: calc(1vh);
     padding-left: calc(1vw);
-    font-weight: lighter;
+    font-family: 'Roboto', sans-serif;
 }
 
 .subtitle{
     padding-left: calc(3vw);
     padding-top: calc(1vh);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
 }
 
 .essaytext{
-    /* padding-top: calc(5vh); */
     padding-left: calc(6vw);
+    font-family: 'Open Sans', sans-serif;
 }
 
 .supplementaltext{
-    padding-top: calc(0.5vh);
+    padding-top: calc(0.35vh);
     padding-left: calc(6vw);
+    font-family: 'Open Sans', sans-serif;
 }
