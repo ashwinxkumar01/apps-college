@@ -124,7 +124,7 @@ const Tuition = (
 
   const Common = (
     <Popover id="popover-basic">
-      <Popover.Title as="h3">Note:</Popover.Title>
+      <Popover.Title as="h3">Note</Popover.Title>
       <Popover.Content>
         You have selected colleges for which the Common Application will suffice. 
         <br />
@@ -135,7 +135,7 @@ const Tuition = (
 
   const Coalition = (
     <Popover id="popover-basic">
-      <Popover.Title as="h3">Note:</Popover.Title>
+      <Popover.Title as="h3">Note</Popover.Title>
       <Popover.Content>
         You have selected colleges for which the Coalition Application will suffice. 
         <br />

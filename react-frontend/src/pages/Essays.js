@@ -240,6 +240,7 @@ class Essays extends Component {
             <div>
                 <div className="titleheader">
                     <div className="title">
+                        <br/>
                         <h1>Your Essay Summary</h1>
                     </div>
                     <div className="popup">
