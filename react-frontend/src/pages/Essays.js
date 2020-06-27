@@ -25,7 +25,9 @@ class Essays extends Component {
         this.requiresCommonApp = this.requiresOnlyCommon.bind(this);
         this.renderPopup = this.renderPopup.bind(this);
         this.calculateNumEssays = this.calculateNumEssays.bind(this);
-
+        this.renderGeneralHeader = this.renderGeneralHeader.bind(this);
+        this.requiresOnlyUC = this.requiresOnlyUC.bind(this);
+        this.requiresSupplementals = this.requiresSupplementals.bind(this);
     }
 
     requiresUCApp() {
@@ -61,6 +63,11 @@ class Essays extends Component {
     requiresOnlyUC() {
         var requires = this.state.selectedColleges.every(college => college.coalition_app === "n" && college.common_app === "n" && college.app_site === "UC Application");
         console.log("only uc: " + requires);
+        return requires;
+    }
+
+    requiresSupplementals() {
+        var requires = this.state.selectedColleges.some(college => !(college.supplemental_essays === ""));
         return requires;
     }
 
@@ -227,32 +234,45 @@ class Essays extends Component {
 
                 <div className="required">
                     <h3>You have <b>{this.state.numEssays}</b> required prompt(s).</h3>
-                </div>
-
-                {this.renderPopup()}
-
-                <div className = "subtitle">
-                    <h2>General Essays</h2>
-                </div>    
+                </div>  
             </div>
 
         )
     }
 
+    renderGeneralHeader = () => {
+        if(this.calculateNumEssays() != 0) {
+            return(
+                <div>
+                    <div className = "subtitle">
+                        <h2>General Essays</h2>
+                        {this.renderPopup()}
+                    </div>  
+                </div>
+            )
+        }
+    }
 
+    renderSupplementalHeader = () => {
+        if(this.requiresSupplementals()) {
+            return(
+                <div className = "subtitle">
+                    <h2>Supplemental Essays</h2>
+                </div>
+            )
+        }
+    }
 
     render() {
         return(
             <div>
                 <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="3"/>
                 {this.renderFirstHeader()}
+                {this.renderGeneralHeader()}
                 {this.renderUC()}
                 {this.renderCommon()}
                 {this.renderCoalition()}
-                <div className = "subtitle">
-                    <h2>Supplemental Essays</h2>
-                </div>
-
+                {this.renderSupplementalHeader()}
                 <div className= "header-div" >
                     <h3>Harvard University (1 of 2 Required)</h3>
                 </div>
