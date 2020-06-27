@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     width: calc(96%);
-    height: calc(30rem);
+    height: calc(53vh);
     border-radius: calc(1vmin);
     margin-bottom: calc(1vmin);
     color: black;
@@ -37,13 +37,14 @@
 
 .college-name {
     text-align: center;
-    width: calc(84%); 
+    width: calc(80%); 
     display: inline-block;
     justify-content: center;
     align-items: center;
 }
 
 .college-name h1{
+    font-size: calc(2.3vw);
     font-family: 'Alegreya Sans', sans-serif;
     font-weight: bold;
 }
@@ -51,6 +52,7 @@
 .college-icon {
     margin-top: calc(2rem);
     width: 100%;
+    height: auto;
     display: flex;
     justify-content: center;
     overflow: hidden;
@@ -64,9 +66,9 @@
 }
 
 .specifications h3 {
-    font-size: calc(1.1rem);
+    font-size: calc(1.1vw);
     font-family: 'Karla', serif;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .tuition-display {
@@ -98,14 +100,39 @@
 
 @media screen and (max-width: 767px) {
     .tile-layout {
-        width: 100%;
+        width: 96%;
         box-shadow: calc(0px) calc(0px) calc(0px) grey; 
+        margin-left: calc(-0.5rem);
+        background-color: rgb(224, 224, 224);
+        margin-top: calc(0.5rem);
+        height: calc(50vh);
     }
 
     .tile-layout:hover {
         -webkit-transform: scale(1);
         -ms-transform: scale(1);
         transform: scale(1);
+        overflow: hidden;
+    }
+
+    .specifications h3 {
+        font-size: calc(3vw);
+        font-family: 'Karla', serif;
+        font-weight: 900;
+    }
+
+    .college-name h1{
+        font-size: calc(5.5vw);
+        font-family: 'Alegreya Sans', sans-serif;
+        font-weight: bold;
+    }
+
+    .college-icon {
+        margin-top: calc(0.5vh);
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
         overflow: hidden;
     }
 }
