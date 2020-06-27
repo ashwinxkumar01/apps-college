@@ -195,7 +195,7 @@ class Essays extends Component {
             return (
                 <div>
                     <div className="header-div">
-                        <h3>UC Application (4 of 8 Required)</h3>
+                        <h3 className="header-text">UC Application (4 of 8 Required)</h3>
                     </div>
                     <div className="essaytext">
                         <p>1. Describe an example of your leadership experience in which you have positively influenced others, helped resolve disputes or contributed to group efforts over time.</p>
@@ -218,7 +218,7 @@ class Essays extends Component {
             return (
                 <div>
                     <div className="header-div">
-                        <h3>Common Application (1 of 7 Required)</h3>
+                        <h3 className="header-text">Common Application (1 of 7 Required)</h3>
                     </div>
 
                     <div className="essaytext">
@@ -242,7 +242,7 @@ class Essays extends Component {
             return (
                 <div>
                     <div className="header-div">
-                        <h3>Coalition Application (1 of 5 Required)</h3>
+                        <h3 className="header-text">Coalition Application (1 of 5 Required)</h3>
                     </div>
 
                     <div className="essaytext" >
@@ -271,7 +271,7 @@ class Essays extends Component {
                 </div>
 
                 <div className="required">
-                    <h3>You have <b>{this.state.numEssays}</b> required prompt(s).</h3>
+                    <h3 className="required-text">You have <b>{this.state.numEssays}</b> required prompt(s).</h3>
                 </div>
             </div>
 
@@ -306,7 +306,7 @@ class Essays extends Component {
         if (!isNaN(required)) {
             return (
                 <div className="header-div">
-                    <h3>{college.college_name} ({required} of {total} Required)</h3>
+                    <h3 className="header-text">{college.college_name} ({required} of {total} Required)</h3>
                 </div>
             );
         }
@@ -357,7 +357,7 @@ class Essays extends Component {
                  {this.renderCoalition()}
                  {this.renderSupplementalHeader()}
                  {this.renderSupplementals()}
-                </div>
+               </div>
             )
 
         }
