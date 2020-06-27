@@ -637,7 +637,7 @@ def sendEmail():
 #should sent a password reset to email of user
 #return is void
 
-def sendPasswordReset(email):
+#def sendPasswordReset(email):
 
 
 app.run(debug=True)
