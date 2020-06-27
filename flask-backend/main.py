@@ -330,6 +330,7 @@ def createUserWithEmailPassword():
     post_request = request.get_json(force=True)
 
     email = post_request['Username']
+    email = filterEmail(email)
     password = post_request['Password']
     try:
         auth.create_user_with_email_and_password(email, password)
@@ -348,20 +349,40 @@ def createUserWithEmailPasswordTest(email, password):
     #post_request = request.get_json(force=True)
 
     #email = post_request['Username']
+    email = filterEmail(email)
     #password = post_request['Password']
     try:
+        print("i made it here! 1")
         auth.create_user_with_email_and_password(email, password)
+        print("i made it here! 2")
         dictio['initialUser'] = email
+        print("i made it here! 3")
         db.child("users").child(dictio['initialUser'][:-6]).update({"college": "none"})
+        print("i made it here! 4")
         db.child("users").child(dictio['initialUser'][:-6]).update({"username": email})
     except:
         return json.dumps({"True": 1})
     return loginAfterCreation(email, password)
 
+#returns string of email without dots before the '@' sign
+def filterEmail(email):
+    ret = ""
+    atPosition = email.find("@")
+    if (atPosition != -1):
+        for x in range(atPosition):
+            if (email[x] != "."):
+                ret += email[x]
+    ret += email[atPosition:]
+    return ret
+
+#returns true if email has an @ sign in it, for our firebase purposes
+def isValidEmail(email):
+    return email.find("@") != -1
+
 def loginAfterCreation(email, password):
     #gets incoming request
     #post_request = request.get_json(force=True)
-
+    email = filterEmail(email)
     try:
         #print(session['usr']) #if this doesn't error out, that means the user is logged in already
         print(dictio['usr'])
@@ -396,6 +417,7 @@ def loginWithEmailPassword():
 
     # Assign value from the request
     email = post_request['Username']
+    email = filterEmail(email)
     password = post_request['Password']
 
     #email = "aksportsmaniac@gmail.com"
@@ -428,6 +450,7 @@ def loginWithEmailPasswordTest(email, password):
     #email = "jim2@gmail.com"
     #password = "123456"
     # successfulLogin = False
+    email = filterEmail(email)
     try:
         # print(session['usr']) #if this doesn't error out, that means the user is logged in already
         print(dictio['usr'])
@@ -439,8 +462,8 @@ def loginWithEmailPasswordTest(email, password):
             # session['usr'] = user_id
             dictio['usr'] = user_id
             dictio['currentUser'] = email
-            print(dictio['currentUser'])
-            print(dictio['currentUser'][:-6])
+            print( "Current user: " + dictio['currentUser'])
+            #print(dictio['currentUser'][:-6])
         except:
             return False
     
@@ -458,7 +481,7 @@ def logout():
 def isLoggedIn():
     isLoggedIn = True
     try:
-        print(session['usr'])
+        #print(session['usr'])
         print(dictio['usr'])
     except:
         isLoggedIn = False
@@ -550,17 +573,25 @@ def listColleges():
 
 
 def getEmail():
-    if (isLoggedIn):
+    print(isLoggedIn())
+    if (isLoggedIn()):
         info = db.child("users").child(dictio['currentUser'][:-6]).get().val()
         return info["username"]
 
+
+def sendPasswordReset():
+    if (isLoggedIn()):
+        email = getEmail()
+        print("Email " + email)
+        auth.send_password_reset_email(email)
+
 #testing method
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
 #     print("im here")
-#     # createUserWithEmailPassword("aksportsmaniac@gmail.com", "123456")
-#     createUserWithEmailPasswordTest("jim2@gmail.com", "123456")
-#     loginWithEmailPasswordTest("jim2@gmail.com", "123456")
+#       createUserWithEmailPasswordTest("animal.wu@gmail.com", "1234567")
+# #     createUserWithEmailPasswordTest("jim2@gmail.com", "123456")
+#       loginWithEmailPasswordTest("animal.wu@gmail.com", "1234567")
 #     print(dictio['currentUser'])
 #     # db.child("users").child(short)
 #     # print(db.child("users").child(dictio['currentUser'][:-6]).get().val())
@@ -573,7 +604,8 @@ def getEmail():
 #     #removeCollegeTest('college')
 #     listColleges()
 #     print("Here's my email!")
-#     print(getEmail())
+    #   sendPasswordReset()
+    #   logout()
 
 #     # print(colleges)
 #     logout()
@@ -637,7 +669,5 @@ def sendEmail():
 
 #should sent a password reset to email of user
 #return is void
-
-#def sendPasswordReset(email):
 
 app.run(debug=True)
