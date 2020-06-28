@@ -12,7 +12,7 @@ class SearchBar extends React.Component {
         super(props);
         this.state = {
             searchResults: [],
-            clickOutside: false
+            clickOutside: false,
         };
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -20,6 +20,7 @@ class SearchBar extends React.Component {
 
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
+        document.addEventListener('keydown', this.handleClickOutside);
         this.setState({
             searchResults: []
         });
@@ -27,11 +28,12 @@ class SearchBar extends React.Component {
 
     componentWillUnmount() {
         document.removeEventListener('mousedown', this.handleClickOutside);
+        document.removeEventListener('keydown', this.handleClickOutside);
     }
 
     handleClickOutside(event) {
         const domNode = ReactDOM.findDOMNode(this);
-        if (!domNode || !domNode.contains(event.target)) {
+        if (!domNode || !domNode.contains(event.target) || event.key === 'Escape') {
             this.setState({
                 clickOutside: true
             });
