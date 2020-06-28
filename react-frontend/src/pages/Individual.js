@@ -181,9 +181,9 @@ class Individual extends Component {
                             </span>
                         </h1>
                     </div>
-                    <div className="circle">
+                    <div className="white-circle">
                     </div>
-                    <img className="logo" src={this.state.college_json["college_logo"]} />
+                    <img className="college-logo" src={this.state.college_json["college_logo"]} />
                     <div className="description-box">
                     </div>
                     <p className="description-text" >
