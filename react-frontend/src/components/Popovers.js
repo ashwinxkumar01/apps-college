@@ -126,9 +126,9 @@ const Tuition = (
     <Popover id="popover-basic">
       <Popover.Title as="h3">Note</Popover.Title>
       <Popover.Content>
-        You have selected colleges for which the Common Application will suffice. 
+        You have selected colleges for which the Common Application will suffice and the Coalition Application is <b>not</b> required.
         <br />
-        Some of your colleges also accept the Coalition Application, so these prompts are also visible but do not count towards the required prompt total.
+        Some of your colleges also accept the Coalition Application, so these prompts are also visible but they do not count towards the number of required prompt(s).
       </Popover.Content>
     </Popover>
   );
@@ -137,9 +137,9 @@ const Tuition = (
     <Popover id="popover-basic">
       <Popover.Title as="h3">Note</Popover.Title>
       <Popover.Content>
-        You have selected colleges for which the Coalition Application will suffice. 
+        You have selected colleges for which the Coalition Application will suffice and the Common Application is <b>not</b> required. 
         <br />
-        Some of your colleges also accept the Common Application, so these prompts are also visible but do not count towards the required prompt total.
+        Some of your colleges also accept the Common Application, so these prompts are also visible but they do not count towards the number of required prompt(s).
       </Popover.Content>
     </Popover>
   );

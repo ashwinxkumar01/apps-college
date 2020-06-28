@@ -70,11 +70,31 @@ function Home() {
                 <div className="features">
                     <h1 className="header-h1">FEATURES</h1>
                     
-                    <div className="header-div">
+                    {/* <div className="header-div">
                         <h1 className="header-feature">SEARCH</h1>
                         <h1 className="header-feature">EXPLORE</h1>
                         <h1 className="header-feature">ORGANIZE</h1>
-                    </div>
+                    </div> */}
+
+                    <Container fluid style={{marginTop: 'calc(-7vh)', marginBottom: 'calc(-5vh)'}}>
+                        <Row>
+                            <Col xs={6} md={4}>
+                                <div style={{display: 'flex', justifyContent: 'center'}}>
+                                    <h1 className="header-feature">SEARCH</h1>
+                                </div>
+                            </Col>
+                            <Col xs={6} md={4}>
+                                <div style={{display: 'flex', justifyContent: 'center'}}>
+                                    <h1 className="header-feature">EXPLORE</h1>
+                                </div>
+                            </Col>
+                            <Col xs={6} md={4}> 
+                                <div style={{display: 'flex', justifyContent: 'center'}}>
+                                    <h1 className="header-feature">ORGANIZE</h1>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
 
                     <Container fluid>
                         <Row>

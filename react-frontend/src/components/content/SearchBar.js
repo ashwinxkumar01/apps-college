@@ -121,25 +121,23 @@ class SearchBar extends React.Component {
             flexDirection: 'column'
         }
         return (
-            <Form className="ml-5 w-100" style={searchBar}>
+            <Form className="ml-5 w-75" style={searchBar}>
                 <Form.Control type="text" onInput={this.handleChange} placeholder="Search for colleges" className="mr-0 w-75" style={divStyle} />
                 <div>
                     {this.state.searchResults.map(collegeArray => {
                         var college = collegeArray[0];
                         return (
-                            <div className="individual">
+                            <Link to={`/loginhome/page/${college}`} className="individual">
                                 <div>
-                                <div className="circle">
-                                </div>
-                                <img className="logo" src={collegeArray[1]} alt="Hello" />
-                                </div>
-                                <Link to={`/loginhome/page/${college}`}>
-                                    <div className="collegeName">
-                                        {college}
+                                    <div className="circle">
                                     </div>
-                                </Link>
+                                    <img className="logo" src={collegeArray[1]} alt="Hello" />
+                                </div>
+                                <div className="collegeName">
+                                    {college}
+                                </div>
                                 <Heart className="heart" collegeName={college} key={college} />
-                            </div>
+                            </Link>
                         )
                     })}
                 </div>

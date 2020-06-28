@@ -499,6 +499,7 @@ def addCollege():
     colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
     colleges[collegeName] = collegeName
     db.child("users").child(dictio['currentUser'][:-6]).update(colleges)
+    return dashboard()
 
 def addCollegeTest(collegeName):
     print("add function call")
@@ -523,7 +524,7 @@ def removeCollege():
     colleges = db.child("users").child(dictio['currentUser'][:-6]).get().val()
     colleges[collegeName] = "none"
     db.child("users").child(dictio['currentUser'][:-6]).update(colleges)
-    return json.dumps({"True": 2})
+    return dashboard()
 
 @app.route("/removecolleges", methods = ['POST'])
 def removeColleges():

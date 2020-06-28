@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
       resultsFromSearch: [],
       users: [],
       rerender: false,
-      selectedColleges: []
+      selectedColleges: [],
     };
     this.setSearch = this.setSearch.bind(this);
     this.removeColleges = this.removeColleges.bind(this);
@@ -116,9 +116,9 @@ class Dashboard extends React.Component {
       }
       return (
         <div className={useStyles.root}>
-          <UsersToolbar selectedColleges={this.state.selectedColleges} removeColleges={this.removeColleges} />
+          <UsersToolbar selectedColleges={this.state.selectedColleges} removeColleges={this.removeColleges}/>
           <div className={useStyles.theme}>
-            <UsersTable users={this.state.users} setColleges={this.selectedCollegeSet} selectedColleges={this.state.selectedColleges} />
+            <UsersTable users={this.state.users} setColleges={this.selectedCollegeSet} selectedColleges={this.state.selectedColleges} key={this.state.selectedColleges}/>
           </div>
         </div>
       )

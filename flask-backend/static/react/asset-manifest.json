@@ -1,5 +1,6 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.css": "/static/react/css/main.c7d72be3.chunk.css",
     "main.js": "/static/react/js/main.221aa8e3.chunk.js",
     "main.js.map": "/static/react/js/main.221aa8e3.chunk.js.map",
@@ -12,19 +13,43 @@
     "css/2.829c9cb5.chunk.css.map": "/static/react/css/2.829c9cb5.chunk.css.map",
     "css/main.c7d72be3.chunk.css.map": "/static/react/css/main.c7d72be3.chunk.css.map",
     "js/2.0722dab7.chunk.js.LICENSE.txt": "/static/react/js/2.0722dab7.chunk.js.LICENSE.txt",
+=======
+    "main.css": "/static/react/css/main.6153d659.chunk.css",
+    "main.js": "/static/react/js/main.5c479a9b.chunk.js",
+    "main.js.map": "/static/react/js/main.5c479a9b.chunk.js.map",
+    "runtime-main.js": "/static/react/js/runtime-main.725b2ec0.js",
+    "runtime-main.js.map": "/static/react/js/runtime-main.725b2ec0.js.map",
+    "css/2.829c9cb5.chunk.css": "/static/react/css/2.829c9cb5.chunk.css",
+    "js/2.194033f8.chunk.js": "/static/react/js/2.194033f8.chunk.js",
+    "js/2.194033f8.chunk.js.map": "/static/react/js/2.194033f8.chunk.js.map",
+    "../../templates/index.html": "/static/react/../../templates/index.html",
+    "css/2.829c9cb5.chunk.css.map": "/static/react/css/2.829c9cb5.chunk.css.map",
+    "css/main.6153d659.chunk.css.map": "/static/react/css/main.6153d659.chunk.css.map",
+    "js/2.194033f8.chunk.js.LICENSE.txt": "/static/react/js/2.194033f8.chunk.js.LICENSE.txt",
+>>>>>>> 064a23cdbc36bfd150e75416ab64b37c2f19b967
     "media/UCSDCampus.jpg": "/static/react/media/UCSDCampus.cf68b2dd.jpg",
     "media/UCSDLogo.png": "/static/react/media/UCSDLogo.b619b951.png",
     "media/UCSD_3.jpg": "/static/react/media/UCSD_3.914f5b55.jpg",
     "media/download.png": "/static/react/media/download.2e1ce79c.png",
     "media/Home.css": "/static/react/media/wp2017235.e4ac0c4f.jpg",
+<<<<<<< HEAD
     "precache-manifest.9d6bc84e8c1f4d3a17b708c90e0f66ad.js": "/static/react/precache-manifest.9d6bc84e8c1f4d3a17b708c90e0f66ad.js",
+=======
+    "precache-manifest.f7ea3d4cf425015e6d2d3638de5856fa.js": "/static/react/precache-manifest.f7ea3d4cf425015e6d2d3638de5856fa.js",
+>>>>>>> 064a23cdbc36bfd150e75416ab64b37c2f19b967
     "service-worker.js": "/static/react/service-worker.js"
   },
   "entrypoints": [
     "js/runtime-main.725b2ec0.js",
     "css/2.829c9cb5.chunk.css",
+<<<<<<< HEAD
     "js/2.0722dab7.chunk.js",
     "css/main.c7d72be3.chunk.css",
     "js/main.221aa8e3.chunk.js"
+=======
+    "js/2.194033f8.chunk.js",
+    "css/main.6153d659.chunk.css",
+    "js/main.5c479a9b.chunk.js"
+>>>>>>> 064a23cdbc36bfd150e75416ab64b37c2f19b967
   ]
 }

@@ -1,5 +1,5 @@
-import React from "react";
-import { Navbar, Nav, NavDropdown, Dropdown, DropdownButton, Media } from "react-bootstrap";
+import React, { useState } from "react";
+import { Navbar, Nav, NavDropdown, Modal, Button } from "react-bootstrap";
 import '../../App.css';
 import SearchBar from './SearchBar';
 import { IoMdContact } from "react-icons/io";
@@ -14,7 +14,8 @@ class NavBar extends React.Component {
     super(props);
     this.state = {
       collegelist: [],
-      Reset: false
+      Reset: false,
+      Show: false
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -89,58 +90,64 @@ class NavBar extends React.Component {
 
   handleDisplay() {
     return (
-      <div className="success-popup">HELLO BUDDY</div>
+      <Modal show={this.state.Reset} onHide={() => this.setState({Reset: false})}>
+      <Modal.Header closeButton>
+        <Modal.Title>Email Sent!</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>Follow the instructions sent to your email and then don't tell the bossman the password</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => this.setState({Reset: false})}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
     )
   }
 
   render() {
     return (
-      <div>
-        <Navbar
-          className="navbar p-3"
-          expand="lg"
-          bg="dark" variant="dark"
-        >
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Navbar.Brand>College Search</Navbar.Brand>
-            <Nav className="mr-auto" defaultActiveKey={this.props.active}>
-              <Nav.Item className="dashboard">
-                <Nav.Link eventKey="1" href="/loginhome/dashboard">
-                  Dashboard
-                </Nav.Link>
-              </Nav.Item>
+      <div className="div-container">
+          <Navbar
+            className="navbar p-3"
+            expand="lg"
+            bg="dark" variant="dark" 
+          >
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Navbar.Brand>College Search</Navbar.Brand>
+              <Nav className="mr-auto" defaultActiveKey={this.props.active}>
+                <Nav.Item className="dashboard">
+                  <Nav.Link eventKey="1" href="/loginhome/dashboard">
+                    Dashboard
+                  </Nav.Link>
+                </Nav.Item>
 
-              <Nav.Item className="explore">
-                <Nav.Link eventKey="2" href="/loginhome/explore">
-                  Explore
-                </Nav.Link>
-              </Nav.Item>
+                <Nav.Item className="explore">
+                  <Nav.Link eventKey="2" href="/loginhome/explore">
+                    Explore
+                  </Nav.Link>
+                </Nav.Item>
 
-              <Nav.Item className="explore">
-                <Nav.Link eventKey="3" href="/loginhome/essays">
-                  Essays
-                </Nav.Link>
-              </Nav.Item>
-            </Nav>
-            <Nav className="ml-auto" navbar>
-              <Nav.Item>
-                {/* <NavDropdown drop="down" alignRight="false" title={<img src={Image} width="60vw" height="50vh" 
-                style={{position: 'absolute', top: '0vh', right: '0vw', paddingBottom: 'calc(0.5vh)'}}/>}> */}
-                <NavDropdown drop="down" alignRight="false" title={<FontAwesomeIcon icon={faUser} style={{ opacity: '60%' }} />}>
-                  <NavDropdown.Item onClick={this.handleClick} href="/">Logout</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                  <NavDropdown.Item onClick={this.handleReset}>Reset Password</NavDropdown.Item>
-
-                </NavDropdown>
-              </Nav.Item>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-        <div className="navbar-search">
-          <SearchBar list={this.state.collegelist} searchBarInUse={this.props.searchBarInUse}/>
-        </div>
+                <Nav.Item className="explore">
+                  <Nav.Link eventKey="3" href="/loginhome/essays">
+                    Essays
+                  </Nav.Link>
+                </Nav.Item>
+              </Nav>
+              <div className="navbar-search">
+                <SearchBar list={this.state.collegelist} searchBarInUse={this.props.searchBarInUse}/>
+              </div>
+              <Nav className="ml-auto" navbar>
+                <Nav.Item>
+                  <NavDropdown drop="down" alignRight="false" title={<FontAwesomeIcon icon={faUser} style={{ opacity: '60%' }} />}>
+                    <NavDropdown.Item onClick={this.handleReset}>Reset Password</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item onClick={this.handleClick} href="/">Logout</NavDropdown.Item>
+                  </NavDropdown>
+                </Nav.Item>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
 
         {this.state.Reset ? this.handleDisplay() : null}
       </div>
