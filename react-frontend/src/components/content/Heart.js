@@ -14,24 +14,16 @@ class Heart extends React.Component {
 
     handleClick = async (e) => {
         if (this.state.status === true) {
-            Promise.all([
-                fetch("/removecollege", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        CollegeName: this.state.currentCollege
-                    })
-                }),
-                fetch("/dashboard", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+            fetch("/removecollege", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    CollegeName: this.state.currentCollege
                 })
-            ]).then(([response1, response2]) => {
-                return response2.json();
+            }).then(response => {
+                return response.json();
             }).then(data => {
                 let collegeList = [];
                 data.map(college => {
@@ -40,27 +32,19 @@ class Heart extends React.Component {
                 })
                 sessionStorage.removeItem("collegeNames");
                 sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
-                this.setState({ status: false });
             })
+            this.setState({ status: false });
         } else {
-            Promise.all([
-                fetch("/addcollege", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        CollegeName: this.state.currentCollege
-                    })
-                }),
-                fetch("/dashboard", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+            fetch("/addcollege", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    CollegeName: this.state.currentCollege
                 })
-            ]).then(([response1, response2]) => {
-                return response2.json();
+            }).then(response => {
+                return response.json();
             }).then(data => {
                 let collegeList = [];
                 data.map(college => {
@@ -69,8 +53,8 @@ class Heart extends React.Component {
                 })
                 sessionStorage.removeItem("collegeNames");
                 sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
-                this.setState({ status: true });
             })
+            this.setState({ status: true });
         }
     }
     componentWillMount() {
