@@ -127,19 +127,17 @@ class SearchBar extends React.Component {
                     {this.state.searchResults.map(collegeArray => {
                         var college = collegeArray[0];
                         return (
-                            <div className="individual">
+                            <Link to={`/loginhome/page/${college}`} className="individual">
                                 <div>
-                                <div className="circle">
-                                </div>
-                                <img className="logo" src={collegeArray[1]} alt="Hello" />
-                                </div>
-                                <Link to={`/loginhome/page/${college}`}>
-                                    <div className="collegeName">
-                                        {college}
+                                    <div className="circle">
                                     </div>
-                                </Link>
+                                    <img className="logo" src={collegeArray[1]} alt="Hello" />
+                                </div>
+                                <div className="collegeName">
+                                    {college}
+                                </div>
                                 <Heart className="heart" collegeName={college} key={college} />
-                            </div>
+                            </Link>
                         )
                     })}
                 </div>
