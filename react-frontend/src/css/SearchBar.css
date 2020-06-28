@@ -23,13 +23,13 @@
   
   .heart {
     position: absolute !important;
-    margin-top: calc(5.75%) !important;
+    margin-top: calc(5.75vh) !important;
     left: calc(93%) !important;
   }
   
   .redheart {
     position: absolute !important;
-    margin-top: calc(5.75%) !important;
+    margin-top: calc(5.75vh) !important;
     left: calc(93%) !important;
   }
 
