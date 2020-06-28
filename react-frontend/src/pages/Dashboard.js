@@ -122,14 +122,15 @@ class Dashboard extends React.Component {
           </div>
         </div>
       )
-    } else {
+    } else{
+      
     }
   }
 
   render() {
     return (
-      <div className="dashboard">
-        <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="1" />
+      <div>
+        <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} searchBar={this.state.searchBar} active="1" />
         <div>
           {
             this.renderDashboard()

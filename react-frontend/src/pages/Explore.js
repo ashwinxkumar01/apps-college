@@ -522,10 +522,6 @@ class Explore extends React.Component {
                     </div>
                 </div>
             )
-        } else {
-            return (
-                <div />
-            )
         }
     }
 
@@ -775,7 +771,7 @@ class Explore extends React.Component {
     render() {
         return (
             <div className="Explore">
-                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="2" />
+                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} searchBar={this.state.searchBar} active="2" />
                 {this.renderExplore()}
 
                 {this.state.Open ? this.renderFilter("block") : null}

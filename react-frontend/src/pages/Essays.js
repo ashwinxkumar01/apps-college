@@ -14,6 +14,7 @@ class Essays extends Component {
             searchBar: false,
             selectedColleges: [],
             numEssays: 0,
+            rerender: false,
         };
         this.searchBarInUse = this.searchBarInUse.bind(this);
         this.setSearch = this.setSearch.bind(this);
@@ -47,9 +48,13 @@ class Essays extends Component {
 
     searchBarInUse = (inUse) => {
         if (inUse !== this.state.searchBar) {
-            this.setState({ searchBar: inUse });
+          if (inUse) {
+            this.setState({ searchBar: inUse, rerender: true });
+          } else {
+            this.setState({ searchBar: inUse, rerender: false });
+          }
         }
-    }
+      }
 
     requiresUCApp() {
         var requires = this.state.selectedColleges.some(college => college.app_site === "UC Application");
@@ -183,8 +188,28 @@ class Essays extends Component {
                 collegeList.push(collegeName);
             })
             console.log(collegeList);
-            this.setState({ selectedColleges: collegeList });
-            this.setState({ numEssays: this.calculateNumEssays() })
+            this.setState({ selectedColleges: collegeList, numEssays: this.calculateNumEssays(), rerender: true });
+            console.log(this.state.selectedColleges);
+        });
+    }
+
+    updateColleges(){
+        fetch("/essays", {
+            method: "GET",
+            header: {
+                'Content-Type': 'application/json'
+            },
+        }).then(response => {
+            console.log(response);
+            return response.json()
+        }).then(data => {
+            let collegeList = [];
+            data.map(college => {
+                var collegeName = JSON.parse(college);
+                collegeList.push(collegeName);
+            })
+            console.log(collegeList);
+            this.setState({ selectedColleges: collegeList, numEssays: this.calculateNumEssays(), rerender: true });
             console.log(this.state.selectedColleges);
         });
     }
@@ -348,6 +373,9 @@ class Essays extends Component {
 
     renderPage() {
         if (this.state.searchBar === false) {
+            if(!this.state.rerender){
+                this.updateColleges();
+            }
             return(
                 <div>
                  {this.renderFirstHeader()}
@@ -366,7 +394,7 @@ class Essays extends Component {
     render() {
         return (
             <div>
-                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="3" />
+                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} searchBar={this.state.searchBar} active="3" />
                 {this.renderPage()}
                 <br></br>
                 <br></br>

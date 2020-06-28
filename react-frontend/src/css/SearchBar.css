@@ -25,21 +25,19 @@
     position: absolute !important;
     margin-top: calc(5.75vh) !important;
     left: calc(93%) !important;
-    z-index: 1 !important;
   }
   
   .redheart {
     position: absolute !important;
     margin-top: calc(5.75vh) !important;
     left: calc(93%) !important;
-    z-index: 1 !important;
   }
 
   .collegeName {
     font-family: 'Oswald', sans-serif;
-    font-size: calc(2.95vh);
+    font-size: calc(2.25vh);
     color: black !important;
-    margin-top: calc(.72%) !important;
+    margin-top: calc(1.02%) !important;
     position: absolute !important;
     left: calc(20%) !important;
     z-index: 1;
