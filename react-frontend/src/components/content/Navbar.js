@@ -1,5 +1,5 @@
-import React from "react";
-import { Navbar, Nav, NavDropdown, Dropdown, DropdownButton, Media } from "react-bootstrap";
+import React, { useState } from "react";
+import { Navbar, Nav, NavDropdown, Modal, Button } from "react-bootstrap";
 import '../../App.css';
 import SearchBar from './SearchBar';
 import { IoMdContact } from "react-icons/io";
@@ -14,7 +14,8 @@ class NavBar extends React.Component {
     super(props);
     this.state = {
       collegelist: [],
-      Reset: false
+      Reset: false,
+      Show: false
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -89,7 +90,17 @@ class NavBar extends React.Component {
 
   handleDisplay() {
     return (
-      <div className="success-popup">HELLO BUDDY</div>
+      <Modal show={this.state.Reset} onHide={() => this.setState({Reset: false})}>
+      <Modal.Header closeButton>
+        <Modal.Title>Email Sent!</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>Follow the instructions sent to your email and then don't tell the bossman the password</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => this.setState({Reset: false})}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
     )
   }
 

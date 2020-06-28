@@ -42,9 +42,9 @@ const useStyles = makeStyles(theme => ({
   actions: {
     justifyContent: 'flex-end'
   },
-  info: {
-    fontFamily: 'Noto Sans JP'
-  }
+  // info: {
+  //   fontFamily: 'Noto Sans JP'
+  // }
 }));
 
 const UsersTable = props => {
