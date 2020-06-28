@@ -90,6 +90,7 @@
     padding-right: calc(7.7rem);
     justify-content: right;
     position: absolute;
+    top: calc(-1.2vh);
     right: 0;
     height: 0;
     -webkit-transform: scale(0.6);
@@ -140,7 +141,7 @@
         overflow: hidden;
     }
 
-    .favorite-icon{
+    .favorite-icon {
         width: calc(9.5%);
         justify-content: right;
         position: absolute;
