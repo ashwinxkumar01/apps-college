@@ -55,7 +55,8 @@ class Heart extends React.Component {
               collegeList.push(collegeName);
             })
             sessionStorage.removeItem("collegeNames");
-            sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));   
+            sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
+            console.log(sessionStorage.getItem("collegeNames").length);   
         })   
     }
     componentWillMount(){
@@ -73,17 +74,7 @@ class Heart extends React.Component {
             });
         }
     }
-    // componentDidMount(){
-    //     if (sessionStorage.getItem("collegeNames") !==  null){
-    //         JSON.parse(sessionStorage.getItem("collegeNames")).map(college => {
-    //             if (college.college_name === this.props.collegeName) {
-    //                 if(this.state.status !== true){
-    //                     this.setState({status: true})
-    //                 }
-    //             }
-    //         });
-    //     }
-    // }
+
     render() {
         if (this.state.status === true) {
             return (

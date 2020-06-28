@@ -55,6 +55,14 @@ const UsersTable = props => {
   //important!!!!!!!!!!!!!!!!! this determines how many are on a page - hardcoded to 10k
   const [page, setPage] = useState(0);
 
+  const resetSelected = () => {
+    console.log(selectedColleges);
+    console.log(selectedUsers.selectedUsers);
+    if(selectedUsers.selectedUsers !== selectedColleges){
+      setSelectedUsers([]);
+    }
+  }
+
   const handleSelectAll = event => {
     const { users } = props;
 
@@ -87,8 +95,6 @@ const UsersTable = props => {
     }
 }
 
-
-
   const handleSelectOne = (event, id) => {
     const selectedIndex = selectedUsers.indexOf(id);
     let newSelectedUsers = [];
@@ -108,16 +114,9 @@ const UsersTable = props => {
     setColleges(newSelectedUsers);
   };
 
-  const handlePageChange = (event, page) => {
-    setPage(page);
-  };
-
-  const handleRowsPerPageChange = event => {
-    setRowsPerPage(event.target.value);
-  };
-
   return (
     <div>
+    {resetSelected}
     <Card
       {...rest}
       className={clsx(classes.root, className)}
