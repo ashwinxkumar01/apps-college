@@ -11,18 +11,19 @@ const useStyles = makeStyles(theme => ({
   row: {
     height: '42px',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'left',
     marginTop: theme.spacing(1)
   },
   spacer: {
-    flexGrow: 1
+    //flexGrow: 1,
+    alignItems: 'left'
   },
-  importButton: {
-    marginRight: theme.spacing(1)
-  },
-  exportButton: {
-    marginRight: theme.spacing(1)
-  },
+  // importButton: {
+  //   marginRight: theme.spacing(1)
+  // },
+  // exportButton: {
+  //   marginRight: theme.spacing(1)
+  // },
   searchInput: {
     marginRight: theme.spacing(1)
   }
@@ -49,7 +50,7 @@ const UsersToolbar = props => {
             const finish = await removeColleges();
           }}
         >
-          Remove College
+          Remove College(s)
         </Button>
       </div>
       {/* <div className={classes.row}>
