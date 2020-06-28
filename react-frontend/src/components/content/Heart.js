@@ -12,63 +12,77 @@ class Heart extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(e) {
+    handleClick = async (e) => {
         if (this.state.status === true) {
-            fetch("/removecollege", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    CollegeName: this.state.currentCollege
+            Promise.all([
+                fetch("/removecollege", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        CollegeName: this.state.currentCollege
+                    })
+                }),
+                fetch("/dashboard", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                 })
-            }).then(response => {
-                return response.json();
-            }).then(data => { })
-            this.setState({ status: false });
-        } else {
-            fetch("/addcollege", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    CollegeName: this.state.currentCollege
+            ]).then(([response1, response2]) => {
+                return response2.json();
+            }).then(data => {
+                let collegeList = [];
+                data.map(college => {
+                    var collegeName = JSON.parse(college);
+                    collegeList.push(collegeName);
                 })
-            }).then(response => {
-                return response.json();
-            }).then(data => { })
-            this.setState({ status: true });
-        }
-        fetch("/dashboard", {
-            method: "POST",
-            headers: {
-              'Content-Type': 'application/json'
-            },
-          }).then(response => {
-            console.log(response)
-            return response.json()
-          }).then(data => {
-            let collegeList = [];
-            data.map(college => {
-              var collegeName = JSON.parse(college);
-              collegeList.push(collegeName);
+                sessionStorage.removeItem("collegeNames");
+                sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
+                this.setState({ status: false });
             })
-            sessionStorage.removeItem("collegeNames");
-            sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
-            console.log(sessionStorage.getItem("collegeNames").length);   
-        })   
+        } else {
+            Promise.all([
+                fetch("/addcollege", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        CollegeName: this.state.currentCollege
+                    })
+                }),
+                fetch("/dashboard", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+            ]).then(([response1, response2]) => {
+                return response2.json();
+            }).then(data => {
+                let collegeList = [];
+                data.map(college => {
+                    var collegeName = JSON.parse(college);
+                    collegeList.push(collegeName);
+                })
+                sessionStorage.removeItem("collegeNames");
+                sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
+                this.setState({ status: true });
+            })
+        }
     }
-    componentWillMount(){
-        if (sessionStorage.getItem("collegeNames") !==  null){
+    componentWillMount() {
+        if (sessionStorage.getItem("collegeNames") !== null) {
             JSON.parse(sessionStorage.getItem("collegeNames")).map(college => {
                 if (college.college_name === this.props.collegeName) {
-                    if(this.state.status !== true){
-                        this.setState({status: true})
+                    if (this.state.status !== true) {
+                        this.setState({ status: true })
                     }
-                }else{
-                    if(this.state.status !== false){
-                        this.setState({status: false})
+                } else {
+                    if (this.state.status !== false) {
+                        this.setState({ status: false })
                     }
                 }
             });
@@ -78,7 +92,7 @@ class Heart extends React.Component {
     render() {
         if (this.state.status === true) {
             return (
-                <div className="redheart" onClick={this.handleClick}/>
+                <div className="redheart" onClick={this.handleClick} />
             )
         } else {
             return (

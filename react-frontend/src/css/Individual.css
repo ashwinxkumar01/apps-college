@@ -252,7 +252,7 @@
     -webkit-transform: scale(0.7);
     -ms-transform: scale(0.7);
     transform: scale(0.7);
-    top: calc(2.75vw);
+    top: calc(1vw);
 }
 
 .individual-container {
