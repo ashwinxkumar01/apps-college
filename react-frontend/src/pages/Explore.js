@@ -549,7 +549,7 @@ class Explore extends React.Component {
             RankingLower: '',
             RankingUpper: '',
             Ordering: "Low to High",
-            TuitionState: [],
+            TuitionState: {value: "reset", label: 'reset'},
             StateFilter: [],
             CheckedState: false,
             Loading: true
@@ -651,9 +651,29 @@ class Explore extends React.Component {
             this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
 
             this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");
-        } else {
+        } else if (this.state.TuitionState.value === "reset") {
+            this.setState({TuitionState: []});
+            console.log("reset")
+            this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
+
+            this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");
+
+            this.pushToArray(this.state.TuitionLower, "tuition_normal", array, "+", "normallower");
+
+            this.pushToArray(this.state.TuitionUpper, "tuition_normal", array, "-", "normalupper");
+        } else if (this.state.TuitionLower !== '' && this.state.TuitionUpper !== '' && this.state.TuitionLower !== null && this.state.TuitionUpper !== null) {
+            console.log(this.state.TuitionLower)
+            console.log(this.state.TuitionUpper)
             this.setState({TuitionState: TuitionState[0]});
-            console.log("both")
+            console.log(TuitionState[0])
+            this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
+
+            this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");
+
+            this.pushToArray(this.state.TuitionLower, "tuition_normal", array, "+", "normallower");
+
+            this.pushToArray(this.state.TuitionUpper, "tuition_normal", array, "-", "normalupper");
+        } else {
             this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
 
             this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");

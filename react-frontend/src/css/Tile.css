@@ -86,8 +86,8 @@
 
 .favorite-icon{
     width: calc(9.5%);
-    padding-top: calc(9.5rem);
-    padding-right: calc(7.7rem);
+    padding-top: calc(12.5rem);
+    padding-right: calc(10.5rem);
     justify-content: right;
     position: absolute;
     right: 0;
