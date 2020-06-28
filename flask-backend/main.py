@@ -572,14 +572,13 @@ def listColleges():
     print(json_lst)
     return json_lst
 
-
 def getEmail():
     print(isLoggedIn())
     if (isLoggedIn()):
         info = db.child("users").child(dictio['currentUser'][:-6]).get().val()
         return info["username"]
 
-
+@app.route("/passwordreset", methods = ['POST'])
 def sendPasswordReset():
     if (isLoggedIn()):
         email = getEmail()
