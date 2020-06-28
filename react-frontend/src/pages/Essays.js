@@ -27,7 +27,6 @@ class Essays extends Component {
         this.renderUC = this.renderUC.bind(this);
         this.renderCommon = this.renderCommon.bind(this);
         this.requiresOnlyCoalition = this.requiresOnlyCoalition.bind(this);
-        this.requiresCommonApp = this.requiresOnlyCommon.bind(this);
         this.renderPopup = this.renderPopup.bind(this);
         this.calculateNumEssays = this.calculateNumEssays.bind(this);
         this.renderGeneralHeader = this.renderGeneralHeader.bind(this);
@@ -63,7 +62,7 @@ class Essays extends Component {
     }
 
     requiresCommonApp() {
-        var requires = this.state.selectedColleges.some(college => college.common_app === "y" || college.app_site === "UC Application");
+        var requires = this.state.selectedColleges.some(college => college.common_app === "y");
         console.log("common app: " + requires);
         return requires;
     }
@@ -238,7 +237,8 @@ class Essays extends Component {
     }
 
     renderCommon = () => {
-        var common = this.requiresCommonApp() && !this.requiresOnlyUC();
+        var common = this.requiresCommonApp();
+        console.log("requires common: " + common);
         if (common) {
             return (
                 <div>
@@ -261,7 +261,7 @@ class Essays extends Component {
     }
 
     renderCoalition = () => {
-        var coalition = this.requiresCoalitionApp() && !this.requiresOnlyUC();
+        var coalition = this.requiresCoalitionApp();
 
         if (coalition) {
             return (
@@ -284,19 +284,13 @@ class Essays extends Component {
 
     renderFirstHeader = () => {
         return (
-            <div>
-                <div className="titleheader">
-                    <div className="title">
-                        <br />
-                        <h1>Your Essay Summary</h1>
-                    </div>
-                    <div className="popup">
-                        {this.renderPopup()}
-                    </div>
-                </div>
-
+            <div className="titleheader">
                 <div className="required">
+                    <br />
                     <h3 className="required-text">You have <b>{this.state.numEssays}</b> required prompt(s).</h3>
+                </div>
+                <div className="popup">
+                    {this.renderPopup()}
                 </div>
             </div>
 
@@ -306,11 +300,9 @@ class Essays extends Component {
     renderGeneralHeader = () => {
         if (this.calculateNumEssays() != 0) {
             return (
-                <div>
                     <div className="subtitle">
                         <h2>General Essays</h2>
                     </div>
-                </div>
             )
         }
     }
@@ -380,11 +372,15 @@ class Essays extends Component {
                 <div>
                  {this.renderFirstHeader()}
                  {this.renderGeneralHeader()}
-                 {this.renderUC()}
-                 {this.renderCommon()}
-                 {this.renderCoalition()}
-                 {this.renderSupplementalHeader()}
-                 {this.renderSupplementals()}
+                 <div className="section">
+                    {this.renderUC()}
+                    {this.renderCommon()}
+                    {this.renderCoalition()}
+                 </div>
+                 <div classname="section">
+                    {this.renderSupplementalHeader()}
+                    {this.renderSupplementals()}
+                 </div>
                </div>
             )
 

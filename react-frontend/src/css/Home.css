@@ -76,7 +76,6 @@
   width: calc(33.333333%);
   /* font-family: 'Montserrat', sans-serif; */
   font-family: 'Oswald', sans-serif;
-
 }
 
 .icon-border {
@@ -90,11 +89,11 @@
 
 .icon-border div {
   background-color: rgb(11, 147, 192);
-  width: calc(22%);
-  border-radius: calc(50%);
+  width: auto;
+  border-radius: calc(60%);
   display: flex;
   justify-content: center;
-  padding: calc(0.5rem);
+  padding: calc(1rem);
   box-shadow: calc(3px) calc(3px) calc(10px) grey; 
 }
 
