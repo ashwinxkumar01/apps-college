@@ -287,7 +287,7 @@ class Essays extends Component {
             <div className="titleheader">
                 <div className="required">
                     <br />
-                    <h3 className="required-text">You have <b>{this.state.numEssays}</b> required prompt(s).</h3>
+                    <h3 className="required-text">You have <b>{this.calculateNumEssays(this.state.collegeList)}</b> required prompt(s).</h3>
                 </div>
                 <div className="popup">
                     {this.renderPopup()}
