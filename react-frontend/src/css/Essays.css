@@ -58,11 +58,13 @@ h3.required-text{
     padding-left: calc(6vw);
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: normal;
+    padding-right: calc(20vw);
 }
 
 .supplementaltext{
     padding-top: calc(0.225vh);
     padding-left: calc(6vw);
+    padding-right: calc(20vw);
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: normal;
 }
