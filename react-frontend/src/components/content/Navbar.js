@@ -16,6 +16,7 @@ class NavBar extends React.Component {
       collegelist: [],
     }
     this.handleClick = this.handleClick.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   // addColleges(){
@@ -66,6 +67,16 @@ class NavBar extends React.Component {
       }
     })
   }
+
+  handleReset = () => {
+    fetch("/passwordreset", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  }
+
   render() {
     return (
       <div>
@@ -104,8 +115,7 @@ class NavBar extends React.Component {
                   <NavDropdown.Item onClick={this.handleClick} href="/">Logout</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                  <NavDropdown.Item href="/profile">Reset Password</NavDropdown.Item>
-                  <NavDropdown.Item href="/profile">Delete Account</NavDropdown.Item>
+                  <NavDropdown.Item onClick={this.handleReset}>Reset Password</NavDropdown.Item>
 
                 </NavDropdown>
               </Nav.Item>
