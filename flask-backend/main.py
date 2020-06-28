@@ -580,14 +580,14 @@ def getEmail():
 
 @app.route("/passwordreset", methods = ['POST'])
 def sendPasswordReset():
-    successful = True
+    successful = json.dumps({"True": 2})
     try:
         if (isLoggedIn()):
             email = getEmail()
             print("Email " + email)
             auth.send_password_reset_email(email)
     except:
-        successful = False
+        successful = json.dumps({"True": 1})
     return successful
 
 #testing method
