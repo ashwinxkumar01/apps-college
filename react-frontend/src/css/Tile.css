@@ -86,12 +86,10 @@
 
 .favorite-icon{
     width: calc(9.5%);
-    padding-top: calc(12.5rem);
-    padding-right: calc(10.5rem);
     justify-content: right;
     position: absolute;
-    top: calc(-1.2vh);
-    right: 0;
+    top: calc(0.5vh);
+    right: calc(1vw);
     height: 0;
     -webkit-transform: scale(0.6);
     -ms-transform: scale(0.6);
@@ -145,8 +143,8 @@
         width: calc(9.5%);
         justify-content: right;
         position: absolute;
-        right: calc(-2.3vw);
-        top: calc(-1.9vh);
+        right: calc(3.5vw);
+        top: calc(0.5vh);
         height: 0;
         -webkit-transform: scale(0.5);
         -ms-transform: scale(0.5);

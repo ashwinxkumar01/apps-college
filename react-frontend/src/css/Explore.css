@@ -387,7 +387,7 @@ select {
         z-index: 10;
     }
 
-    .button, .filter-clear button {
+    .button {
         font-size: calc(3.5vw);
     }
 
@@ -397,6 +397,7 @@ select {
 
     .filter-clear button {
         margin-top: calc(0.5vh);
+        font-size: calc(3vw);
     }
 
     .float-display {
