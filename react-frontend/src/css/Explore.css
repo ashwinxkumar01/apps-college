@@ -148,7 +148,7 @@ span {
     border-left: none;
     height: calc(2.5rem);
     width: calc(5.5rem);
-    font-size: calc(1.5rem);
+    font-size: calc(1.3rem);
     font-family: 'Noto Sans JP', sans-serif;
     background-color: rgb(209, 202, 202);
     transition: 0.3s;

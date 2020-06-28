@@ -114,7 +114,7 @@ class NavBar extends React.Component {
         >
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Navbar.Brand>College Search</Navbar.Brand>
+            <Navbar.Brand>Application Hub</Navbar.Brand>
             <Nav className="mr-auto" defaultActiveKey={this.props.active}>
               <Nav.Item className="dashboard">
                 <Nav.Link eventKey="1" href="/loginhome/dashboard">

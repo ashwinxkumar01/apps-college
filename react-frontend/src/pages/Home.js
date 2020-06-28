@@ -80,7 +80,7 @@ function Home() {
                         <Row>
                             <Col xs={6} md={4}>
                                 <div style={{display: 'flex', justifyContent: 'center'}}>
-                                    <h1 className="header-feature">SEARCH</h1>
+                                    <h1 className="header-feature">ESSAYS</h1>
                                 </div>
                             </Col>
                             <Col xs={6} md={4}>
@@ -103,8 +103,7 @@ function Home() {
                                     <div className="icon-border">
                                         <div><FontAwesomeIcon icon={faSearch} /></div>
                                     </div>
-                                    <p>Search for any college you're thinking about with one powerful search bar. 
-                                        No more endless navigation.</p>
+                                    <p>bossman needs to fill this out for me</p>
                                 </div>
                             </Col>
                             <Col xs={6} md={4}>

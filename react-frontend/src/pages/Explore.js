@@ -487,7 +487,7 @@ class Explore extends React.Component {
                 <hr></hr>
 
                 <div className="filter-button-div">
-                    <button onClick={this.handleClick} className="filter-button">Apply</button>
+                    <button onClick={this.handleClick} className="filter-button">APPLY</button>
                 </div>
             </div>
         )
