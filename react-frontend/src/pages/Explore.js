@@ -570,7 +570,7 @@ class Explore extends React.Component {
         var myDate = new Date(input * 1000);
         return ((myDate.getUTCMonth() + 1) + "/" + myDate.getUTCDate() + "/" + myDate.getUTCFullYear());
       }
-    }
+    
 
     pushToArray(state, string, array, sign, storage) {
         if (state === null || state === '') {
