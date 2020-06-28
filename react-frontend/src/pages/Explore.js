@@ -652,7 +652,6 @@ class Explore extends React.Component {
 
             this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");
         } else {
-            this.setState({TuitionState: TuitionState[0]});
             console.log("both")
             this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
 

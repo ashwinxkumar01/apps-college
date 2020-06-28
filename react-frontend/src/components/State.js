@@ -75,7 +75,7 @@ const Sortby = [
 ]
 
 const TuitionState = [
-    {value: "both", label: 'In State and Out of State'},
+    {value: "both", label: 'In State or Out of State'},
     {value: "tuition_normal", label: 'In State Tuition'},
     {value: "tuition_oos", label: 'Out of State Tuition'},
 ]
