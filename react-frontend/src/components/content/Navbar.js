@@ -14,9 +14,11 @@ class NavBar extends React.Component {
     super(props);
     this.state = {
       collegelist: [],
+      Reset: false
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleReset = this.handleReset.bind(this);
+    this.handleDisplay = this.handleDisplay.bind(this);
   }
 
   // addColleges(){
@@ -69,12 +71,26 @@ class NavBar extends React.Component {
   }
 
   handleReset = () => {
+    this.setState({ Reset: false});
     fetch("/passwordreset", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       }
+    }).then(response => {
+      return response.json();
+    }).then(data => {
+      const isSuccess = data["True"];
+      if(isSuccess === 2) {
+        this.setState({ Reset: true});
+      }
     })
+  }
+
+  handleDisplay() {
+    return (
+      <div className="success-popup">HELLO BUDDY</div>
+    )
   }
 
   render() {
@@ -125,6 +141,8 @@ class NavBar extends React.Component {
         <div className="navbar-search">
           <SearchBar list={this.state.collegelist} searchBarInUse={this.props.searchBarInUse}/>
         </div>
+
+        {this.state.Reset ? this.handleDisplay() : null}
       </div>
     );
   }
