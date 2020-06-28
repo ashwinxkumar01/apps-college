@@ -41,6 +41,9 @@ const useStyles = makeStyles(theme => ({
   },
   actions: {
     justifyContent: 'flex-end'
+  },
+  info: {
+    fontFamily: 'Noto Sans JP'
   }
 }));
 
@@ -172,11 +175,11 @@ const UsersTable = props => {
                       </div>
                       </Link>
                     </TableCell>
-                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.state}</Link></TableCell>
-                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{dateFormat(user.regular_decision)}</Link></TableCell>
-                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{dateFormat(user.early_decision)}</Link></TableCell>
-                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{numFormat(user.tuition_normal)}</Link></TableCell>
-                    <TableCell><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{numFormat(user.tuition_oos)}</Link> </TableCell>
+                    <TableCell className="info"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{user.state}</Link></TableCell>
+                    <TableCell className="info"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{dateFormat(user.regular_decision)}</Link></TableCell>
+                    <TableCell className="info"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{dateFormat(user.early_decision)}</Link></TableCell>
+                    <TableCell className="info"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{numFormat(user.tuition_normal)}</Link></TableCell>
+                    <TableCell className="info"><Link style={{ textDecoration: 'none', color: 'black' }} to={`/loginhome/page/${user.college_name}`}>{numFormat(user.tuition_oos)}</Link> </TableCell>
                   </TableRow>
 
                 ))}
