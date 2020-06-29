@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Navigationbar from '../components/content/Navigationbar';
-import { Nav } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 import NavBar from '../components/content/Navbar';
 import Image3 from './UCSD_3.jpg';
 
@@ -31,6 +31,7 @@ class Dashboard extends React.Component {
       users: [],
       rerender: false,
       selectedColleges: [],
+      Loading: true
     };
     this.setSearch = this.setSearch.bind(this);
     this.removeColleges = this.removeColleges.bind(this);
@@ -54,7 +55,10 @@ class Dashboard extends React.Component {
     }).then(response => {
       return response.json();
     }).then(data => {
-      this.setState({ rerender: false, selectedColleges: [] })
+      this.setState({ 
+        rerender: false,
+        selectedColleges: [],
+        Loading: false });
     })
   }
 
@@ -101,7 +105,10 @@ class Dashboard extends React.Component {
       sessionStorage.setItem("collegeNames", JSON.stringify(collegeList));
       if (this.state.rerender) {
       } else {
-        this.setState({ users: collegeList, rerender: true });
+        this.setState({ 
+          users: collegeList,
+          rerender: true,
+          Loading: false });
       }
     });
 
@@ -114,6 +121,21 @@ class Dashboard extends React.Component {
       } else {
         this.pullColleges();
       }
+
+      if (this.state.Loading) {
+        return (
+          <div className={useStyles.root}>
+            <UsersToolbar selectedColleges={this.state.selectedColleges} removeColleges={this.removeColleges}/>
+            <div className="spinner-center">
+                <div className="spinner-div">
+                    <Spinner animation="border" variant="secondary" role="status" className="load-spinner">
+                        <span className="sr-only">Loading...</span>
+                    </Spinner>
+                </div>
+            </div>
+          </div>
+        )
+      } 
       return (
         <div className={useStyles.root}>
           <UsersToolbar selectedColleges={this.state.selectedColleges} removeColleges={this.removeColleges}/>

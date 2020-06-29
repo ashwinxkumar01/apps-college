@@ -72,25 +72,12 @@ export default function SignInSide() {
     return (<Redirect to='/loginhome/dashboard' />)
   }
 
-  function resetPassword(e) {
+  function showModal(e) {
     e.preventDefault();
-    fetch("/passwordreset", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(response => {
-      return response.json();
-    }).then(data => {
-      const isSuccess = data["True"];
-      if (isSuccess === 2) {
-        setShow({ Show: true });
-      }
-    })
+    setShow({ Show: true });
   }
 
-  function resetSubmit(e) {
-    e.preventDefault();
+  function resetSubmit() {
     fetch("/reset", {
       method: "POST",
       headers: {
@@ -168,6 +155,7 @@ export default function SignInSide() {
                 setUsername(newUsername);
               }}
               onKeyPress={e => {
+                setShow({ Show: false });
                 if (e.key === 'Enter') {
                   fetch("/login", {
                     method: "POST",
@@ -209,6 +197,7 @@ export default function SignInSide() {
               id="password"
               autoComplete="current-password"
               onKeyPress={e => {
+                setShow({ Show: false });
                 if (e.key === 'Enter') {
                   fetch("/login", {
                     method: "POST",
@@ -227,6 +216,7 @@ export default function SignInSide() {
                     if (data["True"] === 1) {
                       const newError = {error: true};
                       setError(newError);
+                      console.log(show.Show);
                     } else {
                       sessionStorage.setItem("userData", username.username);
                       window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
@@ -253,7 +243,8 @@ export default function SignInSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={e => {
+              onClick={() => {
+                setShow({ Show: false });
                 fetch("/login", {
                   method: "POST",
                   headers: {
@@ -281,7 +272,7 @@ export default function SignInSide() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link onClick={resetPassword} component="button" variant="body2">
+                <Link onClick={showModal} component="button" type="button" variant="body2">
                   {"Forgot password?"}
                 </Link>
               </Grid>

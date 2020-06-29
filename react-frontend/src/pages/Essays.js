@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from '../components/content/Navbar';
 import '../css/Essays.css';
-import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
+import { Popover, OverlayTrigger, Button, Spinner } from 'react-bootstrap';
 import { Common, Coalition } from '../components/Popovers';
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,6 +15,7 @@ class Essays extends Component {
             selectedColleges: [],
             numEssays: 0,
             rerender: false,
+            Loading: true
         };
         this.searchBarInUse = this.searchBarInUse.bind(this);
         this.setSearch = this.setSearch.bind(this);
@@ -112,14 +113,14 @@ class Essays extends Component {
         if (onlyCommon && this.requiresCoalitionApp() && !this.requiresOnlyUC()) {
             return (
                 <OverlayTrigger trigger="click" placement="right" overlay={Common} rootClose>
-                    <FontAwesomeIcon icon={faExclamation} style={{ opacity: '60%', marginTop: 'calc(4.4vh)' }} />
+                    <div className="icon-background"><FontAwesomeIcon icon={faExclamation} style={{ opacity: '100%' }} /></div>
                 </OverlayTrigger>
             )
         }
         else if (onlyCoalition && this.requiresCommonApp() && !this.requiresOnlyUC()) {
             return (
                 <OverlayTrigger trigger="click" placement="right" overlay={Coalition} rootClose>
-                    <FontAwesomeIcon icon={faExclamation} style={{ opacity: '60%', marginTop: 'calc(4.4vh)' }} />
+                   <div className="icon-background"><FontAwesomeIcon icon={faExclamation} style={{ opacity: '100%' }} /></div>
                 </OverlayTrigger>
             )
         } 
@@ -187,7 +188,11 @@ class Essays extends Component {
                 collegeList.push(collegeName);
             })
             console.log(collegeList);
-            this.setState({ selectedColleges: collegeList, numEssays: this.calculateNumEssays(), rerender: true });
+            this.setState({ 
+                selectedColleges: collegeList, 
+                numEssays: this.calculateNumEssays(), 
+                rerender: true,
+                Loading: false });
             console.log(this.state.selectedColleges);
         });
     }
@@ -208,7 +213,11 @@ class Essays extends Component {
                 collegeList.push(collegeName);
             })
             console.log(collegeList);
-            this.setState({ selectedColleges: collegeList, numEssays: this.calculateNumEssays(), rerender: true });
+            this.setState({ 
+                selectedColleges: collegeList, 
+                numEssays: this.calculateNumEssays(), 
+                rerender: true,
+                Loading: false });
             console.log(this.state.selectedColleges);
         });
     }
@@ -283,29 +292,31 @@ class Essays extends Component {
     }
 
     renderFirstHeader = () => {
+        console.log(this.state.selectedColleges)
         if(this.state.selectedColleges.length === 0) {
             return(
-                <div className="titleheader">
-                <div className="required">
+            <div className="empty-div">
+                <div className="redirect-div">
                     <br />
-                    <h3 className="required-text">You currently have no colleges selected, check out the Explore tab to add some!</h3>
+                    <h3 className="explore-redirect">You currently have no colleges selected, check out the Explore tab to add some!</h3>
                 </div>
             </div>
 
             )
+        } else {
+            return (
+                <div className="titleheader">
+                    <div className="required">
+                        <br />
+                        <h3 className="required-text">You have <b>{this.calculateNumEssays(this.state.selectedColleges)}</b> required prompt(s).</h3>
+                    </div>
+                    <div className="popup">
+                        {this.renderPopup()}
+                    </div>
+                </div>
+    
+            )
         }
-        return (
-            <div className="titleheader">
-                <div className="required">
-                    <br />
-                    <h3 className="required-text">You have <b>{this.calculateNumEssays(this.state.selectedColleges)}</b> required prompt(s).</h3>
-                </div>
-                <div className="popup">
-                    {this.renderPopup()}
-                </div>
-            </div>
-
-        )
     }
 
     renderGeneralHeader = () => {
@@ -379,6 +390,19 @@ class Essays extends Component {
         if (this.state.searchBar === false) {
             if(!this.state.rerender){
                 this.updateColleges();
+            }
+            
+            if (this.state.Loading) {
+                return (
+                    <div className="spinner-center">
+                        <div className="spinner-div">
+                            <Spinner animation="border" variant="secondary" role="status" className="load-spinner">
+                                <span className="sr-only">Loading...</span>
+                            </Spinner>
+                        </div>
+                    </div>
+    
+                )
             }
             return(
                 <div>
