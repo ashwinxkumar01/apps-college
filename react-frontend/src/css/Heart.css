@@ -37,7 +37,7 @@
   .redheart:hover,
   .redheart:hover:before,
   .redheart:hover:after {
-    background-color: #bd4646;
+    background-color: #8da9d9;
     transition-duration: .3s;
     cursor: pointer;
   }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Redirect} from 'react-router';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -63,6 +64,11 @@ export default function SignInSide() {
   const [password, setPassword] = useState({ password: '' });
   const [cpassword, setcPassword] = useState({ cpassword: '' });
   const [display, setDisplay] = useState({ display: '' });
+  
+  if(sessionStorage.getItem("userData")){
+      return(<Redirect to='/loginhome/dashboard' />)
+  }
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -278,7 +284,7 @@ export default function SignInSide() {
               </Grid>
               <Grid item>
                 <Link href="/loginhome/login" variant="body2">
-                  {"Already have an account? Sign In"}
+                  {"Already have an account? Log In"}
                 </Link>
               </Grid>
             </Grid>
