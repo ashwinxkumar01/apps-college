@@ -287,7 +287,22 @@ select {
 
 .icon-results {
     transform: scale(4);
-    color: rgb(37, 146, 70);
+    color: rgb(240, 31, 16);
+}
+
+.no-results {
+    font-family: 'Noto Sans JP', sans-serif; 
+    font-size: calc(1.7vw);
+}
+
+.error-message h1 {
+    color: red;
+    font-size: calc(1.2vw);
+    font-family: 'Noto Sans JP', sans-serif; 
+}
+
+.error-message {
+    margin-top: calc(-2.1vh);
 }
 
 .results-div h1 {

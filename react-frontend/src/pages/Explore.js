@@ -38,7 +38,8 @@ class Explore extends React.Component {
             StateFilter: [],
             CheckedState: false,
             Loading: true,
-            Open: false
+            Open: false,
+            Error: false
         };
         this.setSearch = this.setSearch.bind(this);
         this.searchBarInUse = this.searchBarInUse.bind(this);
@@ -297,7 +298,8 @@ class Explore extends React.Component {
             return (
                 <div className="results-div">
                     <div className="icon-results"><FontAwesomeIcon icon={faSadTear} /></div>
-                    <h1>No results found...</h1>
+                    <h1 className="no-results">No results found...</h1>
+                    {true && <div className="error-message"><h1>Error: Make sure inputs are valid numbers</h1></div>}
                 </div>
             )
         }
@@ -579,8 +581,10 @@ class Explore extends React.Component {
         } else if (/^\d+$/.test(state)) {
             array.push(string);
             array.push(sign + state);
+            this.setState({Error: false});
             sessionStorage.setItem(storage, state);
         } else {
+            this.setState({Error: true});
             array.push(string);
             array.push("--1000");
         }
@@ -590,18 +594,19 @@ class Explore extends React.Component {
         if (state === null || state === '') {
             //Nothing happens
             sessionStorage.setItem(storage, '');
-        } else if (/\d*\.?\d?/g.test(state)) {
-            console.log(state.split("."));
-            console.log(state.split(".").length);
+        } else if (/^-?\d+\.?\d*$/.test(state)) {
             if(state.split(".").length > 2) {
                 array.push(string);
                 array.push("--1000");
+                this.setState({Error: true});
                 return;
             }
             array.push(string);
             array.push(sign + state);
+            this.setState({Error: false});
             sessionStorage.setItem(storage, state);
         } else {
+            this.setState({Error: true});
             array.push(string);
             array.push("--1000");
         }
