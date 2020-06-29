@@ -38,7 +38,8 @@ class Explore extends React.Component {
             StateFilter: [],
             CheckedState: false,
             Loading: true,
-            Open: false
+            Open: false,
+            Error: false
         };
         this.setSearch = this.setSearch.bind(this);
         this.searchBarInUse = this.searchBarInUse.bind(this);
@@ -297,7 +298,8 @@ class Explore extends React.Component {
             return (
                 <div className="results-div">
                     <div className="icon-results"><FontAwesomeIcon icon={faSadTear} /></div>
-                    <h1>No results found...</h1>
+                    <h1 className="no-results">No results found...</h1>
+                    {true && <div className="error-message"><h1>Error: Make sure inputs are valid numbers</h1></div>}
                 </div>
             )
         }
@@ -579,9 +581,11 @@ class Explore extends React.Component {
         } else if (/^\d+$/.test(state)) {
             array.push(string);
             array.push(sign + state);
+            this.setState({Error: false});
             sessionStorage.setItem(storage, state);
         } else {
             array.push(string);
+            this.setState({Error: true});
             array.push("--1000");
         }
     }
@@ -591,19 +595,20 @@ class Explore extends React.Component {
             //Nothing happens
             sessionStorage.setItem(storage, '');
         } else if (/\d*\.?\d?/g.test(state)) {
-            console.log(state.split("."));
-            console.log(state.split(".").length);
             if(state.split(".").length > 2) {
                 array.push(string);
+                this.setState({Error: true});
                 array.push("--1000");
                 return;
             }
+            this.setState({Error: false});
             array.push(string);
             array.push(sign + state);
             sessionStorage.setItem(storage, state);
         } else {
             array.push(string);
             array.push("--1000");
+            this.setState({Error: true});
         }
     }
 
@@ -645,18 +650,16 @@ class Explore extends React.Component {
         this.pushToArray(this.state.PopulationUpper, "population", array, "-", "populationupper");
 
         if (this.state.TuitionState.value === "tuition_normal") {
-            console.log("in state")
             this.pushToArray(this.state.TuitionLower, "tuition_normal", array, "+", "normallower");
 
             this.pushToArray(this.state.TuitionUpper, "tuition_normal", array, "-", "normalupper");
         } else if (this.state.TuitionState.value === "tuition_oos") {
-            console.log("oos");
             this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
 
             this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");
         } else if (this.state.TuitionState.value === "reset") {
             this.setState({TuitionState: []});
-            console.log("reset")
+
             this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
 
             this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");
@@ -665,10 +668,8 @@ class Explore extends React.Component {
 
             this.pushToArray(this.state.TuitionUpper, "tuition_normal", array, "-", "normalupper");
         } else if (this.state.TuitionLower !== '' && this.state.TuitionUpper !== '' && this.state.TuitionLower !== null && this.state.TuitionUpper !== null) {
-            console.log(this.state.TuitionLower)
-            console.log(this.state.TuitionUpper)
             this.setState({TuitionState: TuitionState[0]});
-            console.log(TuitionState[0])
+
             this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
 
             this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");
