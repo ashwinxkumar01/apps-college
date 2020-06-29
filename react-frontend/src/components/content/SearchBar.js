@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Form } from "react-bootstrap";
 import '../../App.css';
+import {Redirect} from 'react-router';
 import '../../css/SearchBar.css';
 import { Link } from 'react-router-dom';
 import Heart from './Heart';
@@ -155,7 +156,12 @@ class SearchBar extends React.Component {
                             var college = collegeArray[0];
                             return (
                                 <div className="individual">
-                                    <Link to={`/loginhome/page/${college}`}>
+                                    <Link to={`/loginhome/page/${college}`} >
+                                    {/* <div onClick={e => {
+                                        return (
+                                            <Redirect to={`/loginhome/page/${college}`} />
+                                        )
+                                    }}> */}
                                         <div>
                                             <div className="circle">
                                             </div>
