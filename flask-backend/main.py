@@ -71,6 +71,8 @@ def get_colleges(query_lst):
             if query_lst[i] in numbers:
                 if tuition_absolute and not last_tuition and "tuition" in query_lst[i]:
                     query += "("
+                    if i-2 >= 0 and "tuition" not in query_lst[i-2]:
+                        query += "("
                 elif "tuition" in query_lst[i]:
                     last_tuition = True
                 if query_lst[i + 1][0] == "+":
@@ -79,6 +81,8 @@ def get_colleges(query_lst):
                     query += " " + str(query_lst[i]) + " <= " + str(query_lst[i + 1][1:])
                 if tuition_absolute and last_tuition and "tuition" in query_lst[i]:
                     query += ")"
+                    if "tuition" in query_lst[i] and (i+2 > len(query_lst)-1 or "tuition" not in query_lst[i+2]):
+                        query += ")"
                     if i+2 < len(query_lst) and "tuition" in query_lst[i+2]:
                         last_tuition = False
                 elif "tuition" in query_lst[i]:
@@ -218,7 +222,7 @@ def get_college_names():
 
 
 #QUERY TESTING
-lst = get_colleges(["app_fee","+20","app_fee","-100","national_ranking","+1","national_ranking","-20","tuition_oos","+10","tuition_oos","-50","tuition_normal","+10","tuition_normal","-50"])
+#lst = get_colleges(["national_ranking","+1","national_ranking","-20","tuition_oos","+10000","tuition_oos","-15000","tuition_normal","+10000","tuition_normal","-15000"])
 
 
 #TUITION TESTING

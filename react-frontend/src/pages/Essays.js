@@ -283,6 +283,17 @@ class Essays extends Component {
     }
 
     renderFirstHeader = () => {
+        if(this.state.collegeList.length === 0) {
+            return(
+                <div className="titleheader">
+                <div className="required">
+                    <br />
+                    <h3 className="required-text">You currently have no colleges selected, check out the Explore tab to add some!</h3>
+                </div>
+            </div>
+
+            )
+        }
         return (
             <div className="titleheader">
                 <div className="required">
