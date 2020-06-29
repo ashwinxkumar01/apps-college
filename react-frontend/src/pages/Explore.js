@@ -162,7 +162,7 @@ class Explore extends React.Component {
 
         const tuitionState = sessionStorage.getItem("tuitionstate");
         if (tuitionState !== null) {
-            if(tuitionState.length === 0 || tuitionState === ',') {
+            if(tuitionState.length === 0 || tuitionState === ',' || tuitionState === 'reset,reset') {
                 this.setState({ TuitionState: []});
             } else {
                 const index = this.splitToArray(tuitionState, TuitionState);
@@ -286,10 +286,10 @@ class Explore extends React.Component {
                                 </li>
                             )
                         })}
-                        <Tile  Alias={"ashwin"} Tuition={10000} TuitionOOS={10000}
+                        {/* <Tile  Alias={"ashwin"} Tuition={10000} TuitionOOS={10000}
                                         Acceptance={20} Fee={30} collegeName={"hello"}
                                         Logo={Image3} Type={200} Population={10000}
-                                        Ranking={100} />
+                                        Ranking={100} /> */}
                     </ul>
                 )
             }
@@ -326,7 +326,7 @@ class Explore extends React.Component {
                 <hr></hr>
 
                 <div className="tuition">
-                    <div className="header">Acceptance</div>
+                    <div className="header">Accpt. Rate</div>
                     <form className="filter-form">
                         <input onChange={(e) => this.setState({ AcceptanceLower: e.target.value })} type="text" placeholder="Lower" size="100"
                             value={this.state.AcceptanceLower} onKeyDown={this.enterKey}
@@ -344,7 +344,7 @@ class Explore extends React.Component {
                 <hr></hr>
 
                 <div className="tuition">
-                    <div className="header">App fee</div>
+                    <div className="header">App. Fee</div>
                     <form className="filter-form">
                         <input onChange={(e) => this.setState({ AppFeeLower: e.target.value })} type="text" placeholder="Lower" size="100"
                             value={this.state.AppFeeLower} onKeyDown={this.enterKey}
@@ -423,7 +423,7 @@ class Explore extends React.Component {
                             this.handleClick();
                         }
                         )}} 
-                        options={App} placeholder={"Application type"} value={this.state.App}
+                        options={App} placeholder={"Application Type"} value={this.state.App}
                     />
                     </div>
                     <OverlayTrigger trigger="click" placement="right" overlay={AppType} rootClose>

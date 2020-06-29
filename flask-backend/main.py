@@ -648,7 +648,7 @@ def dashboard():
 @app.route('/email', methods = ['POST'])
 def sendEmail():
     port = 465  # For SSL
-    password = os.environ.get("DB_PASSWD")
+    password = os.environ.get("PASSWD")
     
     post_request = request.get_json(force=True)
     

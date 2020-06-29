@@ -3,7 +3,7 @@ import NavBar from '../components/content/Navbar';
 import '../css/Essays.css';
 import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
 import { Common, Coalition } from '../components/Popovers';
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Essays extends Component {
@@ -112,17 +112,17 @@ class Essays extends Component {
         if (onlyCommon && this.requiresCoalitionApp() && !this.requiresOnlyUC()) {
             return (
                 <OverlayTrigger trigger="click" placement="right" overlay={Common} rootClose>
-                    <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></Button>
+                    <FontAwesomeIcon icon={faExclamation} style={{ opacity: '60%', marginTop: 'calc(4.4vh)' }} />
                 </OverlayTrigger>
             )
         }
         else if (onlyCoalition && this.requiresCommonApp() && !this.requiresOnlyUC()) {
             return (
                 <OverlayTrigger trigger="click" placement="right" overlay={Coalition} rootClose>
-                    <Button variant="success"><FontAwesomeIcon icon={faInfoCircle} style={{ opacity: '60%' }} /></Button>
+                    <FontAwesomeIcon icon={faExclamation} style={{ opacity: '60%', marginTop: 'calc(4.4vh)' }} />
                 </OverlayTrigger>
             )
-        }
+        } 
     }
 
     calculateNumEssays() {
