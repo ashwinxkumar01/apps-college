@@ -112,14 +112,14 @@ class Essays extends Component {
         if (onlyCommon && this.requiresCoalitionApp() && !this.requiresOnlyUC()) {
             return (
                 <OverlayTrigger trigger="click" placement="right" overlay={Common} rootClose>
-                    <FontAwesomeIcon icon={faExclamation} style={{ opacity: '60%', marginTop: 'calc(4.4vh)' }} />
+                    <div className="icon-background"><FontAwesomeIcon icon={faExclamation} style={{ opacity: '100%' }} /></div>
                 </OverlayTrigger>
             )
         }
         else if (onlyCoalition && this.requiresCommonApp() && !this.requiresOnlyUC()) {
             return (
                 <OverlayTrigger trigger="click" placement="right" overlay={Coalition} rootClose>
-                    <FontAwesomeIcon icon={faExclamation} style={{ opacity: '60%', marginTop: 'calc(4.4vh)' }} />
+                   <div className="icon-background"><FontAwesomeIcon icon={faExclamation} style={{ opacity: '100%' }} /></div>
                 </OverlayTrigger>
             )
         } 
@@ -283,29 +283,31 @@ class Essays extends Component {
     }
 
     renderFirstHeader = () => {
+        console.log(this.state.selectedColleges)
         if(this.state.selectedColleges.length === 0) {
             return(
-                <div className="titleheader">
-                <div className="required">
+            <div className="empty-div">
+                <div className="redirect-div">
                     <br />
-                    <h3 className="required-text">You currently have no colleges selected, check out the Explore tab to add some!</h3>
+                    <h3 className="explore-redirect">You currently have no colleges selected, check out the Explore tab to add some!</h3>
                 </div>
             </div>
 
             )
+        } else {
+            return (
+                <div className="titleheader">
+                    <div className="required">
+                        <br />
+                        <h3 className="required-text">You have <b>{this.calculateNumEssays(this.state.selectedColleges)}</b> required prompt(s).</h3>
+                    </div>
+                    <div className="popup">
+                        {this.renderPopup()}
+                    </div>
+                </div>
+    
+            )
         }
-        return (
-            <div className="titleheader">
-                <div className="required">
-                    <br />
-                    <h3 className="required-text">You have <b>{this.calculateNumEssays(this.state.selectedColleges)}</b> required prompt(s).</h3>
-                </div>
-                <div className="popup">
-                    {this.renderPopup()}
-                </div>
-            </div>
-
-        )
     }
 
     renderGeneralHeader = () => {

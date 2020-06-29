@@ -68,3 +68,38 @@ h3.required-text{
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: normal;
 }
+
+.icon-background {
+    background-color: #313b4c;
+    margin-top: calc(3.8vh);
+    width: calc(1.5vw);
+    height: calc(3vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    border-radius: calc(50%);
+}
+
+/* STYLING THE TEXT FOR WHEN THE USE HAS NO COLLEGES ADDED */
+
+.empty-div {
+    width: calc(100%);
+    display: flex;
+    justify-content: center;
+    height: calc(80vh);
+    font-family: 'Roboto', sans-serif;
+    color:black;
+}
+
+.redirect-div {
+    margin-top: calc(15%);
+    color: black;
+}
+
+.explore-redirect {
+    font-family: 'Roboto', sans-serif;
+    z-index: 10;
+    color: rgba(0, 0, 0, 0.534);
+}
