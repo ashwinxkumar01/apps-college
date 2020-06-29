@@ -19,7 +19,9 @@ class Individual extends Component {
             resultsFromSearch: [],
             college_name: "San Diego State University",
             college_json: [],
-            searchBar: false
+            searchBar: false,
+            rerender: false,
+            newCollege: false
         }
         this.searchBarInUse = this.searchBarInUse.bind(this);
         this.setSearch = this.setSearch.bind(this);
@@ -42,10 +44,35 @@ class Individual extends Component {
 
     searchBarInUse = (inUse) => {
         if (inUse !== this.state.searchBar) {
-            this.setState({ searchBar: inUse });
+          if (inUse) {
+            this.setState({ searchBar: inUse, rerender: true });
+          } else {
+            this.setState({ searchBar: inUse, rerender: false });
+          }
         }
-    }
+      }
 
+    componentWillUpdate(){
+        window.scrollTo(0, 0);
+        fetch("/individual", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: this.props.match.params.collegeName
+            })
+        }).then(response => {
+            console.log(response)
+            return response.json()
+        }).then(data => {
+            let value = JSON.parse(data);
+            if(!this.state.rerender){
+                this.setState({ college_json: value, rerender: true, searchBar: false })
+            }
+        });
+
+    }
 
     numFormat(num) {
         if (typeof num === 'number') {
@@ -150,7 +177,6 @@ class Individual extends Component {
 
 
     componentDidMount() {
-        console.log("individual mount");
         window.scrollTo(0, 0);
         fetch("/individual", {
             method: "POST",
@@ -165,8 +191,7 @@ class Individual extends Component {
             return response.json()
         }).then(data => {
             let value = JSON.parse(data);
-            this.setState({ college_json: value })
-            console.log(this.state.college_json)
+            this.setState({ college_json: value, rerender: true })
         });
 
     }

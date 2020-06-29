@@ -13,7 +13,7 @@ class SearchBar extends React.Component {
         super(props);
         this.state = {
             searchResults: [],
-            clickOutside: false,
+            clickOutside: true,
         };
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -21,7 +21,7 @@ class SearchBar extends React.Component {
 
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
-        document.addEventListener('keydown', this.handleClickOutside);
+        // document.addEventListener('keydown', this.handleClickOutside);
         this.setState({
             searchResults: []
         });
@@ -29,12 +29,13 @@ class SearchBar extends React.Component {
 
     componentWillUnmount() {
         document.removeEventListener('mousedown', this.handleClickOutside);
-        document.removeEventListener('keydown', this.handleClickOutside);
+        // document.removeEventListener('keydown', this.handleClickOutside);
     }
 
     handleClickOutside(event) {
         const domNode = ReactDOM.findDOMNode(this);
-        if (!domNode || !domNode.contains(event.target) || event.key === 'Escape') {
+        if (!domNode || !domNode.contains(event.target)) {
+            console.log("handleCLickOutside");
             this.setState({
                 clickOutside: true
             });
@@ -156,12 +157,7 @@ class SearchBar extends React.Component {
                             var college = collegeArray[0];
                             return (
                                 <div className="individual">
-                                    <Link to={`/loginhome/page/${college}`} >
-                                    {/* <div onClick={e => {
-                                        return (
-                                            <Redirect to={`/loginhome/page/${college}`} />
-                                        )
-                                    }}> */}
+                                    <Link to={`/loginhome/page/${college}`}>
                                         <div>
                                             <div className="circle">
                                             </div>
