@@ -271,7 +271,7 @@ class Individual extends Component {
 
     render() {
 
-        if(sessionStorage.getItem("userData")){
+        if(!sessionStorage.getItem("userData")){
             return(<Redirect to='/loginhome/dashboard' />)
         }
       
