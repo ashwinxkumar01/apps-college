@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Navbar, Nav, NavDropdown, Modal, Button } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 import '../../App.css';
 import SearchBar from './SearchBar';
 import { IoMdContact } from "react-icons/io";
@@ -15,7 +16,8 @@ class NavBar extends React.Component {
     this.state = {
       collegelist: [],
       Reset: false,
-      Show: false
+      Show: false,
+      Username: ''
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -33,6 +35,7 @@ class NavBar extends React.Component {
 
 
   componentDidMount() {
+    const email = sessionStorage.getItem("userData");
     fetch("/filter", {
       method: "POST",
       headers: {
@@ -55,10 +58,13 @@ class NavBar extends React.Component {
         collegeList.push([collegeNames, JSON.parse(college).college_logo]);
       })
       this.setState({
-        collegelist: collegeList
+        collegelist: collegeList,
+        Username: email
       })
     });
   }
+
+
 
   handleClick = () => {
     sessionStorage.clear();
@@ -96,9 +102,6 @@ class NavBar extends React.Component {
         </Modal.Header>
         <Modal.Body>Follow the instructions sent to your email and then don't tell the bossman the password</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => this.setState({ Reset: false })}>
-            Close
-        </Button>
         </Modal.Footer>
       </Modal>
     )
@@ -114,11 +117,15 @@ class NavBar extends React.Component {
         >
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Navbar.Brand>Application Hub</Navbar.Brand>
+            <Navbar.Brand>
+              <Link style={{textDecoration: 'none', color: 'white'}} eventKey="1" to="/loginhome/dashboard">
+                  Application Hub
+                </Link>
+            </Navbar.Brand>
             <Nav className="mr-auto" defaultActiveKey={this.props.active}>
               <Nav.Item className="dashboard">
                 <Nav.Link eventKey="1" href="/loginhome/dashboard">
-                  Dashboard
+                  My Colleges
                   </Nav.Link>
               </Nav.Item>
 
@@ -137,6 +144,7 @@ class NavBar extends React.Component {
             <Nav className="ml-auto" navbar>
               <Nav.Item>
                 <NavDropdown drop="down" alignRight="false" title={<FontAwesomeIcon icon={faUser} style={{ opacity: '60%' }} />}>
+                  <NavDropdown.Header>Hi, {this.state.Username}</NavDropdown.Header>
                   <NavDropdown.Item onClick={this.handleReset}>Reset Password</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={this.handleClick} href="/">Logout</NavDropdown.Item>

@@ -38,7 +38,8 @@ class Explore extends React.Component {
             StateFilter: [],
             CheckedState: false,
             Loading: true,
-            Open: false
+            Open: false,
+            Error: false
         };
         this.setSearch = this.setSearch.bind(this);
         this.searchBarInUse = this.searchBarInUse.bind(this);
@@ -162,7 +163,7 @@ class Explore extends React.Component {
 
         const tuitionState = sessionStorage.getItem("tuitionstate");
         if (tuitionState !== null) {
-            if(tuitionState.length === 0 || tuitionState === ',') {
+            if(tuitionState.length === 0 || tuitionState === ',' || tuitionState === 'reset,reset') {
                 this.setState({ TuitionState: []});
             } else {
                 const index = this.splitToArray(tuitionState, TuitionState);
@@ -286,10 +287,10 @@ class Explore extends React.Component {
                                 </li>
                             )
                         })}
-                        <Tile  Alias={"ashwin"} Tuition={10000} TuitionOOS={10000}
+                        {/* <Tile  Alias={"ashwin"} Tuition={10000} TuitionOOS={10000}
                                         Acceptance={20} Fee={30} collegeName={"hello"}
                                         Logo={Image3} Type={200} Population={10000}
-                                        Ranking={100} />
+                                        Ranking={100} /> */}
                     </ul>
                 )
             }
@@ -297,7 +298,8 @@ class Explore extends React.Component {
             return (
                 <div className="results-div">
                     <div className="icon-results"><FontAwesomeIcon icon={faSadTear} /></div>
-                    <h1>No results found...</h1>
+                    <h1 className="no-results">No results found...</h1>
+                    {true && <div className="error-message"><h1>Error: Make sure inputs are valid numbers</h1></div>}
                 </div>
             )
         }
@@ -326,7 +328,7 @@ class Explore extends React.Component {
                 <hr></hr>
 
                 <div className="tuition">
-                    <div className="header">Acceptance</div>
+                    <div className="header">Accpt. Rate</div>
                     <form className="filter-form">
                         <input onChange={(e) => this.setState({ AcceptanceLower: e.target.value })} type="text" placeholder="Lower" size="100"
                             value={this.state.AcceptanceLower} onKeyDown={this.enterKey}
@@ -344,7 +346,7 @@ class Explore extends React.Component {
                 <hr></hr>
 
                 <div className="tuition">
-                    <div className="header">App fee</div>
+                    <div className="header">App. Fee</div>
                     <form className="filter-form">
                         <input onChange={(e) => this.setState({ AppFeeLower: e.target.value })} type="text" placeholder="Lower" size="100"
                             value={this.state.AppFeeLower} onKeyDown={this.enterKey}
@@ -423,7 +425,7 @@ class Explore extends React.Component {
                             this.handleClick();
                         }
                         )}} 
-                        options={App} placeholder={"Application type"} value={this.state.App}
+                        options={App} placeholder={"Application Type"} value={this.state.App}
                     />
                     </div>
                     <OverlayTrigger trigger="click" placement="right" overlay={AppType} rootClose>
@@ -579,8 +581,10 @@ class Explore extends React.Component {
         } else if (/^\d+$/.test(state)) {
             array.push(string);
             array.push(sign + state);
+            this.setState({Error: false});
             sessionStorage.setItem(storage, state);
         } else {
+            this.setState({Error: true});
             array.push(string);
             array.push("--1000");
         }
@@ -590,18 +594,19 @@ class Explore extends React.Component {
         if (state === null || state === '') {
             //Nothing happens
             sessionStorage.setItem(storage, '');
-        } else if (/\d*\.?\d?/g.test(state)) {
-            console.log(state.split("."));
-            console.log(state.split(".").length);
+        } else if (/^-?\d+\.?\d*$/.test(state)) {
             if(state.split(".").length > 2) {
                 array.push(string);
                 array.push("--1000");
+                this.setState({Error: true});
                 return;
             }
             array.push(string);
             array.push(sign + state);
+            this.setState({Error: false});
             sessionStorage.setItem(storage, state);
         } else {
+            this.setState({Error: true});
             array.push(string);
             array.push("--1000");
         }

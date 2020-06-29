@@ -57,6 +57,7 @@ def get_colleges(query_lst):
     tuition_absolute = False
     tuition_count = Counter(query_lst)
     last_tuition = False
+    first_tuition = True
     if tuition_count["tuition_oos"] + tuition_count["tuition_normal"] is 4:
         tuition_absolute = True
     if len(query_lst) > 0:
@@ -68,19 +69,23 @@ def get_colleges(query_lst):
                 epoch = get_epoch(query_lst[i + 1][1:])
                 query_lst[i + 1] = query_lst[i + 1][0] + str(epoch)
             if query_lst[i] in numbers:
-                if tuition_absolute and not last_tuition:
+                if tuition_absolute and not last_tuition and "tuition" in query_lst[i]:
                     query += "("
-                else:
+                    if i-2 >= 0 and "tuition" not in query_lst[i-2]:
+                        query += "("
+                elif "tuition" in query_lst[i]:
                     last_tuition = True
                 if query_lst[i + 1][0] == "+":
                     query += " " + str(query_lst[i]) + " >= " + str(query_lst[i + 1][1:])
                 else:
                     query += " " + str(query_lst[i]) + " <= " + str(query_lst[i + 1][1:])
-                if tuition_absolute and last_tuition:
+                if tuition_absolute and last_tuition and "tuition" in query_lst[i]:
                     query += ")"
+                    if "tuition" in query_lst[i] and (i+2 > len(query_lst)-1 or "tuition" not in query_lst[i+2]):
+                        query += ")"
                     if i+2 < len(query_lst) and "tuition" in query_lst[i+2]:
                         last_tuition = False
-                else:
+                elif "tuition" in query_lst[i]:
                     last_tuition = True
             else:
                 if query_lst[i] == "state":
@@ -96,7 +101,7 @@ def get_colleges(query_lst):
                         query += ")"
                 else:
                     query += " " + str(query_lst[i]) + "=\'" + str(query_lst[i+1]) + "\'"
-            if i+2 < len(query_lst) and "tuition" in query_lst[i+2] and tuition_absolute and not last_tuition:
+            if i+2 < len(query_lst) and "tuition" in query_lst[i] and "tuition" in query_lst[i+2] and tuition_absolute and not last_tuition:
                 query += " OR "
                 continue
 
@@ -217,9 +222,8 @@ def get_college_names():
 
 
 #QUERY TESTING
-#lst = get_colleges(["letter_of_rec_required","-2","school_type","public"])
-# for i in lst:
-#     print(i)
+#lst = get_colleges(["national_ranking","+1","national_ranking","-20","tuition_oos","+10000","tuition_oos","-15000","tuition_normal","+10000","tuition_normal","-15000"])
+
 
 #TUITION TESTING
 #lst = get_colleges(["tuition_oos", "+10000","tuition_oos","-20000"])
@@ -648,7 +652,7 @@ def dashboard():
 @app.route('/email', methods = ['POST'])
 def sendEmail():
     port = 465  # For SSL
-    password = os.environ.get("DB_PASSWD")
+    password = os.environ.get("PASSWD")
     
     post_request = request.get_json(force=True)
     

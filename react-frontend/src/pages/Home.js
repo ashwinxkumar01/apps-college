@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {Redirect} from 'react-router';
-import { Container, Nav, Button, Row, Col, Form} from 'react-bootstrap';
+import { Container, Nav, Button, Row, Col, Form, Modal} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../css/Home.css';
 import * as bs from 'bootstrap/dist/css/bootstrap.css';
@@ -12,6 +12,7 @@ function Home() {
     const [email, setEmail] = useState({Email: ''});
     const [name, setName] = useState({Name: ''});
     const [message, setMessage] = useState({Message: ''});
+    const [show, setShow] = useState({Show: ''});
     function handleClick(e) {
         fetch("/email", {
             method: "POST",
@@ -30,11 +31,25 @@ function Home() {
             setMessage({Message: ''});
             setEmail({Email: ''});
             setName({Name: ''});
+            setShow({Show: true});
         });
     }
     if(sessionStorage.getItem("userData")){
         return(<Redirect to='/loginhome/dashboard' />)
     }
+
+    function handleDisplay() {
+        return (
+          <Modal show={show.Show} onHide={() => setShow({Show: false})}>
+            <Modal.Header closeButton>
+              <Modal.Title>Email Sent!</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Follow the instructions sent to your email and then don't tell the bossman the password</Modal.Body>
+            <Modal.Footer>
+            </Modal.Footer>
+          </Modal>
+        )
+      }
     
     return (
         <div className="Background-home-page">
@@ -170,6 +185,8 @@ function Home() {
             </div>
 
             <span></span>
+
+            {show.Show ? handleDisplay() : null}
 
         </div>
     );

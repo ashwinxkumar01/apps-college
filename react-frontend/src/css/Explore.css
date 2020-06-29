@@ -12,8 +12,9 @@
 .filter-name {
     text-align: center;
     padding-bottom: calc(0.2rem);
-    padding-top: calc(0.5rem);
+    padding-top: calc(0rem);
     font-family: 'Roboto', sans-serif;
+    font-weight: 500;
 }
 
 .container-div {
@@ -23,9 +24,9 @@
 }
 
 .filter {
-    width: calc(25%);
+    width: calc(25vw);
     margin-left: calc(0.5rem);
-    margin-top: calc(0rem);
+    margin-top: calc(-1vh);
 }
 
 .tuition {
@@ -38,7 +39,7 @@
 .header {
     width: calc(50%);
     text-align: left;
-    font-size: calc(1vw);
+    font-size: calc(0.95vw);
     white-space: nowrap;
     position: relative;
     top: calc(0rem);
@@ -156,7 +157,8 @@ span {
 }
 
 .filter-button:hover {
-    background-color: rgb(41, 228, 41);
+    background-color: rgb(63, 81, 181);
+    color: white;
     transition: 0.3s;
 }
 
@@ -177,7 +179,7 @@ span {
     background-color: white;
     transition: 0.3s;
     border-radius: calc(0.5vh);
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
     font-size: calc(1.3rem);
     outline: none;
 }
@@ -195,7 +197,7 @@ span {
 }
 
 .float-display {
-    width: calc(25vw);
+    width: calc(35vw);
     display: flex;
     flex-direction: row;
     margin-right: calc(1rem);
@@ -218,7 +220,7 @@ span {
     font-size: calc(1.3rem);
     margin-right: calc(0.5rem);
     outline: none;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 .button {
@@ -226,7 +228,7 @@ span {
     width: calc(9rem);
     font-size: calc(1.3rem);
     justify-content: center;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
     display: flex;
     border: none;
     background-color: rgb(255, 255, 255);
@@ -285,7 +287,22 @@ select {
 
 .icon-results {
     transform: scale(4);
-    color: rgb(37, 146, 70);
+    color: rgb(240, 31, 16);
+}
+
+.no-results {
+    font-family: 'Noto Sans JP', sans-serif; 
+    font-size: calc(1.7vw);
+}
+
+.error-message h1 {
+    color: red;
+    font-size: calc(1.2vw);
+    font-family: 'Noto Sans JP', sans-serif; 
+}
+
+.error-message {
+    margin-top: calc(-2.1vh);
 }
 
 .results-div h1 {
