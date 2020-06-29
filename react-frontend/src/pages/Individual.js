@@ -150,6 +150,7 @@ class Individual extends Component {
 
 
     componentDidMount() {
+        console.log("individual mount");
         window.scrollTo(0, 0);
         fetch("/individual", {
             method: "POST",
