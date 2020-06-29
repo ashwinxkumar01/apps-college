@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/Individual.css';
+import {Redirect} from 'react-router';
 import UCSDImage from './UCSDLogo.png';
 import Grid from '@material-ui/core/Grid';
 import Geisel from './UCSDCampus.jpg';
@@ -268,6 +269,11 @@ class Individual extends Component {
     }
 
     render() {
+
+        if(sessionStorage.getItem("userData")){
+            return(<Redirect to='/loginhome/dashboard' />)
+        }
+      
         return (
             <div>
                 <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} searchBar={this.state.searchBar} active="2" />

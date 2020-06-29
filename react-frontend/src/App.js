@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Explore from './pages/Explore';
@@ -34,14 +34,14 @@ class App extends React.Component {
       <Router>
         <div className="App">
           <Switch>
-            <Route path="/loginhome/explore" component={Explore} />
-            <Route path="/loginhome/dashboard" component={Dashboard} />
+            <Route path="/loginhome/explore" component={RequireAuth(Explore)} />
+            <Route path="/loginhome/dashboard" component={RequireAuth(Dashboard)} />
             <Route path="/loginhome/login" component={Login} />
             <Route path="/loginhome/signup" component={Signup} />
             <Route path="/loginhome/page/:collegeName" component={Individual} />
-            <Route path="/loginhome/essays" component={Essays} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/" component={Home} />
+            <Route path="/loginhome/essays" component={RequireAuth(Essays)} />
+            <Route path="/profile" component={RequireAuth(Profile)} />
+            <Route path="/" component={Home}/>
           </Switch>
         </div>
       </Router>

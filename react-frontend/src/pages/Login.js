@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Redirect } from 'react-router-dom';
+import { faTemperatureLow } from '@fortawesome/free-solid-svg-icons';
 
 function Copyright() {
   return (
@@ -58,9 +59,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  const [error, setError] = useState({error: false});
   const [username, setUsername] = useState({ username: '' });
   const [password, setPassword] = useState({ password: '' });
   const [display, setDisplay] = useState({ display: '' });
+
+  if (sessionStorage.getItem("userData")) {
+    return (<Redirect to='/loginhome/dashboard' />)
+  }
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -71,7 +78,7 @@ export default function SignInSide() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign In
+            Log In
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -85,7 +92,6 @@ export default function SignInSide() {
               onChange={e => {
                 const newUsername = { username: e.target.value };
                 setUsername(newUsername);
-                console.log(newUsername.username);
               }}
               onKeyPress={e => {
                 if (e.key === 'Enter') {
@@ -104,7 +110,7 @@ export default function SignInSide() {
                   }).then(data => {
                     console.log(data);
                     if (data["True"] === 1) {
-                      setDisplay({ display: data["True"] });
+                      setError(true);
                     } else {
                       sessionStorage.setItem("userData", username.username);
                       window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
@@ -112,6 +118,8 @@ export default function SignInSide() {
                   })
                 }
               }}
+              error={error.error}
+              helperText={error.error ? "Log In Unsuccessful!" : ' '}
               autoComplete="email"
               autoFocus
             />
@@ -153,8 +161,9 @@ export default function SignInSide() {
               onChange={e => {
                 const newPassword = { password: e.target.value };
                 setPassword(newPassword);
-                console.log(newPassword.password);
               }}
+              error={error.error}
+              helperText={error.error ? "Log In Unsuccessful!" : ' '}
             />
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -180,9 +189,9 @@ export default function SignInSide() {
                 }).then(response => {
                   return response.json();
                 }).then(data => {
-                  console.log(data);
                   if (data["True"] === 1) {
-                    setDisplay({ display: data["True"] });
+                    const newError = {error: true};
+                    setError(newError);
                   } else {
                     sessionStorage.setItem("userData", username.username);
                     window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
@@ -190,7 +199,7 @@ export default function SignInSide() {
                 })
               }}
             >
-              Sign In
+              Log In
             </Button>
             <Grid container>
               <Grid item xs>
@@ -205,7 +214,6 @@ export default function SignInSide() {
               </Grid>
             </Grid>
             <Box mt={5}>
-              {display.display === 1 && <p>Login Unsuccessful</p>}
             </Box>
           </form>
         </div>

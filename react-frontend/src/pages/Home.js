@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Redirect} from 'react-router';
 import { Container, Nav, Button, Row, Col, Form} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../css/Home.css';
@@ -31,6 +32,10 @@ function Home() {
             setName({Name: ''});
         });
     }
+    if(sessionStorage.getItem("userData")){
+        return(<Redirect to='/loginhome/dashboard' />)
+    }
+    
     return (
         <div className="Background-home-page">
             <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"></link>
