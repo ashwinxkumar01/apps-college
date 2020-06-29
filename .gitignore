@@ -21,6 +21,7 @@ venv
 .env.production.local
 .idea
 /flask-backend/.bash-source
+/flask-backend/bashsource.ps1
 __pycache__
 
 npm-debug.log*

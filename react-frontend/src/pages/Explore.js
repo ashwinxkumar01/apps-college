@@ -487,7 +487,7 @@ class Explore extends React.Component {
                 <hr></hr>
 
                 <div className="filter-button-div">
-                    <button onClick={this.handleClick} className="filter-button">Apply</button>
+                    <button onClick={this.handleClick} className="filter-button">APPLY</button>
                 </div>
             </div>
         )
@@ -522,10 +522,6 @@ class Explore extends React.Component {
                     </div>
                 </div>
             )
-        } else {
-            return (
-                <div />
-            )
         }
     }
 
@@ -549,7 +545,7 @@ class Explore extends React.Component {
             RankingLower: '',
             RankingUpper: '',
             Ordering: "Low to High",
-            TuitionState: [],
+            TuitionState: {value: "reset", label: 'reset'},
             StateFilter: [],
             CheckedState: false,
             Loading: true
@@ -565,9 +561,16 @@ class Explore extends React.Component {
     }
 
     dateFormat(input) {
+        if(input === -1) {
+            return("N/A");
+        }
+        else if(input === 0) {
+          return("Rolling");
+        }
         var myDate = new Date(input * 1000);
         return ((myDate.getUTCMonth() + 1) + "/" + myDate.getUTCDate() + "/" + myDate.getUTCFullYear());
-    }
+      }
+    
 
     pushToArray(state, string, array, sign, storage) {
         if (state === null || state === '') {
@@ -651,8 +654,29 @@ class Explore extends React.Component {
             this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
 
             this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");
+        } else if (this.state.TuitionState.value === "reset") {
+            this.setState({TuitionState: []});
+            console.log("reset")
+            this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
+
+            this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");
+
+            this.pushToArray(this.state.TuitionLower, "tuition_normal", array, "+", "normallower");
+
+            this.pushToArray(this.state.TuitionUpper, "tuition_normal", array, "-", "normalupper");
+        } else if (this.state.TuitionLower !== '' && this.state.TuitionUpper !== '' && this.state.TuitionLower !== null && this.state.TuitionUpper !== null) {
+            console.log(this.state.TuitionLower)
+            console.log(this.state.TuitionUpper)
+            this.setState({TuitionState: TuitionState[0]});
+            console.log(TuitionState[0])
+            this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
+
+            this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");
+
+            this.pushToArray(this.state.TuitionLower, "tuition_normal", array, "+", "normallower");
+
+            this.pushToArray(this.state.TuitionUpper, "tuition_normal", array, "-", "normalupper");
         } else {
-            console.log("both")
             this.pushToArray(this.state.TuitionLower, "tuition_oos", array, "+", "normallower");
 
             this.pushToArray(this.state.TuitionUpper, "tuition_oos", array, "-", "normalupper");
@@ -775,7 +799,7 @@ class Explore extends React.Component {
     render() {
         return (
             <div className="Explore">
-                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="2" />
+                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} searchBar={this.state.searchBar} active="2" />
                 {this.renderExplore()}
 
                 {this.state.Open ? this.renderFilter("block") : null}

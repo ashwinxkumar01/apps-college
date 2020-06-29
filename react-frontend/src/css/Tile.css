@@ -44,8 +44,8 @@
 }
 
 .college-name h1{
-    font-size: calc(2.3vw);
-    font-family: 'Alegreya Sans', sans-serif;
+    font-size: calc(2vw);
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
 }
 
@@ -67,8 +67,8 @@
 
 .specifications h3 {
     font-size: calc(1.1vw);
-    font-family: 'Karla', serif;
-    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 500;
 }
 
 .tuition-display {
@@ -86,11 +86,10 @@
 
 .favorite-icon{
     width: calc(9.5%);
-    padding-top: calc(4.5rem);
-    padding-right: calc(7.7rem);
     justify-content: right;
     position: absolute;
-    right: 0;
+    top: calc(0.5vh);
+    right: calc(1vw);
     height: 0;
     -webkit-transform: scale(0.6);
     -ms-transform: scale(0.6);
@@ -140,12 +139,12 @@
         overflow: hidden;
     }
 
-    .favorite-icon{
+    .favorite-icon {
         width: calc(9.5%);
         justify-content: right;
         position: absolute;
-        right: calc(-2.3vw);
-        top: calc(-1.9vh);
+        right: calc(3.5vw);
+        top: calc(0.5vh);
         height: 0;
         -webkit-transform: scale(0.5);
         -ms-transform: scale(0.5);

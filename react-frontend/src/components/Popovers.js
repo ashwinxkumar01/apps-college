@@ -21,6 +21,9 @@ const Tuition = (
         <br/>
         <br/>
         Example: 1 for lower bound, 10 for upper bound will return all colleges between 1 - 10 in national ranking.
+        <br/>
+        <br/>
+        All rankings come from <a href="https://www.usnews.com/best-colleges" target="_blank">usnews.com</a> 
       </Popover.Content>
     </Popover>
   );
@@ -41,7 +44,9 @@ const Tuition = (
     <Popover id="popover-basic">
       <Popover.Title as="h3">Acceptance Rate Range</Popover.Title>
       <Popover.Content>
-        Filter results based on acceptance rates.
+        Filter results based on acceptance rates. The field also takes decimal values. 
+          <br />
+        Ex) 10.3, 20.75, 75.231
           <br/>
           <br/>
         Example: 20 for lower bound, 50 for upper bound will return all colleges that have acceptance rates between 20% - 50%.
@@ -117,7 +122,13 @@ const Tuition = (
         Filter results based on what tuition you want
           <br/>
           <br/>
-        Example: Select both will return all tuitions between the numbers
+        Example: Select 'In state or Out of State' filters the results in which the college has either tuition state within the range.
+          <br/>
+          <br/>
+        Selecting 'In State' will filter the tuition range by only the College's In state tuition.
+          <br/>
+          <br/>
+        The default value will be 'In state or Out of State' if no tuition type is selected
       </Popover.Content>
     </Popover>
   );
@@ -126,9 +137,10 @@ const Tuition = (
     <Popover id="popover-basic">
       <Popover.Title as="h3">Note</Popover.Title>
       <Popover.Content>
-        You have selected colleges for which the Common Application will suffice. 
+        You have selected colleges for which the Common Application will suffice and the Coalition Application is <b>not</b> required.
         <br />
-        Some of your colleges also accept the Coalition Application, so these prompts are also visible but do not count towards the required prompt total.
+        <br />
+        Some of your colleges also accept the Coalition Application, so these prompts are also visible but they do not count towards the number of required prompt(s).
       </Popover.Content>
     </Popover>
   );
@@ -137,9 +149,10 @@ const Tuition = (
     <Popover id="popover-basic">
       <Popover.Title as="h3">Note</Popover.Title>
       <Popover.Content>
-        You have selected colleges for which the Coalition Application will suffice. 
+        You have selected colleges for which the Coalition Application will suffice and the Common Application is <b>not</b> required. 
         <br />
-        Some of your colleges also accept the Common Application, so these prompts are also visible but do not count towards the required prompt total.
+        <br />
+        Some of your colleges also accept the Common Application, so these prompts are also visible but they do not count towards the number of required prompt(s).
       </Popover.Content>
     </Popover>
   );

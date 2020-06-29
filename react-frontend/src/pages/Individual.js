@@ -59,6 +59,9 @@ class Individual extends Component {
         if (input === -1) {
             return ("N/A");
         }
+        else if(input === 0) {
+            return("Rolling");
+        }
         var myDate = new Date(input * 1000);
         return ((myDate.getUTCMonth() + 1) + "/" + myDate.getUTCDate() + "/" + myDate.getUTCFullYear());
     }
@@ -181,9 +184,9 @@ class Individual extends Component {
                             </span>
                         </h1>
                     </div>
-                    <div className="circle">
+                    <div className="white-circle">
                     </div>
-                    <img className="logo" src={this.state.college_json["college_logo"]} />
+                    <img className="college-logo" src={this.state.college_json["college_logo"]} />
                     <div className="description-box">
                     </div>
                     <p className="description-text" >
@@ -267,7 +270,7 @@ class Individual extends Component {
     render() {
         return (
             <div>
-                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} active="2" />
+                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} searchBar={this.state.searchBar} active="2" />
                 {this.renderIndividual()}
             </div>
         );

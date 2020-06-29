@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Button, Form } from "react-bootstrap";
 import '../../App.css';
 import '../../css/SearchBar.css';
@@ -11,14 +12,33 @@ class SearchBar extends React.Component {
         super(props);
         this.state = {
             searchResults: [],
+            clickOutside: false,
         };
+        this.handleClickOutside = this.handleClickOutside.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+        document.addEventListener('keydown', this.handleClickOutside);
         this.setState({
             searchResults: []
         });
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+        document.removeEventListener('keydown', this.handleClickOutside);
+    }
+
+    handleClickOutside(event) {
+        const domNode = ReactDOM.findDOMNode(this);
+        if (!domNode || !domNode.contains(event.target) || event.key === 'Escape') {
+            this.setState({
+                clickOutside: true
+            });
+            this.props.searchBarInUse(false);
+        }
     }
 
     handleChange(e) {
@@ -108,7 +128,8 @@ class SearchBar extends React.Component {
             filteredResults.push(college);
         })
         this.setState({
-            searchResults: filteredResults
+            searchResults: filteredResults,
+            clickOutside: false
         });
     }
 
@@ -120,27 +141,34 @@ class SearchBar extends React.Component {
             display: 'flex',
             flexDirection: 'column'
         }
+        if (this.props.searchBar === this.state.clickOutside) {
+            this.setState({ clickOutside: !this.props.searchBar })
+        }
         return (
-            <Form className="ml-5 w-100" style={searchBar}>
+            <Form className="ml-5 w-75" style={searchBar}>
                 <Form.Control type="text" onInput={this.handleChange} placeholder="Search for colleges" className="mr-0 w-75" style={divStyle} />
                 <div>
                     {this.state.searchResults.map(collegeArray => {
-                        var college = collegeArray[0];
-                        return (
-                            <div className="individual">
-                                <div>
-                                <div className="circle">
+                        if (this.state.clickOutside) {
+
+                        } else {
+                            var college = collegeArray[0];
+                            return (
+                                <div className="individual">
+                                    <Link to={`/loginhome/page/${college}`}>
+                                        <div>
+                                            <div className="circle">
+                                            </div>
+                                            <img className="logo" src={collegeArray[1]} alt="Hello" />
+                                        </div>
+                                        <div className="collegeName">
+                                            {college}
+                                        </div>
+                                    </Link>
+                                    <Heart className="heart" collegeName={college} key={college} />
                                 </div>
-                                <img className="logo" src={collegeArray[1]} alt="Hello" />
-                                </div>
-                                <Link to={`/loginhome/page/${college}`}>
-                                    <div className="collegeName">
-                                        {college}
-                                    </div>
-                                </Link>
-                                <Heart className="heart" collegeName={college} key={college} />
-                            </div>
-                        )
+                            )
+                        }
                     })}
                 </div>
             </Form>
