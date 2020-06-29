@@ -329,7 +329,7 @@ class Essays extends Component {
     }
 
     renderSupplementalTitle(college) {
-        var total = college.supplemental_essays.split("/").length - 1;
+        var total = college.supplemental_essays.split("|").length - 1;
         var required = parseInt(college.supplemental_essays, 10);
         if (!isNaN(required)) {
             return (
@@ -341,8 +341,9 @@ class Essays extends Component {
     }
 
     renderSupplementalBody(college) {
-        var essays = college.supplemental_essays.split("/");
+        var essays = college.supplemental_essays.split("|");
         essays.shift();
+        console.log(essays);
         if (essays.length > 0) {
             return (
                 <div>
