@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Redirect } from 'react-router-dom';
 import { faTemperatureLow } from '@fortawesome/free-solid-svg-icons';
+import { Modal, Form } from 'react-bootstrap';
 
 function Copyright() {
   return (
@@ -63,9 +64,80 @@ export default function SignInSide() {
   const [username, setUsername] = useState({ username: '' });
   const [password, setPassword] = useState({ password: '' });
   const [display, setDisplay] = useState({ display: '' });
+  const [show, setShow] = useState({ Show: false});
+  const [email, setEmail] = useState({ Email: ''});
+  const [header, setHeader] = useState({ Header: 'Password Reset Request'});
 
   if (sessionStorage.getItem("userData")) {
     return (<Redirect to='/loginhome/dashboard' />)
+  }
+
+  function resetPassword(e) {
+    e.preventDefault();
+    fetch("/passwordreset", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      return response.json();
+    }).then(data => {
+      const isSuccess = data["True"];
+      if (isSuccess === 2) {
+        setShow({ Show: true });
+      }
+    })
+  }
+
+  function resetSubmit(e) {
+    e.preventDefault();
+    fetch("/reset", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        Email: email.Email 
+    })
+    }).then(response => {
+      return response.json();
+    }).then(data => {
+      const isSuccess = data["True"];
+      if (isSuccess === 2) {
+        setEmail({ Email: '' });
+        setHeader({Header: 'Email Sent!'})
+      } else {
+        setHeader({Header: 'Email does not exist!'}) 
+      }
+    })
+  }
+
+  function handleDisplay() {
+    return (
+      <Modal show={show.Show} onHide={() => setShow({ Show: false })}>
+        <Modal.Header closeButton>
+          <Modal.Title>{header.Header}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          You will recieve an email, follow the directions specified to reset your password.
+          <br />
+          <br />
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Control type="email" placeholder="Enter email" onChange={(e) => {
+                setEmail({Email: e.target.value});
+                setHeader({Header: 'Password Reset Request'})
+              }} value={email.Email}/>
+            </Form.Group>
+            <Button variant="primary" type="button" onClick={resetSubmit}>
+              Submit
+            </Button>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+        </Modal.Footer>
+      </Modal>
+    )
   }
 
   return (
@@ -90,6 +162,8 @@ export default function SignInSide() {
               label="Email Address"
               name="email"
               onChange={e => {
+                const newError = {error: false};
+                setError(newError);
                 const newUsername = { username: e.target.value };
                 setUsername(newUsername);
               }}
@@ -110,7 +184,8 @@ export default function SignInSide() {
                   }).then(data => {
                     console.log(data);
                     if (data["True"] === 1) {
-                      setError(true);
+                      const newError = {error: true};
+                      setError(newError);
                     } else {
                       sessionStorage.setItem("userData", username.username);
                       window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
@@ -150,7 +225,8 @@ export default function SignInSide() {
                   }).then(data => {
                     console.log(data);
                     if (data["True"] === 1) {
-                      setDisplay({ display: data["True"] });
+                      const newError = {error: true};
+                      setError(newError);
                     } else {
                       sessionStorage.setItem("userData", username.username);
                       window.location.href = "http://127.0.0.1:5000/loginhome/dashboard";
@@ -159,6 +235,8 @@ export default function SignInSide() {
                 }
               }}
               onChange={e => {
+                const newError = {error: false};
+                setError(newError);
                 const newPassword = { password: e.target.value };
                 setPassword(newPassword);
               }}
@@ -203,8 +281,8 @@ export default function SignInSide() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
+                <Link onClick={resetPassword} component="button" variant="body2">
+                  {"Forgot password?"}
                 </Link>
               </Grid>
               <Grid item>
@@ -218,6 +296,7 @@ export default function SignInSide() {
           </form>
         </div>
       </Grid>
+      {show.Show ? handleDisplay() : null}
     </Grid>
   );
 }

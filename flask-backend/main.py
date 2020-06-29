@@ -595,6 +595,17 @@ def sendPasswordReset():
         successful = json.dumps({"True": 1})
     return successful
 
+@app.route("/reset", methods = ['POST'])
+def resetPasswordLogin():
+    successful = json.dumps({"True": 2})
+    try:
+        post_request = request.get_json(force=True)
+        email = post_request["Email"]
+        auth.send_password_reset_email(email)
+    except:
+        successful = json.dumps({"True": 1})
+    return successful
+
 #testing method
 
 #if __name__ == '__main__':
