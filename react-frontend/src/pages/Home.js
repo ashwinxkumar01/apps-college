@@ -4,7 +4,7 @@ import { Container, Nav, Button, Row, Col, Form, Modal} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../css/Home.css';
 import * as bs from 'bootstrap/dist/css/bootstrap.css';
-import { faSearch, faGlobeAmericas, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faGlobeAmericas, faLayerGroup, faScroll } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Home() {
@@ -121,9 +121,9 @@ function Home() {
                             <Col xs={6} md={4}>
                                 <div className='description-hover'>
                                     <div className="icon-border">
-                                        <div><FontAwesomeIcon icon={faSearch} /></div>
+                                        <div><FontAwesomeIcon icon={faScroll} /></div>
                                     </div>
-                                    <p>bossman needs to fill this out for me</p>
+                                    <p>Organize all of your essay requirements in one place. Optimize your workflow and work smarter, not harder.</p>
                                 </div>
                             </Col>
                             <Col xs={6} md={4}>
