@@ -124,6 +124,10 @@ span {
     width: calc(100%);
 }
 
+.dropdown-main {
+    width: calc(90%);
+}
+
 .dropdown-name {
     margin-left: calc(0.3rem);
     font-family: 'Noto Sans JP', sans-serif;
