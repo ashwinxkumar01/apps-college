@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Individual.css';
 import UCSDImage from './UCSDLogo.png';
+import { Spinner } from 'react-bootstrap';
 import Grid from '@material-ui/core/Grid';
 import Geisel from './UCSDCampus.jpg';
 import Heart from '../components/content/Heart';
@@ -22,7 +23,8 @@ class Individual extends Component {
             college_json: [],
             searchBar: false,
             rerender: false,
-            newCollege: false
+            newCollege: false,
+            Loading: true
         }
         this.searchBarInUse = this.searchBarInUse.bind(this);
         this.setSearch = this.setSearch.bind(this);
@@ -32,6 +34,7 @@ class Individual extends Component {
         this.essayFormat = this.essayFormat.bind(this);
         this.essayHeaderFunc = this.essayHeaderFunc.bind(this);
         this.applyFormat = this.applyFormat.bind(this);
+        this.renderSpinner = this.renderSpinner.bind(this);
 
     }
 
@@ -192,9 +195,25 @@ class Individual extends Component {
             return response.json()
         }).then(data => {
             let value = JSON.parse(data);
-            this.setState({ college_json: value, rerender: true })
+            this.setState({ 
+                college_json: value, 
+                rerender: true,
+                Loading: false 
+            });
         });
 
+    }
+
+    renderSpinner = () => {
+        return (
+            <div className="spinner-center">
+                <div className="spinner-div">
+                    <Spinner animation="border" variant="secondary" role="status" className="load-spinner">
+                        <span className="sr-only">Loading...</span>
+                    </Spinner>
+                </div>
+            </div>
+        )
     }
 
     renderIndividual = () => {
@@ -306,7 +325,7 @@ class Individual extends Component {
         return (
             <div key={this.props.match.params.collegeName}>
                 <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} searchBar={this.state.searchBar} active="2" key={this.props.match.params.collegeName}/>
-                {this.renderIndividual()}
+                {this.state.Loading? this.renderSpinner() : this.renderIndividual()}
             </div>
         );
     }
