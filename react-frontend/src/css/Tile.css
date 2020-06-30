@@ -88,8 +88,8 @@
     width: calc(9.5%);
     justify-content: right;
     position: absolute;
-    top: calc(0.5vh);
-    right: calc(1vw);
+    top: calc(0.65vh);
+    margin-left: calc(3.25vw);
     height: 0;
     -webkit-transform: scale(0.6);
     -ms-transform: scale(0.6);

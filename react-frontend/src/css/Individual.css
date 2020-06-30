@@ -304,7 +304,8 @@
 .individual-heart {
     width: calc(9.5%);
     position: absolute;
-    margin-left: -3.75vw;
+    margin-top: calc(1.2vh);
+    margin-left: calc(-20vw);
     -webkit-transform: scale(0.7);
     -ms-transform: scale(0.7);
     transform: scale(0.7);

@@ -53,28 +53,6 @@ class Individual extends Component {
         }
       }
 
-    // componentWillReceiveProps(newProps){
-    //     window.scrollTo(0, 0);
-    //     fetch("/individual", {
-    //         method: "POST",
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             name: newProps.match.params.collegeName
-    //         })
-    //     }).then(response => {
-    //         console.log(response)
-    //         return response.json()
-    //     }).then(data => {
-    //         let value = JSON.parse(data);
-    //         if(!this.state.rerender){
-    //             this.setState({ college_json: value, rerender: true, searchBar: false })
-    //         }
-    //     });
-
-    // }
-
     numFormat(num) {
         if (typeof num === 'number') {
             return num.toLocaleString();
