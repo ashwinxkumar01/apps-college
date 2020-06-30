@@ -6,7 +6,7 @@ from flask import request
 from sql_helpers import *
 from collections import Counter
 from flask import jsonify, redirect, url_for
-import pyodbc
+#import pyodbc
 #from firebase import * #Causing errors when testing, Ashwin fix it
 from flask_cors import CORS, cross_origin
 import smtplib, ssl
@@ -14,6 +14,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import re
 import json
+import pypyodbc
 
 app = flask.Flask(__name__)
 CORS(app)
@@ -37,7 +38,7 @@ db_info = 'DRIVER=' + driver + ';SERVER=' + server + ';PORT=1433;DATABASE=' + da
 # returns a list
 # colleges is the table where accurate information is stored
 def get_query(query):
-    cnxn = pyodbc.connect(db_info)
+    cnxn = pypyodbc.connect(db_info)
     cursor = cnxn.cursor()
 
     cursor.execute(query)
