@@ -401,15 +401,17 @@ class Explore extends React.Component {
 
                 <div className="app-type">
                     <div className="dropdown-div">
-                        <Select onChange={(e) => {
-                            this.setState({ TuitionState: e }, () => {
-                                this.handleClick();
-                                console.log(this.state.TuitionState);
-                            }
-                            )
-                        }}
-                            options={TuitionState} placeholder={"Tuition Type"} value={this.state.TuitionState}
+                        <div className="dropdown-main">
+                            <Select onChange={(e) => {
+                                this.setState({ TuitionState: e }, () => {
+                                    this.handleClick();
+                                    console.log(this.state.TuitionState);
+                                }
+                                )
+                            }}
+                                options={TuitionState} placeholder={"Tuition Type"} value={this.state.TuitionState}
                         />
+                        </div>
                     </div>
                     <OverlayTrigger trigger="click" placement="right" overlay={TuitionStateList} rootClose>
                         <div><FontAwesomeIcon icon={faInfoCircle}
@@ -421,12 +423,14 @@ class Explore extends React.Component {
 
                 <div className="app-type">
                     <div className="dropdown-div">
-                        <Select onChange={(e) => {this.setState({ App: e }, () => {
-                            this.handleClick();
-                        }
-                        )}} 
-                        options={App} placeholder={"Application Type"} value={this.state.App}
-                    />
+                        <div className="dropdown-main">
+                            <Select onChange={(e) => {this.setState({ App: e }, () => {
+                                this.handleClick();
+                            }
+                            )}} 
+                            options={App} placeholder={"Application Type"} value={this.state.App}
+                        />
+                        </div>
                     </div>
                     <OverlayTrigger trigger="click" placement="right" overlay={AppType} rootClose>
                         <div><FontAwesomeIcon icon={faInfoCircle}
@@ -438,11 +442,13 @@ class Explore extends React.Component {
 
                 <div className="app-type">
                     <div className="dropdown-div">
-                        <Select onChange={(e) => this.setState({ LOR: e }, () => {
-                            this.handleClick();
-                        })}
-                            options={LOR} placeholder={"Letters of Rec."} value={this.state.LOR}
+                        <div className="dropdown-main">
+                            <Select onChange={(e) => this.setState({ LOR: e }, () => {
+                                this.handleClick();
+                            })}
+                                options={LOR} placeholder={"Letters of Rec."} value={this.state.LOR}
                         />
+                        </div>
                     </div>
                     <OverlayTrigger trigger="click" placement="right" overlay={LetterRec} rootClose>
                         <div><FontAwesomeIcon icon={faInfoCircle}
@@ -454,11 +460,13 @@ class Explore extends React.Component {
 
                 <div className="school-type">
                     <div className="dropdown-div">
-                        <Select onChange={(e) => this.setState({ School: e }, () => {
-                            this.handleClick();
-                        })}
-                            options={Type} placeholder={"School Type"} value={this.state.School}
+                        <div className="dropdown-main">
+                            <Select onChange={(e) => this.setState({ School: e }, () => {
+                                this.handleClick();
+                            })}
+                                options={Type} placeholder={"School Type"} value={this.state.School}
                         />
+                        </div>
                     </div>
                     <OverlayTrigger trigger="click" placement="right" overlay={SchoolType} rootClose>
                         <div><FontAwesomeIcon icon={faInfoCircle}
@@ -470,15 +478,17 @@ class Explore extends React.Component {
 
                 <div className="school-type">
                     <div className="dropdown-div">
-                        <Select
-                            placeholder="State(s)"
-                            onChange={this.handleState}
-                            isMulti
-                            options={States}
-                            className="basic-multi-select"
-                            classNamePrefix="select"
-                            value={this.state.StateFilter}
+                        <div className="dropdown-main">
+                            <Select
+                                placeholder="State(s)"
+                                onChange={this.handleState}
+                                isMulti
+                                options={States}
+                                className="basic-multi-select"
+                                classNamePrefix="select"
+                                value={this.state.StateFilter}
                         />
+                        </div>
                     </div>
                     <OverlayTrigger trigger="click" placement="right" overlay={StateList} rootClose>
                         <div><FontAwesomeIcon icon={faInfoCircle}
