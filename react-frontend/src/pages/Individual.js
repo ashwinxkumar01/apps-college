@@ -301,8 +301,8 @@ class Individual extends Component {
         }
       
         return (
-            <div>
-                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} searchBar={this.state.searchBar} active="2" />
+            <div key={this.props.match.params.collegeName}>
+                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} searchBar={this.state.searchBar} active="2" key={this.props.match.params.collegeName}/>
                 {this.renderIndividual()}
             </div>
         );
