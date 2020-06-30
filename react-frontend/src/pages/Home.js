@@ -44,7 +44,7 @@ function Home() {
             <Modal.Header closeButton>
               <Modal.Title>Email Sent!</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Follow the instructions sent to your email and then don't tell the bossman the password</Modal.Body>
+            <Modal.Body>Thank you for contacting us! We will be in touch with you soon!</Modal.Body>
             <Modal.Footer>
             </Modal.Footer>
           </Modal>
