@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import '../css/Individual.css';
-import {Redirect} from 'react-router';
 import UCSDImage from './UCSDLogo.png';
 import Grid from '@material-ui/core/Grid';
 import Geisel from './UCSDCampus.jpg';
 import Heart from '../components/content/Heart';
 import { IoIosUndo } from "react-icons/io";
 import NavBar from '../components/content/Navbar';
+import {Redirect} from 'react-router';
 
 const commonApp = "https://www.commonapp.org/apply/essay-prompts";
 
@@ -73,24 +73,22 @@ class Individual extends Component {
 
     essayFormat(essays) {
         if (typeof essays === 'string') {
-            var essayArrayInit = essays.split("/");
+            var essayArrayInit = essays.split("|");
             var essayArray = [];
             for (var i = 1; i < essayArrayInit.length; i++) {
                 essayArray.push(essayArrayInit[i]);
             }
             return (
-                <ul className="essay-text">
+                <div className="essay-text">
                     <h1 className="essay-header">
-                        Supplemental Essay Questions ( {this.essayHeaderFunc(this.state.college_json["supplemental_essays"])})
+                        Supplemental Essay Questions {this.essayHeaderFunc(this.state.college_json["supplemental_essays"])}
                 </h1>
-                    {essayArray.map((essay) => {
+                    {essayArray.map((essay, index) => {
                         return (
-                            <li>
-                                {essay}
-                            </li>
+                                <p>{index + 1}.{essay}</p>
                         )
                     })}
-                </ul>
+                </div>
             );
         }
         else {
@@ -100,14 +98,16 @@ class Individual extends Component {
 
     essayHeaderFunc(essays) {
         if (typeof essays === 'string') {
-            var essayArrayInit = essays.split("/");
-            console.log(essayArrayInit.length);
+            var essayArrayInit = essays.split("|");
             if (essayArrayInit.length > 1) {
-                var essayArray = essayArrayInit[0];
-                return essayArray;
+                var total = essayArrayInit.length - 1;
+                var required = parseInt(essays, 10);
+                if (!isNaN(required)) {
+                return "(" + required + " of " + total + " Required)"
+            }
             }
             else {
-                return "None Required ";
+                return "(None Required)"
             }
         }
         else {
@@ -128,7 +128,7 @@ class Individual extends Component {
                         if (applications === "Common Application") {
                             return (
                                 <li>
-                                    <a href={commonApp} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "underline" }}>{applications}</a>
+                                    <a className="application-link" href={commonApp} target="_blank" rel="noopener noreferrer">{applications}</a>
                                 </li>
                             );
                         }
@@ -150,7 +150,6 @@ class Individual extends Component {
 
 
     componentDidMount() {
-        console.log("individual mount");
         window.scrollTo(0, 0);
         fetch("/individual", {
             method: "POST",
@@ -189,11 +188,6 @@ class Individual extends Component {
                     <div className="white-circle">
                     </div>
                     <img className="college-logo" src={this.state.college_json["college_logo"]} />
-                    <div className="description-box">
-                    </div>
-                    <p className="description-text" >
-                        {this.state.college_json["college_description"]}
-                    </p>
                     {this.essayFormat(this.state.college_json["supplemental_essays"])}
                     {this.applyFormat(this.state.college_json["app_site"])}
                     <div className="grid-layout">
@@ -227,16 +221,16 @@ class Individual extends Component {
                                     Deadlines
                             </h1>
                                 <p>
-                                    Regular Decision Deadline: {this.dateFormat(this.state.college_json["regular_decision"])}
+                                    Regular Decision: {this.dateFormat(this.state.college_json["regular_decision"])}
                                 </p>
                                 <p>
-                                    Early Decision Deadline: {this.dateFormat(this.state.college_json["early_decision"])}
+                                    Early Decision: {this.dateFormat(this.state.college_json["early_decision"])}
                                 </p>
                                 <p>
-                                    Early Action Deadline: {this.dateFormat(this.state.college_json["early_action"])}
+                                    Early Action: {this.dateFormat(this.state.college_json["early_action"])}
                                 </p>
                                 <p>
-                                    Scholarship Deadline: {this.dateFormat(this.state.college_json["scholarship_date"])}
+                                    Scholarship: {this.dateFormat(this.state.college_json["scholarship_date"])}
                                 </p>
                             </Grid>
                             <Grid item className="sat-layout">
@@ -264,17 +258,24 @@ class Individual extends Component {
                             </Grid>
                         </Grid>
                     </div>
+                    <div className="description-container">
+                    <div className="holder" >
+                    </div>
+                    <div className="description-box">
+                        <p className="description-text" >
+                            {this.state.college_json["college_description"]}
+                        </p>
+                    </div>
+                    </div>
                 </div>
             );
         }
     }
 
     render() {
-
         if(!sessionStorage.getItem("userData")){
             return(<Redirect to='/loginhome/dashboard' />)
         }
-      
         return (
             <div>
                 <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} searchBar={this.state.searchBar} active="2" />

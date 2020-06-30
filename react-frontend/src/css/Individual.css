@@ -37,7 +37,7 @@
 .tint {
     background-color: black;
     width: calc(85vw);
-    position: absolute; 
+    position: absolute;
     left: calc(15vw);
     margin-left: -15px;
     height: calc(36.5rem);
@@ -87,6 +87,7 @@
     text-align: center;
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: normal;
+    z-index: 15;
 }
 
 .general-text {
@@ -94,32 +95,50 @@
     text-align: center;
     font-size: calc(1.5rem);
     font-family: 'Noto Sans JP', sans-serif;
-    font-weight: normal;
+    font-weight: bold;
 }
 
 .description-text {
     width: calc(65vw);
-    height: calc(9.5rem);
-    position: absolute;
+    /*height: calc(9.5rem);*/
+    /*position: absolute;*/
+    /*position: relative;*/
     text-align: center;
-    left: calc(27.5vw);
+    /*left: calc(12.5vw);*/
     font-size: calc(1.15vw);
     color: white;
-    top: calc(27.5rem);
+    /*top: calc(27.5rem);*/
+    /*bottom: calc(36.5rem);*/
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: normal;
+    opacity: 1;
+    margin-bottom: calc(1rem);
+    margin-top: calc(1rem);
+    margin-left: 18.5%;
 }
 
 .description-box {
-    background-color: black;
-    width: calc(87.5vw);
-    position: absolute; 
-    left: calc(12.5vw);
-    margin-left: -15px;
-    height: calc(10.5rem);
-    opacity: 0.6;
-    top: calc(26rem);
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    /*position: absolute; */
+    position: absolute;
+    /*left: calc(15vw);
+    margin-left: -15px;*/
+    /*height: calc(10.5rem);*/
+    height: auto;
+    /*opacity: 0.6;*/
+    /*top: calc(26rem);*/
+    bottom: calc(0px);
     overflow: hidden;
+}
+
+.description-container {
+    width: calc(85vw);
+    position: relative;
+    left: calc(15vw);
+    margin-left: calc(-15px);
+    height: calc(36.5rem);
+    margin-top: calc(0rem);
 }
 
 .essay-text {
@@ -145,7 +164,13 @@
     font-size: calc(1.6vw);   
     top: calc(-2.5rem);
     font-family: 'Noto Sans JP', sans-serif;
-    font-weight: normal;
+    font-weight: bold;
+}
+
+.essay-require {
+    font-size: calc(1.6vw);   
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: bold;
 }
 
 .info-pane{
@@ -170,7 +195,16 @@
     font-size: calc(1.6vw);
     top: calc(-2.5rem);
     font-family: 'Noto Sans JP', sans-serif;
-    font-weight: normal;
+    font-weight: bold;
+}
+
+.application-link {
+    text-decoration: underline;
+    color: black;
+}
+
+.application-link:hover {
+    color: #0066ff;
 }
 
 .deadline-layout {
@@ -186,6 +220,7 @@
     text-align: center;
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: normal;
+    z-index: 11;
 
 }
 
@@ -194,7 +229,7 @@
     text-align: center;
     font-size: calc(1.5rem);
     font-family: 'Noto Sans JP', sans-serif;
-    font-weight: normal;
+    font-weight: bold;
 }
 
 .sat-layout {
@@ -210,6 +245,7 @@
     text-align: center;
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: normal;
+    z-index: 12;
 
 }
 
@@ -218,7 +254,7 @@
     text-align: center;
     font-size: calc(1.5rem);
     font-family: 'Noto Sans JP', sans-serif;
-    font-weight: normal;
+    font-weight: bold;
 }
 
 .college-logo {
@@ -278,6 +314,7 @@
 .individual-container {
     position: absolute;
     margin-top: calc(0rem);
+    height: auto;
 }
 
 .return {
@@ -321,14 +358,15 @@
         font-size: calc(1.4vmax);
         font-family: 'Noto Sans JP', sans-serif;
     font-weight: normal;
+    z-index: 10;
     }
     
     .general-text {
         margin-top: calc(2.5vh);
         text-align: center;
-        font-size: calc(1.6vmax);
+        font-size: calc(1.8vmax);
         font-family: 'Noto Sans JP', sans-serif;
-    font-weight: normal;
+    font-weight: bold;
     }
 
     .deadline-layout {
@@ -345,14 +383,15 @@
         font-size: calc(1.4vmax);
         font-family: 'Noto Sans JP', sans-serif;
     font-weight: normal;
+    z-index: 11;
     }
     
     .deadline-header {
         margin-top: calc(2.5vh);
         text-align: center;
-        font-size: calc(1.6vmax);
+        font-size: calc(1.8vmax);
         font-family: 'Noto Sans JP', sans-serif;
-    font-weight: normal;
+    font-weight: bold;
     }
     
     .sat-layout {
@@ -369,14 +408,15 @@
         font-size: calc(1.4vmax);
         font-family: 'Noto Sans JP', sans-serif;
     font-weight: normal;
+    z-index: 12;
     }
     
     .sat-header {
         margin-top: calc(2.5vh);
         text-align: center;
-        font-size: calc(1.6vmax);
+        font-size: calc(1.8vmax);
         font-family: 'Noto Sans JP', sans-serif;
-    font-weight: normal;
+    font-weight: bold;
     }
 
     .return {
@@ -433,27 +473,37 @@
 
     .description-text {
         width: calc(65vw);
-        height: calc(9.5rem);
-        position: absolute;
+        /*height: calc(9.5rem);*/
+        /*position: absolute;*/
+        /*position: relative;*/
         text-align: center;
-        left: calc(27.5vw);
+        /*left: calc(12.5vw);*/
         font-size: calc(1.4vmax);
         color: white;
-        top: calc(27.5rem);
+        /*top: calc(27.5rem);*/
+        /*bottom: calc(36.5rem);*/
         font-family: 'Noto Sans JP', sans-serif;
     font-weight: normal;
+    opacity: 1;
+    /*bottom: calc(1.5rem);*/
+    margin-bottom: calc(1rem);
+    margin-top: calc(1rem);
+    margin-left: 18.5%;
     }
     
     .description-box {
-        background-color: black;
-        width: calc(87.5vw);
-        position: absolute; 
-        left: calc(12.5vw);
+        background-color: rgba(0, 0, 0, 0.6);
+        width: 100%;
+        /*position: absolute; */
+        position: absolute;
+        /*left: calc(15vw);
         margin-left: -15px;
-        height: calc(10.5rem);
-        opacity: 0.6;
-        top: calc(26rem);
+        /*height: calc(10.5rem);*/
+        height: auto;
+        /*opacity: 0.6;*/
+        /*top: calc(26rem);*/
         overflow: hidden;
+        bottom: calc(0px);
     }
     
     .individual-heart {
