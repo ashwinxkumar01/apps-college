@@ -177,14 +177,6 @@ class Individual extends Component {
                     <img className="Geisel" src={this.state.college_json["college_campus"]} />
                     <div className="tint">
                     </div>
-                    <div className="image-box">
-                        <h1>
-                            {this.state.college_json["college_name"]}
-                            <span className="individual-heart">
-                                <Heart collegeName={this.state.college_json["college_name"]} key={this.state.college_json["college_name"]} />
-                            </span>
-                        </h1>
-                    </div>
                     <div className="white-circle">
                     </div>
                     <img className="college-logo" src={this.state.college_json["college_logo"]} />
@@ -266,6 +258,14 @@ class Individual extends Component {
                             {this.state.college_json["college_description"]}
                         </p>
                     </div>
+                    </div>
+                    <div className="image-box">
+                        <h1>
+                            {this.state.college_json["college_name"]}
+                            <span className="individual-heart">
+                                <Heart collegeName={this.state.college_json["college_name"]} key={this.state.college_json["college_name"]} />
+                            </span>
+                        </h1>
                     </div>
                 </div>
             );
