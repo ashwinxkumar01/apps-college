@@ -305,7 +305,7 @@ def essays():
         if name != "none":
             name_list.append(name)
     query_lst = []
-    for i in name_list[:-2]:
+    for i in name_list[:-1]:
         query_lst.append("college_name")
         query_lst.append(i)
     #print(query_lst)
@@ -675,7 +675,7 @@ def dashboard():
         if name != "none":
             name_list.append(name)
     query_lst = []
-    for i in name_list[:-2]:
+    for i in name_list[:-1]:
         query_lst.append("college_name")
         query_lst.append(i)
     print(query_lst)
