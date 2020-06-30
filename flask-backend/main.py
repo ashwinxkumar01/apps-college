@@ -12,6 +12,8 @@ from flask_cors import CORS, cross_origin
 import smtplib, ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import re
+import json
 
 app = flask.Flask(__name__)
 CORS(app)
@@ -45,6 +47,18 @@ def get_query(query):
     cnxn.close()
     
     return myresult
+
+
+def query_screen(query_lst):
+    for i in query_lst:
+        print(i)
+        if "St John''s University-New York" in i:
+            continue
+        elif re.match("^[A-Za-z0-9_+\-,. ]*$", i):
+            continue
+        else:
+            return False
+    return True
 
 
 # TO QUERY, CALL get_colleges()
@@ -113,7 +127,10 @@ def get_colleges(query_lst):
 
     query += ";"
     print(query)
-    results = get_query(query)
+    if query_screen(query_lst):
+        results = get_query(query)
+    else:
+        results = []
     toBeSorted = []
 
     # convert to college object
@@ -163,6 +180,8 @@ def get_ranking_order(college_lst):
     return int(college_lst[3])
 
 def get_colleges_for_dashboard(query_lst):
+    if not query_screen(query_lst):
+        return []
     query = "SELECT * FROM " + os.environ.get("TABLE_NAME")
 
     if len(query_lst) > 0:
@@ -281,7 +300,7 @@ def essays():
         if name != "none":
             name_list.append(name)
     query_lst = []
-    for i in name_list:
+    for i in name_list[:-2]:
         query_lst.append("college_name")
         query_lst.append(i)
     #print(query_lst)
@@ -300,6 +319,7 @@ def individual():
 
     #formats incoming request to proper format for calling function
     lst_to_call = ['college_name',name]
+    print(lst_to_call)
     college_json = get_colleges(lst_to_call)
     return jsonify(college_json)
 
@@ -650,10 +670,10 @@ def dashboard():
         if name != "none":
             name_list.append(name)
     query_lst = []
-    for i in name_list:
+    for i in name_list[:-2]:
         query_lst.append("college_name")
         query_lst.append(i)
-    #print(query_lst)
+    print(query_lst)
     json_return = get_colleges_for_dashboard(query_lst)
     print(json_return)
     return json.dumps(json_return)
