@@ -154,7 +154,10 @@ class SearchBar extends React.Component {
                         if (this.state.clickOutside) {
 
                         } else {
-                            var college = collegeArray[0];
+                            let college = collegeArray[0];
+                            if(college.length > 43){
+                                college = college.substring(0, 40) + "...";
+                            }
                             return (
                                 <div className="individual">
                                     <Link to={`/loginhome/page/${college}`}>

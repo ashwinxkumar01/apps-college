@@ -41,21 +41,21 @@
 
   .collegeName {
     font-family: 'Oswald', sans-serif;
-    font-size: calc(2.25vh);
+    font-size: calc(3.15vh);
     color: black !important;
-    margin-top: calc(2.22%) !important;
+    margin-top: calc(1vh) !important;
     position: absolute !important;
-    left: calc(20%) !important;
+    left: calc(10vh) !important;
     z-index: 1;
   }
   
 .circle {
-  height: calc(6.4vh) !important;
-  width: calc(6.4vh) !important;
+  height: calc(5.5vh) !important;
+  width: calc(5.5vh) !important;
   border-radius: calc(50%) !important;
   position: absolute !important;
   left: calc(3.5%) !important;
-  top: calc(0%) !important;
+  top: calc(.5vh) !important;
   opacity: 0.7 !important;
   box-shadow: 0 0 5px -2px #888 !important;
   margin-top: calc(0rem) !important;
@@ -63,8 +63,8 @@
 
 .logo {
   position: absolute !important;
-  top: 0 !important;
+  top: calc(.5vh) !important;
   left: calc(3.5%) !important;
-  height: calc(6.4vh) !important;
-  width: calc(6.4vh) !important;
+  height: calc(5.5vh) !important;
+  width: calc(5.5vh) !important;
 }
