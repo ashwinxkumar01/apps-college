@@ -9,6 +9,8 @@ import NavBar from '../components/content/Navbar';
 import {Redirect} from 'react-router';
 
 const commonApp = "https://www.commonapp.org/apply/essay-prompts";
+const coalitionApp = "https://www.coalitionforcollegeaccess.org/essays";
+const UCApp = "https://admission.universityofcalifornia.edu/how-to-apply/applying-as-a-freshman/personal-insight-questions.html";
 
 class Individual extends Component {
     constructor(props) {
@@ -16,13 +18,10 @@ class Individual extends Component {
         this.myRef = React.createRef();
         this.imageRef = React.createRef();
         this.state = {
-            key: this.props.match.params.collegeName,
             resultsFromSearch: [],
             college_name: "San Diego State University",
             college_json: [],
-            searchBar: false,
-            rerender: false,
-            newCollege: false
+            searchBar: false
         }
         this.searchBarInUse = this.searchBarInUse.bind(this);
         this.setSearch = this.setSearch.bind(this);
@@ -45,11 +44,7 @@ class Individual extends Component {
 
     searchBarInUse = (inUse) => {
         if (inUse !== this.state.searchBar) {
-          if (inUse) {
-            this.setState({ searchBar: inUse, rerender: true });
-          } else {
-            this.setState({ searchBar: inUse, rerender: false });
-          }
+            this.setState({ searchBar: inUse });
         }
       }
 
@@ -131,10 +126,37 @@ class Individual extends Component {
                     </h1>
                     {applicationArray.map((applications) => {
                         console.log(applications);
-                        if (applications === "Common Application") {
+                        var typeArray = applications.split(" ");
+                        var type = typeArray[0];
+                        var coalitionType = "none";
+                        if(typeArray.length > 1) {
+                            coalitionType = typeArray[1];
+                        }
+                        if (type === "Common") {
                             return (
                                 <li>
                                     <a className="application-link" href={commonApp} target="_blank" rel="noopener noreferrer">{applications}</a>
+                                </li>
+                            );
+                        }
+                        else if (coalitionType === "Coalition") {
+                            return (
+                                <li>
+                                    <a className="application-link" href={coalitionApp} target="_blank" rel="noopener noreferrer">{applications}</a>
+                                </li>
+                            );
+                        }
+                        else if (type === "Coalition") {
+                            return (
+                                <li>
+                                    <a className="application-link" href={coalitionApp} target="_blank" rel="noopener noreferrer">{applications}</a>
+                                </li>
+                            );
+                        }
+                        else if (type === "UC") {
+                            return (
+                                <li>
+                                    <a className="application-link" href={UCApp} target="_blank" rel="noopener noreferrer">{applications}</a>
                                 </li>
                             );
                         }
@@ -170,7 +192,8 @@ class Individual extends Component {
             return response.json()
         }).then(data => {
             let value = JSON.parse(data);
-            this.setState({ college_json: value, rerender: true })
+            this.setState({ college_json: value })
+            console.log(this.state.college_json)
         });
 
     }
@@ -244,7 +267,7 @@ class Individual extends Component {
                                     Letters of Rec. Required: {this.state.college_json["letter_of_rec_required"]}
                                 </p>
                                 <p>
-                                    SAT/ACT Required: {this.state.college_json["sat"]}
+                                    SAT/ACT: {this.state.college_json["sat"]}
                                 </p>
                                 <p>
                                     SAT/ACT Self-Report: {this.state.college_json["self_report"]}
@@ -282,8 +305,8 @@ class Individual extends Component {
             return(<Redirect to='/loginhome/dashboard' />)
         }
         return (
-            <div key={this.props.match.params.collegeName}>
-                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} searchBar={this.state.searchBar} active="2" key={this.props.match.params.collegeName}/>
+            <div>
+                <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} searchBar={this.state.searchBar} active="2" />
                 {this.renderIndividual()}
             </div>
         );

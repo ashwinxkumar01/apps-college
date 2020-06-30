@@ -136,7 +136,13 @@ class Dashboard extends React.Component {
             </div>
           </div>
         )
-      } 
+      } else if (this.state.users.length === 0) {
+        return (
+          <div style={{width: '100%', textAlign: 'center', marginTop: 'calc(15%)', color: 'rgb(0, 0, 0, 0.534)', fontFamily: 'Roboto, sans-serif'}}>
+            <h1>You appear to have nothing on your dashboard, click Explore to start adding colleges!</h1>
+          </div>
+        )
+      }
       return (
         <div className={useStyles.root}>
           <UsersToolbar selectedColleges={this.state.selectedColleges} removeColleges={this.removeColleges}/>

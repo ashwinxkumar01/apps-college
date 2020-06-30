@@ -106,7 +106,7 @@ export default function SignInSide() {
           <Modal.Title>{header.Header}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          You will recieve an email, follow the directions specified to reset your password.
+          You will receive an email; follow the directions specified to reset your password.
           <br />
           <br />
           <Form>

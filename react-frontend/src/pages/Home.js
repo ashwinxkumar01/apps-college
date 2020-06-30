@@ -44,7 +44,7 @@ function Home() {
             <Modal.Header closeButton>
               <Modal.Title>Email Sent!</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Follow the instructions sent to your email and then don't tell the bossman the password</Modal.Body>
+            <Modal.Body>Thank you for contacting us! We will be in touch with you soon!</Modal.Body>
             <Modal.Footer>
             </Modal.Footer>
           </Modal>
@@ -68,7 +68,7 @@ function Home() {
 
                 <Container>
                     <Row className="justify-content-md-center">
-                        <Col md="auto" style={{fontSize: "calc(5.5rem"}}>5400 APPS. ONE PLACE.</Col>
+                        <Col md="auto" style={{fontSize: "calc(5.5rem"}}>100 APPS. ONE PLACE.</Col>
                     </Row>
 
                     <Row className="justify-content-md-center">
@@ -140,8 +140,7 @@ function Home() {
                                     <div className="icon-border">
                                         <div><FontAwesomeIcon icon={faLayerGroup} /></div>
                                     </div>
-                                    <p> Keep track of all your colleges with a simple click, with important deadlines 
-                                        at your fingertips.       </p>
+                                    <p> Keep track of all your colleges on a personalized dashboard with the information that matters most.</p>
                                 </div>
                             </Col>
                         </Row>
