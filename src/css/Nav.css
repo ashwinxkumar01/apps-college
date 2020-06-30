@@ -1,0 +1,60 @@
+/*@import url('https://fonts.googleapis.com/css?family=Font+Name');*/
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap');
+
+nav {
+  display: flex;
+  height: calc(8.5vh);
+  background-image: linear-gradient(rgba(2,0,36,1) 0%, transparent);
+}
+
+.navbar {
+  width: calc(100%);
+  max-width: calc(100%);
+  padding-left: calc(0%);
+  padding-right: calc(1%);
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  list-style: none;  
+  font-family: 'Lato';
+  cursor: default;
+}
+
+li {
+  color: white;
+  font-size: calc(2.5vmin);
+}
+
+.App-logo-background {
+  width: calc(4%);
+  justify-content: start;
+  align-items: center;
+}
+
+.App-logo {
+  padding-top: calc(0.5vmin);
+  padding-left: calc(0vmin);
+  height: calc(6.5vmin);
+  cursor: pointer;
+}
+
+.profile {
+  -webkit-transform: scale(0.6);
+  -ms-transform: scale(0.6);
+  transform: scale(2);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

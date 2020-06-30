@@ -1,0 +1,48 @@
+.profile {
+    width: 100%;
+    height: calc(100vh);
+    overflow: hidden;
+}
+
+.image-background {
+    background-image: url('../pages/wp2017235.jpg');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    height: calc(45rem);
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .white-background {
+    border-radius: calc(3vmin);
+    background-color: rgba(235, 248, 255, .95);
+    box-shadow: 5px 5px 10px 0px;
+    margin-top: calc(3.85vh);
+    width: calc(42vw);
+    height: calc(80vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #002233;
+  }
+
+  .shadow {
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 0 0 5px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: calc(35vw);
+    width: calc(20vmin);
+    height: calc(20vmin);
+    margin-top: 6.5%; 
+  }
+
+  .welcome {
+    margin-top: 2.5%;
+    font-size: calc(5vh);
+  }
