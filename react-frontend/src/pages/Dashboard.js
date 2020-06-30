@@ -97,6 +97,7 @@ class Dashboard extends React.Component {
     }).then(data => {
       let collegeList = [];
       let boolean = true;
+      console.log(data);
       data.map(college => {
         var collegeName = JSON.parse(college);
         collegeList.push(collegeName);

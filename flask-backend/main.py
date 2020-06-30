@@ -122,8 +122,7 @@ def get_colleges(query_lst):
             if i != len(query_lst) - 2:
                     query += " AND"
 
-    elif len(query_lst) < 0:
-        return "Incorrect Usage"
+    
 
     query += ";"
     print(query)
@@ -180,6 +179,9 @@ def get_ranking_order(college_lst):
     return int(college_lst[3])
 
 def get_colleges_for_dashboard(query_lst):
+    if len(query_lst) is 0:
+        return []
+
     if not query_screen(query_lst):
         return []
     query = "SELECT * FROM " + os.environ.get("TABLE_NAME")
