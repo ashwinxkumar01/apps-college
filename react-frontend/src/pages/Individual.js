@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Individual.css';
 import UCSDImage from './UCSDLogo.png';
+import { Spinner } from 'react-bootstrap';
 import Grid from '@material-ui/core/Grid';
 import Geisel from './UCSDCampus.jpg';
 import Heart from '../components/content/Heart';
@@ -21,7 +22,8 @@ class Individual extends Component {
             resultsFromSearch: [],
             college_name: "San Diego State University",
             college_json: [],
-            searchBar: false
+            searchBar: false,
+            Loading: true
         }
         this.searchBarInUse = this.searchBarInUse.bind(this);
         this.setSearch = this.setSearch.bind(this);
@@ -31,6 +33,7 @@ class Individual extends Component {
         this.essayFormat = this.essayFormat.bind(this);
         this.essayHeaderFunc = this.essayHeaderFunc.bind(this);
         this.applyFormat = this.applyFormat.bind(this);
+        this.renderSpinner = this.renderSpinner.bind(this);
 
     }
 
@@ -192,10 +195,24 @@ class Individual extends Component {
             return response.json()
         }).then(data => {
             let value = JSON.parse(data);
-            this.setState({ college_json: value })
-            console.log(this.state.college_json)
+            this.setState({ 
+                college_json: value, 
+                Loading: false 
+            });
         });
 
+    }
+
+    renderSpinner = () => {
+        return (
+            <div className="spinner-center">
+                <div className="spinner-div">
+                    <Spinner animation="border" variant="secondary" role="status" className="load-spinner">
+                        <span className="sr-only">Loading...</span>
+                    </Spinner>
+                </div>
+            </div>
+        )
     }
 
     renderIndividual = () => {
@@ -307,7 +324,7 @@ class Individual extends Component {
         return (
             <div>
                 <NavBar searchBarInUse={this.searchBarInUse} setSearch={this.setSearch} searchBar={this.state.searchBar} active="2" />
-                {this.renderIndividual()}
+                {this.state.Loading ? this.renderSpinner() : this.renderIndividual()}
             </div>
         );
     }
