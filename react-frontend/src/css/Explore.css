@@ -125,7 +125,7 @@ span {
 }
 
 .dropdown-main {
-    width: calc(90%);
+    width: calc(93%);
 }
 
 .dropdown-name {
@@ -211,6 +211,7 @@ span {
 
 .sort-by {
     width: calc(100%);
+    z-index: 10;
 }
 
 .filter-type {
