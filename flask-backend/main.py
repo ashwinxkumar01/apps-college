@@ -265,10 +265,13 @@ def test_func():
 @app.route("/loginhome/login")
 @app.route("/loginhome/signup")
 @app.route("/loginhome/dashboard")
-@app.route("/loginhome/page/:collegeName")
 @app.route("/profile")
 @app.route("/loginhome/essays", methods = ['POST', 'GET'])
 def my_index():
+    return flask.render_template("index.html", token="Hello Flask and React")
+
+@app.route('/loginhome/page/<collegeName>')
+def my_indexes(collegeName):
     return flask.render_template("index.html", token="Hello Flask and React")
 
 @app.route("/filter", methods = ['POST'])

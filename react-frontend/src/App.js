@@ -38,10 +38,12 @@ class App extends React.Component {
             <Route path="/loginhome/dashboard" component={RequireAuth(Dashboard)} />
             <Route path="/loginhome/login" component={Login} />
             <Route path="/loginhome/signup" component={Signup} />
-            <Route path="/loginhome/page/:collegeName" component={Individual} />
+            <Route exact path="/loginhome/page/:collegeName" render={(props) => (
+              <Individual key={props.match.params.collegeName} {...props} />)
+            } />
             <Route path="/loginhome/essays" component={RequireAuth(Essays)} />
             <Route path="/profile" component={RequireAuth(Profile)} />
-            <Route path="/" component={Home}/>
+            <Route path="/" component={Home} />
           </Switch>
         </div>
       </Router>

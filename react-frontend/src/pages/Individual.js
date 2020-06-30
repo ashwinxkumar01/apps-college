@@ -16,6 +16,7 @@ class Individual extends Component {
         this.myRef = React.createRef();
         this.imageRef = React.createRef();
         this.state = {
+            key: this.props.match.params.collegeName,
             resultsFromSearch: [],
             college_name: "San Diego State University",
             college_json: [],
@@ -52,27 +53,27 @@ class Individual extends Component {
         }
       }
 
-    componentWillUpdate(){
-        window.scrollTo(0, 0);
-        fetch("/individual", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: this.props.match.params.collegeName
-            })
-        }).then(response => {
-            console.log(response)
-            return response.json()
-        }).then(data => {
-            let value = JSON.parse(data);
-            if(!this.state.rerender){
-                this.setState({ college_json: value, rerender: true, searchBar: false })
-            }
-        });
+    // componentWillReceiveProps(newProps){
+    //     window.scrollTo(0, 0);
+    //     fetch("/individual", {
+    //         method: "POST",
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             name: newProps.match.params.collegeName
+    //         })
+    //     }).then(response => {
+    //         console.log(response)
+    //         return response.json()
+    //     }).then(data => {
+    //         let value = JSON.parse(data);
+    //         if(!this.state.rerender){
+    //             this.setState({ college_json: value, rerender: true, searchBar: false })
+    //         }
+    //     });
 
-    }
+    // }
 
     numFormat(num) {
         if (typeof num === 'number') {
@@ -295,7 +296,6 @@ class Individual extends Component {
     }
 
     render() {
-
         if(!sessionStorage.getItem("userData")){
             return(<Redirect to='/loginhome/dashboard' />)
         }
