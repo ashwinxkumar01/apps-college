@@ -23,11 +23,11 @@ Then, navigate to flask-backend and run python3 main.py.
 Ensure that:
 1. npm install 
 2. npm install react-router-dom
-3. yarn add @material-ui/core
-4. yarn add @material-ui/icons
+3. npm install (yarn add) @material-ui/core
+4. npm install (yarn add) @material-ui/icons
 5. npm install react-bootstrap
 6. npm install @fortawesome/react-fontawesome
-7. yarn add @material-ui/styles
+7. npm install (yard add) @material-ui/styles
 8. npm install react-perfect-scrollbar
 9. npm install react-select
 10. npm install react-icons
