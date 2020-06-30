@@ -75,7 +75,7 @@ class Essays extends Component {
     }
 
     requiresOnlyCommon() {
-        var requires = this.state.selectedColleges.every(college => college.common_app === "y" || college.app_site === "UC Application");
+        var requires = this.state.selectedColleges.every(college => college.common_app === "y" || !college.app_site.includes("Coalition Application"));
         if(this.state.selectedColleges.length === 0) {
             return false;
         }
@@ -84,7 +84,7 @@ class Essays extends Component {
     }
 
     requiresOnlyCoalition() {
-        var requires = this.state.selectedColleges.every(college => college.coalition_app === "y" || college.app_site === "UC Application");
+        var requires = this.state.selectedColleges.every(college => college.coalition_app === "y" || !college.app_site.includes("Common Application"));
         if(this.state.selectedColleges.length === 0) {
             return false;
         }
