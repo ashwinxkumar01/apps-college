@@ -49,8 +49,7 @@ class Individual extends Component {
         if (inUse !== this.state.searchBar) {
             this.setState({ searchBar: inUse });
         }
-    }
-
+      }
 
     numFormat(num) {
         if (typeof num === 'number') {
