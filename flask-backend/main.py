@@ -6,7 +6,7 @@ from flask import request
 from sql_helpers import *
 from collections import Counter
 from flask import jsonify, redirect, url_for
-import pyodbc
+#import pyodbc
 #from firebase import * #Causing errors when testing, Ashwin fix it
 from flask_cors import CORS, cross_origin
 import smtplib, ssl
