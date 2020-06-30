@@ -2,7 +2,7 @@
   "name": "react-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/static/react",
+  "homepage": "https://applicationhub.herokuapp.com/",
   "dependencies": {
     "@babel/core": "7.9.0",
     "@fortawesome/fontawesome-free": "^5.13.0",
